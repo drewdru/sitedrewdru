@@ -9,3 +9,4 @@
 </template>
 
 <style lang="less" src="./app.less"></style>
+<script lang="ts" src="./app.ts"></script>
