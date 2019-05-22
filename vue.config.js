@@ -1,5 +1,5 @@
 module.exports = {
-	chainWebpack: config => {
+  chainWebpack: config => {
     config.module
       .rule("i18n")
       .resourceQuery(/blockType=i18n/)

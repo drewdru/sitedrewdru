@@ -1,5 +1,10 @@
-<i18n src="./ru.yaml" lang="yaml"></i18n>
-<i18n src="./en.yaml" lang="yaml"></i18n>
+
+<i18n>
+  en:
+    hiDrewDru: Hi, I'm Drew Dru
+  ru:
+    hiDrewDru: Привет, я Drew Dru
+</i18n>
 
 <template>
   <div class="home">
