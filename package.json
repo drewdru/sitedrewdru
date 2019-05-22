@@ -10,9 +10,13 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
+    "axios": "^0.18.0",
+    "core-js": "^2.6.7",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
+    "vue-flag-icon": "^1.0.6",
+    "vue-i18n": "^8.11.2",
+    "vue-i18n-loader": "^1.0.0",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
