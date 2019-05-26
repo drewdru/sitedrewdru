@@ -1,15 +1,9 @@
-
-<i18n>
-  en:
-    hiDrewDru: Hi, I'm Drew Dru
-  ru:
-    hiDrewDru: Привет, я Drew Dru
-</i18n>
+<i18n src="./en.yaml"></i18n>
+<i18n src="./ru.yaml"></i18n>
 
 <template>
   <div class="home">
-    <HelloWorld msg="Hi, I'm Drew Dru"></HelloWorld>
-    {{$t('hiDrewDru')}}
+    <HelloWorld :msg="$t('hiDrewDru')"></HelloWorld>    
     <transition name="cutie-mark" appear>
       <img class="cutie-mark" alt="Drew Dru logo" src="@/assets/logo.svg">
     </transition>

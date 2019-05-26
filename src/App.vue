@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div class="nav static"></div>
+    <div id="nav" class="nav fixed">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <LocaleChanger></LocaleChanger>

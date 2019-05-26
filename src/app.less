@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -5,10 +9,10 @@
   text-align: center;
   color: #2c3e50;
 }
-#nav {
-  position: static;
+
+.nav {
   display: block;
-  padding: 30px;
+  padding: 15px;
   background-color: #2c3e50;
   a {
     font-weight: bold;
@@ -16,5 +20,14 @@
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+  &.static {
+    position: static;
+    visibility: hidden;
+  }
+  &.fixed {
+    position: fixed;
+    width: 100vw;
+    top: 0;
   }
 }
