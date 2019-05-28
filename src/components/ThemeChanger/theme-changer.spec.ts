@@ -3,13 +3,13 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 import store from '@/store';
 
-import LocaleChanger from './locale-changer';
+import LocaleChanger from './theme-changer';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('LocaleChanger.vue', () => {
-  it('change locale', () => {
+describe('ThemeChanger.vue', () => {
+  it('change theme', () => {
     // const wrapper = shallowMount(LocaleChanger, {
     //   store,
     //   localVue,
