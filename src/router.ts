@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home/Home.vue';
+// import Home from './views/Home/Home.vue';
 
 Vue.use(Router);
 
@@ -11,12 +11,17 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: () => import('./views/Home/Home.vue'),
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('./views/About/About.vue'),
     },
+    // {
+    //   path: '*',
+    //   name: 'error404',
+    //   component: Error404
+    // }
   ],
 });

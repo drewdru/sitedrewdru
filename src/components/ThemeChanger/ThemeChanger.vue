@@ -1,9 +1,8 @@
 <template>
-  <div class="theme-changer">    
-    <flag :iso="flag"></flag>
+  <div class="theme-changer">
     <select v-model="selected" @change="themeChange">
-      <option v-for="(lang, i) in languages" :key="`Lang${i}`" :value="lang">
-        {{ lang.title }}
+      <option v-for="(theme, i) in themes" :key="`Theme${i}`" :value="theme">
+        {{ theme.themeName }}
       </option>
     </select>
   </div>
