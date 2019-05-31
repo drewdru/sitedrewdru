@@ -13,19 +13,12 @@ export default class LocaleChanger extends Vue {
     {locale: 'ru', flag: 'ru', title: 'Russian'},
   ];
 
-  get selected() {
-    // this.localeChange({});
-    return this.languages.filter(
-      (c) => c.locale === this.$i18n.locale,
-    )[0];
-  }
-
-  get flag() {
-    return this.selected.flag;
-  }
+  private selected: Languages|any = {};
 
   private created() {
-    this.localeChange();
+    this.selected = this.languages.filter(
+      (c) => c.locale === this.$i18n.locale,
+    )[0];
   }
 
   @Emit()

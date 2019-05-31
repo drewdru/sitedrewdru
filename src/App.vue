@@ -5,6 +5,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <LocaleChanger></LocaleChanger>
+      <ThemeChanger></ThemeChanger>
     </div>
     <router-view/>
   </div>
