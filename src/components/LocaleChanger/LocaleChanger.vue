@@ -1,8 +1,10 @@
 <template>
-  <div class="locale-changer">    
-    <flag :iso="flag"></flag>
+  <div class="locale-changer">
+    <flag :iso="selected.flag"></flag>
     <select v-model="selected" @change="localeChange">
-      <option v-for="(lang, i) in languages" :key="`Lang${i}`" :value="lang">
+      <option v-for="(lang, i) in languages"
+              :key="`Lang${i}`"
+              :value="lang">
         {{ lang.title }}
       </option>
     </select>
