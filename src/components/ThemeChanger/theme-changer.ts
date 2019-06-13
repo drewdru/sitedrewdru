@@ -10,6 +10,30 @@ export default class ThemeChanger extends Vue {
   private selected: any = {};
   private themes: any = themes;
 
+  private options: any = [
+    {
+        title: 'Read the Docs',
+        icon: 'spinner',
+        url: 'https://codeclimate.com/github/sagalbot/vue-select',
+      },
+      // {
+      //   title: 'View on GitHub',
+      //   icon: 'fa-github',
+      //   url: 'https://codeclimate.com/github/sagalbot/vue-select',
+      // },
+      // {
+      //   title: 'View on NPM',
+      //   icon: 'fa-database',
+      //   url: 'https://codeclimate.com/github/sagalbot/vue-select',
+      // },
+      // {
+      //   title: 'View Codepen Examples',
+      //   icon: 'fa-pencil',
+      //   url: 'https://codeclimate.com/github/sagalbot/vue-select',
+      // },
+  ];
+
+
   private created() {
     this.selected = this.theme;
   }

@@ -7,6 +7,7 @@
       <LocaleChanger></LocaleChanger>
       <ThemeChanger></ThemeChanger>
     </div>
+    <!-- <ThemeChanger></ThemeChanger> -->
     <router-view/>
   </div>
 </template>
