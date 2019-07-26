@@ -38,7 +38,7 @@ const router = () => {
     }
   } else {
     // If you want to do something else just comment the line below
-    routes = router_error;
+    routes = router_index; // router_error;
   }
   return routes;
 };
