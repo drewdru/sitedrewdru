@@ -38,7 +38,7 @@ export default class ThemeChanger extends Vue {
 
   private created() {
     this.selected = this.theme;
-    this.themeChangerCircleWrapperCss = `0px 0px 2px 0px ${this.theme.primary}`
+    this.themeChangerCircleWrapperCss = `0px 0px 2px 0px ${this.theme.primary}`;
   }
 
   @Emit()
