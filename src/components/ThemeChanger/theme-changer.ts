@@ -10,7 +10,7 @@ export default class ThemeChanger extends Vue {
   private selected: any = {};
   private themes: any = themes;
 
-  private themeChangerCircleWrapperCss: string = '';
+  private themeChangerCircleWrapperCss: any = {};
 
   private options: any = [
     {
@@ -38,12 +38,19 @@ export default class ThemeChanger extends Vue {
 
   private created() {
     this.selected = this.theme;
-    this.themeChangerCircleWrapperCss = `0px 0px 2px 0px ${this.theme.primary}`;
+    this.themeChangerCircleWrapperCss = {
+      'box-shadow': `0px 0px 2px 0px ${this.theme.primary}`,
+    };
   }
 
   @Emit()
-  private themeChange(event: any) {
+  private themeChange(event: any, themeName: string) {
     // TODO: cache theme
-    this.switchTheme(this.selected.themeName);
+    this.switchTheme(themeName);
+  }
+
+  @Emit()
+  private openThemesBoard(event: any) {
+    alert('openThemesBoard');
   }
 }

@@ -14,4 +14,4 @@ export const themes: any = {
   vue,
 };
 
-export const defaultTheme: any = themes[THEMES.blue];
+export const defaultTheme: any = themes[THEMES.vue];
