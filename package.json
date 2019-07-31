@@ -10,6 +10,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-brands-svg-icons": "^5.8.2",
+    "@fortawesome/free-regular-svg-icons": "^5.8.2",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "axios": "^0.18.0",
     "core-js": "^2.6.7",
@@ -20,6 +25,7 @@
     "vue-i18n-loader": "^1.0.0",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
+    "vue-select": "^3.1.0",
     "vuex": "^3.0.1",
     "vuex-class": "^0.3.2",
     "yaml": "^1.5.1",
@@ -27,6 +33,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
+    "@types/vue-select": "^2.5.0",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-e2e-nightwatch": "^3.7.0",
     "@vue/cli-plugin-typescript": "^3.7.0",

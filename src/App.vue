@@ -1,5 +1,17 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{
+      '--body': theme.body,
+      '--body-text': theme.bodyText,
+      '--primary': theme.primary,
+      '--secondary': theme.secondary,
+      '--active': theme.active,
+      '--accent': theme.accent,
+      '--error': theme.error,
+      '--info': theme.info,
+      '--success': theme.success,
+      '--warning': theme.warning,
+      '--shadow': theme.shadow,
+    }">
     <div class="nav static"></div>
     <div id="nav" class="nav fixed">
       <router-link to="/">Home</router-link> |
