@@ -9,14 +9,24 @@ export default class ThemeChanger extends Vue {
 
   private selected: any = {};
   private themes: any = themes;
-
+  private themeChangerModal: boolean = false;
+  
   private created() {
     this.selected = this.theme;
   }
 
   @Emit()
-  private themeChange(event: any) {
+  private themeChange(event: any, themeName: string) {
     // TODO: cache theme
-    this.switchTheme(this.selected.themeName);
+    this.switchTheme(themeName);
+  }
+
+  @Emit()
+  private openThemeChangerModal(event: any) {
+    this.themeChangerModal = true;
+  }
+  @Emit()
+  private closeThemeChangerModal(event: any) {
+    this.themeChangerModal = false;
   }
 }
