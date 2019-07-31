@@ -1,16 +1,19 @@
 <template>
-  <div id="app" class="class_name" :style="{
+  <div id="app" :style="{
       '--body': theme.body,
+      '--body-text': theme.bodyText,
       '--primary': theme.primary,
       '--secondary': theme.secondary,
+      '--active': theme.active,
       '--accent': theme.accent,
       '--error': theme.error,
-      '--error': theme.info,
-      '--error': theme.success,
-      '--error': theme.warning,
+      '--info': theme.info,
+      '--success': theme.success,
+      '--warning': theme.warning,
+      '--shadow': theme.shadow,
     }">
     <div class="nav static"></div>
-    <div id="nav" class="nav fixed" :style="{'background-color': theme.primary}">
+    <div id="nav" class="nav fixed">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <LocaleChanger></LocaleChanger>

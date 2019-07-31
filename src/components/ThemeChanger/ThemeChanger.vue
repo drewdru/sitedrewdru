@@ -3,17 +3,7 @@
 
 <template>
   <div class="theme-changer">
-    
-    <!-- <v-select :options="options" label="title">
-      <template slot="option" slot-scope="option"> -->
-          <!-- <span class="fa" :class="option.icon"></span> -->
-          <!-- <font-awesome-icon :icon="option.icon"></font-awesome-icon>
-          {{ option.title }}
-      </template>
-    </v-select> -->
-
-    <div @click="openThemesBoard" class="wrapper animated infinite rotate delay-2s"
-        :style="themeChangerCircleWrapperCss">
+    <div @click="openThemeChangerModal" class="wrapper animated infinite rotate delay-2s">
       <div class="sector red" style="transform: rotate(75deg) skew(60deg);"></div>
       <div class="sector red-orange" style="transform: rotate(105deg) skew(60deg);"></div>
       <div class="sector orange" style="transform: rotate(135deg) skew(60deg);"></div>
@@ -26,40 +16,48 @@
       <div class="sector blue-violet" style="transform: rotate(345deg) skew(60deg);"></div>
       <div class="sector violet" style="transform: rotate(375deg) skew(60deg);"></div>
       <div class="sector red-violet" style="transform: rotate(405deg) skew(60deg);"></div>
-      <div class="circle" :style="{'background-color': theme.primary}"></div>
+      <div class="circle"></div>
     </div>
 
-    <div class="modal-wrapper">
+    <div class="modal-wrapper" v-if="themeChangerModal" @click.self="closeThemeChangerModal">
       <div class="modal-content">
-        <div class="modal-header" :style="{
-            color: theme.primary,
-            'background-color': theme.secondary}">
-          <span class="close">&times;</span>
+        <div class="modal-header">
+          <span class="close" @click="closeThemeChangerModal">&times;</span>
           <h2>{{$t('modalHeader')}}</h2>
         </div>
         <div class="modal-body">
           <div class="theme-card">
             {{$t('customizeTheme')}}
           </div>
-          <div class="theme-card" v-for="(theme, i) in themes"
+          <div class="theme-card" v-for="(cardTheme, i) in themes"
               :key="`Theme${i}`"
-              @click="themeChange($event, theme.themeName)">
-            {{ theme.themeName }}
-            {{ theme }}
+              @click="themeChange($event, cardTheme.themeName)"
+              
+              :style="{
+                'box-shadow': `0 1px 9px 1px  ${cardTheme.primary}`,
+              }">
+              <!--
+                '--body': cardTheme.body,
+                '--body-text': cardTheme.bodyText,
+                '--accent': cardTheme.accent,
+                '--primary': cardTheme.primary,
+                '--secondary': cardTheme.secondary,
+                '--active': cardTheme.active,
+                '--accent': cardTheme.accent,
+                '--error': cardTheme.error,
+                '--info': cardTheme.info,
+                '--success': cardTheme.success,
+                '--warning': cardTheme.warning,
+                '--shadow': cardTheme.shadow,-->
+            {{ cardTheme.themeName }}
+            {{ cardTheme }}
           </div>
-          
-          <!-- <select v-model="selected" @change="themeChange">
-            <option v-for="(theme, i) in themes" :key="`Theme${i}`" :value="theme">
-              {{ theme.themeName }}
-            </option>
-          </select> -->
         </div>
         <!-- <div class="modal-footer">
           <h3>Modal Footer</h3>
         </div> -->
       </div>
     </div>
-
   </div>
 </template>
 
