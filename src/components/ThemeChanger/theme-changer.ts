@@ -10,7 +10,7 @@ export default class ThemeChanger extends Vue {
   private selected: any = {};
   private themes: any = themes;
   private themeChangerModal: boolean = false;
-  
+
   private created() {
     this.selected = this.theme;
   }
