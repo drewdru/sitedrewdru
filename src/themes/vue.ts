@@ -6,6 +6,7 @@ export default {
   secondary: '#ffffff',
   active: '#42b983',
   accent: '#82B1FF',
+  accentText: '#043381',
   error: '#FF5252',
   info: '#2196F3',
   success: '#4CAF50',

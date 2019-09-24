@@ -6,6 +6,7 @@
       '--secondary': theme.secondary,
       '--active': theme.active,
       '--accent': theme.accent,
+      '--accent-text': theme.accentText,
       '--error': theme.error,
       '--info': theme.info,
       '--success': theme.success,

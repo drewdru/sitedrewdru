@@ -1,40 +1,43 @@
-body {
+* {
   margin: 0;
-  background-color: var(--body);
-  color: var(--body-text);
-
+}
+html, body {
+  height: 100%;
   @media screen and (max-width: 200px) {
     word-wrap: anywhere;   
   }  
+}
 
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: var(--body-text);
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background-color: var(--body);
+  color: var(--body-text);
+  min-height: 100%;
 
-    .nav {
-      display: block;
-      padding: 15px;
-      background-color: var(--primary);
-      margin-bottom: 40px;
-      a {
-        font-weight: bold;
-        color: var(--secondary);
-        &.router-link-exact-active {
-          color: var(--active);
-        }
+
+  .nav {
+    display: block;
+    padding: 15px;
+    background-color: var(--primary);
+    margin-bottom: 40px;
+    a {
+      font-weight: bold;
+      color: var(--secondary);
+      &.router-link-exact-active {
+        color: var(--active);
       }
-      &.static {
-        position: static;
-        visibility: hidden;
-      }
-      &.fixed {
-        position: fixed;
-        width: 100vw;
-        top: 0;
-      }
+    }
+    &.static {
+      position: static;
+      visibility: hidden;
+    }
+    &.fixed {
+      position: fixed;
+      width: 100vw;
+      top: 0;
     }
   }
 }

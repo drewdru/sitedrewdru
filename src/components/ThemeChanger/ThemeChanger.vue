@@ -35,20 +35,21 @@
               
               :style="{
                 'box-shadow': `0 1px 9px 1px  ${cardTheme.primary}`,
-              }">
-              <!--
                 '--body': cardTheme.body,
                 '--body-text': cardTheme.bodyText,
                 '--accent': cardTheme.accent,
+                '--accent-text': cardTheme.accentText,
+
                 '--primary': cardTheme.primary,
                 '--secondary': cardTheme.secondary,
                 '--active': cardTheme.active,
-                '--accent': cardTheme.accent,
                 '--error': cardTheme.error,
                 '--info': cardTheme.info,
                 '--success': cardTheme.success,
                 '--warning': cardTheme.warning,
-                '--shadow': cardTheme.shadow,-->
+                '--shadow': cardTheme.shadow,
+              }">
+              <!---->
             {{ cardTheme.themeName }}
             {{ cardTheme }}
           </div>
