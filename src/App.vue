@@ -14,7 +14,7 @@
       '--shadow': theme.shadow,
     }">
     <div class="nav static"></div>
-    <div id="nav" class="nav fixed">
+    <div id="nav" class="nav fixed" ref="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <LocaleChanger></LocaleChanger>

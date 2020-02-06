@@ -1,5 +1,7 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
+
 import HelloWorld from '@/components/HelloWorld/HelloWorld.vue';
+
 
 
 @Component({
@@ -7,4 +9,5 @@ import HelloWorld from '@/components/HelloWorld/HelloWorld.vue';
     HelloWorld,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+}
