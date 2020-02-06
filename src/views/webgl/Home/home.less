@@ -1,0 +1,33 @@
+* { margin: 0; padding: 0;}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+#app {
+  height: 100%;
+  margin: 0;
+  .nav {
+    display: none;
+  }
+  .home {
+    #glCanvas {
+      position:absolute;
+      background: aquamarine;
+      width: 100%;
+      height: calc(100% - 60px);
+      top: 60px;
+      left: 0;
+    }
+    .btn-fullscreen {
+      z-index: 999;
+      position: absolute;
+      border-radius: 100%;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      right: 10px;
+    }
+  }
+}
+
