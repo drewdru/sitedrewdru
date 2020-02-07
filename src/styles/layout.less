@@ -1,0 +1,19 @@
+
+@import "../variables.less";
+.layout {
+    width: auto;
+    max-width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    max-width: 50%;
+    word-break: break-word;
+    @media @tablet {
+        max-width: 80%;
+    }
+    @media @mobile {
+        max-width: 90%;
+        word-break: break-all;
+    }
+}

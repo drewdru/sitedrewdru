@@ -25,6 +25,18 @@ const TaskCreate = gql`mutation createTask($name:String, $description: String) {
   }
 }`;
 
+const TaskUpdate = gql`mutation updateTask($id: String, $IsDone: Boolean) {
+  updateTask(id: $id, IsDone: $IsDone) {
+    task {
+      id
+      isDone
+      name
+      description
+    }
+    ok
+  }
+}`;
+
 
 @Component({
   components: {
@@ -32,8 +44,8 @@ const TaskCreate = gql`mutation createTask($name:String, $description: String) {
 })
 export default class About extends Vue {
 
-  @Prop() private name: string = '';
-  @Prop() private description: string = '';
+  private name: string = '';
+  private description: string = '';
 
   @SmartQuery(TaskQuery) private tasks: any;
   // // OR
@@ -65,10 +77,20 @@ export default class About extends Vue {
         store.writeQuery({ query: TaskQuery, data: response });
       },
     });
-    const t = data.data.createTask.task;
-    console.log('Added: ' , t);
+    console.log('Added: ' , data.data.createTask.task);
     this.name = '';
     this.description = '';
+  }
+
+  @Emit()
+  private async updateTask(i: any) {
+    await this.$apollo.mutate({
+      mutation: TaskUpdate,
+      variables: {
+        id: i.id,
+        IsDone: !i.isDone,
+      },
+    });
   }
 
 }

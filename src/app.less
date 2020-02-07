@@ -1,4 +1,6 @@
 @import "./variables.less";
+@import "./styles/layout.less";
+@import "./styles/form.less";
 * {
   margin: 0;
 }
@@ -6,7 +8,7 @@ html, body {
   height: 100%;
   @media screen and (max-width: 200px) {
     word-wrap: anywhere;   
-  }  
+  }
 }
 
 #app {
@@ -36,11 +38,17 @@ html, body {
     &.static {
       position: static;
       visibility: hidden;
+      @media @mobile {
+        margin-bottom: 60px;
+      }
     }
     &.fixed {
       position: fixed;
       width: 100vw;
       top: 0;
+      @media @mobile {
+        margin-bottom: 60px;
+      }
     }
     @media @mobile {
       display: none;
