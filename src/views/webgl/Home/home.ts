@@ -32,7 +32,7 @@ export default class Home extends Vue {
       const gl = canvas.getContext('webgl');
       // Only continue if WebGL is available and working
       if (gl === null) {
-        alert("Unable to initialize WebGL. Your browser or machine may not support it.");
+        alert('Unable to initialize WebGL. Your browser or machine may not support it.');
         return;
       }
       // Set clear color to black, fully opaque
@@ -40,10 +40,7 @@ export default class Home extends Vue {
       // Clear the color buffer with specified clear color
       gl.clear(gl.COLOR_BUFFER_BIT);
 
-
-
       // Vertex shader program
-
       const vsSource = `
         attribute vec4 aVertexPosition;
         uniform mat4 uModelViewMatrix;
@@ -54,7 +51,6 @@ export default class Home extends Vue {
       `;
 
       // Fragment shader program
-
       const fsSource = `
         void main() {
           gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
@@ -88,38 +84,38 @@ export default class Home extends Vue {
       this.render();
     });
   }
-  
+
 
   @Emit()
   private render() {
     const canvas = (this.$refs.glCanvas as any);
     const gl = canvas.getContext('webgl');
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-    
-    // Draw a 1 pixel border around the edge using 
+
+    // Draw a 1 pixel border around the edge using
     // the scissor test since it's easier than setting up
     // a lot of stuff
     gl.clearColor(1, 0, 0, 1);  // red
     gl.disable(gl.SCISSOR_TEST);
     gl.clear(gl.COLOR_BUFFER_BIT);
-      
+
     gl.enable(gl.SCISSOR_TEST);
     gl.scissor(1, 1, gl.canvas.width - 2, gl.canvas.height - 2);
     gl.clearColor(0, 0, 1, 1);  // blue
     gl.clear(gl.COLOR_BUFFER_BIT);
   }
-  
+
   @Emit()
   private resizeCanvas() {
     // @ts-ignore
     const canvas = (this.$refs.glCanvas as any);
-    var width = canvas.clientWidth;
-    var height = canvas.clientHeight;
-    if (canvas.width != width ||
-        canvas.height != height) {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    if (canvas.width !== width ||
+        canvas.height !== height) {
       canvas.width = width;
       canvas.height = height;
-            
+
       // in this case just render when the window is resized.
       this.render();
     }
@@ -150,7 +146,7 @@ export default class Home extends Vue {
   // have one object -- a simple two-dimensional square.
   //
   @Emit()
-  initBuffers(gl: any) {
+  private initBuffers(gl: any) {
 
     // Create a buffer for the square's positions.
 
@@ -187,7 +183,7 @@ export default class Home extends Vue {
   // Draw the scene.
   //
   @Emit()
-  drawScene(gl: any, programInfo: any, buffers: any) {
+  private drawScene(gl: any, programInfo: any, buffers: any) {
     gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
     gl.clearDepth(1.0);                 // Clear everything
     gl.enable(gl.DEPTH_TEST);           // Enable depth testing
@@ -275,7 +271,7 @@ export default class Home extends Vue {
   // Initialize a shader program, so WebGL knows how to draw our data
   //
   @Emit()
-  initShaderProgram(gl:any, vsSource:any, fsSource:any) {
+  private initShaderProgram(gl: any, vsSource: any, fsSource: any) {
     const vertexShader = this.loadShader(gl, gl.VERTEX_SHADER, vsSource);
     const fragmentShader = this.loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
     // Create the shader program
@@ -296,7 +292,7 @@ export default class Home extends Vue {
   // compiles it.
   //
   @Emit()
-  loadShader(gl:any, type:any, source:any) {
+  private loadShader(gl: any, type: any, source: any) {
     const shader = gl.createShader(type);
     // Send the source to the shader object
     gl.shaderSource(shader, source);

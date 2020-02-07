@@ -54,7 +54,7 @@ const router = () => {
 new Vue({
   i18n,
   store,
-  apolloProvider: apolloProvider,
+  apolloProvider,
   router: router(),
   render: (h) => h(App),
 }).$mount('#app');

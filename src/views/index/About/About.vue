@@ -9,6 +9,12 @@
         </li>
       </ul>
     </div>
+
+    <div>
+      <span>Name:</span><input type="text" v-model="name">
+      <span>Description:</span><input type="text" v-model="description">
+      <button @click="createTask">Add</button>
+    </div>
   </div>
 </template>
 
