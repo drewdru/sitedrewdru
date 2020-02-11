@@ -12,6 +12,8 @@
       '--success': theme.success,
       '--warning': theme.warning,
       '--shadow': theme.shadow,
+      '--control': theme.control,
+      '--control-text': theme.controlText,
     }">
     <div class="nav static"></div>
     <div id="nav" class="nav fixed" ref="nav">

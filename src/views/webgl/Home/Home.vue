@@ -2,7 +2,7 @@
 <i18n src="./ru.yaml"></i18n>
 
 <template>
-  <div class="home">
+  <div class="page home">
     <canvas id="glCanvas" ref="glCanvas"></canvas>
     <button v-if="isFullpage" @click="fullScrean" class="btn-fullscreen"
     >[]</button>

@@ -2,7 +2,7 @@
 <i18n src="./ru.yaml"></i18n>
 
 <template>
-  <div class="home">
+  <div class="page home">
     <HelloWorld :msg="$t('hiDrewDru')"></HelloWorld>    
     <transition name="cutie-mark" appear>
       <img class="cutie-mark" alt="Drew Dru logo" src="@/assets/logo.svg">

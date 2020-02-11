@@ -2,7 +2,7 @@
 <i18n src="./ru.yaml"></i18n>
 
 <template>
-  <div class="error404">
+  <div class="page error404">
     <h1>404</h1>
     <p>{{$t('pageNotFound')}}</p>
   </div>
