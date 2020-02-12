@@ -24,7 +24,6 @@ Vue.use(VueShortKey);
 
 Vue.config.productionTip = false;
 
-
 const host = window.location.host;
 const parts = host.split('.');
 
