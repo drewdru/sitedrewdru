@@ -56,6 +56,7 @@ export default class About extends Vue {
   //   // }
   // })
   // task: Task;
+
   @Emit()
   private async createTask() {
     const name = this.name;
@@ -92,5 +93,4 @@ export default class About extends Vue {
       },
     });
   }
-
 }

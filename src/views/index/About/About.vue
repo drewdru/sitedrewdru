@@ -24,9 +24,11 @@
           <strong>{{i.name}}</strong>:<span>{{i.description}}</span>
         </div>
       </div>
+
+      <script async type="application/javascript" src="https://comments.app/js/widget.js?2" data-comments-app-website="THxuibF_" data-limit="5" data-page-id="about"></script>
     </div>
   </div>
 </template>
 
-<script lang="ts" src="./about.ts"></script>
+<script asyncs lang="ts" src="./about.ts"></script>
 <style scoped lang="less" src="./about.less"></style>

@@ -22,39 +22,4 @@ html, body {
   color: var(--body-text);
   min-height: 100%;
   padding-bottom: 2rem;
-
-
-  .nav {
-    z-index: 999;
-    display: block;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: var(--primary);
-    margin-bottom: 40px;
-    a {
-      font-weight: bold;
-      color: var(--secondary);
-      &.router-link-exact-active {
-        color: var(--active);
-      }
-    }
-    &.static {
-      position: static;
-      visibility: hidden;
-      @media @mobile {
-        margin-bottom: 60px;
-      }
-    }
-    &.fixed {
-      position: fixed;
-      width: 100vw;
-      top: 0;
-      @media @mobile {
-        margin-bottom: 60px;
-      }
-    }
-    @media @mobile {
-      display: none;
-    }  
-  }
 }

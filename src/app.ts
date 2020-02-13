@@ -1,13 +1,11 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 
-import LocaleChanger from '@/components/LocaleChanger/LocaleChanger.vue';
-import ThemeChanger from '@/components/ThemeChanger/ThemeChanger.vue';
+import NavBar from '@/components/NavBar/NavBar.vue';
 
 @Component({
   components: {
-    LocaleChanger,
-    ThemeChanger,
+    NavBar,
   },
 })
 export default class App extends Vue {

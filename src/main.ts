@@ -50,6 +50,7 @@ const router = () => {
   return routes;
 };
 
+
 new Vue({
   i18n,
   store,

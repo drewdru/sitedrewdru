@@ -4,5 +4,5 @@
   </div>
 </template>
 
-<script lang="ts" src="./about.ts"></script>
+<script async lang="ts" src="./about.ts"></script>
 <style scoped lang="less" src="./about.less"></style>

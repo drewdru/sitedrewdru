@@ -8,5 +8,5 @@
   </div>
 </template>
 
-<script lang="ts" src="./error404.ts"></script>
+<script async lang="ts" src="./error404.ts"></script>
 <style scoped lang="less" src="./error404.less"></style>

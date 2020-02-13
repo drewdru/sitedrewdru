@@ -10,5 +10,5 @@
   </div>
 </template>
 
-<script lang="ts" src="./home.ts"></script>
+<script async lang="ts" src="./home.ts"></script>
 <style scoped lang="less" src="./home.less"></style>
