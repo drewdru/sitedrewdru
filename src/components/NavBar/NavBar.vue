@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="nav static"></div>
     <div id="nav" class="nav fixed" ref="nav">
-      <router-link to="/">
+      <router-link class="logo" to="/">
         <div class="wrapper">
           <img class="logo" alt="Drew Dru logo" src="@/assets/logo.svg">
         </div>

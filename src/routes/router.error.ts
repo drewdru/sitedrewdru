@@ -10,17 +10,17 @@ export default new Router({
     // {
     //   path: '/',
     //   name: 'test',
-    //   component: () => import('./views/Home/Home.vue'),
+    //   component: () => import('@/views/Home/Home.vue'),
     // },
     // {
     //   path: '/about',
     //   name: 'about',
-    //   component: () => import('./views/About/About.vue'),
+    //   component: () => import('@/views/About/About.vue'),
     // },
     {
       path: '*',
       name: 'error404',
-      component: () => import('./views/errors/Error404/Error404.vue'),
+      component: () => import('@/views/errors/Error404/Error404.vue'),
     },
   ],
 });
