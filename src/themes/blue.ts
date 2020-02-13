@@ -12,4 +12,6 @@ export default {
   success: '#4CAF50',
   warning: '#FB8C00',
   shadow: '#1976D27F',
+  control: '#ffffff',
+  controlText: '#1976D2',
 };

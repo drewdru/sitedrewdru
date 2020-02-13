@@ -1,4 +1,8 @@
 @import "./variables.less";
+@import "./styles/layout.less";
+@import "./styles/form.less";
+@import "./styles/controls.less";
+
 * {
   margin: 0;
 }
@@ -6,7 +10,7 @@ html, body {
   height: 100%;
   @media screen and (max-width: 200px) {
     word-wrap: anywhere;   
-  }  
+  }
 }
 
 #app {
@@ -17,33 +21,5 @@ html, body {
   background-color: var(--body);
   color: var(--body-text);
   min-height: 100%;
-
-
-  .nav {
-    z-index: 999;
-    display: block;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: var(--primary);
-    margin-bottom: 40px;
-    a {
-      font-weight: bold;
-      color: var(--secondary);
-      &.router-link-exact-active {
-        color: var(--active);
-      }
-    }
-    &.static {
-      position: static;
-      visibility: hidden;
-    }
-    &.fixed {
-      position: fixed;
-      width: 100vw;
-      top: 0;
-    }
-    @media @mobile {
-      display: none;
-    }  
-  }
+  padding-bottom: 2rem;
 }

@@ -2,7 +2,7 @@
 <i18n src="./ru.yaml"></i18n>
 
 <template>
-  <div class="home">
+  <div class="page home">
     <canvas id="glCanvas" ref="glCanvas"></canvas>
     <button v-if="isFullpage" @click="fullScrean" class="btn-fullscreen"
     >[]</button>
@@ -11,6 +11,6 @@
   </div>
 </template>
 
-<script lang="ts" src="./home.ts"></script>
+<script async lang="ts" src="./home.ts"></script>
 <style scoped lang="less" src="./home.less"></style>
 

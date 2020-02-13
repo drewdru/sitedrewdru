@@ -23,7 +23,7 @@ export default class LocaleChanger extends Vue {
 
   @Emit()
   private localeChange() {
-    // TODO: cache $i18n
     this.$i18n.locale = this.selected.locale;
+    localStorage.setItem('language', this.selected.locale);
   }
 }

@@ -34,7 +34,7 @@
               @click="themeChange($event, cardTheme.themeName)"
               
               :style="{
-                'box-shadow': `0 1px 9px 1px  ${cardTheme.primary}`,
+                'box-shadow': `0 1px 9px 1px  ${cardTheme.shadow}`,
                 '--body': cardTheme.body,
                 '--body-text': cardTheme.bodyText,
                 '--accent': cardTheme.accent,
@@ -63,7 +63,7 @@
 </template>
 
 
-<script lang="ts" src="./theme-changer.ts"></script>
+<script async lang="ts" src="./theme-changer.ts"></script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less" src="./theme-changer.less"></style>
 

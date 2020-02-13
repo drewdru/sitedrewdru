@@ -12,7 +12,7 @@
 </template>
 
 
-<script lang="ts" src="./locale-changer.ts"></script>
+<script async lang="ts" src="./locale-changer.ts"></script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less" src="./locale-changer.less"></style>
 

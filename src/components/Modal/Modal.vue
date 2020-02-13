@@ -16,7 +16,7 @@
 </template>
 
 
-<script lang="ts" src="./modal.ts"></script>
+<script async lang="ts" src="./modal.ts"></script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less" src="./modal.less"></style>
 

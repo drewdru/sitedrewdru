@@ -2,16 +2,19 @@ export default {
   themeName: 'dracula',
   body: '#282a36',
   bodyText: '#f8f8f2',
-  primary: '#2c3e50',
+  primary: '#2C4266',
   secondary: '#ffffff',
   active: '#42b983',
   accent: '#82B1FF',
   accentText: '#043381',
-  error: '#FF5252',
+  error: '#ff5555',
   info: '#2196F3',
-  success: '#4CAF50',
+  success: '#50fa7b',
   warning: '#FB8C00',
-  shadow: '#2c3e507F',
+  shadow: '#82B1FF80',
+
+  control: '#f8f8f2',
+  controlText: '#282a36',
 };
 // // Color Pallete
 // pBg: #282a36;

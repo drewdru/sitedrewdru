@@ -16,6 +16,7 @@
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": false,
     "no-console": false,
-    "severity": "off"
+    "severity": "off",
+    "no-bitwise": false
   }
 }
