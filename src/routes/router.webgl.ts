@@ -10,12 +10,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('./views/webgl/Home/Home.vue'),
+      component: () => import('@/views/webgl/Home/Home.vue'),
     },
     {
       path: '*',
       name: 'error404',
-      component: () => import('./views/errors/Error404/Error404.vue'),
+      component: () => import('@/views/errors/Error404/Error404.vue'),
     },
   ],
 });
