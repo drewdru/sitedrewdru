@@ -6,7 +6,7 @@
     padding: 5vw;
     left: 0;
     top: 0;
-    background-color: var(--shadow);
+    background-color: var(--shadow, #2c3e507F);
     .modal-content {
         position: relative;
         margin: auto;
@@ -15,11 +15,11 @@
         border-radius: 1rem;
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
-        box-shadow: 0 6px 20px 0 var(--shadow);
+        box-shadow: 0 6px 20px 0 var(--shadow, #2c3e507F);
         animation-name: animatetop;
         animation-duration: 0.4s;
         
-        background-color: var(--body);
+        background-color: var(--body, #ffffff);
         -webkit-animation-name: slideIn;
         -webkit-animation-duration: 0.4s;
         animation-name: slideIn;
@@ -31,16 +31,16 @@
             // color: white;
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
-            background-color: var(--primary);
-            color: var(--secondary);
+            background-color: var(--primary, #2c3e50);
+            color: var(--secondary, #ffffff);
 
             .close {
-                color: var(--secondary);
+                color: var(--secondary, #ffffff);
                 float: right;
                 font-size: 28px;
                 font-weight: bold;
                 &:hover, &:focus {
-                    color: var(--accent);
+                    color: var(--accent, #82B1FF);
                     text-decoration: none;
                     cursor: pointer;
                 }
@@ -52,18 +52,18 @@
             height: 70vh;
             overflow-y: auto;
             min-height: 100px;
-            background-color: var(--body);
+            background-color: var(--body, #ffffff);
 
             .theme-card {
                 padding: 1rem;
                 margin: 2rem;
                 border-radius: 1rem;
-                box-shadow: 0 1px 9px 1px  var(--shadow);
-                background-color: var(--body);
-                color: var(--body-text);
+                box-shadow: 0 1px 9px 1px  var(--shadow, #2c3e507F);
+                background-color: var(--body, #ffffff);
+                color: var(--body-text, #2c3e50);
                 &:hover {
-                    background-color: var(--accent);
-                    color: var(--accent-text);
+                    background-color: var(--accent, #82B1FF);
+                    color: var(--accent-text, #043381);
                 }
             }
         }
@@ -72,8 +72,8 @@
             padding: 2px 16px;
             border-bottom-left-radius: 1rem;
             border-bottom-right-radius: 1rem;
-            background-color: var(--primary);
-            color: var(--secondary);
+            background-color: var(--primary, #2c3e50);
+            color: var(--secondary, #ffffff);
         }
     }
 }
