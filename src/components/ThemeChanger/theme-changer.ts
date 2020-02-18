@@ -17,8 +17,8 @@ export default class ThemeChanger extends Vue {
 
   @Emit()
   private themeChange(event: any, themeName: string) {
-    // TODO: cache theme
     this.switchTheme(themeName);
+    localStorage.setItem('theme', themeName);
   }
 
   @Emit()
