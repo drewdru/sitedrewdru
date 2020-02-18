@@ -6,6 +6,27 @@
       <div class="form">
         <div class="form-group">
           <label for="name">Name:</label>
+          <vui-select :items="languages" :searchKeys="['title']">
+            <template #vui-select-match="props">
+              <flag :iso="props.selected.flag"></flag>
+              <span>&nbsp;{{props.selected.title}}</span>
+            </template>
+            <template #vui-select-options="props">
+              <flag :iso="props.item.flag"></flag>
+              <span>&nbsp;{{props.item.title}}</span>
+            </template>
+          </vui-select>
+
+          <!-- <v-select :options="languages"></v-select>
+          <v-select :options="languages" label="languages" class="form-control" @change="localeChange">
+            <template v-slot:option="option">
+                <flag :iso="option.flag"></flag>
+                {{ option.title }}
+            </template>
+          </v-select> -->
+        </div>
+        <div class="form-group">
+          <label for="name">Name:</label>
           <input class="form-control" name="name" type="text" v-model="name">
         </div>
         <div class="form-group">
