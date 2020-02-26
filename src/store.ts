@@ -11,6 +11,7 @@ export default new Vuex.Store({
   mutations: {
     switchTheme(state, themeName) {
       state.theme = themes[themeName];
+      document.body.style.backgroundColor = themes[themeName].body;
     },
   },
   actions: {},

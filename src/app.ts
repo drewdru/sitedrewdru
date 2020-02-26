@@ -10,4 +10,8 @@ import NavBar from '@/components/NavBar/NavBar.vue';
 })
 export default class App extends Vue {
   @State private theme!: any;
+  
+  created() {
+      document.body.style.backgroundColor = this.theme.body;
+  }
 }

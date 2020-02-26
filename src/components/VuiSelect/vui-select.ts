@@ -4,18 +4,32 @@ import { Component, Model, Prop, Provide, Emit, Vue } from 'vue-property-decorat
 @Component
 export default class VuiSelect extends Vue {
   public isOpened: boolean = false;
-  public searchText: string = '';
   
   @Prop() public id!: string;
   @Prop() public label!: string;
   @Prop() public value!: string;
 
   @Prop() public items!: any;
-  @Prop() public required!: boolean;
-  // @Provide() private searchText: string = '';
-  // @Prop() public searchKeys!: Array<string>;
-  // @Prop() private searchText: string = '';
+  get searchItems() {
+    return this.searchFilter(this.items);
+  }
+  set searchItems(item) {}
+
+  @Prop() public search!: string;
+  get searchText() {
+    return this.search;
+  }
+  set searchText(item) {}
+
   @Prop() public searchKeys!: Array<string>;
+
+
+  @Prop() public required!: boolean;
+  get isRequired() {
+    return this.required;
+  }
+  set isRequired(item) {}
+  
 
   @Provide() public selected: any = {};
 
@@ -32,10 +46,8 @@ export default class VuiSelect extends Vue {
     }
     return obj[prop];
   }
-  @Provide() public search: Function = (items: any) => {
-    console.log(this.searchKeys);
-    console.log(this.searchText);
-    let result = items
+  @Provide() public searchFilter: Function = (items: any) => {
+    let result = items;
     if (!this.searchText)
       return result
 
@@ -47,8 +59,8 @@ export default class VuiSelect extends Vue {
       }
       if (typeof item == 'object') {
         for(let i = 0; i < this.searchKeys.length; ++i) {
-          let searchedItem = this.fetchFromObject(item, this.searchKeys[i]);
-          if (searchedItem && searchedItem.toString().toLowerCase().includes(filterValue)) {
+          let searchValue = this.fetchFromObject(item, this.searchKeys[i]);
+          if (searchValue && searchValue.toString().toLowerCase().includes(filterValue)) {
             return true;
           }
         }
@@ -69,11 +81,6 @@ export default class VuiSelect extends Vue {
       this.selected = this.items[0];
     }
   }
-
-  get searchItems() {
-    return this.search(this.items);
-  }
-  set searchItems(item) {}
   
   @Emit()
   public selectItem(item: any) {
@@ -92,8 +99,9 @@ export default class VuiSelect extends Vue {
   
   @Emit()
   public onSearch(event: any) {
-    console.log(event.target.value);
-    this.searchText = event.target.value
-    this.searchItems = this.search(this.items);
+    this.searchText = event.target.value;
+    this.$nextTick(() => {
+      this.searchItems = this.searchFilter(this.items);
+    });
   }
 }
