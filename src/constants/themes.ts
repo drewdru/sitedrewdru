@@ -21,4 +21,10 @@ export const themes: any = {
   bizarre,
 };
 
-export const defaultTheme: any = themes[THEMES.vue];
+let theme = themes[THEMES.vue];
+let savedTheme = localStorage.getItem('theme');
+if (savedTheme && savedTheme in themes) {
+  theme = themes[savedTheme];
+}
+
+export const defaultTheme: any = theme;

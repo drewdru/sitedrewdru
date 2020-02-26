@@ -5,6 +5,20 @@
     <div class="layout">
       <div class="form">
         <div class="form-group">
+          <label for="name">Language:</label>
+          <ui-vue-select :items="languages" :searchKeys="['title']">
+            <template #ui-vue-select-match="props">
+              <flag :iso="props.selected.flag"></flag>
+              <span>&nbsp;{{props.selected.title}}</span>
+            </template>
+            <template #ui-vue-select-options="props">
+              <flag :iso="props.item.flag"></flag>
+              <span>&nbsp;{{props.item.title}}</span>
+            </template>
+          </ui-vue-select>
+
+        </div>
+        <div class="form-group">
           <label for="name">Name:</label>
           <input class="form-control" name="name" type="text" v-model="name">
         </div>
