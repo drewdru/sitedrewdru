@@ -4,7 +4,7 @@
 <template>
   <div class="page error404">
     <h1>404</h1>
-    <p>{{$t('pageNotFound')}}</p>
+    <p>{{$t('PageNotFound')}}</p>
   </div>
 </template>
 

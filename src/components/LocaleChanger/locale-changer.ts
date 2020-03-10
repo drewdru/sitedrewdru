@@ -1,19 +1,14 @@
 import { Component, Emit, Vue } from 'vue-property-decorator';
 
-interface Languages {
-  locale: string;
-  flag: string;
-  title: string;
-}
+import {ILanguages, LANGUAGES} from '@/constants/languages';
+
+
 
 @Component
 export default class LocaleChanger extends Vue {
-  private languages: Languages[] = [
-    {locale: 'en', flag: 'us', title: 'English'},
-    {locale: 'ru', flag: 'ru', title: 'Russian'},
-  ];
+  private languages: ILanguages[] = LANGUAGES;
 
-  private selected: Languages|any = {};
+  private selected: ILanguages|any = {};
 
   private created() {
     this.selected = this.languages.filter(
