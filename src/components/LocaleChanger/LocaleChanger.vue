@@ -1,18 +1,27 @@
 <template>
   <div class="locale-changer">
-    <flag :iso="selected.flag"></flag>
-    <select v-model="selected" @change="localeChange">
-      <option v-for="(lang, i) in languages"
-              :key="`Lang${i}`"
-              :value="lang">
-        {{ lang.title }}
-      </option>
-    </select>
+    <ui-vue-select
+      v-model="selected"
+      :id="`language`"
+      :name="`language`"
+      :items="languages"
+      :isSearch="false"
+      @change="localeChange"
+    >
+      <template #ui-vue-select-match="props">
+        <flag :iso="props.selected.flag"></flag>
+        <span>&nbsp;{{$t(props.selected.title)}}</span>
+      </template>
+      <template #ui-vue-select-options="props">
+        <flag :iso="props.item.flag"></flag>
+        <span>&nbsp;{{$t(props.item.title)}}</span>
+      </template>
+    </ui-vue-select>
   </div>
 </template>
 
 
 <script async lang="ts" src="./locale-changer.ts"></script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less" src="./locale-changer.less"></style>
+<style lang="less" src="./locale-changer.less"></style>
 

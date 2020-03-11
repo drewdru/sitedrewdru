@@ -3,7 +3,6 @@ import { Component, Emit, Vue } from 'vue-property-decorator';
 import {ILanguages, LANGUAGES} from '@/constants/languages';
 
 
-
 @Component
 export default class LocaleChanger extends Vue {
   private languages: ILanguages[] = LANGUAGES;
@@ -20,5 +19,6 @@ export default class LocaleChanger extends Vue {
   private localeChange() {
     this.$i18n.locale = this.selected.locale;
     localStorage.setItem('language', this.selected.locale);
+    this.$forceUpdate();
   }
 }

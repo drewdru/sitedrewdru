@@ -1,3 +1,5 @@
+<i18n src="@/constants/en.yaml"></i18n>
+<i18n src="@/constants/ru.yaml"></i18n>
 <template>
   <div id="app" :style="{
       '--body': theme.body,
@@ -24,5 +26,5 @@
   </div>
 </template>
 
-<style lang="less" src="./app.less"></style>
-<script async lang="ts" src="./app.ts"></script>
+<style lang="less" src="@/app.less"></style>
+<script async lang="ts" src="@/app.ts"></script>

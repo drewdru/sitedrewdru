@@ -19,11 +19,11 @@
           >
             <template #ui-vue-select-match="props">
               <flag :iso="props.selected.flag"></flag>
-              <span>&nbsp;{{props.selected.title}}</span>
+              <span>&nbsp;{{$t(props.selected.title)}}</span>
             </template>
             <template #ui-vue-select-options="props">
               <flag :iso="props.item.flag"></flag>
-              <span>&nbsp;{{props.item.title}}</span>
+              <span>&nbsp;{{$t(props.item.title)}}</span>
             </template>
           </ui-vue-select>
 

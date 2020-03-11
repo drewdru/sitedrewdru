@@ -54,7 +54,6 @@ export default class About extends Vue {
   private name: string = '';
   private description: string = '';
   private language: string = '';
-  
 
   private languages: Languages[] = LANGUAGES;
   private selected: Languages|any = {};
