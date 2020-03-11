@@ -1,33 +1,43 @@
+<i18n src="./en.yaml"></i18n>
+<i18n src="./ru.yaml"></i18n>
+
 <template>
   <div class="page about">
-    <h1>This is an about page</h1>
+    <h1>{{$t('PageTitle')}}</h1>
         
     <div class="layout">
       <div class="form">
         <div class="form-group">
-          <label for="name">Language:</label>
-          <ui-vue-select :items="languages" :searchKeys="['title']">
+          <label for="name">{{$t('Language')}}:</label>
+          <ui-vue-select
+            v-model="language"
+            :id="`language`"
+            :name="`language`"
+            :items="languages"
+            :searchKeys="['title']"
+            :required="false"
+          >
             <template #ui-vue-select-match="props">
               <flag :iso="props.selected.flag"></flag>
-              <span>&nbsp;{{props.selected.title}}</span>
+              <span>&nbsp;{{$t(props.selected.title)}}</span>
             </template>
             <template #ui-vue-select-options="props">
               <flag :iso="props.item.flag"></flag>
-              <span>&nbsp;{{props.item.title}}</span>
+              <span>&nbsp;{{$t(props.item.title)}}</span>
             </template>
           </ui-vue-select>
 
         </div>
         <div class="form-group">
-          <label for="name">Name:</label>
+          <label for="name">{{$t('Name')}}:</label>
           <input class="form-control" name="name" type="text" v-model="name">
         </div>
         <div class="form-group">
-          <label for="name">Description:</label>
+          <label for="name">{{$t('Description')}}:</label>
           <input class="form-control" name="description" type="text" v-model="description">
         </div>
         <div class="form-group">
-          <button @click="createTask">Add</button>
+          <button @click="createTask">{{$t('Add')}}</button>
         </div>
       </div>
 

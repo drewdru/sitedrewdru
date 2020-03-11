@@ -23,11 +23,11 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" @click="closeThemeChangerModal">&times;</span>
-          <h2>{{$t('modalHeader')}}</h2>
+          <h2>{{$t('ModalHeader')}}</h2>
         </div>
         <div class="modal-body">
           <div class="theme-card">
-            {{$t('customizeTheme')}}
+            {{$t('CustomizeTheme')}}
           </div>
           <div class="theme-card" v-for="(cardTheme, i) in themes"
               :key="`Theme${i}`"

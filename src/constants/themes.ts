@@ -22,7 +22,7 @@ export const themes: any = {
 };
 
 let theme = themes[THEMES.vue];
-let savedTheme = localStorage.getItem('theme');
+const savedTheme = localStorage.getItem('theme');
 if (savedTheme && savedTheme in themes) {
   theme = themes[savedTheme];
 }
