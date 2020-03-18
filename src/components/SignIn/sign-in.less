@@ -1,0 +1,216 @@
+@import "../../variables.less";
+
+.theme-changer {
+    display: initial;
+    float: right;
+    width: 70px;
+}
+.vs {
+    &__dropdown-menu {
+        position: fixed;
+    }
+}
+
+.circle {
+    background-color: red;
+    display: inline-block;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 55%;
+    height: 55%;
+    border-radius: 55%;
+    background-color: var(--primary, #2c3e50);
+    -webkit-box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
+    -moz-box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
+    box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
+
+    &:hover {
+        background-color: var(--accent, #82B1FF);
+        -webkit-box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
+        -moz-box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
+        box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
+    }
+}
+
+.red {
+    background: @red;
+    border-color: @red;
+}
+.red-orange {
+    background: @red-orange;
+    border-color: @red-orange;
+}
+.orange {
+    background: @orange;
+    border-color: @orange;
+}
+.yellow-orange {
+    background: @yellow-orange;
+    border-color: @yellow-orange;
+}
+.yellow {
+    background: @yellow;
+    border-color: @yellow;
+}
+.yellow-green {
+    background: @yellow-green;
+    border-color: @yellow-green;
+}
+.green {
+    background: @green;
+    border-color: @green;
+}
+.blue-green {
+    background: @blue-green;
+    border-color: @blue-green;
+}
+.blue {
+    background: @blue;
+    border-color: @blue;
+}
+.blue-violet {
+    background: @blue-violet;
+    border-color: @blue-violet;
+}
+.violet {
+    background: @violet;
+    border-color: @violet;
+}
+.red-violet {
+    background: @red-violet;
+    border-color: @red-violet;
+}
+
+.wrapper {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	position: relative;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
+
+	.sector {
+		position: absolute;
+		transform-origin: 100% 100%;
+		width: 5000px;
+		height: 5000px;
+		left: 50%;
+		top: 50%;
+		border: 2px solid;
+		margin-top: -5000px;
+        margin-left: -5000px;
+        color: var(--primary, #2c3e50);
+        &:hover {
+            background-color: var(--accent, #82B1FF);
+        }
+    }
+}
+
+.modal-wrapper {
+    position: fixed;
+    width: 90vw;
+    height: 100vh;
+    padding: 5vw;
+    left: 0;
+    top: 0;
+    background-color: var(--shadow, #2c3e507F);
+    .modal-content {
+        position: relative;
+        margin: auto;
+        padding: 0;
+        // border: 1px solid #888;
+        border-radius: 1rem;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        box-shadow: 0 6px 20px 0 var(--shadow, #2c3e507F);
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+        
+        background-color: var(--body, #ffffff);
+        -webkit-animation-name: slideIn;
+        -webkit-animation-duration: 0.4s;
+        animation-name: slideIn;
+        animation-duration: 0.4s;
+
+        .modal-header {
+            padding: 1rem;
+            // background-color: #5cb85c;
+            // color: white;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            background-color: var(--primary, #2c3e50);
+            color: var(--secondary, #ffffff);
+
+            .close {
+                color: var(--secondary, #ffffff);
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                &:hover, &:focus {
+                    color: var(--accent, #82B1FF);
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }            
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+            height: 70vh;
+            overflow-y: auto;
+            min-height: 100px;
+            background-color: var(--body, #ffffff);
+
+            .theme-card {
+                padding: 1rem;
+                margin: 2rem;
+                border-radius: 1rem;
+                box-shadow: 0 1px 9px 1px  var(--shadow, #2c3e507F);
+                background-color: var(--body, #ffffff);
+                color: var(--body-text, #2c3e50);
+                &:hover {
+                    background-color: var(--accent, #82B1FF);
+                    color: var(--accent-text, #043381);
+                }
+            }
+        }
+        
+        .modal-footer {
+            padding: 2px 16px;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            background-color: var(--primary, #2c3e50);
+            color: var(--secondary, #ffffff);
+        }
+    }
+}
+
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}

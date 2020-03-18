@@ -14,6 +14,16 @@ const TaskQuery = gql`
     }
   }
 `;
+// const TaskQuery = gql`
+// query GetTask($token: String!) {
+//   tasks(token: $token) {
+//     id
+//     isDone
+//     name
+//     description
+//   }
+// }
+// `;
 
 const TaskCreate = gql`mutation createTask($name:String, $description: String) {
   createTask(name: $name, description: $description) {

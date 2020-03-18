@@ -18,12 +18,12 @@ export const i18n = new VueI18n({
   messages: {
     en: {
       English: 'English',
-      Russian: 'Russian'
+      Russian: 'Russian',
     },
     ru: {
       English: 'Английский',
-      Russian: 'Русский'
-    }
-  }
+      Russian: 'Русский',
+    },
+  },
 });
 
