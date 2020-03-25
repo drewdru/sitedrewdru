@@ -1,9 +1,10 @@
 
 .modal-wrapper {
+    z-index: 9999999999;
     position: fixed;
-    width: 90vw;
     height: 100vh;
-    padding: 5vw;
+    width: calc(100vw - 60px);
+    padding: 30px;
     left: 0;
     top: 0;
     background-color: var(--shadow, #2c3e507F);
@@ -27,12 +28,14 @@
 
         .modal-header {
             padding: 1rem;
-            // background-color: #5cb85c;
-            // color: white;
+            line-height: initial;
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
             background-color: var(--primary, #2c3e50);
             color: var(--secondary, #ffffff);
+            @media screen and (max-height: 450px) {
+                line-height: initial;
+            }
 
             .close {
                 color: var(--secondary, #ffffff);
@@ -49,10 +52,13 @@
 
         .modal-body {
             padding: 2px 16px;
-            height: 70vh;
+            height: calc(100vh - 150px);
             overflow-y: auto;
             min-height: 100px;
             background-color: var(--body, #ffffff);
+            @media screen and (max-height: 450px) {
+                height: calc(100vh - 150px);
+            }
 
             .theme-card {
                 padding: 1rem;
@@ -74,6 +80,10 @@
             border-bottom-right-radius: 1rem;
             background-color: var(--primary, #2c3e50);
             color: var(--secondary, #ffffff);
+            @media screen and (max-height: 450px) {
+                line-height: initial;
+                padding: 5px;
+            }
         }
     }
 }
@@ -103,4 +113,4 @@
 @keyframes animatetop {
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
-} 
+}
