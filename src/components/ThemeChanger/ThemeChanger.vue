@@ -19,19 +19,34 @@
       <div class="circle"></div>
     </div>
 
-    <ModalWindow v-if="isOpen" @close="isOpen=false">
+    <ModalWindow v-if="isOpen" v-show="isCustomize" @close="isOpen=false">
+      <template #modal-header>
+        <h2>{{$t('ModalHeader')}}</h2>
+      </template>
+    </ModalWindow>
+
+    <ModalWindow v-if="isOpen" v-show="!isCustomize" @close="isOpen=false">
       <template #modal-header>
         <h2>{{$t('ModalHeader')}}</h2>
       </template>
       <template #modal-body>
         <div class="theme-card">
-          {{$t('CustomizeTheme')}}
+          <h1 class="theme-name">{{$t('CustomizeTheme')}}</h1>          
+          <div class="theme-palette" v-for="(color, key, i) in theme"
+            :key="`Theme${i}`"
+            v-show="key!='themeName'"
+          >
+            <div class="theme-palette-name">{{$t(key)}}</div>
+            <div class="theme-palette-color" :style="{'background-color': color}">
+              {{$t('Text')}}
+            </div>
+          </div>
         </div>
         <div class="theme-card" v-for="(cardTheme, i) in themes"
             :key="`Theme${i}`"
             @click="themeChange($event, cardTheme.themeName)"
             :style="{
-              'box-shadow': `0 1px 9px 1px  ${cardTheme.shadow}`,
+              'box-shadow': `0 1px 9px 1px ${cardTheme.shadow}`,
               '--body': cardTheme.body,
               '--body-text': cardTheme.bodyText,
               '--accent': cardTheme.accent,
@@ -45,8 +60,16 @@
               '--warning': cardTheme.warning,
               '--shadow': cardTheme.shadow,
             }">
-          {{ cardTheme.themeName }}
-          {{ cardTheme }}
+          <h1 class="theme-name">{{ cardTheme.themeName | capitalize }}</h1>          
+          <div class="theme-palette" v-for="(color, key, i) in cardTheme"
+            :key="`Theme${i}`"
+            v-show="key!='themeName'"
+          >
+            <div class="theme-palette-name">{{$t(key)}}</div>
+            <div class="theme-palette-color" :style="{'background-color': color}">
+              {{$t('Text')}}
+            </div>
+          </div>
         </div>
       </template>
     </ModalWindow>

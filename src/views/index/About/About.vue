@@ -26,7 +26,6 @@
               <span>&nbsp;{{$t(props.item.title)}}</span>
             </template>
           </ui-vue-select>
-
         </div>
         <div class="form-group">
           <label for="name">{{$t('Name')}}:</label>

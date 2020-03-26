@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-wrapper" @click.self="$emit('close')">
+  <div class="modal-window" @click.self="$emit('close')">
     <div class="modal-content">
       <div class="modal-header" v-if="isHeader">
         <span class="close" @click="$emit('close')">&times;</span>

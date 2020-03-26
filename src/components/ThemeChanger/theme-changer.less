@@ -4,6 +4,36 @@
     display: initial;
     float: right;
     width: 70px;
+
+
+    .modal-window .modal-content .modal-body .theme-card {
+        padding: 1rem;
+        margin: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 1px 9px 1px  var(--shadow, #2c3e507F);
+        background-color: var(--body, #ffffff);
+        color: var(--body-text, #2c3e50);
+        display: flow-root;
+        cursor: pointer;
+        &:hover {
+            background-color: var(--accent, #82B1FF);
+            color: var(--accent-text, #043381);
+        }
+        .theme-palette {
+            float: left;
+            line-height: normal;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 25px;
+            background-color: var(--body-text);
+            color: var(--body);
+            .theme-palette-color {
+                border-radius: 25px;
+                padding: 10px;
+                margin-top: 5px;
+            }
+        }
+    }
 }
 .vs {
     &__dropdown-menu {

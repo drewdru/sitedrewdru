@@ -1,3 +1,6 @@
+import en from './en';
+import ru from './ru';
+
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
@@ -15,15 +18,6 @@ if (localStorage.getItem('language')) {
 export const i18n = new VueI18n({
   locale: language,
   fallbackLocale: 'en',
-  messages: {
-    en: {
-      English: 'English',
-      Russian: 'Russian',
-    },
-    ru: {
-      English: 'Английский',
-      Russian: 'Русский',
-    },
-  },
+  messages: {en, ru,},
 });
 

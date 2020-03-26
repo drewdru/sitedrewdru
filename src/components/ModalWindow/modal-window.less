@@ -1,5 +1,5 @@
 
-.modal-wrapper {
+.modal-window {
     z-index: 9999999999;
     position: fixed;
     height: 100vh;
@@ -58,19 +58,6 @@
             background-color: var(--body, #ffffff);
             @media screen and (max-height: 450px) {
                 height: calc(100vh - 150px);
-            }
-
-            .theme-card {
-                padding: 1rem;
-                margin: 2rem;
-                border-radius: 1rem;
-                box-shadow: 0 1px 9px 1px  var(--shadow, #2c3e507F);
-                background-color: var(--body, #ffffff);
-                color: var(--body-text, #2c3e50);
-                &:hover {
-                    background-color: var(--accent, #82B1FF);
-                    color: var(--accent-text, #043381);
-                }
             }
         }
         
