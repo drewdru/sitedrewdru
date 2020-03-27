@@ -14,6 +14,16 @@ const TaskQuery = gql`
     }
   }
 `;
+// const TaskQuery = gql`
+// query GetTask($token: String!) {
+//   tasks(token: $token) {
+//     id
+//     isDone
+//     name
+//     description
+//   }
+// }
+// `;
 
 const TaskCreate = gql`mutation createTask($name:String, $description: String) {
   createTask(name: $name, description: $description) {
@@ -27,8 +37,8 @@ const TaskCreate = gql`mutation createTask($name:String, $description: String) {
   }
 }`;
 
-const TaskUpdate = gql`mutation updateTask($id: String, $IsDone: Boolean) {
-  updateTask(id: $id, IsDone: $IsDone) {
+const TaskUpdate = gql`mutation updateTask($id: String, $isDone: Boolean) {
+  updateTask(id: $id, isDone: $isDone) {
     task {
       id
       isDone
@@ -100,7 +110,7 @@ export default class About extends Vue {
       mutation: TaskUpdate,
       variables: {
         id: i.id,
-        IsDone: !i.isDone,
+        isDone: !i.isDone,
       },
     });
   }

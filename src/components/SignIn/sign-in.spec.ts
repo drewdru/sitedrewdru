@@ -3,14 +3,14 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 import store from '@/store';
 
-import ThemeChanger from './theme-changer';
+import SignIn from './sign-in';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('ThemeChanger.vue', () => {
+describe('SignIn.vue', () => {
   it('change theme', () => {
-    // const wrapper = shallowMount(ThemeChanger, {
+    // const wrapper = shallowMount(SignIn, {
     //   store,
     //   localVue,
     // });
