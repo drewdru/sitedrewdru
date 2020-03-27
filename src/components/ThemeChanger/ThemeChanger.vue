@@ -2,8 +2,14 @@
 <i18n src="./ru.yaml"></i18n>
 
 <template>
-  <div class="theme-changer">
-    <div @click="isOpen=true" class="wrapper animated infinite rotate delay-2s">
+  <div class="theme-changer"
+    tabindex="0"
+    @focus="isFocus=true"
+    @blur="isFocus=false"
+    v-shortkey="{'down': ['enter']}"
+    @shortkey="e => isFocus && open(e)"
+  >
+    <div @click="e => open(e)" class="wrapper animated infinite rotate delay-2s">
       <div class="sector red" style="transform: rotate(75deg) skew(60deg);"></div>
       <div class="sector red-orange" style="transform: rotate(105deg) skew(60deg);"></div>
       <div class="sector orange" style="transform: rotate(135deg) skew(60deg);"></div>
@@ -19,13 +25,19 @@
       <div class="circle"></div>
     </div>
 
-    <ModalWindow v-if="isOpen" v-show="isCustomize" @close="isOpen=false">
+    <ModalWindow v-if="isOpen" v-show="isCustomize" @close="isCustomize=false">
       <template #modal-header>
         <h2>{{$t('ModalHeader')}}</h2>
       </template>
     </ModalWindow>
 
-    <ModalWindow v-if="isOpen" v-show="!isCustomize" @close="isOpen=false">
+    <ModalWindow
+      v-if="isOpen"
+      v-show="!isCustomize"
+      @close="e => close(e)"
+      v-shortkey.native="{'down': ['esc']}"
+      @shortkey.native="e => !isCustomize && close(e)"
+    >
       <template #modal-header>
         <h2>{{$t('ModalHeader')}}</h2>
       </template>

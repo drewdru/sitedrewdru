@@ -16,10 +16,21 @@ export default class ThemeChanger extends Vue {
   private selected: any = {};
   private themes: any = themes;
   private isOpen: boolean = false;
+  private isFocus: boolean = false;
   private isCustomize: boolean = false;
 
   private created() {
     this.selected = this.theme;
+  }
+
+  @Emit()
+  private open(event: any) {
+    this.isOpen = true;
+  }
+
+  @Emit()
+  private close(event: any) {
+    this.isOpen = false;
   }
 
   @Emit()
