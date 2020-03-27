@@ -1,12 +1,12 @@
 export default {
     English: 'English',
     Russian: 'Russian',
-
     body: 'Body',
     bodyText: 'Body text',
     primary: 'Primary',
     secondary: 'Secondary',
     active: 'Active',
+    activeText: 'Active text',
     accent: 'Accent',
     accentText: 'Accent text',
     error: 'Error',
@@ -16,4 +16,6 @@ export default {
     shadow: 'Shadow',
     control: 'Control',
     controlText: 'Control text',
-}
+    button: 'Button',
+    buttonText: 'Button text',
+};

@@ -6,22 +6,22 @@ import dracula from '@/themes/dracula';
 
 
 export const THEMES: any = {
-  vue: 'vue',
-  dracula: 'dracula',
-  red: 'red',
-  blue: 'blue',
   bizarre: 'bizarre',
+  dracula: 'dracula',
+  vue: 'vue',
+  blue: 'blue',
+  red: 'red',
 };
 
 export const themes: any = {
-  vue,
-  dracula,
-  red,
-  blue,
   bizarre,
+  dracula,
+  vue,
+  blue,
+  red,
 };
 
-let theme = themes[THEMES.vue];
+let theme = themes[THEMES.bizarre];
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme && savedTheme in themes) {
   theme = themes[savedTheme];

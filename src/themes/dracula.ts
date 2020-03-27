@@ -5,6 +5,7 @@ export default {
   primary: '#2C4266',
   secondary: '#ffffff',
   active: '#42b983',
+  activeText: '#FFFFFF',
   accent: '#82B1FF',
   accentText: '#043381',
   error: '#ff5555',
@@ -14,6 +15,8 @@ export default {
   shadow: '#82B1FF80',
   control: '#f8f8f2',
   controlText: '#282a36',
+  button: '#2f885d',
+  buttonText: '#FFFFFF',
 };
 // // Color Pallete
 // pBg: #282a36;
