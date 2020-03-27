@@ -18,6 +18,7 @@ if (localStorage.getItem('language')) {
 export const i18n = new VueI18n({
   locale: language,
   fallbackLocale: 'en',
-  messages: {en, ru,},
+  messages: {en, ru},
+  silentTranslationWarn: true,
 });
 
