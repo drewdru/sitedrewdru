@@ -1,5 +1,3 @@
-import red from '@/themes/red';
-import blue from '@/themes/blue';
 import vue from '@/themes/vue';
 import bizarre from '@/themes/bizarre';
 import dracula from '@/themes/dracula';
@@ -8,8 +6,6 @@ export let themes: any = {
   bizarre,
   dracula,
   vue,
-  blue,
-  red,
 };
 
 
