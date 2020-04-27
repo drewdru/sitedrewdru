@@ -25,9 +25,31 @@
       <div class="circle"></div>
     </div>
 
-    <ModalWindow v-if="isOpen" v-show="isCustomize" @close="isCustomize=false">
+    <ModalWindow v-if="isOpen && isCustomize" v-show="isCustomize" @close="isCustomize=false">
       <template #modal-header>
-        <h2>{{$t('ModalHeader')}}</h2>
+        <h2>{{$t('CustomizeTheme')}}</h2>
+      </template>
+      <template #modal-body>
+        <div class="customize-card " @click="isCustomize=true">
+          <div class="customize-palette" v-for="(color, key, i) in theme"
+            :key="`Customize${i}`"
+            v-show="key!='themeName'"
+          >
+            <div class="form">
+              <div class="form-group">
+                <label :for="key">{{$t(key)}}:</label>
+                <div :style="{'background-color': color}"></div>
+                <input
+                  class="form-control"
+                  :name="key"
+                  type="text"
+                  v-model="theme[key]"
+                  @input="saveCustomTheme"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
       </template>
     </ModalWindow>
 
@@ -42,17 +64,13 @@
         <h2>{{$t('ModalHeader')}}</h2>
       </template>
       <template #modal-body>
-        <div class="theme-card">
+        <div class="theme-card" @click="isCustomize=true">
           <h1 class="theme-name">{{$t('CustomizeTheme')}}</h1>          
           <div class="theme-palette" v-for="(color, key, i) in theme"
             :key="`Theme${i}`"
             v-show="key!='themeName'"
-          >
-            <div class="theme-palette-name">{{$t(key)}}</div>
-            <div class="theme-palette-color" :style="{'background-color': color}">
-              {{$t('Text')}}
-            </div>
-          </div>
+            :style="{'background-color': color}"
+          ></div>
         </div>
         <div class="theme-card" v-for="(cardTheme, i) in themes"
             :key="`Theme${i}`"
@@ -76,12 +94,8 @@
           <div class="theme-palette" v-for="(color, key, i) in cardTheme"
             :key="`Theme${i}`"
             v-show="key!='themeName'"
-          >
-            <div class="theme-palette-name">{{$t(key)}}</div>
-            <div class="theme-palette-color" :style="{'background-color': color}">
-              {{$t('Text')}}
-            </div>
-          </div>
+            :style="{'background-color': color}"
+          ></div>
         </div>
       </template>
     </ModalWindow>

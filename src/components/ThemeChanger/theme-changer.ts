@@ -1,7 +1,6 @@
 import { Component, Emit, Vue } from 'vue-property-decorator';
 import { State, Mutation } from 'vuex-class';
 import { themes } from '@/constants/themes';
-
 import ModalWindow from '@/components/ModalWindow/ModalWindow.vue';
 
 @Component({
@@ -35,7 +34,19 @@ export default class ThemeChanger extends Vue {
 
   @Emit()
   private themeChange(event: any, themeName: string) {
-    this.switchTheme(themeName);
+    if (themeName == 'customTheme') {
+      this.switchTheme(JSON.parse(localStorage.getItem('customTheme')||'{}'));
+    } else {
+      this.switchTheme(this.themes[themeName]);
+    }
     localStorage.setItem('theme', themeName);
+  }
+  
+  @Emit()
+  private saveCustomTheme(event: any) {
+    this.theme.themeName = 'customTheme';
+    this.switchTheme(this.theme);
+    localStorage.setItem('theme', 'customTheme');
+    localStorage.setItem('customTheme', JSON.stringify(this.theme));
   }
 }

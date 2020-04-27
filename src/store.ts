@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { themes, defaultTheme } from '@/constants/themes';
+import { defaultTheme } from '@/constants/themes';
 
 Vue.use(Vuex);
 
@@ -9,9 +9,9 @@ export default new Vuex.Store({
     theme: defaultTheme,
   },
   mutations: {
-    switchTheme(state, themeName) {
-      state.theme = themes[themeName];
-      document.body.style.backgroundColor = themes[themeName].body;
+    switchTheme(state, theme) {
+      state.theme = theme;
+      document.body.style.backgroundColor = state.theme.body;
     },
   },
   actions: {},

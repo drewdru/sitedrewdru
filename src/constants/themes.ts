@@ -4,16 +4,7 @@ import vue from '@/themes/vue';
 import bizarre from '@/themes/bizarre';
 import dracula from '@/themes/dracula';
 
-
-export const THEMES: any = {
-  bizarre: 'bizarre',
-  dracula: 'dracula',
-  vue: 'vue',
-  blue: 'blue',
-  red: 'red',
-};
-
-export const themes: any = {
+export let themes: any = {
   bizarre,
   dracula,
   vue,
@@ -21,7 +12,13 @@ export const themes: any = {
   red,
 };
 
-let theme = themes[THEMES.bizarre];
+
+const customTheme = JSON.parse(localStorage.getItem('customTheme')||'{}');
+if (Object.keys(customTheme).length > 0) {
+  themes = {customTheme, ...themes};
+}
+
+let theme = themes.bizarre;
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme && savedTheme in themes) {
   theme = themes[savedTheme];

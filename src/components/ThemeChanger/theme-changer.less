@@ -5,7 +5,6 @@
     float: right;
     width: 70px;
 
-
     .modal-window .modal-content .modal-body .theme-card {
         padding: 1rem;
         margin: 2rem;
@@ -15,6 +14,16 @@
         color: var(--body-text, #2c3e50);
         display: flow-root;
         cursor: pointer;
+        &.customize {
+            cursor: initial;
+            &:hover {
+                background-color: var(--body, #ffffff);
+                color: var(--body-text, #2c3e50);
+            }
+            .theme-palette {
+                cursor: pointer;
+            }
+        }
         &:hover {
             background-color: var(--accent, #82B1FF);
             color: var(--accent-text, #043381);
