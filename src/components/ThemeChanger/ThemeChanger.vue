@@ -25,12 +25,12 @@
       <div class="circle"></div>
     </div>
 
-    <ModalWindow v-if="isOpen && isCustomize" v-show="isCustomize" @close="isCustomize=false">
+    <ModalWindow v-if="isOpen && isCustomize" v-show="isCustomize" @close="closeCustomizeModal()">
       <template #modal-header>
         <h2>{{$t('CustomizeTheme')}}</h2>
       </template>
       <template #modal-body>
-        <div class="customize-card " @click="isCustomize=true">
+        <div class="customize-card">
           <div class="customize-palette" v-for="(color, key, i) in theme"
             :key="`Customize${i}`"
             v-show="key!='themeName'"
@@ -64,7 +64,7 @@
         <h2>{{$t('ModalHeader')}}</h2>
       </template>
       <template #modal-body>
-        <div class="theme-card" @click="isCustomize=true">
+        <div class="theme-card" @click="openCustomizeModal()">
           <h1 class="theme-name">{{$t('CustomizeTheme')}}</h1>          
           <div class="theme-palette" v-for="(color, key, i) in theme"
             :key="`Theme${i}`"
