@@ -13,7 +13,7 @@ export let themes: any = {
 };
 
 
-const customTheme = JSON.parse(localStorage.getItem('customTheme')||'{}');
+const customTheme = JSON.parse(localStorage.getItem('customTheme') || '{}');
 if (Object.keys(customTheme).length > 0) {
   themes = {customTheme, ...themes};
 }

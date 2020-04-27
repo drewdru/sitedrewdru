@@ -33,19 +33,35 @@ export default class ThemeChanger extends Vue {
   }
 
   @Emit()
+  private openCustomizeModal(event: any) {
+    this.isCustomize = true;
+    const newTheme = Object.assign({}, this.theme);    
+    newTheme.themeName = 'customTheme';
+    this.switchTheme(newTheme);
+    console.log(newTheme);
+    if (!this.themes.hasOwnProperty('customTheme')) {
+      this.themes = {newTheme, ...this.themes};
+    }
+  }
+
+  @Emit()
+  private closeCustomizeModal(event: any) {
+    this.isCustomize = false;
+    this.themes.customTheme = this.theme;
+  }
+
+  @Emit()
   private themeChange(event: any, themeName: string) {
     if (themeName == 'customTheme') {
-      this.switchTheme(JSON.parse(localStorage.getItem('customTheme')||'{}'));
+      this.switchTheme(JSON.parse(localStorage.getItem('customTheme') || '{}'));
     } else {
       this.switchTheme(this.themes[themeName]);
     }
     localStorage.setItem('theme', themeName);
   }
-  
+
   @Emit()
   private saveCustomTheme(event: any) {
-    this.theme.themeName = 'customTheme';
-    this.switchTheme(this.theme);
     localStorage.setItem('theme', 'customTheme');
     localStorage.setItem('customTheme', JSON.stringify(this.theme));
   }
