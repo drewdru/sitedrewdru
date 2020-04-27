@@ -2,7 +2,6 @@
 @import "./styles/layout.less";
 @import "./styles/form.less";
 @import "./styles/controls.less";
-@import "./styles/select.less";
 
 * {
   margin: 0;
@@ -21,8 +20,10 @@ html, body {
   background-color: var(--body);
   color: var(--body-text);
   min-height: 100%;
-
-  a {
-    outline: none;
+  *:focus {
+    outline: 0;
+  }
+  &.user-is-tabbing *:focus {
+    outline: 2px dotted var(--body-text) !important;
   }
 }

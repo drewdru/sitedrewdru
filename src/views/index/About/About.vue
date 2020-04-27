@@ -26,7 +26,6 @@
               <span>&nbsp;{{$t(props.item.title)}}</span>
             </template>
           </ui-vue-select>
-
         </div>
         <div class="form-group">
           <label for="name">{{$t('Name')}}:</label>
@@ -37,15 +36,17 @@
           <input class="form-control" name="description" type="text" v-model="description">
         </div>
         <div class="form-group">
-          <button @click="createTask">{{$t('Add')}}</button>
+          <button @click="createTask"><span>{{$t('Add')}}</span></button>
         </div>
       </div>
 
       <div class="tasks">
         <div v-for="i in tasks" :key="i.id">
-          <input type="checkbox" @input="updateTask(i)" :checked="i.isDone">
-          &nbsp;
-          <strong>{{i.name}}</strong>:<span>{{i.description}}</span>
+          <label class="checkbox-wrapper">
+            <strong>{{i.name}}</strong>:&nbsp;<span>{{i.description}}</span>
+            <input type="checkbox" @input="updateTask(i)" :checked="i.isDone">
+            <span class="checkmark"></span>
+          </label>
         </div>
       </div>
 

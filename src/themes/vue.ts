@@ -5,6 +5,7 @@ export default {
   primary: '#2c3e50',
   secondary: '#ffffff',
   active: '#42b983',
+  activeText: '#FFFFFF',
   accent: '#82B1FF',
   accentText: '#043381',
   error: '#FF5252',
@@ -14,4 +15,6 @@ export default {
   shadow: '#2c3e507F',
   control: '#ffffff',
   controlText: '#2c3e50',
+  button: '#2f885d',
+  buttonText: '#FFFFFF',
 };

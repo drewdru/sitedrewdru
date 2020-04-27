@@ -3,15 +3,15 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 import store from '@/store';
 
-import Modal from './modal';
+import ModalWindow from './modal-window';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('Modal.vue', () => {
+describe('ModalWindow.vue', () => {
   it('renders props.msg when passed', () => {
     // const msg = 'new message';
-    // const wrapper = shallowMount(Modal, {
+    // const wrapper = shallowMount(ModalWindow, {
     //   store,
     //   localVue,
     //   propsData: { msg },
