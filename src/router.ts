@@ -22,6 +22,11 @@ const routerIndex = new Router({
       component: () => import('@/views/index/About/About.vue'),
     },
     {
+      path: '/webaudio',
+      name: 'webaudio',
+      component: () => import('@/views/index/WebAudio/WebAudio.vue'),
+    },
+    {
       path: '*',
       name: 'error404',
       component: () => import('@/views/errors/Error404/Error404.vue'),
