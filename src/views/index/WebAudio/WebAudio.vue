@@ -5,19 +5,27 @@
   <div class="page webaudio">
     <div class="container">
       <div class="keyboard">
-        <div v-for="(notes_value, notes_key) in noteFreq" :key="notes_key">
+        <div v-for="(notes_value, notes_key) in noteFreq" :key="notes_key"
+          class="octave"
+        >
           <div v-for="(value, key) in notes_value" :key="key"
             @mousedown="notePressed(value, key, notes_key)"
             @mouseup="noteReleased(value, key, notes_key)"
+            @mouseleave="noteReleased(value, key, notes_key)"
             class="note"
+            :class="{
+              'black': key.includes('#'),
+              'white': !key.includes('#'),
+              'D': key.includes('D'),
+              'E': key.includes('E'),
+              'G': key.includes('G'),
+              'A': key.includes('A'),
+              'B': key.includes('B'),              
+            }"
           >
-            oktave:{{notes_key}}, note:{{key}}, frequency:{{value}}
+            {{key}}
           </div>
-          <!-- <div class="key" data-octave="0" data-note="A" data-frequency="27.5">
-            <div>
-              A<sub>0</sub>
-            </div>
-          </div>           -->
+          {{octaves[notes_key]}}
         </div>
       </div>
     </div>
