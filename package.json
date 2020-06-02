@@ -3,18 +3,13 @@
   "version": "0.1.2",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --mode development",
+    "serve": "vue-cli-service serve --mode development --disable-host-check",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.27",
-    "@fortawesome/free-brands-svg-icons": "^5.12.1",
-    "@fortawesome/free-regular-svg-icons": "^5.12.1",
-    "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "@fortawesome/vue-fontawesome": "^0.1.9",
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",

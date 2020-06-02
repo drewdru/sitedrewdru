@@ -1,6 +1,11 @@
 process.env.VUE_APP_VERSION = require('./package.json').version;
 
 module.exports = {
+  configureWebpack: {
+    devServer: {
+      disableHostCheck: true,
+    }
+  },
   chainWebpack: config => {
     config.module
       .rule("i18n")

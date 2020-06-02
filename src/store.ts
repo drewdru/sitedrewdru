@@ -7,6 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     theme: defaultTheme,
+    subdomain: 'index',
+    subdomains: ['index'],
   },
   mutations: {
     switchTheme(state, theme) {

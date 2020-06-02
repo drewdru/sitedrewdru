@@ -84,7 +84,6 @@ export default class WebAudio extends Vue {
   @Emit()
   private noteReleased(frequency:any, note:any, octave:any) {
     if (this.oscList[octave][note]["pressed"]) {
-      console.log(this.oscList[octave][note]["osc"])
       this.oscList[octave][note]["osc"].osc.stop(
         this.oscList[octave][note]["osc"].now + 0.5
       );

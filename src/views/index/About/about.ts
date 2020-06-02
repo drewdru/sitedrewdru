@@ -99,7 +99,6 @@ export default class About extends Vue {
         store.writeQuery({ query: TaskQuery, data: response });
       },
     });
-    console.log('Added: ' , data.data.createTask.task);
     this.name = '';
     this.description = '';
   }

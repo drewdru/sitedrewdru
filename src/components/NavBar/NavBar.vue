@@ -6,17 +6,49 @@
         <div class="wrapper">
           <img class="logo" alt="Drew Dru logo" src="@/assets/logo.svg">
         </div>
-        <!-- <img align="center" src="@/assets/logo.png" width="112" height="28"> -->
       </router-link>
-      <slot></slot>
-      <LocaleChanger></LocaleChanger>
+
+      <div class="routes-list">
+        <div class="first-level">
+          <router-link class="link" to="/">
+            {{$t('Home')}}
+          </router-link>
+        </div>
+      </div>
+      
+      <div v-for="(value1, key1) in menuLinks" :key="key1" class="routes-list">
+        <div class="first-level">
+          <router-link :to="value1.data.path" class="link">{{$t(value1.data.name)}}</router-link>
+          <div class="second-level">
+            <router-link v-for="(value2, key2) in getNextLevel(value1)"
+              :key="key2" :to="value2.data.path" class="link">{{$t(value2.data.name)}}
+            </router-link>
+          </div>
+        </div>
+      </div>
+
+      <div class="routes-list">
+        <div class="first-level">
+          <a class="link">Subdomains</a>
+          <div class="second-level">
+            <router-link v-for="(value, key) in subdomains"
+              :key="key" :to="value" class="link">{{$t(value)}}
+            </router-link>
+          </div>
+        </div>
+      </div>
+
       <ThemeChanger></ThemeChanger>
+      <div class="locale">
+        <div class="name">
+          {{$t($i18n.locale)}}
+          <i class="arrow down"></i>
+        </div>
+        <LocaleChanger></LocaleChanger>
+      </div>
     </div>
   </div>
 </template>
 
-
 <script async lang="ts" src="./nav-bar.ts"></script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less" src="./nav-bar.less"></style>
-

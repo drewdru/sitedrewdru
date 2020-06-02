@@ -38,7 +38,6 @@ export default class ThemeChanger extends Vue {
     const newTheme = Object.assign({}, this.theme);    
     newTheme.themeName = 'customTheme';
     this.switchTheme(newTheme);
-    console.log(newTheme);
     if (!this.themes.hasOwnProperty('customTheme')) {
       this.themes = {newTheme, ...this.themes};
     }
