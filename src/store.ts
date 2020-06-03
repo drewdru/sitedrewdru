@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     theme: defaultTheme,
     subdomain: 'index',
-    subdomains: ['index'],
+    subdomains: [{name: 'index', path: process.env.VUE_APP_DOMAIN_NAME}],
   },
   mutations: {
     switchTheme(state, theme) {

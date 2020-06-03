@@ -14,6 +14,7 @@ export default class NavBar extends Vue {
   @State private subdomains!: any;
   @State private subdomain!: any;
   private menuLinks: any = {};
+  private domainName: any = `//${process.env.VUE_APP_DOMAIN_NAME}`;
 
   private created() {
     ((this.$router as any).options.routes as any[]).forEach((element) => {

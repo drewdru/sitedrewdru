@@ -1,12 +1,15 @@
+<i18n src="./en.yaml"></i18n>
+<i18n src="./ru.yaml"></i18n>
+
 <template>
   <div class="navbar">
     <div class="nav static"></div>
     <div id="nav" class="nav fixed" ref="nav">
-      <router-link class="logo" to="/">
+      <a class="logo" :href="domainName">
         <div class="wrapper">
           <img class="logo" alt="Drew Dru logo" src="@/assets/logo.svg">
         </div>
-      </router-link>
+      </a>
 
       <div class="routes-list">
         <div class="first-level">
@@ -29,11 +32,11 @@
 
       <div class="routes-list">
         <div class="first-level">
-          <a class="link">Subdomains</a>
+          <a class="link">{{$t('ToKnowMore')}}</a>
           <div class="second-level">
-            <router-link v-for="(value, key) in subdomains"
-              :key="key" :to="value" class="link">{{$t(value)}}
-            </router-link>
+            <a v-for="(value, key) in subdomains"
+              :key="key" :href="value.path" class="link">{{$t(value.name)}}
+            </a>
           </div>
         </div>
       </div>

@@ -2,6 +2,9 @@ process.env.VUE_APP_VERSION = require('./package.json').version;
 
 module.exports = {
   configureWebpack: {
+    devServer: {
+      disableHostCheck: true,
+    },
     module: {
       rules: [
         {

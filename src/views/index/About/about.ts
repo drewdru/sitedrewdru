@@ -17,7 +17,7 @@ interface Languages {
 export default class About extends Vue {
   private name: string = '';
   private description: string = '';
-  private language: string = '';
+  private language: any = null;
 
   private languages: Languages[] = LANGUAGES;
   private selected: Languages|any = {};
@@ -31,6 +31,12 @@ export default class About extends Vue {
   //   // }
   // })
   // task: Task;
+
+  private created() {
+    this.language = LANGUAGES.find((element) => {
+      return element.locale === this.$i18n.locale;
+    });
+  }
 
   @Emit()
   private async createTask() {

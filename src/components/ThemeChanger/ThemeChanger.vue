@@ -90,7 +90,7 @@
               '--warning': cardTheme.warning,
               '--shadow': cardTheme.shadow,
             }">
-          <h1 class="theme-name">{{ cardTheme.themeName | capitalize }}</h1>          
+          <h1 class="theme-name">{{ $t(cardTheme.themeName) | capitalize }}</h1>          
           <div class="theme-palette" v-for="(color, key, i) in cardTheme"
             :key="`Theme${i}`"
             v-show="key!='themeName'"
