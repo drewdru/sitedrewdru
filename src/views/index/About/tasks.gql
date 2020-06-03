@@ -1,0 +1,40 @@
+query TaskQuery {
+    tasks {
+        id
+        isDone
+        name
+        description
+    }
+}
+# query GetTask($token: String!) {
+#   tasks(token: $token) {
+#     id
+#     isDone
+#     name
+#     description
+#   }
+# }
+
+mutation createTask($name:String, $description: String) {
+  createTask(name: $name, description: $description) {
+    task {
+        id
+        isDone
+        name
+        description
+    }
+    ok
+  }
+}
+
+mutation updateTask($id: String, $isDone: Boolean) {
+  updateTask(id: $id, isDone: $isDone) {
+    task {
+      id
+      isDone
+      name
+      description
+    }
+    ok
+  }
+}
