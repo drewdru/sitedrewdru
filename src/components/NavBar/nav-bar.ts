@@ -15,12 +15,12 @@ export default class NavBar extends Vue {
   @State private subdomain!: any;
   private menuLinks: any = {};
 
-  created() {
-    ((this.$router as any).options.routes as Array<any>).forEach(element => {
-      if (element.path == '/' || element.path == '*') {
+  private created() {
+    ((this.$router as any).options.routes as any[]).forEach((element) => {
+      if (element.path === '/' || element.path === '*') {
         return;
       }
-      let links = element.path.slice(1).split('/');
+      const links = element.path.slice(1).split('/');
       this.setMenu(links, {level: links.length, data: {
         name: element.name,
         path: element.path,
@@ -29,24 +29,25 @@ export default class NavBar extends Vue {
   }
 
   @Emit()
-  private getNextLevel(data:any) {
-    let nextLevel = Object.assign({}, data);
+  private getNextLevel(data: any) {
+    const nextLevel = Object.assign({}, data);
     delete nextLevel.data;
     delete nextLevel.level;
     return nextLevel;
   }
 
   @Emit()
-  private setMenu(links:string, value:any) {
-      var schema = this.menuLinks;  // a moving reference to internal objects within obj
-      var pList = links;
-      var len = pList.length;
-      for(var i = 0; i < len-1; i++) {
-          var elem = pList[i];
-          if( !schema[elem] ) schema[elem] = {}
+  private setMenu(links: string, value: any) {
+      let schema = this.menuLinks;  // a moving reference to internal objects within obj
+      const pList = links;
+      const len = pList.length;
+      for (let i = 0; i < len - 1; i++) {
+          const elem = pList[i];
+          if (!schema[elem]) {
+            schema[elem] = {};
+          }
           schema = schema[elem];
       }
-
-      schema[pList[len-1]] = value;
+      schema[pList[len - 1]] = value;
   }
 }

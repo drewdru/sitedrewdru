@@ -100,5 +100,5 @@ export const NOTES = [
 //         return getClosestNote(9, value);
 //     } else {
 //         return getClosestNote(10, value);
-//     }    
+//     }
 // }
