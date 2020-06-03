@@ -1,62 +1,56 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import routerTest from '@/routes/router.test';
+import routerIndex from '@/routes/router.index';
+import routerCareer from '@/routes/router.career';
+import routerMusong from '@/routes/router.musong';
+import routerImaging from '@/routes/router.imaging';
 import routerWebgl from '@/routes/router.webgl';
 import routerError from '@/routes/router.error';
 
 Vue.use(Router);
 
-const routerIndex = new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: () => import('@/views/index/Home/Home.vue'),
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('@/views/index/About/About.vue'),
-    },
-    {
-      path: '/webaudio',
-      name: 'webaudio',
-      component: () => import('@/views/index/WebAudio/WebAudio.vue'),
-    },
-    {
-      path: '*',
-      name: 'error404',
-      component: () => import('@/views/errors/Error404/Error404.vue'),
-    },
-  ],
-});
-
-
 const host = window.location.host;
 const parts = host.split('.');
 
-export default () => {
+export const subdomains = [
+  {name: 'index', path: `//${process.env.VUE_APP_DOMAIN_NAME}`},
+  {name: 'career', path: `//career.${process.env.VUE_APP_DOMAIN_NAME}`},
+  {name: 'musong', path: `//musong.${process.env.VUE_APP_DOMAIN_NAME}`},
+  {name: 'imaging', path: `//imaging.${process.env.VUE_APP_DOMAIN_NAME}`},
+  {name: 'webgl', path: `//webgl.${process.env.VUE_APP_DOMAIN_NAME}`},
+];
+
+export const routers = () => {
   let routes;
-  if (parts.length === 2 || parts[0] === 'www') {
-    routes = routerIndex;
-  } else if (parts.length === 3) {
+  let subdomain = 'index';
+  // if (parts.length === 2 || parts[0] === 'www') {
+  //   routes = routerIndex;
+  // } else
+  if (parts.length === 3) {
     switch (parts[0]) {
+      case 'career':
+        routes = routerCareer;
+        subdomain = parts[0];
+        break;
+      case 'musong':
+        routes = routerMusong;
+        subdomain = parts[0];
+        break;
+      case 'imaging':
+        routes = routerImaging;
+        subdomain = parts[0];
+        break;
       case 'webgl':
         routes = routerWebgl;
-        break;
-      case 'test':
-        routes = routerTest;
+        subdomain = parts[0];
         break;
       default:
         routes = routerError;
         break;
     }
   } else {
-    // If you want to do something else just comment the line below
-    routes = routerIndex; // router_error;
+    routes = routerIndex;
   }
-  return routes;
+  return {routes, subdomain};
 };

@@ -24,10 +24,7 @@
     :class="{'user-is-tabbing': isTabbing}"
   >
     
-    <NavBar>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </NavBar>
+    <NavBar/>
     <router-view/>
   </div>
 </template>
