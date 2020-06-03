@@ -10,7 +10,7 @@
 
       <div class="routes-list">
         <div class="first-level">
-          <router-link class="link" to="/">
+          <router-link class="link home" to="/">
             {{$t('Home')}}
           </router-link>
         </div>
