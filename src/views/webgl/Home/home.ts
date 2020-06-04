@@ -1,6 +1,4 @@
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld/HelloWorld.vue';
-import TsElement from 'ts-element';
 import * as GlMatrix from 'gl-matrix';
 // import { State } from 'vuex-class';
 
@@ -10,7 +8,6 @@ import * as GlMatrix from 'gl-matrix';
 
 @Component({
   components: {
-    HelloWorld,
   },
 })
 export default class Home extends Vue {

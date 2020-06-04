@@ -1,6 +1,10 @@
+<i18n src="./en.yaml"></i18n>
+<i18n src="./ru.yaml"></i18n>
+
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ $t('PageTitle') }}</h1>
+    <p>{{ msg }}</p>
   </div>
 </template>
 

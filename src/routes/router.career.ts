@@ -7,7 +7,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/musong/WebAudio/WebAudio.vue'),
+      component: () => import('@/views/career/Career/Career.vue'),
     },
     {
       path: '*',
