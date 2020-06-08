@@ -1,12 +1,14 @@
 import Vue from 'vue';
-import FlagIcon from 'vue-flag-icon';
-
 import App from '@/App.vue';
+import '@/filters';
+
 import {routers, subdomains} from '@/router';
 
 import apolloProvider from '@/vue-apollo';
 import store from '@/store';
 import {i18n} from '@/plugins/i18n';
+
+import FlagIcon from 'vue-flag-icon';
 import VueShortKey from 'vue-shortkey';
 import uiVueSelect from 'ui-vue-select';
 
@@ -16,17 +18,12 @@ Vue.use(uiVueSelect);
 
 Vue.config.productionTip = false;
 
-Vue.filter('capitalize', (value: string) => {
-  if (!value) {
-    return '';
-  }
-  value = value.toString();
-  return value.charAt(0).toUpperCase() + value.slice(1);
-});
-
 const routerData = routers();
 store.state.subdomain = routerData.subdomain;
 store.state.subdomains = subdomains;
+// TODO: Get User core data (refresh token if exist)
+// set language and theme
+// save token to httpOnly cookies for use with subdomains?
 
 new Vue({
   i18n,

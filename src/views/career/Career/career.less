@@ -1,0 +1,39 @@
+@import "../../../variables.less";
+.career {
+    .layout {
+        max-width: 80%;
+        .card {
+            @media @tablet {
+                display: grid;
+            }
+            .about {
+                display: flex;
+                @media @tablet {
+                    display: block;
+                }
+                .andrew {
+                    height: 160px;
+                    display: block;
+                    border-radius: 100%;
+                    margin-right: 50px;
+                    @media @tablet {
+                        margin: auto;
+                    }
+                }
+                .bio {
+                    margin-top: 16px;
+                    float: left;
+                }
+            }
+            .social-media {
+                display: flex;
+                margin-top: 20px;
+                img {
+                    height: 40px;
+                    border-radius: 100%;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
