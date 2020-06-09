@@ -24,6 +24,7 @@ store.state.subdomains = subdomains;
 // TODO: Get User core data (refresh token if exist)
 // set language and theme
 // save token to httpOnly cookies for use with subdomains?
+(document as any).domain = process.env.VUE_APP_DOMAIN_NAME;
 
 new Vue({
   i18n,

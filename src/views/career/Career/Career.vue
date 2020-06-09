@@ -25,6 +25,12 @@
           <a class="logo" href="//t.me/DrewDru/">
             <img class="logo" alt="Drew Dru on Telegram" src="@/assets/telegram.svg">
           </a>
+          <a class="logo" href="//join.skype.com/invite/IeLaeqpigHWr">
+            <img class="logo" alt="Drew Dru on Skype" src="@/assets/skype.svg">
+          </a>
+          <a class="logo" href="mailto:drewdrux@gmail.com">
+            <img class="logo" alt="Mail to Drew Dru" src="@/assets/gmail.png">
+          </a>
         </div>
       </div>
     </div>    
