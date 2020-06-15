@@ -3,7 +3,7 @@
 
 <template>
   <div class="page home">
-    <HelloWorld :msg="$t('HiDrewDru')"></HelloWorld>    
+    <h1>{{$t('HiDrewDru')}}</h1>
     <transition name="cutie-mark" appear>
       <img class="cutie-mark" alt="Drew Dru logo" src="@/assets/logo.svg">
     </transition>

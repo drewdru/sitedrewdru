@@ -12,7 +12,7 @@ export default {
   info: '#2196F3',
   success: '#4CAF50',
   warning: '#FB8C00',
-  shadow: '#AC3B617F',
+  shadow: '#B05F7A80',
   control: '#FFF5F5',
   controlText: '#123c69',
   button: '#2f885d',

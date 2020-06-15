@@ -35,12 +35,12 @@
             :key="`Customize${i}`"
             v-show="key!='themeName'"
           >
-            <div class="form">
+            <div class="form card">
               <div class="form-group">
                 <label :for="key">{{$t(key)}}:</label>
                 <div :style="{'background-color': color}"></div>
                 <input
-                  class="form-control"
+                  class="card-control"
                   :name="key"
                   type="text"
                   v-model="theme[key]"

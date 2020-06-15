@@ -3,8 +3,8 @@
     z-index: 9999999999;
     position: fixed;
     height: 100vh;
-    width: calc(100vw - 60px);
-    padding: 30px;
+    width: calc(100vw - 6rem);
+    padding: 3rem;
     left: 0;
     top: 0;
     background-color: var(--shadow, #2c3e507F);
@@ -16,7 +16,7 @@
         border-radius: 1rem;
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
-        box-shadow: 0 6px 20px 0 var(--shadow, #2c3e507F);
+        box-shadow: 0 0.6rem 2rem 0 var(--shadow, #2c3e507F);
         animation-name: animatetop;
         animation-duration: 0.4s;
         
@@ -36,12 +36,17 @@
             @media screen and (max-height: 450px) {
                 line-height: initial;
             }
+            h2 {
+                color: var(--secondary, #ffffff);
+            }
 
             .close {
                 color: var(--secondary, #ffffff);
                 float: right;
-                font-size: 28px;
+                font-size: 2rem;
                 font-weight: bold;
+                position: relative;
+                top: -0.3rem;
                 &:hover, &:focus {
                     color: var(--accent, #82B1FF);
                     text-decoration: none;
@@ -51,13 +56,13 @@
         }
 
         .modal-body {
-            padding: 2px 16px;
-            height: calc(100vh - 150px);
+            padding: 0.2rem 1.6rem;
+            height: calc(100vh - 10rem);
             overflow-y: auto;
-            min-height: 100px;
+            min-height: 10rem;
             background-color: var(--body, #ffffff);
             @media screen and (max-height: 450px) {
-                height: calc(100vh - 150px);
+                height: calc(100vh - 10rem);
             }
         }
         

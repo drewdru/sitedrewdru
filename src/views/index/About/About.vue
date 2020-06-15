@@ -6,7 +6,7 @@
     <h1>{{$t('PageTitle')}}</h1>
         
     <div class="layout">
-      <div class="form">
+      <div class="form card">
         <div class="form-group">
           <label for="name">{{$t('Language')}}:</label>
           <ui-vue-select
@@ -29,11 +29,11 @@
         </div>
         <div class="form-group">
           <label for="name">{{$t('Name')}}:</label>
-          <input class="form-control" name="name" type="text" v-model="name">
+          <input class="card-control" name="name" type="text" v-model="name">
         </div>
         <div class="form-group">
           <label for="name">{{$t('Description')}}:</label>
-          <input class="form-control" name="description" type="text" v-model="description">
+          <input class="card-control" name="description" type="text" v-model="description">
         </div>
         <div class="form-group">
           <button @click="createTask"><span>{{$t('Add')}}</span></button>
