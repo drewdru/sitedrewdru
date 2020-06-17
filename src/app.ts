@@ -18,17 +18,17 @@ export default class App extends Vue {
   @State private theme!: any;
   private isTabbing: boolean = false;
 
-  private async mounted() {
-    const response: any = await HTTP.post(`session/`, {
-      username: '',
-      password: '',
-    });
-    console.log(response);
-    HTTP.defaults.headers.common['Authorization'] = `JWT ${response.data.token}`;
-    const user: any = await HTTP.get(`user/`,);
-    const auth: any = await HTTP.post(`authorize/`,);
+  // private async mounted() {
+  //   const response: any = await HTTP.post(`session/`, {
+  //     username: '',
+  //     password: '',
+  //   });
+  //   console.log(response);
+  //   HTTP.defaults.headers.common['Authorization'] = `JWT ${response.data.token}`;
+  //   const user: any = await HTTP.get(`user/`,);
+  //   const auth: any = await HTTP.post(`authorize/`,);
     
-  }
+  // }
 
   private created() {
       document.body.style.backgroundColor = this.theme.body;

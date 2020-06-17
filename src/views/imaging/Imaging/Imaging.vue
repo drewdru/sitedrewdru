@@ -3,7 +3,24 @@
 
 <template>
   <div class="page imaging">
-    <HelloWorld :msg="$t('Description')"></HelloWorld>
+    <div class="layout">
+      <div class="form card">
+        <div class="form-group">
+          <label>Choose PDF file:&nbsp;
+            <input type="file" id="file" ref="file" @change="handleFileUpload()"/>
+          </label>
+          <button @click="submitFile()">Submit</button>
+        </div>
+      </div>
+      <div class="form card" v-show="uid && !result">
+        <h1>{{$t('Processing')}}:</h1>
+        <p>{{$t('Pleas wait...')}}</p>
+      </div>
+      <div class="form card" v-show="result">
+        <h1>{{$t('result')}}:</h1>
+        <p>{{result}}</p>
+      </div>
+    </div>    
   </div>
 </template>
 
