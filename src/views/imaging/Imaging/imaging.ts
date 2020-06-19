@@ -1,4 +1,5 @@
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
+import {ILanguages} from '@/constants/languages';
 
 
 import axios from 'axios';
@@ -16,6 +17,15 @@ export default class Imaging extends Vue {
   private uid: any = '';
   private result: string = '';
   private status: string = '';
+  private progress: Number = 0;
+  private error: string = '';
+  
+  private language: any = null;
+  private languages: ILanguages[] = [
+    {locale: 'en', flag: 'us', title: 'English'},
+    {locale: 'ru', flag: 'ru', title: 'Russian'},
+    {locale: 'ru_kz', flag: 'kz', title: 'Kazakh and Russian'},
+  ];
 
   @Emit()
   private handleFileUpload() {
@@ -30,6 +40,11 @@ export default class Imaging extends Vue {
       }
     });
     this.status = response.data.status;
+    this.progress = response.data.progress;
+    if (this.status.includes('Error:')) {
+      this.error = this.status;
+      return;
+    }
     if (this.status !== 'done') {
       window.setTimeout(this.getResult, 10000);
     } else {
@@ -42,18 +57,23 @@ export default class Imaging extends Vue {
     this.result = '';
     this.uid = '';
     this.status = '';
+    this.error = '';
     const formData = new FormData();
     formData.append('file', this.file);
-    const response: any = await HTTP.post(`ocr/recognize/`,
-      formData,
-      {
-        headers: {
-            'Content-Type': 'multipart/form-data'
+    formData.append('lang', this.language.locale);
+    try {
+      const response: any = await HTTP.post(`ocr/recognize/`,
+        formData,
+        {
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          }
         }
-      }
-    );
-    this.uid = response.data.uid;
-    
-    this.getResult()
+      );
+      this.uid = response.data.uid;
+      this.getResult()
+    } catch(error) {
+      this.error = error.response.data.detail;
+    }    
   }
 }
