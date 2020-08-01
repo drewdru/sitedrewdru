@@ -6,7 +6,9 @@
     <div class="layout">
       <div class="form card">
         <div class="form-group" v-show="error">
-          <label>{{$t(error)}}</label>
+          <div class="alert alert-error">
+            {{$t(error)}}
+          </div>
         </div>
         <div class="form-group">
           <label for="name">{{$t('Document language')}}:</label>
@@ -45,7 +47,7 @@
       </div>
       <div class="form card" v-show="result">
         <h1>{{$t('result')}}:</h1>
-        <p>{{result}}</p>
+        <p v-html="result"></p>
       </div>
     </div>    
   </div>

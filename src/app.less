@@ -24,6 +24,9 @@ html, body {
   *:focus {
     outline: 0;
   }
+  *::-moz-focus-inner {
+    border: 0;
+  }
   &.user-is-tabbing *:focus {
     outline: 2px dotted var(--body-text) !important;
   }

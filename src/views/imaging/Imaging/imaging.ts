@@ -22,7 +22,7 @@ export default class Imaging extends Vue {
   
   private language: any = null;
   private languages: ILanguages[] = [
-    {locale: 'en', flag: 'us', title: 'English'},
+    {locale: 'en_2', flag: 'us', title: 'English'},
     {locale: 'ru', flag: 'ru', title: 'Russian'},
     {locale: 'ru_kz', flag: 'kz', title: 'Kazakh and Russian'},
   ];
