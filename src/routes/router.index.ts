@@ -15,6 +15,16 @@ export default new Router({
       component: () => import('@/views/index/About/About.vue'),
     },
     {
+      path: '/documents',
+      name: 'documents',
+      component: () => import('@/views/index/Privacy/Privacy.vue'),
+    },
+    {
+      path: '/documents/privacy',
+      name: 'privacy',
+      component: () => import('@/views/index/Privacy/Privacy.vue'),
+    },
+    {
       path: '*',
       name: 'error404',
       component: () => import('@/views/errors/Error404/Error404.vue'),

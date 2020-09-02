@@ -22,6 +22,9 @@
           <a class="logo" href="//www.linkedin.com/in/andrew-ovsyannikov-b97479169/">
             <img class="logo" alt="Drew Dru on Linkedin" src="@/assets/linkedin.svg">
           </a>
+          <a class="logo" href="//www.upwork.com/freelancers/~01e59297900f2b4845">
+            <img class="logo" alt="Drew Dru on Upwork" src="@/assets/upwork.png">
+          </a>
           <a class="logo" href="//t.me/DrewDru/">
             <img class="logo" alt="Drew Dru on Telegram" src="@/assets/telegram.svg">
           </a>
