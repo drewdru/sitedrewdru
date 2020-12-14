@@ -3,10 +3,12 @@
 
 <template>
   <div class="page home">
-    <h1>{{$t('HiDrewDru')}}</h1>
-    <transition name="cutie-mark" appear>
-      <img class="cutie-mark" alt="Drew Dru logo" src="@/assets/logo.svg">
-    </transition>
+    <div class="layout">
+      <h1>{{$t('HiDrewDru')}}</h1>
+      <transition name="cutie-mark" appear>
+        <img class="cutie-mark" alt="Drew Dru logo" src="@/assets/logo.svg">
+      </transition>
+    </div>
   </div>
 </template>
 
