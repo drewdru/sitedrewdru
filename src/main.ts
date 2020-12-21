@@ -24,6 +24,11 @@ store.state.subdomains = subdomains;
 // TODO: Get User core data (refresh token if exist)
 // set language and theme
 // save token to httpOnly cookies for use with subdomains?
+// Проверить наличие httpOnly cookies, если отсутствует, проверить в локальном хранилище,
+// если есть - обновить, иначе запросить новый uid.
+// uid:"UID" Created:"DATE" Domain:".drewdru.com" Expires / Max-Age:"DATE"
+// HttpOnly:true Last Accessed:"DATE" Path:"/" SameSite:"Strict" Secure:true Size:51
+
 (document as any).domain = process.env.VUE_APP_DOMAIN_NAME;
 
 new Vue({

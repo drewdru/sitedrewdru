@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const HTTP = axios.create({
   baseURL: `${process.env.VUE_APP_REST_URL}`,
-})
+});
 
 @Component({
   components: {
@@ -27,7 +27,7 @@ export default class App extends Vue {
   //   HTTP.defaults.headers.common['Authorization'] = `JWT ${response.data.token}`;
   //   const user: any = await HTTP.get(`user/`,);
   //   const auth: any = await HTTP.post(`authorize/`,);
-    
+
   // }
 
   private created() {

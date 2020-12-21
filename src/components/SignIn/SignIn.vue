@@ -45,6 +45,7 @@
                 '--active': cardTheme.active,
                 '--error': cardTheme.error,
                 '--info': cardTheme.info,
+                '--info-text': cardTheme.infoText,
                 '--success': cardTheme.success,
                 '--warning': cardTheme.warning,
                 '--shadow': cardTheme.shadow,

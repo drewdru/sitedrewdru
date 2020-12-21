@@ -13,6 +13,7 @@
       '--accent-text': theme.accentText,
       '--error': theme.error,
       '--info': theme.info,
+      '--info-text': theme.infoText,
       '--success': theme.success,
       '--warning': theme.warning,
       '--shadow': theme.shadow,

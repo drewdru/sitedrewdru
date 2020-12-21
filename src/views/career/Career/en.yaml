@@ -1,4 +1,108 @@
 en:
-  HiAndrew: Hi! My name is Andrew Ovsyannikov and I'm a Software engineer.
+  HiAndrew: Hi! My name is Andrew Ovsyannikov and I'm a Software Engineer.
   HiAndrew2: I have more than
-  HiAndrew3: years of experience in Web Development as Full Stack.
+  HiAndrew3: years of experience in Full Stack Web Development.
+
+  FrontendPrefer: As Front-end Web Developer I prefer to use
+  BackendPrefer: As Back-end Web Developer I prefer to use
+  ILikeToGrow: I like to grow my professional skills and learn something new.
+  SeeMyPetProjects: You can see my pet projects on
+  ImAMaster: I'm a Master of Computer Science
+  AerospaceUniversity: Siberian State Aerospace University
+  MasterOfComputerScience: Master of Computer Science (MSCS), Computer science
+  Faculty: Faculty
+  InformationTelecommunications: Information and Telecommunications
+  Specialty: Specialty
+  MasterSpecialty: Artificial Intelligence
+  BachelorOfComputerScience: Bachelor of Computer Science (BCompSc), Computer science
+  BachelorSpecialty: Software Engineering
+
+  MySkills: My Skills
+  OperatingSystems: Operating Systems
+  DevelopmentLanguages: Development Languages
+  Frameworks: Frameworks
+  DBMS: DBMS
+  Others: Others
+  MyExperience: My Experience
+
+  ToDate: to date
+
+  Freelance: Freelance
+  FullStackDeveloper: Full-stack Developer
+  MyUpworkAccount: My Account on Upwork
+  Skills: Skills
+  Description: Description
+
+  MyExperienceUpwork_1: Marked up layouts of the Admin panel pages for managing the video surveillance system.
+  MyExperienceUpwork_2: Developed an API for a website security analysis system.
+
+  MyExperienceECNBroker_1_1: Redesigned
+  MyExperienceECNBroker_1_2: to
+  MyExperienceECNBroker_2: Changed the layout of the User Account pages and added new functionality, expanded the site's API.
+  MyExperienceECNBroker_3: Expanded the functionality of the admin panel, differentiated user rights.
+  MyExperienceECNBroker_4: Implemented an
+  MyExperienceECNBroker_5_1: Implemented notification to
+  MyExperienceECNBroker_5_2: bot about user actions.
+  MyExperienceECNBroker_6: Configured DB migrations and DB backups.
+  MyExperienceECNBroker_7_1: Configured
+  MyExperienceECNBroker_7_2: containers.
+  MyExperienceECNBroker_8_1: Edited
+  MyExperienceECNBroker_8_2: landing pages.
+  MyExperienceECNBroker_9_1: Implemented the
+  MyExperienceECNBroker_9_2: and
+  MyExperienceECNBroker_9_3: payment systems.
+  MyExperienceECNBroker_10: Set up a referral program.
+  MyExperienceECNBroker_11_1: Added
+  MyExperienceECNBroker_11_2: editor for news.
+  MyExperienceECNBroker_12_1: Implemented an
+  MyExperienceECNBroker_12_2: marked up pages for customer training, displayed data on
+  MyExperienceECNBroker_13: Displayed the exchange rate via an
+  MyExperienceECNBroker_14: Developed forex calculators.
+  MyExperienceECNBroker_15_1: Implemented
+  MyExperienceECNBroker_15_2: for copy trading.
+  MyExperienceECNBroker_16: Implemented an Email Delivery Service
+  MyExperienceECNBroker_17_1: Implemented an
+  MyExperienceECNBroker_17_2: for contract specification.
+
+  MyExperienceB2BExport_1: Developed a form for selecting product categories with a hierarchy.
+  MyExperienceB2BExport_2: Fixed the layout of the site and letters.
+  MyExperienceB2BExport_3: Configured database migrations.
+  MyExperienceB2BExport_4_1: Fixed bugs in bulk import of goods and translation of text via
+  MyExperienceB2BExport_4_2: service.
+
+  MyExperienceCarreta: Implemented loading of prices from CSV/XLS files.
+
+  MyExperienceTeachLearnLanguages_1: Implemented the definition of the user's country through an
+  MyExperienceTeachLearnLanguages_2: Fixed loading images to
+  MyExperienceTeachLearnLanguages_3: Implemented import prices.
+  MyExperienceTeachLearnLanguages_4_1: Expanded the functionality of the
+  MyExperienceTeachLearnLanguages_4_2: admin panel.
+
+  InternalProjects: Internal and other projects
+  MyExperienceInternalProjects_1: Implemented crawling sites for analyzing product prices
+  MyExperienceInternalProjects_2: Developed a system for aggregating CSV/XLS reports, set up validation of files and user data, implemented text field recoding, distribution of reports in
+  MyExperienceInternalProjects_3: Developed systems for recognizing applications from images
+
+  SoftwareEngineer: Software Engineer
+  MyExperienceAigeo_1_1: Developed a web application
+  MyExperienceAigeo_1_2: to display regional data.
+  MyExperienceAigeo_2_1: Developed a web application
+  MyExperienceAigeo_2_2: to display regional data on the map.
+  MyExperienceAigeo_3_1: Developed a web application
+  MyExperienceAigeo_3_2: mirror
+  MyExperienceAigeo_4_1: Implemented the
+  MyExperienceAigeo_4_2: as module of web app
+  MyExperienceAigeo_4_3: mirror
+  MyExperienceAigeo_5_1: Developed a service
+  MyExperienceAigeo_5_2: for normalizing the address.
+  MyExperienceAigeo_6_1: Setuped and extended
+  MyExperienceAigeo_6_2: for
+  MyExperienceAigeo_6_3: Aigeo servieces
+  MyExperienceAigeo_6_4: Added loading data from third-party
+  MyExperienceAigeo_6_5: servers with dynamic MGUID, extended API, fixed minor bugs.
+
+  JuniorWebDeveloper: Junior Web Developer
+  MyExperienceAlpateks_1: Developed a form for accepting bids and creating leads in the
+  MyExperienceAlpateks_2: Сollected data of industrial climbers.
+  MyExperienceAlpateks_3: Fixed mark up.
+  MyExperienceAlpateks_4: Сonfigured database backup.

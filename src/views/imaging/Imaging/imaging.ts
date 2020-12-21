@@ -6,20 +6,20 @@ import axios from 'axios';
 
 const HTTP = axios.create({
   baseURL: `${process.env.VUE_APP_REST_URL}`,
-})
+});
 
 @Component({
   components: {
   },
 })
 export default class Imaging extends Vue {
-  private file: any = ''; 
+  private file: any = '';
   private uid: any = '';
   private result: string = '';
   private status: string = '';
-  private progress: Number = 0;
+  private progress: number = 0;
   private error: string = '';
-  
+
   private language: any = null;
   private languages: ILanguages[] = [
     {locale: 'en_2', flag: 'us', title: 'English'},
@@ -36,8 +36,8 @@ export default class Imaging extends Vue {
   private async getResult() {
     const response = await HTTP.get(`ocr/recognize/`, {
       params: {
-        uid: this.uid
-      }
+        uid: this.uid,
+      },
     });
     this.status = response.data.status;
     this.progress = response.data.progress;
@@ -66,14 +66,14 @@ export default class Imaging extends Vue {
         formData,
         {
           headers: {
-              'Content-Type': 'multipart/form-data'
-          }
-        }
+              'Content-Type': 'multipart/form-data',
+          },
+        },
       );
       this.uid = response.data.uid;
-      this.getResult()
-    } catch(error) {
+      this.getResult();
+    } catch (error) {
       this.error = error.response.data.detail;
-    }    
+    }
   }
 }

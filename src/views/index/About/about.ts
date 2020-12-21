@@ -2,7 +2,16 @@ import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 import { SmartQuery } from 'vue-apollo-decorator';
 import gql from 'graphql-tag';
 import {ILanguages, LANGUAGES} from '@/constants/languages';
-import taskQuery from './tasks.gql';
+// import taskQuery from './tasks.gql';
+
+const taskQuery = gql`query TaskQuery {
+  tasks {
+      id
+      isDone
+      name
+      description
+  }
+}`;
 
 interface Languages {
   locale: string;
