@@ -86,6 +86,7 @@
               '--active': cardTheme.active,
               '--error': cardTheme.error,
               '--info': cardTheme.info,
+              '--info-text': cardTheme.info,
               '--success': cardTheme.success,
               '--warning': cardTheme.warning,
               '--shadow': cardTheme.shadow,

@@ -11,7 +11,7 @@ const taskQuery = gql`query TaskQuery {
       name
       description
   }
-}`
+}`;
 
 interface Languages {
   locale: string;
