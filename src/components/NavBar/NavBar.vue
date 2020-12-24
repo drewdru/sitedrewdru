@@ -41,14 +41,9 @@
         </div>
       </div>
 
+      <SignIn></SignIn>
       <ThemeChanger></ThemeChanger>
-      <div class="locale">
-        <div class="name">
-          {{$t($i18n.locale)}}
-          <i class="arrow down"></i>
-        </div>
-        <LocaleChanger></LocaleChanger>
-      </div>
+      <LocaleChanger></LocaleChanger>
     </div>
   </div>
 </template>

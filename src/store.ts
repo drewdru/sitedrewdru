@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     theme: defaultTheme,
+    user: undefined,
     subdomain: 'index',
     subdomains: [{name: 'index', path: process.env.VUE_APP_DOMAIN_NAME}],
   },

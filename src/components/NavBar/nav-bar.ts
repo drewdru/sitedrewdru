@@ -2,11 +2,13 @@ import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 
 import LocaleChanger from '@/components/LocaleChanger/LocaleChanger.vue';
+import SignIn from '@/components/SignIn/SignIn.vue';
 import ThemeChanger from '@/components/ThemeChanger/ThemeChanger.vue';
 
 @Component({
   components: {
     LocaleChanger,
+    SignIn,
     ThemeChanger,
   },
 })

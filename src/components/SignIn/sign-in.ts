@@ -1,75 +1,57 @@
 import { Component, Emit, Vue } from 'vue-property-decorator';
 import { State, Mutation } from 'vuex-class';
 import { themes } from '@/constants/themes';
-import gql from 'graphql-tag';
+import ModalWindow from '@/components/ModalWindow/ModalWindow.vue';
 
-const TokenAuth = gql`
-mutation TokenAuth($username: String!, $password: String!) {
-  tokenAuth(username: $username, password: $password) {
-    token
-    payload
-    refreshToken
-    refreshExpiresIn
-  }
-}
-`;
-const VerifyToken = gql`
-mutation VerifyToken($token: String!) {
-  verifyToken(token: $token) {
-    payload
-  }
-}
-`;
-const RefreshToken = gql`
-mutation RefreshToken($refreshToken: String!) {
-  refreshToken(refreshToken: $refreshToken) {
-    token
-    payload
-    refreshToken
-    refreshExpiresIn
-  }
-}
-`;
-const RevokeToken = gql`
-mutation RevokeToken($refreshToken: String!) {
-  revokeToken(refreshToken: $refreshToken) {
-    revoked
-  }
-}
-`;
-const deleteTokenCookie = gql`
-mutation {
-  deleteTokenCookie {
-    deleted
-  }
-}
-`;
-const deleteRefreshTokenCookie = gql`
-mutation {
-  deleteRefreshTokenCookie {
-    deleted
-  }
-}
-`;
-
-@Component
-export default class ThemeChanger extends Vue {
+@Component({
+  components: {
+    ModalWindow,
+  },
+})
+export default class SignIn extends Vue {
+  @State private user!: any;
   @State private theme!: any;
+  @Mutation private switchTheme: any;
 
   private selected: any = {};
   private themes: any = themes;
-  private themeChangerModal: boolean = false;
+  private isOpen: boolean = false;
+  private isFocus: boolean = false;
+  private isCustomize: boolean = false;
 
   private created() {
     this.selected = this.theme;
   }
 
   @Emit()
-  private openThemeChangerModal(event: any) {
-    this.themeChangerModal = true;
+  private open(event: any) {
+    if (this.user) {
+      // TODO: Go to user profile (open user menu?)
+      this.isOpen = false;
+    } else {
+      this.isOpen = true;
+    }
   }
+
   @Emit()
-  private closeThemeChangerModal(event: any) {
-    this.themeChangerModal = false;
+  private close(event: any) {
+    this.isOpen = false;
+  }
+
+
+  @Emit()
+  private themeChange(event: any, themeName: string) {
+    if (themeName === 'customTheme') {
+      this.switchTheme(JSON.parse(localStorage.getItem('customTheme') || '{}'));
+    } else {
+      this.switchTheme(this.themes[themeName]);
+    }
+    localStorage.setItem('theme', themeName);
+  }
+
+  @Emit()
+  private saveCustomTheme(event: any) {
+    localStorage.setItem('theme', 'customTheme');
+    localStorage.setItem('customTheme', JSON.stringify(this.theme));
   }
 }

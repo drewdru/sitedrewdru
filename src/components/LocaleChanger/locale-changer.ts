@@ -7,18 +7,16 @@ import {ILanguages, LANGUAGES} from '@/constants/languages';
 export default class LocaleChanger extends Vue {
   private languages: ILanguages[] = LANGUAGES;
 
-  private selected: ILanguages|any = {};
-
-  private created() {
-    this.selected = this.languages.filter(
-      (c) => c.locale === this.$i18n.locale,
-    )[0];
+  @Emit()
+  private localeChange(locale: string) {
+    this.$i18n.locale = locale;
+    localStorage.setItem('language', locale);
+    this.$forceUpdate();
+    this.close();
   }
 
   @Emit()
-  private localeChange() {
-    this.$i18n.locale = this.selected.locale;
-    localStorage.setItem('language', this.selected.locale);
-    this.$forceUpdate();
+  private close() {
+    (this.$refs.localeChanger as Element).removeAttribute("open");
   }
 }

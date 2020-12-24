@@ -3,7 +3,7 @@
 .theme-changer {
     display: initial;
     float: right;
-    width: 70px;
+    margin-left: 1rem;
 
     .modal-window .modal-content .modal-body .theme-card {
         padding: 1rem;
@@ -43,107 +43,102 @@
             }
         }
     }
-}
-.vs {
-    &__dropdown-menu {
-        position: fixed;
-    }
-}
+    .wrapper {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: middle;
+        box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
+        cursor: pointer;
 
-.circle {
-    background-color: red;
-    display: inline-block;
-    position: absolute;
-    top: 30%;
-    left: 30%;
-    width: 55%;
-    height: 55%;
-    border-radius: 55%;
-    background-color: var(--primary, #2c3e50);
-    -webkit-box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
-    -moz-box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
-    box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
-
-    &:hover {
-        background-color: var(--accent, #82B1FF);
-        -webkit-box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
-        -moz-box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
-        box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
-    }
-}
-
-.red {
-    background: @red;
-    border-color: @red;
-}
-.red-orange {
-    background: @red-orange;
-    border-color: @red-orange;
-}
-.orange {
-    background: @orange;
-    border-color: @orange;
-}
-.yellow-orange {
-    background: @yellow-orange;
-    border-color: @yellow-orange;
-}
-.yellow {
-    background: @yellow;
-    border-color: @yellow;
-}
-.yellow-green {
-    background: @yellow-green;
-    border-color: @yellow-green;
-}
-.green {
-    background: @green;
-    border-color: @green;
-}
-.blue-green {
-    background: @blue-green;
-    border-color: @blue-green;
-}
-.blue {
-    background: @blue;
-    border-color: @blue;
-}
-.blue-violet {
-    background: @blue-violet;
-    border-color: @blue-violet;
-}
-.violet {
-    background: @violet;
-    border-color: @violet;
-}
-.red-violet {
-    background: @red-violet;
-    border-color: @red-violet;
-}
-
-.wrapper {
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	position: relative;
-    overflow: hidden;
-    display: inline-block;
-    vertical-align: middle;
-    box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
-
-	.sector {
-		position: absolute;
-		transform-origin: 100% 100%;
-		width: 5000px;
-		height: 5000px;
-		left: 50%;
-		top: 50%;
-		border: 2px solid;
-		margin-top: -5000px;
-        margin-left: -5000px;
-        color: var(--primary, #2c3e50);
-        &:hover {
-            background-color: var(--accent, #82B1FF);
+        .circle {
+            background-color: red;
+            display: inline-block;
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            width: 55%;
+            height: 55%;
+            border-radius: 55%;
+            background-color: var(--primary, #2c3e50);
+            -webkit-box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
+            -moz-box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
+            box-shadow: 0px 0px 2px 0px var(--primary, #2c3e50);
+        
+            &:hover {
+                background-color: var(--accent, #82B1FF);
+                -webkit-box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
+                -moz-box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
+                box-shadow: 0px 0px 2px 0px var(--accent, #82B1FF);
+            }
+        }
+        
+        .red {
+            background: @red;
+            border-color: @red;
+        }
+        .red-orange {
+            background: @red-orange;
+            border-color: @red-orange;
+        }
+        .orange {
+            background: @orange;
+            border-color: @orange;
+        }
+        .yellow-orange {
+            background: @yellow-orange;
+            border-color: @yellow-orange;
+        }
+        .yellow {
+            background: @yellow;
+            border-color: @yellow;
+        }
+        .yellow-green {
+            background: @yellow-green;
+            border-color: @yellow-green;
+        }
+        .green {
+            background: @green;
+            border-color: @green;
+        }
+        .blue-green {
+            background: @blue-green;
+            border-color: @blue-green;
+        }
+        .blue {
+            background: @blue;
+            border-color: @blue;
+        }
+        .blue-violet {
+            background: @blue-violet;
+            border-color: @blue-violet;
+        }
+        .violet {
+            background: @violet;
+            border-color: @violet;
+        }
+        .red-violet {
+            background: @red-violet;
+            border-color: @red-violet;
+        }
+    
+        .sector {
+            position: absolute;
+            transform-origin: 100% 100%;
+            width: 5000px;
+            height: 5000px;
+            left: 50%;
+            top: 50%;
+            border: 2px solid;
+            margin-top: -5000px;
+            margin-left: -5000px;
+            color: var(--primary, #2c3e50);
+            &:hover {
+                background-color: var(--accent, #82B1FF);
+            }
         }
     }
 }

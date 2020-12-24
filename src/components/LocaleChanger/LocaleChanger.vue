@@ -1,22 +1,21 @@
 <template>
   <div class="locale-changer">
-    <ui-vue-select
-      v-model="selected"
-      :id="`language`"
-      :name="`language`"
-      :items="languages"
-      :isSearch="false"
-      @change="localeChange"
-    >
-      <template #ui-vue-select-match="props">
-        <flag :iso="props.selected.flag"></flag>
-        <span>&nbsp;{{$t(props.selected.title)}}</span>
-      </template>
-      <template #ui-vue-select-options="props">
-        <flag :iso="props.item.flag"></flag>
-        <span>&nbsp;{{$t(props.item.title)}}</span>
-      </template>
-    </ui-vue-select>
+    <details id="localeChanger" ref="localeChanger" @mouseleave="close">
+      <summary>
+        {{$t($i18n.locale)}}
+      </summary>
+      <div class="details-menu">
+        <div
+          v-for="(value, key) in languages"
+          :key="key"
+          class="details-menu-item"
+          :class="{'selected': value.locale == $i18n.locale}"
+          @click="localeChange(value.locale)"
+        >
+          <flag :iso="value.flag"></flag> {{value.locale}}
+        </div>
+      </div>
+    </details>
   </div>
 </template>
 
