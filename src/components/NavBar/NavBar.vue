@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <SignIn></SignIn>
+      <SignIn v-if="$route.name != 'auth'"></SignIn>
       <ThemeChanger></ThemeChanger>
       <LocaleChanger></LocaleChanger>
     </div>

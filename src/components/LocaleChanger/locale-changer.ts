@@ -17,6 +17,6 @@ export default class LocaleChanger extends Vue {
 
   @Emit()
   private close() {
-    (this.$refs.localeChanger as Element).removeAttribute("open");
+    (this.$refs.localeChanger as Element).removeAttribute('open');
   }
 }

@@ -18,6 +18,7 @@ export default class SignIn extends Vue {
   private isOpen: boolean = false;
   private isFocus: boolean = false;
   private isCustomize: boolean = false;
+  private signInLink: string = `//${process.env.VUE_APP_DOMAIN_NAME}/auth/?next=${window.location.href}`;
 
   private created() {
     this.selected = this.theme;
@@ -37,21 +38,5 @@ export default class SignIn extends Vue {
   private close(event: any) {
     this.isOpen = false;
   }
-
-
-  @Emit()
-  private themeChange(event: any, themeName: string) {
-    if (themeName === 'customTheme') {
-      this.switchTheme(JSON.parse(localStorage.getItem('customTheme') || '{}'));
-    } else {
-      this.switchTheme(this.themes[themeName]);
-    }
-    localStorage.setItem('theme', themeName);
-  }
-
-  @Emit()
-  private saveCustomTheme(event: any) {
-    localStorage.setItem('theme', 'customTheme');
-    localStorage.setItem('customTheme', JSON.stringify(this.theme));
-  }
+  
 }

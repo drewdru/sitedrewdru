@@ -15,6 +15,11 @@ export default new Router({
       component: () => import('@/views/index/About/About.vue'),
     },
     {
+      path: '/auth',
+      name: 'auth',
+      component: () => import('@/views/index/Auth/Auth.vue'),
+    },
+    {
       path: '/documents',
       name: 'documents',
       component: () => import('@/views/index/Privacy/Privacy.vue'),

@@ -14,30 +14,14 @@
       @click="e => open(e)"
       class="wrapper animated infinite rotate delay-2s"
       alt="User Avatar"
-      src="@/assets/andrew.png"
+      :src="user.avatar || '/img/anonymouse_user.png'"
+      v-if="user"
     >
-
-    <ModalWindow
-      v-if="isOpen"
-      v-show="!isCustomize"
-      @close="e => close(e)"
-      v-shortkey.native="{'down': ['esc']}"
-      @shortkey.native="e => !isCustomize && close(e)"
-    >
-      <template #modal-header>
-        <h2>{{$t('ModalHeader')}}</h2>
-      </template>
-      <template #modal-body>
-        <div class="theme-card" @click="openCustomizeModal()">
-          <h1 class="theme-name">{{$t('CustomizeTheme')}}</h1>          
-          <div class="theme-palette" v-for="(color, key, i) in theme"
-            :key="`Theme${i}`"
-            v-show="key!='themeName'"
-            :style="{'background-color': color}"
-          ></div>
-        </div>
-      </template>
-    </ModalWindow>
+    <div v-else class="wrapper btn">
+      <a :href="signInLink" class="link">
+          {{$t('SignIn')}}
+      </a>
+    </div>
   </div>
 </template>
 
