@@ -1,16 +1,15 @@
 import Vue from 'vue';
-import App from '@/App.vue';
-import '@/filters';
-
-import {routers, subdomains} from '@/router';
-
-import apolloProvider from '@/vue-apollo';
-import store from '@/store';
-import {i18n} from '@/plugins/i18n';
-
+import axios from 'axios';
 import FlagIcon from 'vue-flag-icon';
 import VueShortKey from 'vue-shortkey';
 import uiVueSelect from 'ui-vue-select';
+
+import App from '@/App.vue';
+import '@/filters';
+import {i18n} from '@/plugins/i18n';
+import {routers, subdomains} from '@/router';
+import store from '@/store';
+import apolloProvider from '@/vue-apollo';
 
 Vue.use(FlagIcon);
 Vue.use(VueShortKey);

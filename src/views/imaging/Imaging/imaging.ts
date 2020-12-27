@@ -2,11 +2,7 @@ import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 import {ILanguages} from '@/constants/languages';
 
 
-import axios from 'axios';
-
-const HTTP = axios.create({
-  baseURL: `${process.env.VUE_APP_REST_URL}`,
-});
+import HTTP from '@/plugins/http';
 
 @Component({
   components: {

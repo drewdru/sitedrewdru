@@ -3,11 +3,7 @@ import { State } from 'vuex-class';
 
 import NavBar from '@/components/NavBar/NavBar.vue';
 
-import axios from 'axios';
-
-const HTTP = axios.create({
-  baseURL: `${process.env.VUE_APP_REST_URL}`,
-});
+import HTTP from '@/plugins/http';
 
 @Component({
   components: {
