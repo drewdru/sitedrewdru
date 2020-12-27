@@ -10,6 +10,6 @@ export default class Auth extends Vue {
 
   private created() {
     // TODO: if user then redirect
-    // window.location.href = this.$route.query.next;
+    (window.location.href as any) = this.$route.query.next;
   }
 }
