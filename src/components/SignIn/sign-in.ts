@@ -38,5 +38,4 @@ export default class SignIn extends Vue {
   private close(event: any) {
     this.isOpen = false;
   }
-  
 }
