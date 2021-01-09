@@ -4,12 +4,14 @@ import { State } from 'vuex-class';
 import LocaleChanger from '@/components/LocaleChanger/LocaleChanger.vue';
 import SignIn from '@/components/SignIn/SignIn.vue';
 import ThemeChanger from '@/components/ThemeChanger/ThemeChanger.vue';
+import SideBar from '@/components/SideBar/SideBar.vue';
 
 @Component({
   components: {
     LocaleChanger,
     SignIn,
     ThemeChanger,
+    SideBar,
   },
 })
 export default class NavBar extends Vue {
@@ -17,6 +19,7 @@ export default class NavBar extends Vue {
   @State private subdomain!: any;
   private menuLinks: any = {};
   private domainName: any = `//${process.env.VUE_APP_DOMAIN_NAME}`;
+  private isSideBar: boolean = false;
 
   private created() {
     ((this.$router as any).options.routes as any[]).forEach((element) => {
