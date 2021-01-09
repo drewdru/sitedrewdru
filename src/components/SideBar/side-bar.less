@@ -1,0 +1,101 @@
+@import "../../variables.less";
+
+.sidebar {
+    z-index: 9999999999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    .sidebar-shadow {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary, #2c3e507F);
+      opacity: 0.5;
+    }
+    .sidebar-content {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: var(--primary, #2c3e50);
+      overflow-x: hidden;
+      transition: 0.5s;
+      &.open {
+        width: 15.625rem;
+      }
+      .sidebar-wrapper {
+        padding: 1.25rem 0rem;
+        .logo {
+          width: 3.125rem;
+          height: 3.125rem;
+          display: unset;
+          padding: unset;
+        }
+        .changers {
+          display: flow-root;
+          padding: 1.25rem 0rem;
+        }
+        details {
+          summary {
+            cursor: pointer;
+            padding: 0.5rem 0rem;
+            text-decoration: none;
+            font-size: 1.5625rem;
+            background: var(--body);
+            color: var(--body-text);
+            transition: 0.3s;
+          }
+          .details-menu {
+            .link {
+              background: var(--info);
+              color: var(--info-text);
+              &:hover {
+                  background-color: var(--accent, #82B1FF);
+                  color: var(--accent-text, #043381);
+              }
+            }
+          }
+        }
+      }
+      .link {
+        padding: 0.5rem 0.5rem 0.5rem 2rem;
+        text-decoration: none;
+        font-size: 1.5625rem;
+        color: var(--secondary, #ffffff);
+        display: block;
+        transition: 0.3s;
+        &:hover {
+            background-color: var(--accent, #82B1FF);
+            color: var(--accent-text, #043381);
+        }
+        &.router-link-active {
+            color: var(--active-text, #fff);
+            background-color: var(--active, #42b983);
+        }
+        &.home {
+            color: var(--secondary, #ffffff);
+            background-color: unset;
+            &.router-link-exact-active {
+                color: var(--active-text, #fff);
+                background-color: var(--active, #42b983);
+            }
+        }
+        &.closebtn {
+          cursor: pointer;
+          position: absolute;
+          padding: 0;
+          top: 0;
+          right: 1.5625rem;
+          font-size: 2.25rem;
+          margin-left: 3.125rem;
+        }
+      }
+    }
+  
+    @media screen and (max-height: 450px) {
+      .sidebar-content {padding-top: 0.9375rem;}
+      .sidebar-content a {font-size: 1.125rem;}
+    }
+}
