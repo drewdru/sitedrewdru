@@ -38,7 +38,7 @@
       </div>
       <div class="card">
         <article>
-          <p class="text">🤩 {{$t('FrontendPrefer')}} JavaScript(Vue.js, Angular, Node.js, jQuery), HTML, CSS(Less, Bootstrap/Material).</p>
+          <p class="text">🤩 {{$t('FrontendPrefer')}} JavaScript(Vue.js, React, Angular, Node.js, jQuery), HTML, CSS(Less, Bootstrap/Material).</p>
           <p class="text">🧑‍💻 {{$t('BackendPrefer')}} Python(FastApi, Django/DRF, Flask, SQLAlchemy), SQL(PostgreSQL, MongoDB), Nginx, Docker, Celery, Redis.</p>
           <p class="text">🤓 {{$t('ILikeToGrow')}}</p>
           <p class="text">🤖 {{$t('SeeMyPetProjects')}} <a href="https://github.com/drewdru">GitHub</a>.</p>
@@ -77,7 +77,7 @@
             </tr>
             <tr>
               <th><strong>{{$t('Frameworks')}}</strong></th>
-              <td>FastAPI, Django/DRF, Flask, Angular, Vue.js, Node.js, jQuery</td>
+              <td>FastAPI, Django/DRF, Flask, Vue.js(Vuetify, Nuxt), React(Next.js), Node.js, AngularJs, jQuery</td>
             </tr>
             <tr>
               <th><strong>{{$t('DBMS')}}</strong></th>
