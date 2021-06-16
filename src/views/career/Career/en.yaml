@@ -33,8 +33,14 @@ en:
   Skills: Skills
   Description: Description
 
-  MyExperienceUpwork_1: Marked up layouts of the Admin panel pages for managing the video surveillance system.
-  MyExperienceUpwork_2: Developed an API for a website security analysis system.
+  MyExperienceUpwork_1_1: April 2021 – June 2021
+  MyExperienceUpwork_1_2: Participated in the development of MVP of freight transportation. Implemented authorization through Cognito. Added geocoding via here.com and displayed data on a map. Marked up company pages and implemented  data from DynamoDB.
+  MyExperienceUpwork_2_1: February 2021 – April  2021
+  MyExperienceUpwork_2_2: Participated in the I-EXP project (https://i-exp.ru/) Developed an API for user authorization. Added Telegram bot to notify about user actions. Implemented RabbitMQ. Divided the mono-repository into microservices. Added looks generation for large clothes. Added pHash calculation. Added search for similar images. Added data generation methods for neural network training.
+  MyExperienceUpwork_3_1: November 2020 – December 2020
+  MyExperienceUpwork_3_2: Developed an API for a website security analysis system.
+  MyExperienceUpwork_4_1: July 2020 – September 2020
+  MyExperienceUpwork_4_2: Marked up layouts of the Admin panel pages for managing the video surveillance system.
 
   MyExperienceECNBroker_1_1: Redesigned
   MyExperienceECNBroker_1_2: to

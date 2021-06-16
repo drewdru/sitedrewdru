@@ -85,7 +85,7 @@
             </tr>
             <tr>
               <th><strong>{{$t('Others')}}</strong></th>
-              <td>Celery, Docker, Nginx, Git</td>
+              <td>Celery, Docker, Nginx, Git, AWS (Amplify, Lambda, S3, Cognito, DynamoDB),  WebRTC</td>
             </tr>
           </tbody>
         </table>
@@ -98,15 +98,17 @@
             <p class="text">
               <strong>{{$t('FullStackDeveloper')}} | {{$t('Freelance')}}</strong><br>
               🔗 <a href="https://www.upwork.com/freelancers/~01e59297900f2b4845/">{{$t('MyUpworkAccount')}}</a><br>
-              ⚡ <em>{{$t('Skills')}}: Python(Tornado, FastAPI), Vue.js, WebRTC</em><br>
+              ⚡ <em>{{$t('Skills')}}: Python(FastAPI, Flask, Tornado), NodeJS(Express), Vue.js, WebRTC, Docker, Angular, AWS (Amplify, Lambda, DynamoDB, Cognito), PostgreSql, RabbitMQ, Docker, GraphQL</em><br>
             </p>
             <details class="description">
               <summary>🛠 {{$t('Description')}}</summary>
               <div class="description-body">
-                <ul>
-                  <li>{{$t('MyExperienceUpwork_1')}}</li>
-                  <li>{{$t('MyExperienceUpwork_2')}}</li>
-                </ul>
+                <ol >
+                  <li><b>{{$t('MyExperienceUpwork_1_1')}}</b>: {{$t('MyExperienceUpwork_1_2')}} – <i>Angular, AWS (Amplify, Lambda, DynamoDB, Cognito), GraphQL</i></li>
+                  <li><b>{{$t('MyExperienceUpwork_2_1')}}</b>: {{$t('MyExperienceUpwork_2_2')}} – <i>NodeJS</i></li>
+                  <li><b>{{$t('MyExperienceUpwork_3_1')}}</b>: {{$t('MyExperienceUpwork_3_2')}} – <i>FastAPI, SqlAlchemy 1.4.0b1</i></li>
+                  <li><b>{{$t('MyExperienceUpwork_4_1')}}</b>: {{$t('MyExperienceUpwork_4_2')}} – <i>Vue.js, Python(Tornado)</i></li>
+                </ol>
               </div>
             </details>
           </div>
