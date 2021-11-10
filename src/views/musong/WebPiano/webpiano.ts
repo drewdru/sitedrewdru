@@ -5,7 +5,7 @@ import {OCTAVES, NOTES} from '@/constants/notes';
   components: {
   },
 })
-export default class WebAudio extends Vue {
+export default class WebPiano extends Vue {
   private audioContext: any = new (window.AudioContext || (window as any).webkitAudioContext)();
   private oscList: any = [];
   private masterGainNode: any = null;

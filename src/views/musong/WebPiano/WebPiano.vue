@@ -2,7 +2,7 @@
 <i18n src="./ru.yaml"></i18n>
 
 <template>
-  <div class="page webaudio">
+  <div class="page webpiano">
     <div class="container">
       <div class="keyboard">
         <div v-for="(notes_value, notes_key) in noteFreq" :key="notes_key"
@@ -64,5 +64,5 @@
   </div>
 </template>
 
-<script asyncs lang="ts" src="./webaudio.ts"></script>
-<style scoped lang="less" src="./webaudio.less"></style>
+<script asyncs lang="ts" src="./webpiano.ts"></script>
+<style scoped lang="less" src="./webpiano.less"></style>
