@@ -1,0 +1,100 @@
+The `pages/` directory is optional, meaning that if you only use [app.vue](/docs/directory-structure/app), vue-router won't be included, reducing your application bundle size.
+
+# Pages directory
+
+Nuxt will automatically integrate [Vue Router](https://next.router.vuejs.org/) and map `pages/` directory into the routes of your application.
+
+::alert{type=warning}
+Unlike components, your pages must have a single root element to allow Nuxt to apply route transitions between pages.
+::
+
+## Dynamic Routes
+
+If you place anything within square brackets, it will be turned into a [dynamic route](https://next.router.vuejs.org/guide/essentials/dynamic-matching.html) parameter. You can mix and match multiple parameters and even non-dynamic text within a file name or directory.
+
+If you need a catch-all route, you create it by using a file named like `[...slug].vue`. This will match _all_ routes under that path, and thus it doesn't support any non-dynamic text.
+
+### Example
+
+```bash
+-| pages/
+---| index.vue
+---| users-[group]/
+-----| [id].vue
+```
+
+Given the example above, you can access group/id within your component via the `$route` object:
+
+```vue
+<template>
+  {{ $route.params.group }}
+  {{ $route.params.id }}
+</template>
+```
+
+Navigating to `/users-admins/123` would render:
+
+```
+admins 123
+```
+
+## Nested Routes
+
+We provide a semantic alias for `RouterView`, the `NuxtChild` component, for displaying the children components of a [nested route](https://next.router.vuejs.org/guide/essentials/nested-routes.html).
+
+### Example
+
+```bash
+-| pages/
+---| parent/
+------| child.vue
+---| parent.vue
+```
+
+To display the `child.vue` component, simply put the `<NuxtChild>` component inside the `parent.vue` component:
+
+```html{}[pages/parent/child.vue]
+<template>
+  <div>
+    <h3>child.vue</h3>
+  </div>
+</template>
+```
+
+```html{}[pages/parent.vue]
+<template>
+  <div>
+    <h1>parent.vue</h1>
+    <NuxtChild />
+  </div>
+</template>
+
+<!-- output -->
+<template>
+  <div>
+    <h1>parent.vue</h1>
+    <div>
+      <h3>child.vue</h3>
+    </div>
+  </div>
+</template>
+```
+
+The example file tree above should generate these routes:
+
+```ts
+[
+  {
+    path: '/parent',
+    component: '~/pages/parent.vue',
+    name: 'parent',
+    children: [
+      {
+        path: 'child',
+        component: '~/pages/parent/child.vue',
+        name: 'parent-child'
+      }
+    ]
+  }
+]
+```

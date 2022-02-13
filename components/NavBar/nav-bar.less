@@ -1,0 +1,110 @@
+@navbar-height: 3.125rem;
+.navbar {
+  width: 100%;
+  .nav {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    background-color: var(--primary, #2c3e50);
+    height: @navbar-height;
+    &.static {
+      position: static;
+      visibility: hidden;
+    }
+    &.fixed {
+      position: fixed;
+      top: 0;
+      z-index: 999;
+    }
+    a {
+      font-weight: bold;
+      color: var(--secondary, #ffffff);
+      &.router-link-exact-active {
+        color: var(--active, #42b983);
+      }
+      &.logo {
+        color: var(--primary, #2c3e50);
+        padding: .3125rem;
+        .logo-wrapper {
+          height: 100%;
+          .logo {
+            height: 100%;
+            max-width: 2.5rem;
+          }
+        }
+      }
+
+      &.burger {
+        cursor: pointer;
+        display: none;
+      }
+    }
+    .routes-list {
+      background-color: var(--primary, #2c3e50);
+      .first-level {
+        height: 100%;
+        display: flex;
+        position: relative;
+        .link {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          text-decoration: none;
+          padding-left: .625rem;
+          padding-right: .625rem;
+          color: var(--secondary, #ffffff);
+          cursor: pointer;
+          &:hover {
+            background-color: var(--accent, #82B1FF);
+            color: var(--accent-text, #043381);
+          }
+          &.router-link-active {
+            color: var(--active-text, #fff);
+            background-color: var(--active, #42b983);
+          }
+          &.home {
+            color: var(--secondary, #ffffff);
+            background-color: unset;
+            &.router-link-exact-active {
+              color: var(--active-text, #fff);
+              background-color: var(--active, #42b983);
+            }
+          }
+        }
+
+        .second-level {
+          // height: 100%;
+          display: none;
+          position: absolute;
+          top: @navbar-height;
+          background-color: var(--primary, #2c3e50);
+          flex-direction: column;
+          width: max-content;
+          .link {
+            width: 100%;
+            padding: .625rem;
+            display: inline-flex;
+            box-sizing: border-box;
+            box-shadow: 0rem -0.3125rem .3125rem -0.3125rem var(--accent, #82B1FF);
+            &:hover {
+              background-color: var(--accent, #82B1FF);
+              color: var(--accent-text, #043381);
+            }
+          }
+        }
+        &:hover {
+          .second-level {
+            display: flex;
+          }
+        }
+      }
+    }
+    .spacer {
+      display: flex;
+      flex-grow: 1;
+    }
+  }
+}

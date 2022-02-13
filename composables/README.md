@@ -1,0 +1,40 @@
+# Composables directory
+
+Nuxt 3 supports `composables/` directory to auto import your Vue composables into your application and use using auto imports!
+
+
+Example: (using named exports)
+
+```js [composables/useFoo.ts]
+import { useState } from '#app'
+
+export const useFoo = () => {
+  return useState('foo', () => 'bar')
+}
+```
+
+Example: (using default export)
+
+```js [composables/use-foo.ts or composables/useFoo.ts]
+import { useState } from '#app'
+
+// It will be available as useFoo() (pascalCase of file name without extension)
+export default function () {
+  return 'bar'
+}
+```
+
+You can now auto import it:
+
+```vue [app.vue]
+<template>
+  <div>
+    {{ foo }}
+  </div>
+</template>
+
+<script setup>
+const foo = useFoo()
+</script>
+```
+

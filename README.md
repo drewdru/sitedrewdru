@@ -1,39 +1,29 @@
-# sitedrewdru
+# Nuxt 3 Minimal Starter
 
-## Project setup
-```
-npm install
-```
+We recommend to look at the [documentation](https://v3.nuxtjs.org).
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Setup
 
-### Compiles and minifies for production
-```
-npm run build
+Make sure to install the dependencies
+
+```bash
+yarn install
 ```
 
-### Run your tests
-```
-npm run test
+## Development
+
+Start the development server on http://localhost:3000
+
+```bash
+yarn dev
 ```
 
-### Lints and fixes files
-```
-npm run lint
+## Production
+
+Build the application for production:
+
+```bash
+yarn build
 ```
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
