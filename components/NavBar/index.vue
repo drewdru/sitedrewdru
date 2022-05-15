@@ -1,3 +1,5 @@
+<i18n locale="en" lang="yaml" src="./en.yml" />
+<i18n locale="ru" lang="yaml" src="./ru.yml" />
 
 <template>
   <div class="navbar">
@@ -5,14 +7,14 @@
     <div id="nav" class="nav fixed" ref="nav">
       <a class="logo" :href="domainName">
         <div class="logo-wrapper">
-          <img class="logo" alt="Drew Dru logo" src="@/assets/logo.svg">
+          <img class="logo" :alt="t('LogoAlt')" src="@/assets/logo.svg">
         </div>
       </a>
 
       <div class="routes-list">
         <div class="first-level">
           <router-link class="link home" to="/">
-            {{$t('IndexPage.Home')}}
+            {{t('Home')}}
           </router-link>
         </div>
       </div>
@@ -108,7 +110,9 @@
 </template>
 
 <style scoped lang="less" src="./nav-bar.less"></style>
-<script async lang="ts" setup>
+<script lang="ts" setup>
+import { useI18n } from 'vue-i18n';
+const {t, locale} = useI18n();
 const router: any = useRouter()
 
 const config = useRuntimeConfig()

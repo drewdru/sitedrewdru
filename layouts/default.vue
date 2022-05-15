@@ -67,8 +67,8 @@ onMounted(() => {
 	window.addEventListener('keydown', handleFirstTab)
 })
 
-const handleFirstTab = (e: any) => {
-	if (e.keyCode === 9) {
+const handleFirstTab = (event: any) => {
+	if (event.keyCode === 9) {
 		isTabbing = true
 		window.removeEventListener('keydown', handleFirstTab)
 		window.addEventListener('mousedown', handleMouseDownOnce)
