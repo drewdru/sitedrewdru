@@ -14,53 +14,16 @@
   </div>
 </template>
 
-<style lang="less">
-.home .layout {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  .hello {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .cutie-mark {
-    height: 60vh;
-    min-height: 10rem;
-    max-width: 90vw;
-  }
-
-  .cutie-mark-enter-active {
-    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-
-  .cutie-mark-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-
-  .cutie-mark-enter, .cutie-mark-leave-to {
-    transform: translateX(50px);
-    opacity: 0;
-  }
-}
-</style>
-
-<script lang="ts">
-import { useI18n } from 'vue-i18n';
-
-export default {
-  head: {
-    title: 'Drew Dru - Home Page'
-  }
-}
-</script>
+<style lang="less" src="./index.less" />
 
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n';
 const {t, locale} = useI18n();
 useMeta({
   meta: [
     { name: 'description', content: "Drew Dru's site" }
   ],
+  titleTemplate: 'Drew Dru - %s',
+  title: t('HomePageTitle')
 })
 </script>

@@ -1,4 +1,5 @@
 @navbar-height: 3.125rem;
+@nav-second-level: 14rem;
 .navbar {
   width: 100%;
   .nav {
@@ -82,16 +83,29 @@
           top: @navbar-height;
           background-color: var(--primary, #2c3e50);
           flex-direction: column;
-          width: max-content;
+          width: @nav-second-level;
           .link {
             width: 100%;
             padding: .625rem;
             display: inline-flex;
             box-sizing: border-box;
             box-shadow: 0rem -0.3125rem .3125rem -0.3125rem var(--accent, #82B1FF);
+            position: relative;
             &:hover {
               background-color: var(--accent, #82B1FF);
               color: var(--accent-text, #043381);
+              .third-level {
+                display: flex;
+              }
+            }
+            .third-level {
+              display: none;
+              position: absolute;
+              top: 0;
+              background-color: var(--primary, #2c3e50);
+              flex-direction: column;
+              width: max-content;
+              left: @nav-second-level;
             }
           }
         }

@@ -5,7 +5,7 @@
   <div class="navbar">
     <div class="nav static"></div>
     <div id="nav" class="nav fixed" ref="nav">
-      <a class="logo" :href="domainName">
+      <a class="logo" :href="domainPath">
         <div class="logo-wrapper">
           <img class="logo" :alt="t('LogoAlt')" src="@/assets/logo.svg">
         </div>
@@ -20,18 +20,18 @@
       </div>
       <!-- <ClientOnly>
       </ClientOnly> -->
-      <div v-for="(value1, key1) in menuLinks" :key="key1" class="routes-list">
+      <div v-for="(value1, key1) in menuLinks.menuTree" :key="key1" class="routes-list">
         <div class="first-level">
           <router-link :to="value1.data.path" class="link">{{$t(value1.data.name)}}</router-link>
           <div class="second-level">
-            <router-link v-for="(value2, key2) in getNextLevel(value1)"
+            <router-link v-for="(value2, key2) in menuLinks.getNextLevel(value1)"
               :key="key2" :to="value2.data.path" class="link">
               {{$t(value2.data.name)}}
-              <!-- <div class="third-level">
-                <router-link v-for="(value3, key3) in getNextLevel(value2)"
+              <div class="third-level">
+                <router-link v-for="(value3, key3) in menuLinks.getNextLevel(value2)"
                   :key="key3" :to="value3.data.path" class="link">{{$t(value3.data.name)}}
                 </router-link>
-              </div> -->
+              </div>
             </router-link>
           </div>
         </div>
@@ -63,7 +63,7 @@
 
     <!--
     <SideBar v-model="isSideBar">
-      <a class="logo link" :href="domainName">
+      <a class="logo link" :href="domainPath">
         <div class="logo-wrapper">
           <img class="logo" alt="Drew Dru logo" src="@/assets/logo.svg">
         </div>
@@ -87,7 +87,7 @@
         <div class="first-level">
           <router-link :to="value1.data.path" class="link">{{$t(value1.data.name)}}</router-link>
           <div class="second-level">
-            <router-link v-for="(value2, key2) in getNextLevel(value1)"
+            <router-link v-for="(value2, key2) in menuLinks.getNextLevel(value1)"
               :key="key2" :to="value2.data.path" class="link">{{$t(value2.data.name)}}
             </router-link>
           </div>
@@ -110,60 +110,15 @@
 </template>
 
 <style scoped lang="less" src="./nav-bar.less"></style>
+
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
-const {t, locale} = useI18n();
-const router: any = useRouter()
+  import { useI18n } from 'vue-i18n';
+  import { MenuLinks } from './MenuLinks';
 
-const config = useRuntimeConfig()
+  const {t, locale} = useI18n();
+  const router = useRouter()
+  const config = useRuntimeConfig()
 
-let menuLinks: any = {};
-const domainName: string = `//${config.VITE_DOMAIN_NAME}`;
-
-// console.log('config:', config, config.VITE_DOMAIN_NAME)
-// onMounted(() => {
-//   console.log(menuLinks)
-//   // router.options.routes.forEach((element) => {
-//   //   if (element.path === '/' || element.path === '*') {
-//   //     return;
-//   //   }
-//   //   const links = element.path.slice(1).split('/');
-//   //   setMenu(links, {level: links.length, data: {
-//   //     name: element.name,
-//   //     path: element.path,
-//   //   }});
-//   // });
-// })
-
-const getNextLevel = (data: any) => {
-    const nextLevel = Object.assign({}, data);
-    delete nextLevel.data;
-    delete nextLevel.level;
-    return nextLevel;
-  }
-
-const setMenu = (links: string, value: any) => {
-  let schema = menuLinks;  // a moving reference to internal objects within obj
-  const pList = links;
-  const len = pList.length;
-  for (let i = 0; i < len - 1; i++) {
-      const elem = pList[i];
-      if (!schema[elem]) {
-        schema[elem] = {};
-      }
-      schema = schema[elem];
-  }
-  schema[pList[len - 1]] = value;
-}
-
-router.options.routes.forEach((element) => {
-  if (element.path === '/' || element.path === '*') {
-    return;
-  }
-  const links = element.path.slice(1).split('/');
-  setMenu(links, {level: links.length, data: {
-    name: element.name,
-    path: element.path,
-  }});
-});
+  let menuLinks: MenuLinks = new MenuLinks(router.options.routes);
+  const domainPath: string = `//${config.VITE_DOMAIN_NAME}`;
 </script>
