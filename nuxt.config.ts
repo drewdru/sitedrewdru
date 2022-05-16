@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   buildModules: ["@intlify/nuxt3"],
   publicRuntimeConfig: {
     VITE_DOMAIN_NAME: process.env.VITE_DOMAIN_NAME,
-    subdomains: [
+    VITE_SUBDOMAINS: [
       { name: "index", path: `//${process.env.VITE_DOMAIN_NAME}` },
       { name: "career", path: `//career.${process.env.VITE_DOMAIN_NAME}` },
       { name: "musong", path: `//musong.${process.env.VITE_DOMAIN_NAME}` },

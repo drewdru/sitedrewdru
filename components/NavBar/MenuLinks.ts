@@ -55,7 +55,7 @@ export class MenuLinks {
       result = routes.filter(
         (item) =>
           item.path !== "/" &&
-          !config.subdomains.some(
+          !config.VITE_SUBDOMAINS.some(
             (subdomain) =>
               subdomain.name === (item.name as string).split("-")[0]
           ) &&

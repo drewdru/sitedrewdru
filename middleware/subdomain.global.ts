@@ -17,14 +17,14 @@ export default defineNuxtRouteMiddleware((to, _from) => {
   if (
     isSubdomain &&
     !to.fullPath.startsWith(`/${subdomain.value}`) &&
-    config.subdomains.some((item) => item.name === subdomain.value)
+    config.VITE_SUBDOMAINS.some((item) => item.name === subdomain.value)
   ) {
     return navigateTo({ path: `/${subdomain.value}${to.fullPath}` });
   }
 
   if (
     !isSubdomain &&
-    config.subdomains.some(
+    config.VITE_SUBDOMAINS.some(
       (item) => item.name === to.path.slice(1).split("/")[0]
     )
   ) {

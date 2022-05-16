@@ -35,7 +35,7 @@
               'router-link-active': $route.path.includes(value1.data.path),
             }"
           >
-            {{ $t(value1.data.name) }}
+            {{ t(value1.data.name) }}
           </router-link>
           <div class="second-level">
             <router-link
@@ -49,7 +49,7 @@
                 ),
               }"
             >
-              {{ $t(value2.data.name) }}
+              {{ t(value2.data.name) }}
               <div class="third-level">
                 <router-link
                   v-for="(value3, key3) in menuLinks.getNextLevel(value2)"
@@ -57,7 +57,7 @@
                   :to="value3.data.path"
                   class="link"
                 >
-                  {{ $t(value3.data.name) }}
+                  {{ t(value3.data.name) }}
                 </router-link>
               </div>
             </router-link>
@@ -65,17 +65,23 @@
         </div>
       </div>
 
-      <!--
       <div class="routes-list">
         <div class="first-level">
-          <a class="link">{{$t('ToKnowMore')}}</a>
+          <a class="link">{{ t("ToKnowMore") }}</a>
           <div class="second-level">
-            <a v-for="(value, key) in subdomains"
-              :key="key" :href="value.path" class="link">{{$t(value.name)}}
+            <a
+              v-for="(value, key) in config.VITE_SUBDOMAINS"
+              :key="key"
+              :href="value.path"
+              class="link"
+            >
+              {{ t(value.name) }}
             </a>
           </div>
         </div>
       </div>
+
+      <!--
       <SignIn v-if="$route.name != 'auth'"></SignIn>
       <ThemeChanger></ThemeChanger>
       <LocaleChanger></LocaleChanger>
