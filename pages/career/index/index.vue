@@ -15,17 +15,14 @@
   </div>
 </template>
 
-<style lang="less" src="./index.less" />
-
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
-const {t, locale} = useI18n();
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 useMeta({
-  meta: [
-    { name: 'description', content: "Drew Dru's site" }
-  ],
-  titleTemplate: 'Drew Dru - %s',
-  title: t('HomePageTitle'),
-
-})
+  meta: [{ name: "description", content: "Drew Dru's site" }],
+  titleTemplate: "Drew Dru - %s",
+  title: t("HomePageTitle"),
+});
 </script>
+
+<style lang="less" src="./index.less" />

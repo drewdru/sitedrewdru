@@ -15,7 +15,7 @@ Each file should export a default function that handles api requests. It can ret
 #### Hello world
 
 ```js [server/api/hello.ts]
-export default (req, res) => 'Hello World'
+export default (req, res) => "Hello World";
 ```
 
 See result on http://localhost:3000/api/hello
@@ -24,23 +24,23 @@ See result on http://localhost:3000/api/hello
 
 ```js [server/api/async.ts]
 export default async (req, res) => {
-  await someAsyncFunction()
+  await someAsyncFunction();
 
   return {
-    someData: true
-  }
-}
+    someData: true,
+  };
+};
 ```
 
 **Example:** Using Node.js style
 
 ```ts [server/api/node.ts]
-import type { IncomingMessage, ServerResponse } from 'http'
+import type { IncomingMessage, ServerResponse } from "http";
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  res.statusCode = 200
-  res.end('Works!')
-}
+  res.statusCode = 200;
+  res.end("Works!");
+};
 ```
 
 ## Server Middleware
@@ -53,16 +53,16 @@ Each file should export a default function that will handle a request.
 
 ```js
 export default async (req, res) => {
-  req.someValue = true
-}
+  req.someValue = true;
+};
 ```
 
 There is nothing different about the `req`/`res` objects, so typing them is straightforward.
 
 ```ts
-import type { IncomingMessage, ServerResponse } from 'http'
+import type { IncomingMessage, ServerResponse } from "http";
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  req.someValue = true
-}
+  req.someValue = true;
+};
 ```

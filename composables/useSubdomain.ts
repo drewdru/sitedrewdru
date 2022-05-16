@@ -1,5 +1,5 @@
-import { useState } from '#app'
+import { useState } from "#app";
 
 export const useSubdomain = () => {
-  return useState('subdomain', () => '')
-}
+  return useState("subdomain", () => "");
+};

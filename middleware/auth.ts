@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware((to, from) => {
+export default defineNuxtRouteMiddleware((_to, _from) => {
   // TODO: check user permissions
-  console.log('auth middleware')
-})
+  console.log("auth middleware");
+});

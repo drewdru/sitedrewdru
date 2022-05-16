@@ -61,7 +61,7 @@ If you are utilizing Vue `<script setup>` [compile-time syntactic sugar](https:/
 ::alert{type=info}
 Learn more about [`<script setup>` and `<script>` tags co-existing](https://v3.vuejs.org/api/sfc-script-setup.html#usage-alongside-normal-script) in the Vue docs.
 ::
-  
+
 Assuming this directory structure:
 
 ```bash

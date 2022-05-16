@@ -1,8 +1,7 @@
-import { useQuery } from 'h3'
-import type { IncomingMessage, ServerResponse } from 'http'
+import type { IncomingMessage, ServerResponse } from "http";
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
+export default (_req: IncomingMessage, _res: ServerResponse) => {
   return {
-    data: `Hello world! (Generated at ${new Date().toUTCString()})`
-  }
-}
+    data: `Hello world! (Generated at ${new Date().toUTCString()})`,
+  };
+};

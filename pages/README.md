@@ -85,16 +85,16 @@ The example file tree above should generate these routes:
 ```ts
 [
   {
-    path: '/parent',
-    component: '~/pages/parent.vue',
-    name: 'parent',
+    path: "/parent",
+    component: "~/pages/parent.vue",
+    name: "parent",
     children: [
       {
-        path: 'child',
-        component: '~/pages/parent/child.vue',
-        name: 'parent-child'
-      }
-    ]
-  }
-]
+        path: "child",
+        component: "~/pages/parent/child.vue",
+        name: "parent-child",
+      },
+    ],
+  },
+];
 ```

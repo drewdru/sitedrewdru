@@ -1,8 +1,8 @@
-import { useQuery } from 'h3'
-import type { IncomingMessage, ServerResponse } from 'http'
+import type { IncomingMessage, ServerResponse } from "http";
+import { useQuery } from "h3";
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
+export default (req: IncomingMessage, _res: ServerResponse) => {
   return {
-    query: useQuery(req)
-  }
-}
+    query: useQuery(req),
+  };
+};

@@ -5,27 +5,25 @@
   <div class="home">
     <div class="layout">
       <div class="hello">
-        <h1>{{t('HiDrewDru')}}</h1>
+        <h1>{{ t("HiDrewDru") }}</h1>
         <transition name="cutie-mark" appear>
-          <img class="cutie-mark" :alt="t('LogoAlt')" src="@/assets/logo.svg">
+          <img class="cutie-mark" :alt="t('LogoAlt')" src="@/assets/logo.svg" />
         </transition>
       </div>
     </div>
   </div>
 </template>
 
-<style lang="less" src="./index.less" />
-
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
+import { useI18n } from "vue-i18n";
 
-const {t, locale} = useI18n();
+const { t } = useI18n();
 
 useMeta({
-  meta: [
-    { name: 'description', content: "Drew Dru's site" }
-  ],
-  titleTemplate: 'Drew Dru - %s',
-  title: t('HomePageTitle'),
-})
+  meta: [{ name: "description", content: "Drew Dru's site" }],
+  titleTemplate: "Drew Dru - %s",
+  title: t("HomePageTitle"),
+});
 </script>
+
+<style lang="less" src="./index.less" />

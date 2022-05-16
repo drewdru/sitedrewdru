@@ -11,11 +11,11 @@ All plugins in your `plugins/` directory are auto-registered, so you should not 
 The only argument passed to a plugin is [`nuxtApp`](/docs/usage/nuxt-app).
 
 ```ts
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin } from "#app";
 
-export default defineNuxtPlugin(nuxtApp => {
+export default defineNuxtPlugin((nuxtApp) => {
   // Doing something with nuxtApp
-})
+});
 ```
 
 ## Typing plugins
@@ -23,15 +23,15 @@ export default defineNuxtPlugin(nuxtApp => {
 If you provide a global property on the nuxt app instance, you can declare the type of this property like this:
 
 ```ts
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin } from "#app";
 
-export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.provide('hello', msg => `Hello ${msg}!`);
-})
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.provide("hello", (msg) => `Hello ${msg}!`);
+});
 
-declare module '#app' {
+declare module "#app" {
   interface NuxtApp {
-    $hello (msg: string): string
+    $hello(msg: string): string;
   }
 }
 ```
@@ -57,8 +57,8 @@ import VueGtag from "vue-gtag-next";
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueGtag, {
     property: {
-      id: "GA_MEASUREMENT_ID"
-    }
+      id: "GA_MEASUREMENT_ID",
+    },
   });
 });
 ```

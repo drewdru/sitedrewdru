@@ -100,27 +100,27 @@ Imagine a directory structure like this:
 Then in `awesome-ui/nuxt.js` you can use the `components:dirs` hook:
 
 ```js
-import { join } from 'pathe'
+import { join } from "pathe";
 
 export default defineNuxtModule({
   hooks: {
-    'components:dirs'(dirs) {
+    "components:dirs"(dirs) {
       // Add ./components dir to the list
       dirs.push({
-        path: join(__dirname, 'components'),
-        prefix: 'awesome'
-      })
-    }
-  }
-})
+        path: join(__dirname, "components"),
+        prefix: "awesome",
+      });
+    },
+  },
+});
 ```
 
 That's it! Now in your project, you can import your ui library as a Nuxt module in your `nuxt.config.js`:
 
 ```js
 export default {
-  buildModules: ['awesome-ui/nuxt']
-}
+  buildModules: ["awesome-ui/nuxt"],
+};
 ```
 
 And directly use the module components (prefixed with `awesome-`), our `pages/index.vue`:
@@ -135,4 +135,3 @@ And directly use the module components (prefixed with `awesome-`), our `pages/in
 ```
 
 It will automatically import the components only if used and also support HMR when updating your components in `node_modules/awesome-ui/components/`.
-

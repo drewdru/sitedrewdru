@@ -1,8 +1,22 @@
 <template>
-<div id="home">
-  <h2 class="description">This is the about page</h2>
-</div>
+  <div id="home">
+    <h2 class="description">This is the about page</h2>
+  </div>
 </template>
+
+<script lang="ts">
+export default {
+  head: {
+    title: "About title",
+  },
+};
+</script>
+
+<script lang="ts" setup>
+useMeta({
+  meta: [{ name: "description", content: "About description" }],
+});
+</script>
 
 <style lang="less">
 #home {
@@ -15,20 +29,3 @@
   }
 }
 </style>
-
-<script lang="ts">
-import { onMounted } from 'vue'
-export default {
-  head: {
-    title: 'About title'
-  }
-}
-</script>
-
-<script lang="ts" setup>
-useMeta({
-  meta: [
-    { name: 'description', content: 'About description' }
-  ],
-})
-</script>

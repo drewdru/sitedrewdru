@@ -15,14 +15,15 @@
   }
 
   .cutie-mark-enter-active {
-    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
   }
 
   .cutie-mark-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   }
 
-  .cutie-mark-enter, .cutie-mark-leave-to {
+  .cutie-mark-enter,
+  .cutie-mark-leave-to {
     transform: translateX(50px);
     opacity: 0;
   }
