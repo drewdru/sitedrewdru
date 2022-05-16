@@ -21,10 +21,6 @@ import { useI18n } from 'vue-i18n';
 
 const {t, locale} = useI18n();
 
-definePageMeta({
-  middleware: ["auth"]
-});
-
 useMeta({
   meta: [
     { name: 'description', content: "Drew Dru's site" }

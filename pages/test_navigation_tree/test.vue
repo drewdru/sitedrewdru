@@ -26,6 +26,10 @@ export default {
 </script>
 
 <script lang="ts" setup>
+
+definePageMeta({
+  middleware: ["auth"]
+});
 useMeta({
   meta: [
     { name: 'description', content: 'About description' }

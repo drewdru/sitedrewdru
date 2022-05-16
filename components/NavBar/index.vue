@@ -13,19 +13,27 @@
 
       <div class="routes-list">
         <div class="first-level">
-          <router-link class="link home" to="/">
+          <router-link class="link home" :to="subdomain ? `/${subdomain}` : '/'">
             {{t('Home')}}
           </router-link>
         </div>
       </div>
-      <!-- <ClientOnly>
-      </ClientOnly> -->
+      
       <div v-for="(value1, key1) in menuLinks.menuTree" :key="key1" class="routes-list">
         <div class="first-level">
-          <router-link :to="value1.data.path" class="link">{{$t(value1.data.name)}}</router-link>
+          <router-link
+            :to="value1.data.path" class="link"
+            :class="{'router-link-active': $route.path.includes(value1.data.path)}"
+          >
+            {{$t(value1.data.name)}}
+          </router-link>
           <div class="second-level">
             <router-link v-for="(value2, key2) in menuLinks.getNextLevel(value1)"
-              :key="key2" :to="value2.data.path" class="link">
+              :key="key2"
+              :to="value2.data.path"
+              class="link"
+              :class="{'router-link-active': checkLevel2ChildActive($route.path.replace(value2.data.path).split('/'))}"
+            >
               {{$t(value2.data.name)}}
               <div class="third-level">
                 <router-link v-for="(value3, key3) in menuLinks.getNextLevel(value2)"
@@ -116,9 +124,13 @@
   import { MenuLinks } from './MenuLinks';
 
   const {t, locale} = useI18n();
-  const router = useRouter()
   const config = useRuntimeConfig()
+  const subdomain = useSubdomain()
   
-  let menuLinks: MenuLinks = new MenuLinks(router.options.routes);
   const domainPath: string = `//${config.VITE_DOMAIN_NAME}`;
+  const menuLinks: MenuLinks = new MenuLinks();
+
+  const checkLevel2ChildActive = (pathParts: string[]) => {
+    return pathParts.length == 2 && pathParts[0] == 'undefined'
+  }
 </script>

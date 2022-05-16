@@ -14,17 +14,46 @@ interface MenuTree {
 export class MenuLinks {
   menuTree?: MenuTree = {};
 
-  constructor(routes: RouteRecordRaw[]) {
+  constructor() {
+    const router = useRouter()
+    const subdomain = useSubdomain()
+    let routes = this.getAvailibleRoutes(subdomain.value, router.options.routes)
+    
     routes.forEach((element) => {
-      if (element.path === '/' || element.path === '*') {
-        return;
+      let path = element.path
+      if (subdomain.value) {
+        path = path.replace(`/${subdomain.value}`, '')
       }
-      const links = element.path.slice(1).split('/');
+      const links = path.slice(1).split('/');
       this.setMenuData(links, {level: links.length, data: {
         name: element.name as string,
         path: element.path as string,
       }});
     })
+  }
+
+  public getAvailibleRoutes(subdomain: string, routes: RouteRecordRaw[]): RouteRecordRaw[] {
+    const config = useRuntimeConfig()
+    let result = []
+    if (subdomain) {
+      result = routes.filter(item => (
+        item.path !== '/'
+        && (item.name as string).startsWith(`${subdomain}-`) 
+        && !(item.name as string).endsWith('-index')
+      ))
+    } else {
+      result = routes.filter(item => (
+        item.path !== '/'
+        && !config.subdomains.some(subdomain => subdomain.name === (item.name as string).split('-')[0])
+        && !(item.name as string).endsWith('-index')
+      ))
+    }
+    // TODO: router.options.routes filter unavailible routes
+    // result = result.options.routes.filter(item => (
+    //   item.meta?.middleware
+    //   && item.meta?.middleware === undefined
+    // ))
+    return result
   }
 
   public getNextLevel(data: MenuTree) : MenuTree {

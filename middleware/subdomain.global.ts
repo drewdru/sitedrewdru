@@ -1,13 +1,7 @@
-const subdomains = [
-  {name: 'index', /*path: `//${process.env.VITE_DOMAIN_NAME}`*/ },
-  {name: 'career', /*path: `//career.${process.env.VITE_DOMAIN_NAME}`*/ },
-  {name: 'musong', /*path: `//musong.${process.env.VITE_DOMAIN_NAME}`*/ },
-  {name: 'imaging', /*path: `//imaging.${process.env.VITE_DOMAIN_NAME}`*/ },
-  {name: 'webgl', /*path: `//webgl.${process.env.VITE_DOMAIN_NAME}`*/ },
-];
-
 export default defineNuxtRouteMiddleware((to: any, from: any) => {
   const nuxtApp = useNuxtApp()
+  const config = useRuntimeConfig()
+  const subdomain = useSubdomain()
   
   let host = ''
   if(process.server) {
@@ -17,11 +11,19 @@ export default defineNuxtRouteMiddleware((to: any, from: any) => {
   }
 
   const parts = host.split('.');
+  const isSubdomain = parts.length > 2;
+  subdomain.value = isSubdomain ? parts[0] : ''
   
-  if (parts.length === 3
-    && !to.fullPath.startsWith(`/${parts[0]}`) 
-    && subdomains.some(e => e.name === parts[0])
+  if (isSubdomain
+    && !to.fullPath.startsWith(`/${subdomain.value}`) 
+    && config.subdomains.some(e => e.name === subdomain.value)
   ) {
-    return navigateTo({path: `/${parts[0]}${to.fullPath}`})
+    return navigateTo({path: `/${subdomain.value}${to.fullPath}`})
+  }
+  
+  if(!isSubdomain
+    && config.subdomains.some(e => e.name === to.path.slice(1).split('/')[0])
+  ) {
+    return navigateTo({path: `/`})
   }
 })
