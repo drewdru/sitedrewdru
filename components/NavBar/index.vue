@@ -118,7 +118,7 @@
   const {t, locale} = useI18n();
   const router = useRouter()
   const config = useRuntimeConfig()
-
+  
   let menuLinks: MenuLinks = new MenuLinks(router.options.routes);
   const domainPath: string = `//${config.VITE_DOMAIN_NAME}`;
 </script>

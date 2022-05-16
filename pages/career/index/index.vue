@@ -5,10 +5,11 @@
   <div class="home">
     <div class="layout">
       <div class="hello">
-        <h1>{{t('HiDrewDru')}}</h1>
+        Career
+        <!-- <h1>{{t('HiDrewDru')}}</h1>
         <transition name="cutie-mark" appear>
           <img class="cutie-mark" :alt="t('LogoAlt')" src="@/assets/logo.svg">
-        </transition>
+        </transition> -->
       </div>
     </div>
   </div>
@@ -18,18 +19,16 @@
 
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
-
 const {t, locale} = useI18n();
-
 definePageMeta({
   middleware: ["auth"]
 });
-
 useMeta({
   meta: [
     { name: 'description', content: "Drew Dru's site" }
   ],
   titleTemplate: 'Drew Dru - %s',
   title: t('HomePageTitle'),
+
 })
 </script>
