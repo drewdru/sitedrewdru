@@ -1,0 +1,14 @@
+FROM node:18.1.0-alpine
+
+RUN addgroup -S app && adduser -S app -G app
+
+ENV HOME=/home/app
+
+COPY backend/package*.json $HOME/nuxt/
+RUN chown -R app:app $HOME/*
+
+USER app
+WORKDIR $HOME/nuxt
+RUN npm install
+
+CMD ["npm", "start"]

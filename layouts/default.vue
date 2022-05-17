@@ -34,6 +34,7 @@
 
 <script lang="ts" setup>
 import { onMounted } from "vue";
+
 useMeta({
   bodyAttrs: {
     class: "body",
@@ -41,30 +42,10 @@ useMeta({
 });
 
 let isTabbing = false;
-const theme = {
-  themeName: "bizarre",
-  body: "#eee2dc",
-  bodyText: "#123c69",
-  primary: "#AC3B61",
-  secondary: "#eee2dc",
-  active: "#42b983",
-  activeText: "#FFFFFF",
-  accent: "#EDC7b7",
-  accentText: "#123c69",
-  error: "#FF5252",
-  info: "#faebd7",
-  infoText: "#123c69",
-  success: "#4CAF50",
-  warning: "#FB8C00",
-  shadow: "#B05F7A80",
-  control: "#FFF5F5",
-  controlText: "#123c69",
-  button: "#2f885d",
-  buttonText: "#FFFFFF",
-};
+const { theme } = useTheme();
 
 onMounted(() => {
-  document.body.style.backgroundColor = theme.body;
+  document.body.style.backgroundColor = theme.value.body;
   window.addEventListener("keydown", handleFirstTab);
 });
 
@@ -84,14 +65,7 @@ const handleMouseDownOnce = () => {
 </script>
 
 <style lang="less">
-/*
-@import "./variables.less";
-@import "./styles/layout.less";
-@import "./styles/form.less";
-@import "./styles/controls.less";
-@import "./styles/icons.less";
-@import "./styles/table.less";
-*/
+@import "../styles/variables.less";
 
 * {
   margin: 0;
@@ -100,7 +74,7 @@ const handleMouseDownOnce = () => {
 html,
 body {
   height: 100%;
-  @media screen and (max-width: 200px) {
+  @media @smallest {
     word-wrap: anywhere;
   }
 }
