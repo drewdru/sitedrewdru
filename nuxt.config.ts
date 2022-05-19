@@ -16,6 +16,22 @@ export default defineNuxtConfig({
     },
   },
   buildModules: ["@intlify/nuxt3"],
+  privateRuntimeConfig: {
+    enviroment: process.env.NODE_ENV,
+    jwt: {
+      secret: process.env.JWT_SECRET,
+    },
+    mongodb: {
+      url: process.env.DATABASE_URL,
+      options: {
+        user: process.env.MONGO_INITDB_ROOT_USERNAME,
+        pass: process.env.MONGO_INITDB_ROOT_PASSWORD,
+      },
+    },
+    redis: {
+      url: process.env.REDIS_URL,
+    },
+  },
   publicRuntimeConfig: {
     VITE_DOMAIN_NAME: process.env.VITE_DOMAIN_NAME,
     VITE_SUBDOMAINS: [

@@ -37,18 +37,18 @@ RUN npm config set unsafe-perm true && npm install -g pm2
 
 ENV HOME=/home/app
 
-COPY backend/package*.json $HOME/nuxt/
+COPY package*.json $HOME/drewdru/
 RUN chown -R app:app $HOME/*
 
 USER app
 
-WORKDIR $HOME/nuxt
+WORKDIR $HOME/drewdru
 
 COPY --from=builder /home/node/app/build/ ./build/
 
 RUN npm ci
 
-COPY --chown=app:app backend .
+COPY --chown=app:app . .
 
 RUN npm run build
 

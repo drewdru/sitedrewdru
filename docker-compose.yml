@@ -8,30 +8,29 @@ networks:
     driver: bridge
 
 services:
-  nuxt:
-    restart: always
-    container_name: nuxt_local
-    build:
-      context: .
-      dockerfile: compose/node/Dockerfile_dev
-    # command: nodemon --inspect=0.0.0.0:9229 --nolazy app.js
-    ports:
-      - "3000:3000"
-      - "9229:9229"
-    env_file:
-      - .env
-    volumes:
-      - ./backend:/home/app/nuxt
-      - /home/app/nuxt/node_modules
-    depends_on:
-      - mongo
-      - redis
-    networks:
-      - app-network
+  # nuxt:
+  #   restart: always
+  #   container_name: drewdru_node_local
+  #   build:
+  #     context: .
+  #     dockerfile: compose/node/Dockerfile_dev
+  #   # command: nodemon --inspect=0.0.0.0:9229 --nolazy app.js
+  #   ports:
+  #     - "4000:4000"
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - .:/home/app/drewdru
+  #     - /home/app/drewdru/node_modules
+  #   depends_on:
+  #     - mongo
+  #     - redis
+  #   networks:
+  #     - app-network
 
   mongo:
     image: mongo:4.2
-    container_name: mongo_local
+    container_name: drewdru_mongo_local
     env_file:
       - .env
     command: mongod --port 27017 --storageEngine wiredTiger
@@ -44,7 +43,9 @@ services:
 
   redis:
     image: redis:5.0.12-alpine
-    container_name: redis_local
+    container_name: drewdru_redis_local
+    ports:
+      - "6379:6379"
     networks:
       - app-network
 

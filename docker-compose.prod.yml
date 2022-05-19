@@ -1,0 +1,63 @@
+version: "3"
+
+volumes:
+  mongo_data:
+  mongo_backup:
+  node_logs:
+  media_data:
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  nuxt:
+    restart: always
+    container_name: drewdru_node_prod
+    build:
+      context: .
+      dockerfile: compose/node/Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - /home/app/drewdru/node_modules
+      - node_logs:/home/app/drewdru/logs
+      - media_data:/home/app/drewdru/uploads
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - app-network
+
+    # tty: true
+  mongo:
+    restart: always
+    image: mongo:4.2
+    container_name: drewdru_mongo_prod
+    env_file:
+      - .env
+    command: mongod --storageEngine wiredTiger
+    volumes:
+      - mongo_data:/data/db
+      - mongo_backup:/data/backup
+    networks:
+      - app-network
+
+  redis:
+    image: redis:5.0.12-alpine
+    container_name: drewdru_redis_local
+    networks:
+      - app-network
+
+  nginx:
+    restart: always
+    build: ./compose/nginx
+    container_name: drewdru_nginx_prod
+    depends_on:
+      -  nuxt
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - app-network
+

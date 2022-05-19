@@ -1,0 +1,28 @@
+// // import expressWinston from "express-winston";
+// // import winston from "winston"; // for transports.Console
+// // import Sentry from 'winston-sentry-log';
+// // const options = {
+// //   config: {
+// //     dsn: "https://******@sentry.io/12345"
+// //   },
+// //   level: "info"
+// // };
+
+// // export default defineEventHandler((event) => {
+// //   // console.log("New request: " + event.req.url)
+// //   // const logger = expressWinston.logger({
+// //   //   transports: [
+// //   //     new winston.transports.Console()
+// //   //   ],
+// //   //   format: winston.format.combine(
+// //   //     winston.format.colorize(),
+// //   //     winston.format.json()
+// //   //   )
+// //   // })
+// //   // logger.add(Sentry, options);
+// // })
+// import type { IncomingMessage, ServerResponse } from "http";
+
+// export default (_req: IncomingMessage, _res: ServerResponse) => {
+//   // req.someValue = true;
+// };
