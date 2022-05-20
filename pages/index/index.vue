@@ -25,10 +25,8 @@ useMeta({
   title: t("HomePageTitle"),
 });
 
-const { data } = await useFetch("/api/hello", { params: { foo: "bar" } });
+const { data } = await useFetch("/api/users", { params: { foo: "bar" } });
 console.log(JSON.stringify(data.value));
-// const config = useRuntimeConfig();
-// console.log(config);
 </script>
 
 <style lang="less" src="./index.less" />
