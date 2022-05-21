@@ -9,3 +9,12 @@ webgl: Проекты с WebGL
 about: Обо мне
 privacy: Политика конфиденциальности
 documents: Документы
+api-docs: Документация API
+test_navigation_tree: Тест дерева навигации
+test_navigation_tree-test: Тест
+test_navigation_tree-test_copy: Тест 1
+test_navigation_tree-test_copy_2: Тест 2
+test_navigation_tree-test_copy_3: Тест 3
+test_navigation_tree-testlevel: Тест подменю
+test_navigation_tree-testlevel-test: Тест подменю тест
+

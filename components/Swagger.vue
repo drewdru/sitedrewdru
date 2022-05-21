@@ -62,6 +62,6 @@ if (process.client) {
     ],
     layout: "StandaloneLayout",
   });
-  window.ui = ui;
+  (window as any).ui = ui;
 }
 </script>

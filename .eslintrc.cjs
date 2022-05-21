@@ -28,7 +28,7 @@ module.exports = {
     "space-before-function-paren": 0,
     "arrow-parens": 0,
     "comma-dangle": 0,
-    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/no-explicit-any": 0,
     "no-multi-spaces": ["error"],
   },
 };

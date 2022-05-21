@@ -3,6 +3,11 @@
 
 <template>
   <div class="home">
+    <Head>
+      <Title>Drew Dru - {{ t("HomePageTitle") }}</Title>
+      <Meta name="description" :content="t('HomePageTitle')" />
+    </Head>
+
     <div class="layout">
       <div class="hello">
         <h1>{{ t("HiDrewDru") }}</h1>
@@ -19,14 +24,8 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
-useHead({
-  meta: [{ name: "description", content: "Drew Dru's site" }],
-  titleTemplate: "Drew Dru - %s",
-  title: t("HomePageTitle"),
-});
-
 const { data } = await useFetch("/api/users", { params: { foo: "bar" } });
-console.log(JSON.stringify(data.value));
+console.log("users: ", JSON.stringify(data.value));
 </script>
 
 <style lang="less" src="./index.less" />
