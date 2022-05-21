@@ -16,7 +16,7 @@ export default {
 definePageMeta({
   middleware: ["auth"],
 });
-useMeta({
+useHead({
   meta: [{ name: "description", content: "About description" }],
 });
 </script>

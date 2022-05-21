@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { onMounted } from "vue";
 
-useMeta({
+useHead({
   bodyAttrs: {
     class: "body",
   },

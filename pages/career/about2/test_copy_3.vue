@@ -13,7 +13,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-useMeta({
+useHead({
   meta: [{ name: "description", content: "About description" }],
 });
 </script>

@@ -30,7 +30,7 @@ export default {
 </script> -->
 
 <script lang="ts" setup>
-useMeta({
+useHead({
   script: [
     {
       type: "text/javascript",

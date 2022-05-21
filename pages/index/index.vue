@@ -19,7 +19,7 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
-useMeta({
+useHead({
   meta: [{ name: "description", content: "Drew Dru's site" }],
   titleTemplate: "Drew Dru - %s",
   title: t("HomePageTitle"),
