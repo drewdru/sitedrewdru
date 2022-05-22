@@ -1,5 +1,6 @@
 {
   "private": true,
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",
@@ -40,6 +41,7 @@
     "mongoose-unique-validator": "^3.0.0",
     "prettier": "^2.6.2",
     "redis": "^4.1.0",
-    "swagger-jsdoc": "^6.2.1"
+    "swagger-jsdoc": "^6.2.1",
+    "yup": "^0.32.11"
   }
 }

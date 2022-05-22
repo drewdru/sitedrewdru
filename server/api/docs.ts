@@ -1,7 +1,6 @@
-import type { IncomingMessage, ServerResponse } from "http";
 import swaggerJSDoc from "swagger-jsdoc";
 
-export default (_req: IncomingMessage, _res: ServerResponse) => {
+export default defineEventHandler(() => {
   const swaggerDefinition = {
     openapi: "3.0.0",
     info: {
@@ -33,4 +32,4 @@ export default (_req: IncomingMessage, _res: ServerResponse) => {
   };
 
   return swaggerJSDoc(options);
-};
+});
