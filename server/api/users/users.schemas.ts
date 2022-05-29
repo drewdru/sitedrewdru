@@ -33,4 +33,8 @@ export const responseUsersSchema = object({
   nextPage: number().nullable(),
 })
   .from("docs", "users", true)
-  .from("totalDocs", "totalUsers", true);
+  .from("totalDocs", "totalUsers", true)
+  .meta({
+    title: "Users list",
+    description: "Returns paginated Users list",
+  });

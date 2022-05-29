@@ -5,6 +5,18 @@ import { responseUsersSchema } from "./users.schemas";
 import User from "./users.model";
 
 class GetUsers {
+  // TODO: add decorator with swagger generation
+  // @yup_swagger_validator({
+  //   summary: "Get Users",
+  //   description: "Get Users",
+  //   security: [{ BearerAuth: ["admin"] }],
+  //   validate: { query: paginateValidationSchema },
+  //   responses: [
+  //     { status: 200, schema: responseUsersSchema },
+  //     validationErrorResponse,
+  //     notFoundErrorResponse,
+  //   ],
+  // })
   @validate({ query: paginateValidationSchema })
   static async handler(event: CompatibilityEvent) {
     const query = useQuery(event.req);
