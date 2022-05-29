@@ -37,7 +37,7 @@
     "bcryptjs": "^2.4.3",
     "mongoose": "^6.3.3",
     "mongoose-delete": "^0.5.4",
-    "mongoose-paginate-v2": "^1.6.3",
+    "mongoose-paginate-ts": "^1.2.6",
     "mongoose-unique-validator": "^3.0.0",
     "prettier": "^2.6.2",
     "redis": "^4.1.0",

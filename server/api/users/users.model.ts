@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+import { mongoosePagination, Pagination } from "mongoose-paginate-ts";
 import mongooseUniqueValidator from "mongoose-unique-validator";
 import * as bcrypt from "bcryptjs";
 
@@ -16,7 +16,36 @@ const GENDERS = {
   OTHER: "other",
 };
 
-const UserSchema = new mongoose.Schema(
+interface IService {
+  id: string;
+  token: string;
+}
+
+interface IUser extends mongoose.Document {
+  role: string;
+  email: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  gender: string;
+  birthday?: Date;
+  about: string;
+  username?: string;
+  services?: {
+    facebook: IService;
+    google: IService;
+    apple: IService;
+  };
+  avatar?: string;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
+  isPremium: boolean;
+  refreshToken?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const UserSchema = new mongoose.Schema<IUser>(
   {
     role: {
       type: String,
@@ -37,11 +66,11 @@ const UserSchema = new mongoose.Schema(
     },
     firstName: {
       type: String,
-      required: true,
+      required: false,
     },
     lastName: {
       type: String,
-      required: true,
+      required: false,
     },
     gender: {
       type: String,
@@ -57,7 +86,7 @@ const UserSchema = new mongoose.Schema(
     },
     username: {
       type: String,
-      required: false,
+      required: true,
       unique: true,
       trim: true,
       lowercase: true,
@@ -126,7 +155,11 @@ UserSchema.methods = {
   },
 };
 
-UserSchema.plugin(mongoosePaginate);
+UserSchema.plugin(mongoosePagination);
 UserSchema.plugin(mongooseUniqueValidator);
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model<IUser, Pagination<IUser>>(
+  "user",
+  UserSchema,
+  "users"
+);

@@ -23,9 +23,12 @@
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
-
-const { data } = await useFetch("/api/users", { params: { foo: "bar" } });
-console.log("users: ", JSON.stringify(data.value));
+try {
+  const response = await useFetch("/api/users");
+  console.log("Response: ", JSON.stringify(response));
+} catch (error) {
+  console.error("ERROR:", error);
+}
 </script>
 
 <style lang="less" src="./index.less" />

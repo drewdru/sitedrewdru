@@ -1,27 +1,46 @@
-import { validateUserSchema } from "../users/users.validation";
+import { CompatibilityEvent } from "h3";
+import { validate } from "../../utils/validator";
+import { createUserSchema, responseUserSchema } from "./users.schemas";
+import User from "./users.model";
+
+class CreateUser {
+  @validate({ body: createUserSchema })
+  static async handler(event: CompatibilityEvent) {
+    const body = await useBody(event.req);
+
+    let user = await User.findOne({ email: body.email });
+    if (!user) {
+      body.username = body.username || body.email;
+      user = await User.create(body);
+    }
+
+    return responseUserSchema.cast(user, { stripUnknown: true });
+  }
+}
+
 /**
  * @openapi
- * /checkUserSchema:
+ * /users:
  *    post:
- *      summary: Returns user object validation.
- *      description: Validate POST body as user object.
+ *      summary: Create User.
+ *      description: Create new User.
  *      security:
  *        - BearerAuth: [admin]
  *      requestBody:
- *        description: Validate POST body as user object.
+ *        description: User object.
  *        required: true
  *        content:
  *          application/json:
  *            schema:
  *              type: object
- *              required: [name, age, email]
+ *              required: [firstName, lastName, email]
  *              properties:
- *                name:
+ *                firstName:
  *                 type: string
  *                 example: John Doe
- *                age:
- *                  type: number
- *                  example: 25
+ *                lastName:
+ *                 type: string
+ *                 example: John Doe
  *                email:
  *                  type: string
  *                  format: email
@@ -30,10 +49,6 @@ import { validateUserSchema } from "../users/users.validation";
  *                  type: string
  *                  format: url
  *                  example: https://example.com
- *                createdOn:
- *                  type: string
- *                  format: date
- *                  example: 2020-01-01
  *      responses:
  *        200:
  *          description: Returns is validated.
@@ -65,7 +80,4 @@ import { validateUserSchema } from "../users/users.validation";
  *                        items:
  *                          type: string
  */
-export default defineEventHandler(async (event) => {
-  const userBody = await validateUserSchema(event);
-  return { user: userBody };
-});
+export default defineEventHandler(CreateUser.handler);

@@ -66,3 +66,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   req.someValue = true;
 };
 ```
+
+## Documentation
+https://nitro.unjs.io/
+https://www.jsdocs.io/package/h3#package-index-functions
