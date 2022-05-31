@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import User from "../api/users/users.model";
+import Post from "../api/posts/posts.model";
 import { createAdminAccount } from "./user_seeder";
 
 mongoose.Promise = global.Promise;
@@ -25,6 +26,7 @@ dotenv.config();
     });
     await createAdminAccount();
     await User.syncIndexes();
+    await Post.syncIndexes();
     console.info("=======seeded data was successfully===========");
   } catch (error) {
     console.error("==============error==========%j", error);

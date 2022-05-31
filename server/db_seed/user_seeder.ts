@@ -14,7 +14,9 @@ export const createAdminAccount = async () => {
       role: "admin",
     });
   } else {
-    admin.password = defaultPassword;
-    await admin.save();
+    await admin.updateOne(
+      { email: defaultEmail },
+      { password: defaultPassword }
+    );
   }
 };
