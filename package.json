@@ -42,6 +42,7 @@
     "prettier": "^2.6.2",
     "redis": "^4.1.0",
     "swagger-jsdoc": "^6.2.1",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "yup-to-swagger": "^0.0.5"
   }
 }
