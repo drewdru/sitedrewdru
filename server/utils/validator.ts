@@ -3,7 +3,11 @@ import { sendError } from "h3";
 import { BaseSchema } from "yup";
 import { ValidationError } from "../errors/validation";
 
-export const validate = (schema: { body?: BaseSchema; query?: BaseSchema }) => {
+export const validate = (schema: {
+  body?: BaseSchema;
+  query?: BaseSchema;
+  path?: BaseSchema;
+}) => {
   return (
     _target: any,
     _propertyName: string,
@@ -11,9 +15,14 @@ export const validate = (schema: { body?: BaseSchema; query?: BaseSchema }) => {
   ) => {
     const method = descriptor.value!;
     descriptor.value = async function (...args) {
-      // console.log(target, _propertyName, descriptor, method);
-      // console.log(Reflect.ownKeys(method));
       try {
+        if (schema.path) {
+          const params = args[0].req.context.params;
+          if (!params) {
+            throw new ValidationError(["No path params found"]);
+          }
+          args.push(await schema.path.validate(params, { abortEarly: false }));
+        }
         if (schema.body) {
           const body = await useBody(args[0].req);
           if (!body) {
