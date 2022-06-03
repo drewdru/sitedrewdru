@@ -38,7 +38,7 @@ export const validate = (schema: {
           await schema.query.validate(query);
         }
       } catch (error) {
-        sendError(
+        return sendError(
           args[0],
           error.statusCode ? error : new ValidationError(error.errors)
         );
