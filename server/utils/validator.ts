@@ -7,6 +7,7 @@ export const validate = (schema: {
   body?: BaseSchema;
   query?: BaseSchema;
   path?: BaseSchema;
+  abortEarly?: boolean;
 }) => {
   return (
     _target: any,
@@ -14,6 +15,7 @@ export const validate = (schema: {
     descriptor: TypedPropertyDescriptor<(...args: any[]) => void>
   ) => {
     const method = descriptor.value!;
+    const abortEarly = schema.abortEarly ? schema.abortEarly : false;
     descriptor.value = async function (...args) {
       try {
         if (schema.path) {
@@ -21,21 +23,23 @@ export const validate = (schema: {
           if (!params) {
             throw new ValidationError(["No path params found"]);
           }
-          args.push(await schema.path.validate(params, { abortEarly: false }));
+          await schema.path.validate(params, { abortEarly });
         }
         if (schema.body) {
           const body = await useBody(args[0].req);
           if (!body) {
             throw new ValidationError(["No body found"]);
           }
-          args.push(await schema.body.validate(body, { abortEarly: false }));
+          args[0].req.context.body = await schema.body.validate(body, {
+            abortEarly,
+          });
         }
         if (schema.query) {
           const query = useQuery(args[0].req);
           if (!query) {
             return;
           }
-          await schema.query.validate(query);
+          args[0].req.context.query = await schema.query.validate(query);
         }
       } catch (error) {
         return sendError(
