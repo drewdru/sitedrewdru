@@ -1,17 +1,16 @@
-// import mongoose from "mongoose";
-// import { Pagination } from "mongoose-paginate-ts";
+import mongoose from "mongoose";
+import { Pagination } from "mongoose-paginate-ts";
 
 // TODO: add and implement interfase:
 // interfase IBaseServise
 class Service {
-  _model: any; // TODO: fix type: mongoose.Model<any, Pagination<any>>;
+  _model: Pagination<mongoose.Document>;
   constructor(model: any) {
     this._model = model;
   }
 
   async findAll(query) {
     const { filter, page, limit, sort } = query;
-    console.log(filter, page, limit, sort);
     const result = await this._model.paginate({
       query: filter || {},
       page: page || 1,
@@ -42,6 +41,35 @@ class Service {
   }
 
   async update(id, data) {
+    return await this._model.updateOne({ _id: id }, data, {
+      runValidators: true,
+      context: "query",
+    });
+  }
+
+  async updateMany(data) {
+    const result = await this._model.bulkWrite(
+      data.map((item) => {
+        if (item.id) {
+          return {
+            updateOne: {
+              filter: { _id: item.id },
+              update: item,
+              upsert: true,
+            },
+          };
+        }
+        return {
+          insertOne: {
+            document: item,
+          },
+        };
+      })
+    );
+    return result;
+  }
+
+  async patch(id, data) {
     const result = await this._model.findOneAndUpdate({ _id: id }, data, {
       new: true,
       runValidators: true,
@@ -50,7 +78,7 @@ class Service {
     return result;
   }
 
-  async updateMany(data) {
+  async patchMany(data) {
     const result = await this._model.bulkWrite(
       data.map((item) => {
         const updateData = {

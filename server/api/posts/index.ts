@@ -11,8 +11,7 @@ const app = createApp();
 
 router.get("/api/posts", defineEventHandler(PostsCRUDHandler.findAll));
 router.post("/api/posts", defineEventHandler(PostsCRUDHandler.create));
-// TODO: Fix put methods
-// router.put("/", defineEventHandler(PostsCRUDHandler.updateMany));
+router.put("/api/posts", defineEventHandler(PostsCRUDHandler.updateMany));
 router.use(
   "/api/posts",
   defineEventHandler(PostsCRUDHandler.patchMany),

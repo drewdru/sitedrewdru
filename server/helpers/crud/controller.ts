@@ -13,7 +13,7 @@ class Controller {
   }
 
   async create(event) {
-    const data = await useBody(event.req);
+    const data = event.req.context.body;
     try {
       const result = await this.service.create(data);
       event.res.statusCode = 201;
@@ -28,7 +28,7 @@ class Controller {
 
   async findAll(event) {
     try {
-      const result = await this.service.findAll(useQuery(event.req));
+      const result = await this.service.findAll(event.req.context.query);
       return result;
       // event.res.statusCode = 200;
     } catch (error) {
@@ -59,15 +59,10 @@ class Controller {
   }
 
   async update(event) {
-    const data = await useBody(event.req);
+    const data = event.req.context.body;
     const objectId = event.req.context.params.id;
     try {
-      const result = await this.service.update(objectId, data);
-      if (!result) {
-        throw new DatabaseNotFoundError(
-          `${this._name.toUpperCase()} does not found with id ${objectId}`
-        );
-      }
+      await this.service.update(objectId, data);
       event.res.statusCode = 204;
       return null;
     } catch (error) {
@@ -79,7 +74,7 @@ class Controller {
   }
 
   async updateMany(event) {
-    const data = await useBody(event.req);
+    const data = event.req.context.body;
     try {
       await this.service.updateMany(data);
       event.res.statusCode = 204;
@@ -93,10 +88,10 @@ class Controller {
   }
 
   async patch(event) {
-    const data = await useBody(event.req);
+    const data = event.req.context.body;
     const objectId = event.req.context.params.id;
     try {
-      const result = await this.service.update(objectId, data);
+      const result = await this.service.patch(objectId, data);
       if (!result) {
         throw new DatabaseNotFoundError(
           `${this._name.toUpperCase()} does not found with id ${objectId}`
@@ -113,9 +108,9 @@ class Controller {
   }
 
   async patchMany(event) {
-    const data = await useBody(event.req);
+    const data = event.req.context.body;
     try {
-      const result = await this.service.updateMany(data);
+      const result = await this.service.patchMany(data);
       event.res.statusCode = 200;
       return result;
     } catch (error) {

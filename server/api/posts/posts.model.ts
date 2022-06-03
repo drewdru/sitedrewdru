@@ -16,11 +16,11 @@ const PostSchema = new mongoose.Schema<IPost>(
   {
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     text: {
       type: String,
-      required: true,
+      required: false,
     },
     description: {
       type: String,

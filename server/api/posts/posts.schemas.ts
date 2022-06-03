@@ -7,14 +7,20 @@ export const createPostSchema = object({
   description: string().trim(),
   preview: string().url().nullable(),
   isPremium: boolean(),
+}).meta({
+  title: "Create Post",
+  description: "Returns created Post",
 });
 
 export const updatePostSchema = object({
-  title: string().trim().required(),
-  text: string().trim().required(),
-  description: string().trim().required(),
-  preview: string().url().nullable().required(),
-  isPremium: boolean().required(),
+  title: string().trim().default(""),
+  text: string().trim().default(""),
+  description: string().trim().default(""),
+  preview: string().url().nullable().default(null),
+  isPremium: boolean().default(false),
+}).meta({
+  title: "Update Post",
+  description: "Update created Post",
 });
 
 export const patchPostSchema = object({
@@ -23,6 +29,9 @@ export const patchPostSchema = object({
   description: string().trim(),
   preview: string().url().nullable(),
   isPremium: boolean(),
+}).meta({
+  title: "Patch Post attributes",
+  description: "Returns updated Post",
 });
 
 export const responsePostSchema = object({
@@ -30,11 +39,16 @@ export const responsePostSchema = object({
   title: string(),
   text: string(),
   description: string(),
-  preview: string(),
+  preview: string().url().nullable(),
   isPremium: boolean(),
   createdAt: date(),
   updatedAt: date(),
-}).from("_id", "id", true);
+})
+  .from("_id", "id", true)
+  .meta({
+    title: "Post",
+    description: "Returns Post data",
+  });
 
 export const responsePostsSchema = object({
   posts: array().of(responsePostSchema),
@@ -55,25 +69,34 @@ export const responsePostsSchema = object({
     description: "Returns paginated Posts list",
   });
 
-export const updatePostsSchema = array().of(
-  object({
-    id: ObjectId.required(),
-    title: string().trim().required(),
-    text: string().trim().required(),
-    description: string().trim().required(),
-    preview: string().url().nullable().required(),
-    isPremium: boolean().required(),
-  })
-);
-
+export const updatePostsSchema = array()
+  .of(
+    object({
+      id: ObjectId.nullable(),
+      title: string().trim().default(""),
+      text: string().trim().default(""),
+      description: string().trim().default(""),
+      preview: string().url().nullable().default(null),
+      isPremium: boolean().default(false),
+    })
+  )
+  .meta({
+    title: "Posts list to update or create",
+    description: "Bulk Post update or create",
+  });
 // TODO: TRY array().min(1)?
-export const patchPostsSchema = array().of(
-  object({
-    id: ObjectId.required(),
-    title: string().trim(),
-    text: string().trim(),
-    description: string().trim(),
-    preview: string().url().nullable(),
-    isPremium: boolean(),
-  })
-);
+export const patchPostsSchema = array()
+  .of(
+    object({
+      id: ObjectId.required(),
+      title: string().trim(),
+      text: string().trim(),
+      description: string().trim(),
+      preview: string().url().nullable(),
+      isPremium: boolean(),
+    })
+  )
+  .meta({
+    title: "Posts list to patch attributes",
+    description: "Bulk Post's attributes update",
+  });

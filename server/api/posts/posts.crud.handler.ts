@@ -19,7 +19,6 @@ import Post from "./posts.model";
 export class PostsCRUDHandler {
   @validate({ path: objectIdSchema })
   static async findOne(event) {
-    console.log("VALIDATION FAILED?");
     const controller = new CrudController(new CrudService(Post), "post");
     const post = await controller.findOne(event);
     return responsePostSchema.cast(post, { stripUnknown: true });
@@ -42,15 +41,13 @@ export class PostsCRUDHandler {
   @validate({ path: objectIdSchema, body: updatePostSchema })
   static async update(event) {
     const controller = new CrudController(new CrudService(Post), "post");
-    const post = await controller.update(event);
-    return responsePostSchema.cast(post, { stripUnknown: true });
+    return await controller.update(event);
   }
 
   @validate({ body: updatePostsSchema })
   static async updateMany(event) {
     const controller = new CrudController(new CrudService(Post), "post");
-    const post = await controller.updateMany(event);
-    return responsePostSchema.cast(post, { stripUnknown: true });
+    return await controller.updateMany(event);
   }
 
   @validate({ path: objectIdSchema, body: patchPostSchema })
