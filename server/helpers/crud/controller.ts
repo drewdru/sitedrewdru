@@ -78,6 +78,20 @@ class Controller {
     }
   }
 
+  async updateMany(event) {
+    const data = await useBody(event.req);
+    try {
+      await this.service.updateMany(data);
+      event.res.statusCode = 204;
+      return null;
+    } catch (error) {
+      sendError(
+        event,
+        error.statusCode ? error : new DatabaseError(error.message)
+      );
+    }
+  }
+
   async patch(event) {
     const data = await useBody(event.req);
     const objectId = event.req.context.params.id;
@@ -88,6 +102,20 @@ class Controller {
           `${this._name.toUpperCase()} does not found with id ${objectId}`
         );
       }
+      event.res.statusCode = 200;
+      return result;
+    } catch (error) {
+      sendError(
+        event,
+        error.statusCode ? error : new DatabaseError(error.message)
+      );
+    }
+  }
+
+  async patchMany(event) {
+    const data = await useBody(event.req);
+    try {
+      const result = await this.service.updateMany(data);
       event.res.statusCode = 200;
       return result;
     } catch (error) {

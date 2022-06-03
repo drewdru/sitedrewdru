@@ -10,13 +10,16 @@ import {
   responsePostSchema,
   responsePostsSchema,
   updatePostSchema,
+  updatePostsSchema,
   patchPostSchema,
+  patchPostsSchema,
 } from "./posts.schemas";
 import Post from "./posts.model";
 
 export class PostsCRUDHandler {
   @validate({ path: objectIdSchema })
   static async findOne(event) {
+    console.log("VALIDATION FAILED?");
     const controller = new CrudController(new CrudService(Post), "post");
     const post = await controller.findOne(event);
     return responsePostSchema.cast(post, { stripUnknown: true });
@@ -43,11 +46,25 @@ export class PostsCRUDHandler {
     return responsePostSchema.cast(post, { stripUnknown: true });
   }
 
+  @validate({ body: updatePostsSchema })
+  static async updateMany(event) {
+    const controller = new CrudController(new CrudService(Post), "post");
+    const post = await controller.updateMany(event);
+    return responsePostSchema.cast(post, { stripUnknown: true });
+  }
+
   @validate({ path: objectIdSchema, body: patchPostSchema })
   static async patch(event) {
     const controller = new CrudController(new CrudService(Post), "post");
     const post = await controller.patch(event);
     return responsePostSchema.cast(post, { stripUnknown: true });
+  }
+
+  @validate({ body: patchPostsSchema })
+  static async patchMany(event) {
+    const controller = new CrudController(new CrudService(Post), "post");
+    const result = await controller.patchMany(event);
+    return result;
   }
 
   @validate({ path: objectIdSchema })

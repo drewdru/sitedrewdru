@@ -1,4 +1,5 @@
 import { number, object, string, boolean, date, array } from "yup";
+import { ObjectId } from "../../helpers/schemas";
 
 export const createPostSchema = object({
   title: string().trim().required(),
@@ -25,7 +26,7 @@ export const patchPostSchema = object({
 });
 
 export const responsePostSchema = object({
-  id: string(),
+  id: ObjectId,
   title: string(),
   text: string(),
   description: string(),
@@ -53,3 +54,26 @@ export const responsePostsSchema = object({
     title: "Posts list",
     description: "Returns paginated Posts list",
   });
+
+export const updatePostsSchema = array().of(
+  object({
+    id: ObjectId.required(),
+    title: string().trim().required(),
+    text: string().trim().required(),
+    description: string().trim().required(),
+    preview: string().url().nullable().required(),
+    isPremium: boolean().required(),
+  })
+);
+
+// TODO: TRY array().min(1)?
+export const patchPostsSchema = array().of(
+  object({
+    id: ObjectId.required(),
+    title: string().trim(),
+    text: string().trim(),
+    description: string().trim(),
+    preview: string().url().nullable(),
+    isPremium: boolean(),
+  })
+);

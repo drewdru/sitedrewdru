@@ -50,6 +50,21 @@ class Service {
     return result;
   }
 
+  async updateMany(data) {
+    const result = await this._model.bulkWrite(
+      data.map((item) => {
+        const updateData = {
+          updateOne: {
+            filter: { _id: item.id },
+            update: item,
+          },
+        };
+        return updateData;
+      })
+    );
+    return result;
+  }
+
   async remove(id) {
     const result = await this._model.findByIdAndRemove(id);
     return result;
