@@ -1,0 +1,11 @@
+# temp dirs
+old/
+tmp/
+compose/
+
+# nuxt project
+node_modules
+
+# Editor directories and files
+.idea
+.vscode

@@ -1,8 +1,5 @@
 version: "3"
 
-volumes:
-  mongo_data: {}
-
 networks:
   app-network:
     driver: bridge
@@ -35,7 +32,7 @@ services:
       - .env
     command: mongod --port 27017 --storageEngine wiredTiger
     volumes:
-      - mongo_data:/data/db
+      - ./compose/mongo_data:/data/db
     ports:
       - "27017:27017"
     networks:

@@ -1,6 +1,7 @@
 # temp dirs
 old/
 tmp/
+compose/mongo_data
 
 # nuxt project
 node_modules

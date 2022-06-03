@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { mongoosePagination, Pagination } from "mongoose-paginate-ts";
 import mongooseUniqueValidator from "mongoose-unique-validator";
-import * as bcrypt from "bcryptjs";
+import * as bcrypt from "bcrypt";
 
 // console.log("mongoosePaginate", mongoosePaginate());
 
@@ -49,6 +49,7 @@ const UserSchema = new mongoose.Schema<IUser>(
   {
     role: {
       type: String,
+      required: true,
       enum: Object.values(ROLES),
       default: ROLES.USER,
     },
@@ -58,6 +59,11 @@ const UserSchema = new mongoose.Schema<IUser>(
       unique: true,
       trim: true,
       lowercase: true,
+    },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -74,6 +80,7 @@ const UserSchema = new mongoose.Schema<IUser>(
     },
     gender: {
       type: String,
+      required: true,
       enum: Object.values(GENDERS),
       default: GENDERS.OTHER,
     },
@@ -84,12 +91,10 @@ const UserSchema = new mongoose.Schema<IUser>(
       type: String,
       required: false,
     },
-    username: {
-      type: String,
+    isPremium: {
+      type: Boolean,
       required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
+      default: false,
     },
 
     services: {
@@ -116,17 +121,14 @@ const UserSchema = new mongoose.Schema<IUser>(
     resetPasswordExpires: {
       type: Date,
     },
-    isPremium: {
-      type: Boolean,
-      default: false,
-    },
     refreshToken: {
       type: String,
     },
   },
   {
     timestamps: true,
-  }
+    // validateModifiedOnly: true,
+  } // as any
 );
 
 UserSchema.pre("save", async function () {
