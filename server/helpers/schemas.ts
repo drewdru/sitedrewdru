@@ -1,6 +1,6 @@
 import { object, string, number } from "yup";
 
-// // accepts a valid UUID v4 string as id
+// accepts a valid UUID v4 string as id
 export const ObjectId = string().matches(/^[0-9a-fA-F]{24}$/);
 
 export const objectIdSchema = object({
@@ -13,3 +13,18 @@ export const paginateValidationSchema = object({
   limit: number().moreThan(0).default(25).positive().optional(),
   filter: string().optional(),
 });
+
+export const atLeastOneKey = () => {
+  return {
+    name: "atLeastOneKey",
+    // eslint-disable-next-line no-template-curly-in-string
+    message: "${path} object must have at least one key",
+    exclusive: true,
+    test: (value, data) => {
+      return (
+        value == null ||
+        Object.keys(data.originalValue).some((key) => value[key] != null)
+      );
+    },
+  };
+};

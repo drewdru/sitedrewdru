@@ -9,6 +9,7 @@ export const useTheme = () => {
   const setTheme = (newThemeName: string) => {
     theme.value = themes[newThemeName];
     document.body.style.backgroundColor = theme.value.body;
+    // TODO: save to local storage
     // localStorage.setItem("theme", newThemeName);
   };
   return { theme, setTheme };

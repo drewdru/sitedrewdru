@@ -3,8 +3,6 @@ import { mongoosePagination, Pagination } from "mongoose-paginate-ts";
 import mongooseUniqueValidator from "mongoose-unique-validator";
 import * as bcrypt from "bcrypt";
 
-// console.log("mongoosePaginate", mongoosePaginate());
-
 const ROLES = {
   USER: "user",
   ADMIN: "admin",
@@ -129,7 +127,7 @@ const UserSchema = new mongoose.Schema<IUser>(
     timestamps: true,
     // validateModifiedOnly: true,
   } // as any
-);
+); // TODO: FIX validator
 
 UserSchema.pre("save", async function () {
   const password = this.password;

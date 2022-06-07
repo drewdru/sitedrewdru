@@ -1,5 +1,5 @@
 import { number, object, string, boolean, date, array } from "yup";
-import { ObjectId } from "../../helpers/schemas";
+import { ObjectId, atLeastOneKey } from "../../helpers/schemas";
 
 export const createPostSchema = object({
   title: string().trim().required(),
@@ -69,22 +69,23 @@ export const responsePostsSchema = object({
     description: "Returns paginated Posts list",
   });
 
+const updatePostsSchemaShape = {
+  id: ObjectId.nullable(),
+  title: string().trim().default(""),
+  text: string().trim().default(""),
+  description: string().trim().default(""),
+  preview: string().url().nullable().default(null),
+  isPremium: boolean().default(false),
+};
+
 export const updatePostsSchema = array()
-  .of(
-    object({
-      id: ObjectId.nullable(),
-      title: string().trim().default(""),
-      text: string().trim().default(""),
-      description: string().trim().default(""),
-      preview: string().url().nullable().default(null),
-      isPremium: boolean().default(false),
-    })
-  )
+  .of(object(updatePostsSchemaShape).test(atLeastOneKey()))
+  .min(1)
   .meta({
     title: "Posts list to update or create",
     description: "Bulk Post update or create",
   });
-// TODO: TRY array().min(1)?
+
 export const patchPostsSchema = array()
   .of(
     object({
@@ -96,6 +97,7 @@ export const patchPostsSchema = array()
       isPremium: boolean(),
     })
   )
+  .min(1)
   .meta({
     title: "Posts list to patch attributes",
     description: "Bulk Post's attributes update",
