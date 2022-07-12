@@ -5,9 +5,9 @@ export default defineNuxtRouteMiddleware((to, _from) => {
 
   let host = "";
   if (process.server) {
-    host = nuxtApp.ssrContext.req.headers.host;
+    host = nuxtApp.ssrContext.req.headers.host || "";
   } else {
-    host = window.location.host;
+    host = window.location.host || "";
   }
 
   const parts = host.split(".");
