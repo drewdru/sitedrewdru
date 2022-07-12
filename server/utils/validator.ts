@@ -3,43 +3,67 @@ import { sendError } from "h3";
 import { BaseSchema } from "yup";
 import { ValidationError } from "../errors/validation";
 
+// const SubMethods = "SubMethods";
+
 export const validate = (schema: {
-  body?: BaseSchema;
-  query?: BaseSchema;
-  path?: BaseSchema;
-  abortEarly?: boolean;
+  route: string;
+  method: string;
+  validate: {
+    body?: BaseSchema;
+    query?: BaseSchema;
+    path?: BaseSchema;
+    abortEarly?: boolean;
+  };
+  summary?: string;
+  description?: string;
+  responses?: Array<any>;
+  security?: Array<any>;
 }) => {
   return (
     _target: any,
     _propertyName: string,
     descriptor: TypedPropertyDescriptor<(...args: any[]) => void>
   ) => {
+    _target[schema.route] = _target[schema.route] || {};
+    _target[schema.route][schema.method] = _target[schema.route][
+      schema.method
+    ] || {
+      schema,
+      classMethodName: _propertyName,
+    };
+    // _target[SubMethods]?.[route]?.push({ httpMethod, schema });
+
     const method = descriptor.value!;
-    const abortEarly = schema.abortEarly ? schema.abortEarly : false;
+    const abortEarly = schema.validate.abortEarly
+      ? schema.validate.abortEarly
+      : false;
     descriptor.value = async function (...args) {
       try {
-        if (schema.path) {
+        // TODO: validate security
+        if (schema.validate.path) {
           const params = args[0].req.context.params;
           if (!params) {
             throw new ValidationError(["No path params found"]);
           }
-          await schema.path.validate(params, { abortEarly });
+          await schema.validate.path.validate(params, { abortEarly });
         }
-        if (schema.body) {
+        if (schema.validate.body) {
           const body = await useBody(args[0].req);
           if (!body) {
             throw new ValidationError(["No body found"]);
           }
-          args[0].req.context.body = await schema.body.validate(body, {
+          args[0].req.context.body = await schema.validate.body.validate(body, {
             abortEarly,
           });
         }
-        if (schema.query) {
+        if (schema.validate.query) {
           const query = useQuery(args[0].req);
           if (!query) {
             return;
           }
-          args[0].req.context.query = await schema.query.validate(query);
+          args[0].req.context.query = await schema.validate.query.validate(
+            query
+          );
         }
       } catch (error) {
         return sendError(

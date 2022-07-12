@@ -1,4 +1,5 @@
-import swaggerJSDoc from "swagger-jsdoc";
+// import swaggerJSDoc from "swagger-jsdoc";
+import { generateJSONDoc } from "../utils/swagger";
 // import IHandler from "../helpers/handler";
 
 // function getAllSubclasses(baseClass) {
@@ -16,15 +17,18 @@ import swaggerJSDoc from "swagger-jsdoc";
 //   return classes;
 // }
 
+// const SubMethods = Symbol("SubMethods");
 export default defineEventHandler(() => {
+  // console.log(REGISTRY);
   // console.log(getAllSubclasses(Handler));
-  const swaggerDefinition = {
+  const options = {
     openapi: "3.0.0",
     info: {
       title: "Drew Dru",
       version: "1.0.0",
     },
-    servers: [{ url: "/api" }],
+    servers: [{ url: "/" }],
+    prefix: "/api",
     schemes:
       process.env.SWAGGER_SCHEMA_HTTPS === "true"
         ? ["https"]
@@ -41,12 +45,13 @@ export default defineEventHandler(() => {
     security: {
       BasicAuth: [],
     },
+    tags: [],
   };
 
-  const options = {
-    swaggerDefinition,
-    apis: ["server/api/**/*.ts"],
-  };
+  // const options = {
+  //   swaggerDefinition,
+  //   apis: ["server/api/**/*.ts"],
+  // };
 
-  return swaggerJSDoc(options);
+  return generateJSONDoc(options);
 });

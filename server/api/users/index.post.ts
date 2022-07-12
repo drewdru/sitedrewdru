@@ -1,10 +1,18 @@
 import { CompatibilityEvent } from "h3";
 import { validate } from "../../utils/validator";
+import { swaggerRegister } from "../../utils/swagger";
 import { createUserSchema, responseUserSchema } from "./users.schemas";
 import User from "./users.model";
 
+@swaggerRegister("/users")
 class CreateUser {
-  @validate({ body: createUserSchema })
+  @validate({
+    route: "/",
+    method: "post",
+    validate: { body: createUserSchema },
+    // TODO: add Responses
+    // TODO: add security
+  })
   static async handler(event: CompatibilityEvent) {
     const body = await useBody(event.req);
 

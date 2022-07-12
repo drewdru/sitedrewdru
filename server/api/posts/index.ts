@@ -8,7 +8,9 @@ const router = createRouter();
 // router.use("/", defineEventHandler(PostsCRUDHandler.patchMany), "patch");
 // export default useBase("/api/posts", router.handler);
 const app = createApp();
-
+// TODO: defineCrudEventHandler
+// for(const [httpMethod, methodName] of Object.entries(PostsCRUDHandler["/"]))
+// router.use("/api/posts", defineEventHandler(PostsCRUDHandler[methodName], httpMethod));
 router.get("/api/posts", defineEventHandler(PostsCRUDHandler.findAll));
 router.post("/api/posts", defineEventHandler(PostsCRUDHandler.create));
 router.put("/api/posts", defineEventHandler(PostsCRUDHandler.updateMany));

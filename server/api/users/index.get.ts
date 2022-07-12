@@ -1,11 +1,13 @@
 import { CompatibilityEvent } from "h3";
 import { validate } from "../../utils/validator";
+import { swaggerRegister } from "../../utils/swagger";
 import { paginateValidationSchema } from "../../helpers/schemas";
 import IHandler from "../../helpers/handler";
 import { responseUsersSchema } from "./users.schemas";
 import User from "./users.model";
 
 // TODO:  @Handler.register ?
+@swaggerRegister("/users")
 class GetUsers implements IHandler {
   // TODO: add decorator with swagger generation
   // @yup_swagger_validator({
@@ -19,7 +21,19 @@ class GetUsers implements IHandler {
   //     notFoundErrorResponse,
   //   ],
   // })
-  @validate({ query: paginateValidationSchema })
+  @validate({
+    route: "/",
+    method: "get",
+    validate: { query: paginateValidationSchema },
+    summary: "Get Users",
+    description: "Get Users",
+    security: [{ BearerAuth: ["admin"] }],
+    responses: [
+      { status: 200, schema: responseUsersSchema },
+      // validationErrorResponse,
+      // notFoundErrorResponse,
+    ],
+  })
   static async handler(event: CompatibilityEvent) {
     const query = useQuery(event.req);
 
