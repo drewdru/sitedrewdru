@@ -1,10 +1,12 @@
 import { CompatibilityEvent } from "h3";
 import { validate } from "../../utils/validator";
 import { paginateValidationSchema } from "../../helpers/schemas";
+import IHandler from "../../helpers/handler";
 import { responseUsersSchema } from "./users.schemas";
 import User from "./users.model";
 
-class GetUsers {
+// TODO:  @Handler.register ?
+class GetUsers implements IHandler {
   // TODO: add decorator with swagger generation
   // @yup_swagger_validator({
   //   summary: "Get Users",

@@ -70,3 +70,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 ## Documentation
 https://nitro.unjs.io/
 https://www.jsdocs.io/package/h3#package-index-functions
+
+Server routes are powered by [unjs/h3](https://github.com/unjs/h3) which comes with a handy set of helpers.
+👉Read more in [Available H3 Request Helpers](https://www.jsdocs.io/package/h3#package-index-functions).
+You can add more helpers by yourself inside the ~/server/utils directory.
