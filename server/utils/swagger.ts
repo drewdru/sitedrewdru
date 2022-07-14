@@ -23,10 +23,11 @@ export const generateJSONDoc = (options: any) => {
     for (const [pathPostfix, classMethods] of Object.entries(
       data.constructor
     )) {
-      const path = `${options.prefix}${data.basePath}${pathPostfix}`.replace(
+      let path = `${options.prefix}${data.basePath}${pathPostfix}`.replace(
         /\/$/,
         ""
       );
+      path = path.replace(/:([\W\w]*)/g, "{$1}");
       const httpMethods = {};
       // TODO: use parametrs.schema.summury and parametrs.schema.description
       for (const [httpMethod, parametrs] of Object.entries(classMethods)) {
@@ -34,35 +35,46 @@ export const generateJSONDoc = (options: any) => {
           tags: [prettifyTagName(tag)],
         };
         if (parametrs.schema?.validate?.path) {
-          // TODO: FIX parameters OpenAPI 3.0.0
           const swaggerDefinition = yupToOpenAPI(
             parametrs.schema.validate.path
           );
           httpMethods[httpMethod].title = swaggerDefinition.title;
           httpMethods[httpMethod].description = swaggerDefinition.description;
-          httpMethods[httpMethod].parameters =
-            swaggerDefinition.properties || {};
-          for (const [key] of Object.entries(
-            httpMethods[httpMethod].parameters
-          )) {
-            httpMethods[httpMethod].parameters[key].in = "path";
+          const parameters = httpMethods[httpMethod].parameters || [];
+          for (const [key] of Object.entries(swaggerDefinition.properties)) {
+            const schema = swaggerDefinition.properties[key];
+            if (schema.pattern) {
+              schema.pattern = schema.pattern.slice(1, -1);
+            }
+            parameters.push({
+              name: key,
+              in: "path",
+              schema,
+              required: (swaggerDefinition.required || []).includes(key),
+            });
           }
+          httpMethods[httpMethod].parameters = parameters;
         }
         if (parametrs.schema.validate?.query) {
-          // TODO: FIX parameters OpenAPI 3.0.0
           const swaggerDefinition = yupToOpenAPI(
             parametrs.schema.validate.query
           );
           httpMethods[httpMethod].title = swaggerDefinition.title;
           httpMethods[httpMethod].description = swaggerDefinition.description;
-          const parameters = swaggerDefinition.properties || {};
-          for (const [key] of Object.entries(parameters)) {
-            parameters[key].in = "query";
+          const parameters = httpMethods[httpMethod].parameters || [];
+          for (const [key] of Object.entries(swaggerDefinition.properties)) {
+            const schema = swaggerDefinition.properties[key];
+            if (schema.pattern) {
+              schema.pattern = schema.pattern.slice(1, -1);
+            }
+            parameters.push({
+              name: key,
+              in: "query",
+              schema: swaggerDefinition.properties[key],
+              required: (swaggerDefinition.required || []).includes(key),
+            });
           }
-          httpMethods[httpMethod].parameters = {
-            ...httpMethods[httpMethod].parameters,
-            ...parameters,
-          };
+          httpMethods[httpMethod].parameters = parameters;
         }
         if (parametrs.schema.validate?.body) {
           const swaggerDefinition = yupToOpenAPI(
