@@ -3,8 +3,6 @@ import { sendError } from "h3";
 import { BaseSchema } from "yup";
 import { ValidationError } from "../errors/validation";
 
-// const SubMethods = "SubMethods";
-
 export const validate = (schema: {
   route: string;
   method: string;
@@ -24,14 +22,8 @@ export const validate = (schema: {
     _propertyName: string,
     descriptor: TypedPropertyDescriptor<(...args: any[]) => void>
   ) => {
-    _target[schema.route] = _target[schema.route] || {};
-    _target[schema.route][schema.method] = _target[schema.route][
-      schema.method
-    ] || {
-      schema,
-      classMethodName: _propertyName,
-    };
-    // _target[SubMethods]?.[route]?.push({ httpMethod, schema });
+    _target[schema.route] = _target[schema.route] || [];
+    _target[schema.route].push({ schema, classMethodName: _propertyName });
 
     const method = descriptor.value!;
     const abortEarly = schema.validate.abortEarly
