@@ -20,7 +20,7 @@ module.exports = {
   ignorePatterns: [".nuxt/*", "node_modules/*", "old/*"],
   rules: {
     quotes: ["error", "double"],
-    semi: ["error", "always"],
+    semi: 0,
     indent: ["error", 2],
     "vue/multi-word-component-names": 0,
     "vue/singleline-html-element-content-newline": 0,

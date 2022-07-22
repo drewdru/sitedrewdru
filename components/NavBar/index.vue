@@ -77,6 +77,9 @@
             >
               {{ t(value.name) }}
             </a>
+            <a href="/api-docs" class="link">
+              {{ t("API docs") }}
+            </a>
           </div>
         </div>
       </div>

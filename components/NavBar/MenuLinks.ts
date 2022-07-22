@@ -62,8 +62,10 @@ export class MenuLinks {
           !(item.name as string).endsWith("-index")
       );
     }
-    // TODO: router.options.routes filter unavailible routes
-    // result = result.options.routes.filter(item => (
+    // TODO: filter any specific routes
+    result = result.filter((item) => item.path !== "/api-docs");
+    // TODO: filter unavailible routes
+    // result = result.filter(item => (
     //   item.meta?.middleware
     //   && item.meta?.middleware === undefined
     // ))

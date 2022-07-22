@@ -3,8 +3,10 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from "vue";
 import { SwaggerUIBundle, SwaggerUIStandalonePreset } from "swagger-ui-dist";
-if (process.client) {
+
+onMounted(() => {
   const config = useRuntimeConfig();
   SwaggerUIBundle({
     url: `//${config.VITE_DOMAIN_NAME}/api/docs`,
@@ -13,6 +15,6 @@ if (process.client) {
     presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
     layout: "StandaloneLayout",
   });
-}
+});
 </script>
 <style src="swagger-ui-dist/swagger-ui.css"></style>
