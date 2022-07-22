@@ -5,8 +5,10 @@ const yupToOpenAPI = yupToOpenAPIPkg.default.default;
 export const ENDPOINTS: Array<{ [name: string]: any }> = [];
 
 export const swaggerRegister = (basePath: string) => {
-  return (constructor: { [name: string]: any[] }) => {
-    for (const [pathPostfix, classEndpoints] of Object.entries(constructor)) {
+  return (constructor) => {
+    for (const [pathPostfix, classEndpoints] of Object.entries(
+      constructor as { [name: string]: any[] }
+    )) {
       let path = `${basePath}${pathPostfix}`.replace(/\/$/, "");
       path = path.replace(/:([\W\w]*)/g, "{$1}");
       for (const parametrs of classEndpoints) {
@@ -36,12 +38,9 @@ enum ParametsIn {
 
 const getQueryParametrs = (schema: BaseSchema, parametsIn: ParametsIn) => {
   const swaggerDefinition = yupToOpenAPI(schema);
-  // httpMethod.title = httpMethod.title || swaggerDefinition.title;
-  // httpMethod.description =
-  //   httpMethod.description || swaggerDefinition.description;
   const parameters = [];
-  for (const [key] of Object.entries(swaggerDefinition.properties)) {
-    const schema = swaggerDefinition.properties[key];
+  for (const [key, data] of Object.entries(swaggerDefinition.properties)) {
+    const schema = data as any;
     if (schema.pattern) {
       schema.pattern = schema.pattern.slice(1, -1);
     }
@@ -55,21 +54,45 @@ const getQueryParametrs = (schema: BaseSchema, parametsIn: ParametsIn) => {
   return parameters;
 };
 
+const fixPropertiesPatern = (properties: any) => {
+  const result: { [k: string]: any } = {};
+  for (const [key, data] of Object.entries(properties)) {
+    const schema = data as any;
+    if (schema.pattern) {
+      schema.pattern = schema.pattern.slice(1, -1);
+    }
+    result[key] = schema;
+  }
+  return result;
+};
+
 const getBodyParametrs = (schema: BaseSchema) => {
   const swaggerDefinition = yupToOpenAPI(schema);
-  // httpMethod.title = httpMethod.title || swaggerDefinition.title;
-  // httpMethod.description =
-  //   httpMethod.description || swaggerDefinition.description;
-  return {
+  let properties: { [k: string]: any } | null = null;
+  if (swaggerDefinition.properties) {
+    properties = fixPropertiesPatern(swaggerDefinition.properties);
+  }
+  const items = swaggerDefinition.items;
+  if (items) {
+    items.properties = fixPropertiesPatern(swaggerDefinition.items.properties);
+  }
+  const result = {
     content: {
       "application/json": {
         schema: {
+          title: swaggerDefinition.title,
+          description: swaggerDefinition.description,
+          properties,
+          items,
           type: swaggerDefinition.type,
-          properties: swaggerDefinition.properties,
+          minItems: swaggerDefinition.minItems ?? null,
+          maxItems: swaggerDefinition.maxItems ?? null,
+          uniqueItems: swaggerDefinition.uniqueItems ?? null,
         },
       },
     },
   };
+  return result;
 };
 
 const getResponses = (schema: { status: number; schema: BaseSchema }[]) => {
@@ -79,6 +102,8 @@ const getResponses = (schema: { status: number; schema: BaseSchema }[]) => {
     responses[response.status] = {
       content: {
         "application/json": {
+          title: swaggerDefinition.title,
+          description: swaggerDefinition.description,
           schema: swaggerDefinition,
         },
       },
@@ -88,9 +113,7 @@ const getResponses = (schema: { status: number; schema: BaseSchema }[]) => {
 };
 
 // TODO: add interface ISwaggerOptions
-// TODO: Refactoring: Ugly nested loops
 export const generateJSONDoc = (options: any) => {
-  // console.log(ENDPOINTS);
   const paths = {};
   for (const endpoint of ENDPOINTS) {
     const path = `${options.prefix}${endpoint.path}`;
@@ -120,12 +143,19 @@ export const generateJSONDoc = (options: any) => {
     }
     paths[path][endpoint.schema.method] = {
       parameters,
-      requestBody,
       responses,
-      title: endpoint.schema.summary,
+      summary: endpoint.schema.summary,
       description: endpoint.schema.description,
       tags: [prettifyTagName(endpoint.tag)],
     };
+    if (Object.keys(requestBody).length !== 0) {
+      paths[path][endpoint.schema.method].requestBody = requestBody;
+    }
+    if (endpoint.schema?.validate?.roles?.length > 0) {
+      paths[path][endpoint.schema.method].security = [
+        { BearerAuth: endpoint.schema.validate.roles },
+      ];
+    }
   }
   options.paths = paths;
   return options;

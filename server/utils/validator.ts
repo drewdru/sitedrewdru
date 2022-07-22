@@ -14,8 +14,14 @@ export const validate = (schema: {
   };
   summary?: string;
   description?: string;
-  responses?: Array<any>;
-  security?: Array<any>;
+  responses?: Array<{
+    status: number;
+    schema: BaseSchema;
+    cast?: boolean;
+    stripUnknown?: boolean;
+  }>;
+  // security?: Array<any>;
+  roles?: Array<string>;
 }) => {
   return (
     _target: any,
@@ -32,6 +38,9 @@ export const validate = (schema: {
     descriptor.value = async function (...args) {
       try {
         // TODO: validate security
+        // if (schema.validate.roles) {
+        //   schema.validate.roles.contains(args[0].req.user.role)
+        // }
         if (schema.validate.path) {
           const params = args[0].req.context.params;
           if (!params) {
@@ -62,6 +71,13 @@ export const validate = (schema: {
           args[0],
           error.statusCode ? error : new ValidationError(error.errors)
         );
+      }
+      const responseCast = schema.responses.find((item) => item.cast === true);
+      if (responseCast) {
+        const response = await method.apply(this, args);
+        return responseCast.schema.cast(response, {
+          stripUnknown: responseCast.stripUnknown ?? true,
+        });
       }
       return method.apply(this, args);
     };

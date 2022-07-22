@@ -5,6 +5,9 @@ export const createUserSchema = object({
   lastName: string().trim().required(),
   email: string().trim().email().required(),
   website: string().url().nullable(),
+}).meta({
+  title: "Create user parametrs",
+  description: "Create user parametrs",
 });
 
 export const responseUserSchema = object({

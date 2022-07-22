@@ -1,5 +1,5 @@
 import { CompatibilityEvent } from "h3";
-import { validate } from "../../utils/validator";
+import { validate as yupSwaggerValidator } from "../../utils/validator";
 import { swaggerRegister } from "../../utils/swagger";
 import { paginateValidationSchema } from "../../helpers/schemas";
 import IHandler from "../../helpers/handler";
@@ -21,15 +21,14 @@ class GetUsers implements IHandler {
   //     notFoundErrorResponse,
   //   ],
   // })
-  @validate({
+  @yupSwaggerValidator({
     route: "/",
     method: "get",
-    validate: { query: paginateValidationSchema },
     summary: "Get Users",
     description: "Get Users",
-    security: [{ BearerAuth: ["admin"] }],
+    validate: { query: paginateValidationSchema, roles: ["admin"] },
     responses: [
-      { status: 200, schema: responseUsersSchema },
+      { status: 200, schema: responseUsersSchema, cast: true },
       // validationErrorResponse,
       // notFoundErrorResponse,
     ],
@@ -38,14 +37,12 @@ class GetUsers implements IHandler {
     const query = useQuery(event.req);
 
     const { filter, skip, limit, sort } = query;
-    const users = await User.paginate({
+    return await User.paginate({
       query: filter || {},
       page: skip || 1,
       limit: limit || 25,
       sort: sort || "-createdAt",
     });
-
-    return responseUsersSchema.cast(users, { stripUnknown: true });
   }
 }
 
