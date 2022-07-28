@@ -4,8 +4,7 @@ import {
   objectIdSchema,
   paginateValidationSchema,
 } from "../../helpers/schemas";
-import { validate } from "../../utils/validator";
-import { swaggerRegister } from "../../utils/swagger";
+import { swaggerRegister, yupValidator } from "../../utils/swagger";
 import {
   createPostSchema,
   responsePostSchema,
@@ -19,7 +18,7 @@ import Post from "./posts.model";
 
 @swaggerRegister("/posts")
 export class PostsCRUDHandler {
-  @validate({
+  @yupValidator({
     route: "/:id",
     method: "get",
     validate: { path: objectIdSchema },
@@ -32,7 +31,7 @@ export class PostsCRUDHandler {
     return responsePostSchema.cast(post, { stripUnknown: true });
   }
 
-  @validate({
+  @yupValidator({
     route: "/",
     method: "get",
     validate: { query: paginateValidationSchema },
@@ -45,7 +44,7 @@ export class PostsCRUDHandler {
     return responsePostsSchema.cast(posts, { stripUnknown: true });
   }
 
-  @validate({
+  @yupValidator({
     route: "/",
     method: "post",
     validate: { body: createPostSchema },
@@ -58,7 +57,7 @@ export class PostsCRUDHandler {
     return responsePostSchema.cast(post, { stripUnknown: true });
   }
 
-  @validate({
+  @yupValidator({
     route: "/:id",
     method: "put",
     validate: { path: objectIdSchema, body: updatePostSchema },
@@ -70,7 +69,7 @@ export class PostsCRUDHandler {
     return await controller.update(event);
   }
 
-  @validate({
+  @yupValidator({
     route: "/",
     method: "put",
     validate: { body: updatePostsSchema },
@@ -82,7 +81,7 @@ export class PostsCRUDHandler {
     return await controller.updateMany(event);
   }
 
-  @validate({
+  @yupValidator({
     route: "/:id",
     method: "patch",
     validate: {
@@ -98,7 +97,7 @@ export class PostsCRUDHandler {
     return responsePostSchema.cast(post, { stripUnknown: true });
   }
 
-  @validate({
+  @yupValidator({
     route: "/",
     method: "patch",
     validate: { body: patchPostsSchema },
@@ -111,7 +110,7 @@ export class PostsCRUDHandler {
     return result;
   }
 
-  @validate({
+  @yupValidator({
     route: "/:id",
     method: "delete",
     validate: { path: objectIdSchema },

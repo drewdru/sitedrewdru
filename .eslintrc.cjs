@@ -29,6 +29,7 @@ module.exports = {
     "arrow-parens": 0,
     "comma-dangle": 0,
     "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
     "no-multi-spaces": ["error"],
   },
 };
