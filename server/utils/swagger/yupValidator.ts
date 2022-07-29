@@ -1,9 +1,6 @@
-// import "reflect-metadata";
 import { sendError } from "h3";
 import { ValidationError } from "../../errors/validation";
-import { ISwaggerSchema } from "./yupValidator.interfaces";
-
-type DescriptorMethodType = (...args: any[]) => void;
+import { ISwaggerSchema, DescriptorMethodType } from "./swagger.types";
 
 export const yupValidator = (schema: ISwaggerSchema) => {
   return (
@@ -60,6 +57,8 @@ const applyMethod = async (
   );
   if (responseCast) {
     const response = await method.apply(context, args);
+    // TODO: set status
+    // event.res.statusCode = responseCast.status;
     return responseCast.schema.cast(response, {
       stripUnknown: responseCast.stripUnknown ?? true,
     });

@@ -16,12 +16,12 @@ class GetUsers implements IHandler {
     validate: { query: paginateValidationSchema, roles: ["admin"] },
     responses: [
       { status: 200, schema: responseUsersSchema, cast: true },
-      // validationErrorResponse,
-      // notFoundErrorResponse,
+      // validationErrorResponse, // status: 400
+      // notFoundErrorResponse, // status: 404
     ],
   })
   static async handler(event: CompatibilityEvent) {
-    const query = useQuery(event.req);
+    const query = event.req.context.query;
 
     const { filter, skip, limit, sort } = query;
     return await User.paginate({

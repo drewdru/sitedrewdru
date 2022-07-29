@@ -1,44 +1,41 @@
 import * as yupToOpenAPIPkg from "@rudi23/yup-to-openapi";
-import { BaseSchema } from "yup";
+import type { SchemaObject } from "openapi3-ts";
+import type { BaseSchema } from "yup";
 import { prettifyTagName } from "./formatters";
 import { ENDPOINTS } from "./swagger";
+import {
+  ParametsIn,
+  SwaggerVersions,
+  ISwaggerOptions,
+  ISwaggerOptionsPaths,
+  ISwaggerRequestBody,
+  ISwaggerResponses,
+  ISwaggerSchemaResponse,
+} from "./swagger.types";
 
 const yupToOpenAPI = yupToOpenAPIPkg.default.default;
 
-enum ParametsIn {
-  PATH = "path",
-  QUERY = "query",
-}
-
-// TODO: add interface ISwaggerOptions
-export const generateJSONDoc = (options: any) => {
-  const paths = {};
+export const generateJSONDoc = (options: ISwaggerOptions) => {
+  options.openapi = SwaggerVersions.latest;
+  const paths: ISwaggerOptionsPaths = {};
   for (const endpoint of ENDPOINTS) {
     const path = `${options.prefix}${endpoint.path}`;
-    let parameters = [];
-    let requestBody = {};
-    // TODO: add security parameters
-    const responses = getResponses(endpoint.schema?.responses || []);
-    if (endpoint.schema?.validate?.path) {
-      const queryParametrs = getQueryParametrs(
-        endpoint.schema.validate.path,
-        ParametsIn.PATH
-      );
-      parameters = [...parameters, ...queryParametrs];
-    }
-    if (endpoint.schema?.validate?.query) {
-      const queryParametrs = getQueryParametrs(
-        endpoint.schema.validate.query,
-        ParametsIn.QUERY
-      );
-      parameters = [...parameters, ...queryParametrs];
-    }
-    if (endpoint.schema?.validate?.body) {
-      requestBody = getBodyParametrs(endpoint.schema.validate.body);
-    }
     if (!(path in paths)) {
       paths[path] = {};
     }
+
+    // TODO: get security parameters
+    const responses = getResponses(endpoint.schema.responses);
+    const requestBody = getBodyParametrs(endpoint.schema.validate?.body);
+    const pathParametrs = getQueryParametrs(
+      endpoint.schema.validate?.path,
+      ParametsIn.PATH
+    );
+    const queryParametrs = getQueryParametrs(
+      endpoint.schema.validate?.query,
+      ParametsIn.QUERY
+    );
+    const parameters = [...pathParametrs, ...queryParametrs];
 
     paths[path][endpoint.schema.method] = {
       parameters,
@@ -48,7 +45,7 @@ export const generateJSONDoc = (options: any) => {
       tags: [prettifyTagName(endpoint.tag)],
     };
 
-    if (Object.keys(requestBody).length !== 0) {
+    if (requestBody) {
       paths[path][endpoint.schema.method].requestBody = requestBody;
     }
     if (endpoint.schema?.validate?.roles?.length > 0) {
@@ -62,7 +59,10 @@ export const generateJSONDoc = (options: any) => {
 };
 
 const getQueryParametrs = (schema: BaseSchema, parametsIn: ParametsIn) => {
-  const swaggerDefinition = yupToOpenAPI(schema);
+  if (!schema) {
+    return [];
+  }
+  const swaggerDefinition: SchemaObject = yupToOpenAPI(schema);
   const parameters = [];
   for (const [key, data] of Object.entries(swaggerDefinition.properties)) {
     const schema = data as any;
@@ -79,10 +79,10 @@ const getQueryParametrs = (schema: BaseSchema, parametsIn: ParametsIn) => {
   return parameters;
 };
 
-const fixPropertiesPatern = (properties: any) => {
-  const result: { [k: string]: any } = {};
+const fixPropertiesPattern = (properties: SchemaObject) => {
+  const result: SchemaObject = {};
   for (const [key, data] of Object.entries(properties)) {
-    const schema = data as any;
+    const schema = data;
     if (schema.pattern) {
       schema.pattern = schema.pattern.slice(1, -1);
     }
@@ -92,16 +92,19 @@ const fixPropertiesPatern = (properties: any) => {
 };
 
 const getBodyParametrs = (schema: BaseSchema) => {
-  const swaggerDefinition = yupToOpenAPI(schema);
-  let properties: { [k: string]: any } | null = null;
+  if (!schema) {
+    return;
+  }
+  const swaggerDefinition: SchemaObject = yupToOpenAPI(schema);
+  let properties: SchemaObject | null = null;
   if (swaggerDefinition.properties) {
-    properties = fixPropertiesPatern(swaggerDefinition.properties);
+    properties = fixPropertiesPattern(swaggerDefinition.properties);
   }
-  const items = swaggerDefinition.items;
+  const items: any = swaggerDefinition.items;
   if (items) {
-    items.properties = fixPropertiesPatern(swaggerDefinition.items.properties);
+    items.properties = fixPropertiesPattern(items.properties);
   }
-  const result = {
+  const result: ISwaggerRequestBody = {
     content: {
       "application/json": {
         schema: {
@@ -120,9 +123,12 @@ const getBodyParametrs = (schema: BaseSchema) => {
   return result;
 };
 
-const getResponses = (schema: { status: number; schema: BaseSchema }[]) => {
-  const responses = {};
-  for (const response of schema) {
+const getResponses = (validatorResponses: ISwaggerSchemaResponse[]) => {
+  const responses: ISwaggerResponses = {};
+  if (!validatorResponses) {
+    return responses;
+  }
+  for (const response of validatorResponses) {
     const swaggerDefinition = yupToOpenAPI(response.schema);
     responses[response.status] = {
       content: {

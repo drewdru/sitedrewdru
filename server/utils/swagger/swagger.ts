@@ -1,10 +1,11 @@
-// TODO: fix types
-export const ENDPOINTS: Array<{ [name: string]: any }> = [];
+import { ISwaggerEndpoints, IRegisteredConstructor } from "./swagger.types";
+
+export const ENDPOINTS: Array<ISwaggerEndpoints> = [];
 
 export const swaggerRegister = (basePath: string) => {
   return (constructor) => {
     for (const [pathPostfix, classEndpoints] of Object.entries(
-      constructor as { [name: string]: any[] }
+      constructor as IRegisteredConstructor
     )) {
       let path = `${basePath}${pathPostfix}`.replace(/\/$/, "");
       path = path.replace(/:([\W\w]*)/g, "{$1}");
