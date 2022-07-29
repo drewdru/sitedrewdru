@@ -4,7 +4,7 @@ import User from "./users.model";
 import { paginateValidationSchema } from "@/server/helpers/schemas";
 import { swaggerRegister, yupValidator } from "@/server/utils/swagger";
 import { ValidationError } from "@/server/errors/validation";
-import { DatabaseError, DatabaseNotFoundError } from "@/server/errors/database";
+import { DatabaseError } from "@/server/errors/database";
 
 @swaggerRegister("/users")
 class GetUsers {
@@ -19,7 +19,6 @@ class GetUsers {
       { status: 200, schema: responseUsersSchema, cast: true },
       ValidationError.swaggerError,
       DatabaseError.swaggerError,
-      DatabaseNotFoundError.swaggerError,
     ],
   })
   static async handler(event: CompatibilityEvent) {

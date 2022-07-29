@@ -2,6 +2,8 @@ import { CompatibilityEvent } from "h3";
 import { createUserSchema, responseUserSchema } from "./users.schemas";
 import User from "./users.model";
 import { swaggerRegister, yupValidator } from "@/server/utils/swagger";
+import { ValidationError } from "@/server/errors/validation";
+import { DatabaseError } from "@/server/errors/database";
 
 @swaggerRegister("/users")
 class CreateUser {
@@ -11,7 +13,8 @@ class CreateUser {
     validate: { body: createUserSchema },
     responses: [
       { status: 200, schema: responseUserSchema, cast: true },
-      // validationErrorResponse, // status: 400
+      ValidationError.swaggerError,
+      DatabaseError.swaggerError,
     ],
     // TODO: add security
   })

@@ -16,7 +16,9 @@ import {
 } from "@/server/helpers/schemas";
 import { swaggerRegister, yupValidator } from "@/server/utils/swagger";
 import { ValidationError } from "@/server/errors/validation";
-import { DatabaseError } from "@/server/errors/database";
+import { DatabaseError, DatabaseNotFoundError } from "@/server/errors/database";
+
+const controller = new CrudController(new CrudService(Post), "post");
 
 @swaggerRegister("/posts")
 export class PostsCRUDHandler {
@@ -24,26 +26,31 @@ export class PostsCRUDHandler {
     route: "/:id",
     method: "get",
     validate: { path: objectIdSchema },
-    // TODO: add Responses
+    responses: [
+      { status: 200, schema: responsePostSchema, cast: true },
+      ValidationError.swaggerError,
+      DatabaseNotFoundError.swaggerError,
+      DatabaseError.swaggerError,
+    ],
     // TODO: add security
   })
   static async findOne(event) {
-    const controller = new CrudController(new CrudService(Post), "post");
-    const post = await controller.findOne(event);
-    return responsePostSchema.cast(post, { stripUnknown: true });
+    return await controller.findOne(event);
   }
 
   @yupValidator({
     route: "/",
     method: "get",
     validate: { query: paginateValidationSchema },
-    // TODO: add Responses
+    responses: [
+      { status: 200, schema: responsePostsSchema, cast: true },
+      ValidationError.swaggerError,
+      DatabaseError.swaggerError,
+    ],
     // TODO: add security
   })
   static async findAll(event) {
-    const controller = new CrudController(new CrudService(Post), "posts");
-    const posts = await controller.findAll(event);
-    return responsePostsSchema.cast(posts, { stripUnknown: true });
+    return await controller.findAll(event);
   }
 
   @yupValidator({
@@ -58,7 +65,6 @@ export class PostsCRUDHandler {
     // TODO: add security
   })
   static async create(event) {
-    const controller = new CrudController(new CrudService(Post), "post");
     return await controller.create(event);
   }
 
@@ -66,11 +72,15 @@ export class PostsCRUDHandler {
     route: "/:id",
     method: "put",
     validate: { path: objectIdSchema, body: updatePostSchema },
-    // TODO: add Responses
+    responses: [
+      { status: 204, schema: null },
+      ValidationError.swaggerError,
+      DatabaseNotFoundError.swaggerError,
+      DatabaseError.swaggerError,
+    ],
     // TODO: add security
   })
   static async update(event) {
-    const controller = new CrudController(new CrudService(Post), "post");
     return await controller.update(event);
   }
 
@@ -78,11 +88,15 @@ export class PostsCRUDHandler {
     route: "/",
     method: "put",
     validate: { body: updatePostsSchema },
-    // TODO: add Responses
+    responses: [
+      { status: 204, schema: null },
+      ValidationError.swaggerError,
+      DatabaseNotFoundError.swaggerError,
+      DatabaseError.swaggerError,
+    ],
     // TODO: add security
   })
   static async updateMany(event) {
-    const controller = new CrudController(new CrudService(Post), "post");
     return await controller.updateMany(event);
   }
 
@@ -93,37 +107,47 @@ export class PostsCRUDHandler {
       path: objectIdSchema,
       body: patchPostSchema,
     },
-    // TODO: add Responses
+    responses: [
+      { status: 200, schema: responsePostSchema, cast: true },
+      ValidationError.swaggerError,
+      DatabaseNotFoundError.swaggerError,
+      DatabaseError.swaggerError,
+    ],
     // TODO: add security
   })
   static async patch(event) {
-    const controller = new CrudController(new CrudService(Post), "post");
-    const post = await controller.patch(event);
-    return responsePostSchema.cast(post, { stripUnknown: true });
+    return await controller.patch(event);
   }
 
   @yupValidator({
     route: "/",
     method: "patch",
     validate: { body: patchPostsSchema },
-    // TODO: add Responses
+    responses: [
+      { status: 204, schema: null },
+      ValidationError.swaggerError,
+      DatabaseNotFoundError.swaggerError,
+      DatabaseError.swaggerError,
+    ],
     // TODO: add security
   })
   static async patchMany(event) {
-    const controller = new CrudController(new CrudService(Post), "post");
-    const result = await controller.patchMany(event);
-    return result;
+    return await controller.patchMany(event);
   }
 
   @yupValidator({
     route: "/:id",
     method: "delete",
     validate: { path: objectIdSchema },
-    // TODO: add Responses
+    responses: [
+      { status: 204, schema: null },
+      ValidationError.swaggerError,
+      DatabaseNotFoundError.swaggerError,
+      DatabaseError.swaggerError,
+    ],
     // TODO: add security
   })
   static async remove(event) {
-    const controller = new CrudController(new CrudService(Post), "post");
     return await controller.remove(event);
   }
 }

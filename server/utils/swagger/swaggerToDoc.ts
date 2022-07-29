@@ -99,6 +99,13 @@ const getResponses = (validatorResponses: ISwaggerSchemaResponse[]) => {
     return responses;
   }
   for (const response of validatorResponses) {
+    if (response.schema === null) {
+      responses[response.status] = {
+        description: "Empty body",
+        content: { "application/json": {} },
+      };
+      continue;
+    }
     const swaggerDefinition: SchemaObject = yupToOpenAPI(response.schema);
     const { properties, items } = normolizeSchemaObject(swaggerDefinition);
     responses[response.status] = {

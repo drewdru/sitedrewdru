@@ -57,8 +57,7 @@ const applyMethod = async (
   );
   if (responseCast) {
     const response = await method.apply(context, args);
-    // TODO: set status
-    // event.res.statusCode = responseCast.status;
+    args[0].res.statusCode = responseCast.status;
     return responseCast.schema.cast(response, {
       stripUnknown: responseCast.stripUnknown ?? true,
     });

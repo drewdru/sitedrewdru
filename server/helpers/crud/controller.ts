@@ -1,6 +1,3 @@
-// import httpStatus from 'http-status';
-// import aqp from 'api-query-params';
-// import Response from '../response';
 import { CompatibilityEvent, sendError } from "h3";
 import { DatabaseError, DatabaseNotFoundError } from "@/server/errors/database";
 
@@ -30,7 +27,6 @@ class Controller {
     try {
       const result = await this.service.findAll(event.req.context.query);
       return result;
-      // event.res.statusCode = 200;
     } catch (error) {
       sendError(
         event,
@@ -48,7 +44,6 @@ class Controller {
           `${this._name.toUpperCase()} does not found with id ${objectId}`
         );
       }
-      // event.res.statusCode = 200;
       return result;
     } catch (error) {
       sendError(
@@ -97,8 +92,8 @@ class Controller {
           `${this._name.toUpperCase()} does not found with id ${objectId}`
         );
       }
-      event.res.statusCode = 200;
-      return result;
+      event.res.statusCode = 204;
+      return null;
     } catch (error) {
       sendError(
         event,
@@ -110,9 +105,7 @@ class Controller {
   async patchMany(event) {
     const data = event.req.context.body;
     try {
-      const result = await this.service.patchMany(data);
-      event.res.statusCode = 200;
-      return result;
+      return await this.service.patchMany(data);
     } catch (error) {
       sendError(
         event,
