@@ -1,7 +1,12 @@
 import * as yupToOpenAPIPkg from "@rudi23/yup-to-openapi";
 import type { SchemaObject } from "openapi3-ts";
 import type { BaseSchema } from "yup";
-import { prettifyTagName } from "./formatters";
+import {
+  prettifyTagName,
+  normolizeSwaggerContent,
+  normolizeSchemaObject,
+  formatSchemaPattern,
+} from "./formatters";
 import { ENDPOINTS } from "./swagger";
 import {
   ParametsIn,
@@ -65,30 +70,14 @@ const getQueryParametrs = (schema: BaseSchema, parametsIn: ParametsIn) => {
   const swaggerDefinition: SchemaObject = yupToOpenAPI(schema);
   const parameters = [];
   for (const [key, data] of Object.entries(swaggerDefinition.properties)) {
-    const schema = data as any;
-    if (schema.pattern) {
-      schema.pattern = schema.pattern.slice(1, -1);
-    }
     parameters.push({
       in: parametsIn,
       name: key,
-      schema,
+      schema: formatSchemaPattern(data),
       required: (swaggerDefinition.required || []).includes(key),
     });
   }
   return parameters;
-};
-
-const fixPropertiesPattern = (properties: SchemaObject) => {
-  const result: SchemaObject = {};
-  for (const [key, data] of Object.entries(properties)) {
-    const schema = data;
-    if (schema.pattern) {
-      schema.pattern = schema.pattern.slice(1, -1);
-    }
-    result[key] = schema;
-  }
-  return result;
 };
 
 const getBodyParametrs = (schema: BaseSchema) => {
@@ -96,29 +85,10 @@ const getBodyParametrs = (schema: BaseSchema) => {
     return;
   }
   const swaggerDefinition: SchemaObject = yupToOpenAPI(schema);
-  let properties: SchemaObject | null = null;
-  if (swaggerDefinition.properties) {
-    properties = fixPropertiesPattern(swaggerDefinition.properties);
-  }
-  const items: any = swaggerDefinition.items;
-  if (items) {
-    items.properties = fixPropertiesPattern(items.properties);
-  }
+  const { properties, items } = normolizeSchemaObject(swaggerDefinition);
   const result: ISwaggerRequestBody = {
-    content: {
-      "application/json": {
-        schema: {
-          title: swaggerDefinition.title,
-          description: swaggerDefinition.description,
-          properties,
-          items,
-          type: swaggerDefinition.type,
-          minItems: swaggerDefinition.minItems ?? null,
-          maxItems: swaggerDefinition.maxItems ?? null,
-          uniqueItems: swaggerDefinition.uniqueItems ?? null,
-        },
-      },
-    },
+    description: swaggerDefinition.description,
+    content: normolizeSwaggerContent(swaggerDefinition, properties, items),
   };
   return result;
 };
@@ -129,15 +99,11 @@ const getResponses = (validatorResponses: ISwaggerSchemaResponse[]) => {
     return responses;
   }
   for (const response of validatorResponses) {
-    const swaggerDefinition = yupToOpenAPI(response.schema);
+    const swaggerDefinition: SchemaObject = yupToOpenAPI(response.schema);
+    const { properties, items } = normolizeSchemaObject(swaggerDefinition);
     responses[response.status] = {
-      content: {
-        "application/json": {
-          title: swaggerDefinition.title,
-          description: swaggerDefinition.description,
-          schema: swaggerDefinition,
-        },
-      },
+      description: swaggerDefinition.description,
+      content: normolizeSwaggerContent(swaggerDefinition, properties, items),
     };
   }
   return responses;

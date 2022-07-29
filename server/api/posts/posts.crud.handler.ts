@@ -15,6 +15,7 @@ import {
   paginateValidationSchema,
 } from "@/server/helpers/schemas";
 import { swaggerRegister, yupValidator } from "@/server/utils/swagger";
+import { ValidationError } from "@/server/errors/validation";
 
 @swaggerRegister("/posts")
 export class PostsCRUDHandler {
@@ -48,13 +49,17 @@ export class PostsCRUDHandler {
     route: "/",
     method: "post",
     validate: { body: createPostSchema },
+    responses: [
+      { status: 201, schema: responsePostSchema, cast: true },
+      ValidationError.swagger,
+    ],
     // TODO: add Responses
     // TODO: add security
   })
   static async create(event) {
     const controller = new CrudController(new CrudService(Post), "post");
     const post = await controller.create(event);
-    return responsePostSchema.cast(post, { stripUnknown: true });
+    return post;
   }
 
   @yupValidator({

@@ -81,6 +81,7 @@ export interface ISwaggerRequestBodySchema {
 }
 
 export interface ISwaggerRequestBody {
+  description: string;
   content: {
     "application/json": {
       schema: ISwaggerRequestBodySchema;
