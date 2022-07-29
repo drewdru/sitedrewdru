@@ -16,6 +16,7 @@ import {
 } from "@/server/helpers/schemas";
 import { swaggerRegister, yupValidator } from "@/server/utils/swagger";
 import { ValidationError } from "@/server/errors/validation";
+import { DatabaseError } from "@/server/errors/database";
 
 @swaggerRegister("/posts")
 export class PostsCRUDHandler {
@@ -51,15 +52,14 @@ export class PostsCRUDHandler {
     validate: { body: createPostSchema },
     responses: [
       { status: 201, schema: responsePostSchema, cast: true },
-      ValidationError.swagger,
+      ValidationError.swaggerError,
+      DatabaseError.swaggerError,
     ],
-    // TODO: add Responses
     // TODO: add security
   })
   static async create(event) {
     const controller = new CrudController(new CrudService(Post), "post");
-    const post = await controller.create(event);
-    return post;
+    return await controller.create(event);
   }
 
   @yupValidator({

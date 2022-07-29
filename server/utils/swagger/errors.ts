@@ -14,7 +14,7 @@ export const ValidationErrorSchema = object({
 });
 
 export class ValidationError extends H3Error {
-  static swagger = {
+  static swaggerError = {
     status: StatusCode.ClientErrorBadRequest,
     schema: ValidationErrorSchema,
   };
