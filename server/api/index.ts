@@ -1,7 +1,7 @@
 import { createApp, createRouter } from "h3";
-import mongooseClient from "../utils/mongoose";
-import redisClient from "../utils/redis";
 import { useRuntimeConfig } from "#imports";
+import mongooseClient from "@/server/utils/mongoose";
+import redisClient from "@/server/utils/redis";
 
 redisClient.connect();
 

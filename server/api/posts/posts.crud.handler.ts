@@ -1,10 +1,3 @@
-import CrudController from "../../helpers/crud/controller";
-import CrudService from "../../helpers/crud/service";
-import {
-  objectIdSchema,
-  paginateValidationSchema,
-} from "../../helpers/schemas";
-import { swaggerRegister, yupValidator } from "../../utils/swagger";
 import {
   createPostSchema,
   responsePostSchema,
@@ -15,6 +8,13 @@ import {
   patchPostsSchema,
 } from "./posts.schemas";
 import Post from "./posts.model";
+import CrudController from "@/server/helpers/crud/controller";
+import CrudService from "@/server/helpers/crud/service";
+import {
+  objectIdSchema,
+  paginateValidationSchema,
+} from "@/server/helpers/schemas";
+import { swaggerRegister, yupValidator } from "@/server/utils/swagger";
 
 @swaggerRegister("/posts")
 export class PostsCRUDHandler {

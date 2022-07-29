@@ -1,12 +1,11 @@
 import { CompatibilityEvent } from "h3";
-import { swaggerRegister, yupValidator } from "../../utils/swagger";
-import { paginateValidationSchema } from "../../helpers/schemas";
-import IHandler from "../../helpers/handler";
 import { responseUsersSchema } from "./users.schemas";
 import User from "./users.model";
+import { paginateValidationSchema } from "@/server/helpers/schemas";
+import { swaggerRegister, yupValidator } from "@/server/utils/swagger";
 
 @swaggerRegister("/users")
-class GetUsers implements IHandler {
+class GetUsers {
   @yupValidator({
     route: "/",
     method: "get",

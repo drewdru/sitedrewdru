@@ -2,7 +2,7 @@
 // import aqp from 'api-query-params';
 // import Response from '../response';
 import { CompatibilityEvent, sendError } from "h3";
-import { DatabaseError, DatabaseNotFoundError } from "../../errors/database";
+import { DatabaseError, DatabaseNotFoundError } from "@/server/errors/database";
 
 class Controller {
   service: any; // TODO: type IBaseServise

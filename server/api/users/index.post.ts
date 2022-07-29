@@ -1,7 +1,7 @@
 import { CompatibilityEvent } from "h3";
-import { swaggerRegister, yupValidator } from "../../utils/swagger";
 import { createUserSchema, responseUserSchema } from "./users.schemas";
 import User from "./users.model";
+import { swaggerRegister, yupValidator } from "@/server/utils/swagger";
 
 @swaggerRegister("/users")
 class CreateUser {

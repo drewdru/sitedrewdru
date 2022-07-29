@@ -1,5 +1,5 @@
 import { number, object, string, boolean, date, array } from "yup";
-import { ObjectId, atLeastOneKey } from "../../helpers/schemas";
+import { ObjectId, atLeastOneKey } from "@/server/helpers/schemas";
 
 export const createPostSchema = object({
   title: string().trim().required(),

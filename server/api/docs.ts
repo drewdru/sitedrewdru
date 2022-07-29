@@ -1,4 +1,4 @@
-import { generateJSONDoc } from "../utils/swagger";
+import { generateJSONDoc } from "@/server/utils/swagger";
 
 export default defineEventHandler(() => {
   const options = {

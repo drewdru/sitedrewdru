@@ -1,5 +1,5 @@
 import { sendError } from "h3";
-import { ValidationError } from "../../errors/validation";
+import { ValidationError } from "./errors";
 import { ISwaggerSchema, DescriptorMethodType } from "./swagger.types";
 
 export const yupValidator = (schema: ISwaggerSchema) => {
