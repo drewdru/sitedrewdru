@@ -1,23 +1,18 @@
 import { H3Error } from "h3";
-import { array, object, string, number } from "yup";
 import { StatusCode } from "status-code-enum";
+import { getErrorSchema } from "@/server/helpers/schemas";
 
 const DATABASE_ERROR = "Database error";
 const DATA_NOT_FOUND = "Data not found";
 
-export const DatabaseErrorSchema = object({
-  statusCode: number().default(StatusCode.ServerErrorBandwidthLimitExceeded),
-  statusMessage: string().default(DATABASE_ERROR),
-  data: object({ errors: array().of(string()) }),
-}).meta({
-  title: DATABASE_ERROR,
-  description: DATABASE_ERROR,
-});
-
 export class DatabaseError extends H3Error {
   static swaggerError = {
     status: StatusCode.ClientErrorBadRequest,
-    schema: DatabaseErrorSchema,
+    schema: getErrorSchema(
+      DATABASE_ERROR,
+      DATABASE_ERROR,
+      StatusCode.ServerErrorBandwidthLimitExceeded
+    ),
   };
 
   constructor(databaseMessage = null) {
@@ -28,19 +23,14 @@ export class DatabaseError extends H3Error {
   }
 }
 
-export const DatabaseNotFoundErrorSchema = object({
-  statusCode: number().default(StatusCode.ClientErrorBadRequest),
-  statusMessage: string().default(DATA_NOT_FOUND),
-  data: object({ errors: array().of(string()) }),
-}).meta({
-  title: DATA_NOT_FOUND,
-  description: DATA_NOT_FOUND,
-});
-
 export class DatabaseNotFoundError extends H3Error {
   static swaggerError = {
     status: StatusCode.ClientErrorNotFound,
-    schema: DatabaseNotFoundErrorSchema,
+    schema: getErrorSchema(
+      DATA_NOT_FOUND,
+      DATA_NOT_FOUND,
+      StatusCode.ClientErrorNotFound
+    ),
   };
 
   constructor(message = null) {

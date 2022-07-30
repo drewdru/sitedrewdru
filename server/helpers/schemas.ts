@@ -1,4 +1,4 @@
-import { object, string, number } from "yup";
+import { array, object, string, number } from "yup";
 
 // accepts a valid UUID v4 string as id
 export const ObjectId = string().matches(/^[0-9a-fA-F]{24}$/);
@@ -27,4 +27,15 @@ export const atLeastOneKey = () => {
       );
     },
   };
+};
+
+export const getErrorSchema = (title, description, statusCode) => {
+  return object({
+    statusCode: number().default(statusCode),
+    statusMessage: string().default(title),
+    data: object({ errors: array().of(string()) }),
+  }).meta({
+    title,
+    description,
+  });
 };
