@@ -10,7 +10,7 @@
     "init_db": "node --experimental-specifier-resolution=node --loader ts-node/esm ./server/db_seed"
   },
   "devDependencies": {
-    "@intlify/nuxt3": "^0.1.10",
+    "@intlify/nuxt3": "^0.2.3",
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@rudi23/yup-to-openapi": "^2.0.0",
     "@types/bcrypt": "^5.0.0",
@@ -25,10 +25,10 @@
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.7.1",
+    "eslint-plugin-vue": "^9.3.0",
     "less": "^4.1.2",
-    "less-loader": "^10.2.0",
-    "nuxt": "^3.0.0-rc.3",
+    "less-loader": "^11.0.0",
+    "nuxt": "^3.0.0-rc.6",
     "postcss": "^8.4.5",
     "prettier-eslint": "^15.0.0",
     "ts-node": "^10.7.0",
