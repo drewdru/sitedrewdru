@@ -18,7 +18,7 @@ import {
   ISwaggerSchemaResponse,
 } from "./swagger.types";
 
-const yupToOpenAPI = yupToOpenAPIPkg.default.default;
+const yupToOpenAPI = yupToOpenAPIPkg.default;
 
 export const generateJSONDoc = (options: ISwaggerOptions) => {
   options.openapi = SwaggerVersions.latest;

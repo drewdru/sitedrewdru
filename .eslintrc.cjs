@@ -22,6 +22,8 @@ module.exports = {
     quotes: ["error", "double"],
     semi: 0,
     indent: ["error", 2],
+    "vue/valid-model-definition": 0,
+    "vue/valid-attribute-name": 0,
     "vue/multi-word-component-names": 0,
     "vue/singleline-html-element-content-newline": 0,
     "vue/html-self-closing": 0,
