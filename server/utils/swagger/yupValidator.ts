@@ -13,7 +13,7 @@ export const yupValidator = (schema: ISwaggerSchema) => {
     _target[schema.route].push({ schema, classMethodName: _propertyName });
 
     const method = descriptor.value!;
-    const abortEarly = schema.validate.abortEarly
+    const abortEarly = schema?.validate?.abortEarly
       ? schema.validate.abortEarly
       : false;
 
