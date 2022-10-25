@@ -1,19 +1,23 @@
 <template>
-  <div id="swagger-ui"></div>
+  <div id="swagger-ui" ref="swaggerDomNode"></div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { SwaggerUIBundle, SwaggerUIStandalonePreset } from "swagger-ui-dist";
+const swaggerDomNode = ref(null);
 
 onMounted(() => {
   const config = useRuntimeConfig();
   SwaggerUIBundle({
-    url: `//${config.VITE_DOMAIN_NAME}/api/docs`,
-    dom_id: "#swagger-ui",
-    deepLinking: true,
-    presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
-    layout: "StandaloneLayout",
+    // dom_id: "#swagger-ui",
+    domNode: swaggerDomNode.value,
+    spec: {
+      url: `//${config.VITE_DOMAIN_NAME}/api/docs`,
+      deepLinking: true,
+      presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+      layout: "StandaloneLayout",
+    },
   });
 });
 </script>
