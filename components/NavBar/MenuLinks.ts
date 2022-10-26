@@ -63,7 +63,7 @@ export class MenuLinks {
       );
     }
     // TODO: filter any specific routes
-    result = result.filter((item) => item.path !== "/api-docs");
+    // result = result.filter((item) => item.path !== "/api-docs");
     // TODO: filter unavailible routes
     // result = result.filter(item => (
     //   item.meta?.middleware
