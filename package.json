@@ -38,7 +38,7 @@
   "dependencies": {
     "@rudi23/yup-to-openapi": "^2.0.0",
     "bcrypt": "^5.0.1",
-    "mongoose": "^6.3.3",
+    "mongoose": "^6.11.3",
     "mongoose-delete": "^0.5.4",
     "mongoose-paginate-ts": "^1.2.6",
     "mongoose-unique-validator": "^3.0.0",
