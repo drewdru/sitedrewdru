@@ -33,82 +33,26 @@ ru:
   Skills: Навыки
   Description: Описание
 
-  MyExperienceUpwork_1_1: Апрель 2021 – Июнь 2021
-  MyExperienceUpwork_1_2: Участвовал в разработке MVP грузовых перевозок. Реализовал авторизацию через Cognito. Добавил геокодирование через here.com и отображение данных на карте. Сверстал страницы компании и связал с данными из DynamoDB.
-  MyExperienceUpwork_2_1: Февраль 2021 – Апрель  2021
-  MyExperienceUpwork_2_2: Участвовал на проекте I-EXP (https://i-exp.ru/) Разработал  API авторизации пользователей. Добавил телеграм бота для уведомления о действиях пользователей. Внедрил RabbitMQ. Разделил монорепозиторий на микросервисы. Добавлена генерация луков для больших размеров вещей. Добавил вычисление pHash для изображений. Добавил поиск похожих изображений. Добавил методы генерации данных для обучения нейронной сети.
-  MyExperienceUpwork_3_1: Ноябрь 2020 – Декабрь 2020
-  MyExperienceUpwork_3_2: Разработал API для системы анализа безопасности вебсайтов.
-  MyExperienceUpwork_4_1: Июль 2020 – Сентябрь 2020
-  MyExperienceUpwork_4_2: Разработал админку для управления системой видеонаблюдения.
+  MarkedUpLayoutsOf: Сверстал
+  Developed: Разработал
+  Added: Добавил
 
-  MyExperienceECNBroker_1_1: Реализовал редизайн
-  MyExperienceECNBroker_1_2: в
-  MyExperienceECNBroker_2: Изменил вёрстку личного кабинета и добавил новый функционал, расширил API сайта.
-  MyExperienceECNBroker_3: Расширил функционал админки, разграничил права пользователей.
-  MyExperienceECNBroker_4: Внедрил
-  MyExperienceECNBroker_5_1: Внедрил уведомления в
-  MyExperienceECNBroker_5_2: бот о действиях пользователей.
-  MyExperienceECNBroker_6: Настроил миграции и бэкапы БД.
-  MyExperienceECNBroker_7_1: Настроил
-  MyExperienceECNBroker_7_2: контейнеры.
-  MyExperienceECNBroker_8_1: Осуществил правки лендинга на
-  MyExperienceECNBroker_8_2: '.'
-  MyExperienceECNBroker_9_1: Внедрил платёжные системы
-  MyExperienceECNBroker_9_2: и
-  MyExperienceECNBroker_9_3: '.'
-  MyExperienceECNBroker_10: Настроил реферальную программу.
-  MyExperienceECNBroker_11_1: Добавил
-  MyExperienceECNBroker_11_2: редактор для новостей.
-  MyExperienceECNBroker_12_1: Внедрил
-  MyExperienceECNBroker_12_2: сверстал страницы для обучения клиентов, отобразил данные на
-  MyExperienceECNBroker_13: Отобразил курс валют через
-  MyExperienceECNBroker_14: Реализовал форекс калькуляторы.
-  MyExperienceECNBroker_15_1: Внедрил
-  MyExperienceECNBroker_15_2: для копитрейдинга.
-  MyExperienceECNBroker_16: Настроил сервис рассылки писем
-  MyExperienceECNBroker_17_1: Внедрил
-  MyExperienceECNBroker_17_2: для спецификации контрактов.
+  
 
-  MyExperienceB2BExport_1: Реализовал форму выбора категорий товаров с иерархией.
-  MyExperienceB2BExport_2: Исправил вёрстку сайта и писем.
-  MyExperienceB2BExport_3: Настроил миграции БД.
-  MyExperienceB2BExport_4_1: Исправил баги массового импорта товаров и перевода текста через сервис
-  MyExperienceB2BExport_4_2: '.'
+  MyExperienceECNBroker_1: панель администратора; личный кабинет; страницы обучения трейдеров; страницы лендинга; шаблоны писем.
+  MyExperienceECNBroker_2: форму авторизацию; микросервис взаимодействия с API MetaTrader 4; Telegram бота для уведомления о действиях пользователей; реферальную программу; форекс калькулятор; уведомления через SendGrid;
+  MyExperienceECNBroker_3:  платёжные системы  RBK.money, Accentpay и Interkassa;  WYSIWYG Quill редактор для создания новостей; API Claws&Horns; google visualization charts; API IndigoSoft; копи-трейдинг RAMM;  API Bpilot для спецификации контрактов; SendGrid.
+  MyExperienceB2BExport_1: панель администратора; личный кабинет; шаблоны писем.
+  MyExperienceB2BExport_2: форму создания иерархии категорий товаров; массовый импорт  товаров; форму переводов через ABBY API.
+  MyExperienceCarreta: логику массового импорта цен.
+  InternalProjects: Внутренние проекты
+  MyExperienceInternalProjects_1: краулер цен продуктов, систему агрегации xls/csv отчётов, систему тестирования; систему распознования изображений.
 
-  MyExperienceCarreta: Реализовал загрузку прайсов из CSV/XLS файлов.
-
-  MyExperienceTeachLearnLanguages_1: Реализовал определение страны пользователя через
-  MyExperienceTeachLearnLanguages_2: Исправил загрузку изображений в
-  MyExperienceTeachLearnLanguages_3: Реализовал импорт цен.
-  MyExperienceTeachLearnLanguages_4_1: Расширил функционал 
-  MyExperienceTeachLearnLanguages_4_2: админки.
-
-  InternalProjects: Внутренние и прочие проекты
-  MyExperienceInternalProjects_1: Реализовал краулинг сайтов для анализа цен товаров
-  MyExperienceInternalProjects_2: Разработал систему агрегации CSV/XLS отчётов, настроил валидацию файлов и пользовательских данных, внедрил перекодировки текстовых полей, распределение отчётов в
-  MyExperienceInternalProjects_3: Разработал систему распознавания заявок из изображений
-
-  SoftwareEngineer: Программный инженер
-  MyExperienceAigeo_1_1: Разработал веб-приложение
-  MyExperienceAigeo_1_2: для отображения справочной информации.
-  MyExperienceAigeo_2_1: Разработал веб-приложение
-  MyExperienceAigeo_2_2: для отображения справочной информации на карте.
-  MyExperienceAigeo_3_1: Разработал веб-приложение
+  MyExperienceAigeo_1_1: Разработал веб-приложения
   MyExperienceAigeo_3_2: mirror
   MyExperienceAigeo_4_1: Внедрил
   MyExperienceAigeo_4_2: как модуль веб-приложения
   MyExperienceAigeo_4_3: mirror
-  MyExperienceAigeo_5_1: Разработал сервис
-  MyExperienceAigeo_5_2: для нормализации адресов.
-  MyExperienceAigeo_6_1: Настроил и расширил проект
+  MyExperienceAigeo_6_1: Расширил проект
   MyExperienceAigeo_6_2: для
   MyExperienceAigeo_6_3: сервисов Aigeo
-  MyExperienceAigeo_6_4: Добавил функционал загрузки данных со сторонних
-  MyExperienceAigeo_6_5: серверов с динамическим MGUID, доработал API, пофиксил баги.
-
-  JuniorWebDeveloper: Стажёр Веб Разработчиком
-  MyExperienceAlpateks_1: Добавил форму приёма заявок для создания лидов в
-  MyExperienceAlpateks_2: Распарсил сайты и составил базу промышленных альпинистов.
-  MyExperienceAlpateks_3: Исправил вёрстку.
-  MyExperienceAlpateks_4: Настроил резервного копирования БД.

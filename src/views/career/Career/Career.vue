@@ -6,7 +6,7 @@
     <div class="layout">
       <div class="card">
         <div class="about">
-          <img class="andrew" alt="Andrew Ovsyannikov" src="@/assets/andrew.png">
+          <img class="andrew" alt="Andrew Ovsyannikov" src="@/assets/andrew2.png">
           <div class="bio">
             <h1>{{$t('HiAndrew')}}</h1>
             <h2>{{$t('HiAndrew2')}} {{experience}} {{$t('HiAndrew3')}}</h2>
@@ -38,8 +38,8 @@
       </div>
       <div class="card">
         <article>
-          <p class="text">🤩 {{$t('FrontendPrefer')}} JavaScript(Vue.js, React, Angular, Node.js, jQuery), HTML, CSS(Less, Bootstrap/Material).</p>
-          <p class="text">🧑‍💻 {{$t('BackendPrefer')}} Python(FastApi, Django/DRF, Flask, SQLAlchemy), SQL(PostgreSQL, MongoDB), Nginx, Docker, Celery, Redis.</p>
+          <p class="text">🤩 {{$t('FrontendPrefer')}} TypeScript(Vue, React, Angular), HTML, CSS(Less, Bootstrap/Material).</p>
+          <p class="text">🧑‍💻 {{$t('BackendPrefer')}} NodeJS(Nestjs), Python(FastApi, Django/DRF, Flask), ORM(SQLAlchemy, Prisma, TypeOrm, Sequelize), SQL(PostgreSQL, MongoDB), Nginx, Docker, MQTT(Redis, RabbitMQ, Kafka).</p>
           <p class="text">🤓 {{$t('ILikeToGrow')}}</p>
           <p class="text">🤖 {{$t('SeeMyPetProjects')}} <a href="https://github.com/drewdru">GitHub</a>.</p>
           <details class="description">
@@ -73,19 +73,19 @@
             </tr>
             <tr>
               <th><strong>{{$t('DevelopmentLanguages')}}</strong></th>
-              <td>Python, JS/TS, Qt/C++/QML, C, C#, Go</td>
+              <td>Python, JS/TS, C#, Go</td>
             </tr>
             <tr>
               <th><strong>{{$t('Frameworks')}}</strong></th>
-              <td>FastAPI, Django/DRF, Flask, Vue.js(Vuetify, Nuxt), React(Next.js), Node.js, AngularJs, jQuery</td>
+              <td>Node(Express, Nest, Prisma, TypeORM), Vue/Nuxt, React, Angular, Python(FastAPI, Django/DRF, Flask, SqlAlchemy)</td>
             </tr>
             <tr>
-              <th><strong>{{$t('DBMS')}}</strong></th>
-              <td>PostgreSQL, MongoDB, MySQL, SQLite, Redis, RabbitMQ</td>
+              <th><strong>DBMS/MQTT/ORM</strong></th>
+              <td>PostgreSQL, MongoDB, MySQL, Redis, RabbitMQ, Kafka, DynamoDB, Prisma, SQLAlchemy, TypeORM, Sequalize</td>
             </tr>
             <tr>
               <th><strong>{{$t('Others')}}</strong></th>
-              <td>Celery, Docker, Nginx, Git, AWS (Amplify, Lambda, S3, Cognito, DynamoDB),  WebRTC</td>
+              <td>Celery, Docker, Nginx, Git, Google Cloud Platform, AWS(Amplify, Lambda, S3, Cognito), WebRTC, SocketIO.</td>
             </tr>
           </tbody>
         </table>
@@ -93,10 +93,10 @@
       <div class="card">
         <article class="experience">
           <h1>🔬 {{$t('MyExperience')}}</h1>
-          <div class="card">
+          <!-- <div class="card">
             <h3>{{$t('July')}} 2020 - {{$t('ToDate')}}</h3>
             <p class="text">
-              <strong>{{$t('FullStackDeveloper')}} | {{$t('Freelance')}}</strong><br>
+              <strong>Full Stack Developer | {{$t('Freelance')}}</strong><br>
               🔗 <a href="https://www.upwork.com/freelancers/~01e59297900f2b4845/">{{$t('MyUpworkAccount')}}</a><br>
               ⚡ <em>{{$t('Skills')}}: Python(FastAPI, Flask, Tornado), NodeJS(Express), Vue.js, WebRTC, Docker, Angular, AWS (Amplify, Lambda, DynamoDB, Cognito), PostgreSql, RabbitMQ, Docker, GraphQL</em><br>
             </p>
@@ -111,13 +111,13 @@
                 </ol>
               </div>
             </details>
-          </div>
+          </div> -->
           <div class="card">
             <h3>{{$t('August')}} 2018 - {{$t('October')}} 2020</h3>
             <p class="text">
-              <strong>{{$t('FullStackDeveloper')}} | YLab Development</strong><br>
+              <strong>Full Stack Leed Developer | YLab Development</strong><br>
               🔗 <a href="https://ylab.io/">https://ylab.io/</a><br>
-              ⚡ <em>{{$t('Skills')}}: Python(Django/DRF, Flask), Go, AngularJS, Vuejs, PostgreSql, Redis, Celery, Docker</em><br>
+              ⚡ <em>{{$t('Skills')}}: Python(FastAPI,Django/DRF,Flask), SqlAlchemy, TensorFlow, AngularJS, Vuejs, Go, PostgreSql, Redis, Celery, Docker, Minio, S3, scrapy/selenium, Clickhouse, MSSql.</em><br>
             </p>
             <details class="description">
               <summary>🛠 {{$t('Description')}}</summary>
@@ -125,51 +125,25 @@
                 <ol type="1">
                   <li><a href="https://ecn.broker/en/">ECN.Broker</a>
                     <ul>
-                      <li>{{$t('MyExperienceECNBroker_1_1')}} <a href="https://esplanade-ms.com/en/">Esplanade MS</a> {{$t('MyExperienceECNBroker_1_2')}} <a href="https://ecn.broker/en/">ECN.Broker</a>.</li>
-                      <li>{{$t('MyExperienceECNBroker_2')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_3')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_4')}} API <strong>MetaTrader 4</strong>.</li>
-                      <li>{{$t('MyExperienceECNBroker_5_1')}} <strong>Telegram</strong> {{$t('MyExperienceECNBroker_5_2')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_6')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_7_1')}} <strong>Docker</strong> {{$t('MyExperienceECNBroker_7_2')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_8_1')}} <strong>WordPress</strong> {{$t('MyExperienceECNBroker_8_2')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_9_1')}} <strong>RBK.money</strong>, <strong>Accentpay</strong> {{$t('MyExperienceECNBroker_9_2')}} <strong>Interkassa</strong> {{$t('MyExperienceECNBroker_9_3')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_10')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_11_1')}} <strong>WYSIWYG Quill</strong> {{$t('MyExperienceECNBroker_11_2')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_12_1')}} API <strong>Claws &amp; Horns</strong>, {{$t('MyExperienceECNBroker_12_2')}} <strong>google visualization charts</strong>.</li>
-                      <li>{{$t('MyExperienceECNBroker_13')}} API <strong>IndigoSoft</strong>.</li>
-                      <li>{{$t('MyExperienceECNBroker_14')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_15_1')}} <strong>RAMM</strong> {{$t('MyExperienceECNBroker_15_2')}}</li>
-                      <li>{{$t('MyExperienceECNBroker_16')}} <strong>SendGrid</strong>.</li>
-                      <li>{{$t('MyExperienceECNBroker_17_1')}} API <strong>Bpilot</strong> {{$t('MyExperienceECNBroker_17_2')}}</li>
+                      <li><strong>{{$t('MarkedUpLayoutsOf')}}:</strong> {{$t('MyExperienceECNBroker_1')}}</li>
+                      <li><strong>{{$t('Developed')}}:</strong> {{$t('MyExperienceECNBroker_2')}}</li>
+                      <li><strong>{{$t('Added')}}:</strong> {{$t('MyExperienceECNBroker_3')}}</li>
                     </ul>
                   </li>
                   <li><a href="https://b2b-export.com/en/">B2B-export</a>
                     <ul>
-                      <li>{{$t('MyExperienceB2BExport_1')}}</li>
-                      <li>{{$t('MyExperienceB2BExport_2')}}</li>
-                      <li>{{$t('MyExperienceB2BExport_3')}}</li>
-                      <li>{{$t('MyExperienceB2BExport_4_1')}} <strong>ABBY</strong> {{$t('MyExperienceB2BExport_4_2')}}</li>
+                      <li><strong>{{$t('MarkedUpLayoutsOf')}}:</strong> {{$t('MyExperienceB2BExport_1')}}</li>
+                      <li><strong>{{$t('Added')}}:</strong> {{$t('MyExperienceB2BExport_2')}}</li>
                     </ul>
                   </li>
                   <li><a href="https://carreta.ru/">Carreta</a>
                     <ul>
-                      <li>{{$t('MyExperienceCarreta')}}</li>
-                    </ul>
-                  </li>
-                  <li><a href="https://teachlearnlanguages.com/en/">TeachLearnLanguages</a>
-                    <ul>
-                      <li>{{$t('MyExperienceTeachLearnLanguages_1')}} API <strong>ipstack</strong>.</li>
-                      <li>{{$t('MyExperienceTeachLearnLanguages_2')}} <strong>S3Storage</strong>.</li>
-                      <li>{{$t('MyExperienceTeachLearnLanguages_3')}}</li>
-                      <li>{{$t('MyExperienceTeachLearnLanguages_4_1')}} <strong>Django</strong> {{$t('MyExperienceTeachLearnLanguages_4_2')}}</li>
+                      <li><strong>{{$t('Added')}}:</strong> {{$t('MyExperienceCarreta')}}</li>
                     </ul>
                   </li>
                   <li><strong>{{$t('InternalProjects')}}</strong>
                     <ul>
-                      <li>{{$t('MyExperienceInternalProjects_1')}} (<strong>scrapy</strong> + <strong>selenium</strong>).</li>
-                      <li>{{$t('MyExperienceInternalProjects_2')}} <strong>Clickhouse</strong> + <strong>MSSql</strong>.</li>
-                      <li>{{$t('MyExperienceInternalProjects_3')}} (<strong>TensorFlow</strong>)</li>
+                      <li><strong>{{$t('Added')}}:</strong> {{$t('MyExperienceInternalProjects_1')}}</li>
                     </ul>
                   </li>
                 </ol>
@@ -179,7 +153,7 @@
           <div class="card">
             <h3>{{$t('September')}} 2016 - {{$t('February')}} 2018</h3>
             <p class="text">
-              <strong>{{$t('SoftwareEngineer')}} | Aigeo</strong><br>
+              <strong>Full Stack Developer | Aigeo</strong><br>
               🔗 <a href="http://aigeo.ru/">http://aigeo.ru/</a><br>
               ⚡ <em>{{$t('Skills')}}: Python(Django/SQLAlchemy), AngularJS, OpenLayers 3, PostgreSQL</em><br>
             </p>
@@ -187,31 +161,14 @@
               <summary>🛠 {{$t('Description')}}</summary>
               <div class="description-body">
                 <ul>
-                  <li>{{$t('MyExperienceAigeo_1_1')}} <a href="http://references.aigeo.ru/">Aigeo References</a> {{$t('MyExperienceAigeo_1_2')}}</li>
-                  <li>{{$t('MyExperienceAigeo_2_1')}} <a href="http://references-map.aigeo.ru/">Aigeo References Map</a> {{$t('MyExperienceAigeo_2_2')}}</li>
-                  <li>{{$t('MyExperienceAigeo_3_1')}} <a href="http://map.med-monitor.ru/">Medical Areas</a>(<a href="http://meduch2.aigeo.ru/">{{$t('MyExperienceAigeo_3_2')}}</a>).</li>
-                  <li>{{$t('MyExperienceAigeo_4_1')}} <a href="http://map.med-monitor.ru/">Medical Areas</a> {{$t('MyExperienceAigeo_4_2')}} <a href="http://med-monitor.ru/">Med-monitor</a>(<a href="http://med-monitor.aigeo.ru">{{$t('MyExperienceAigeo_4_3')}}</a>).</li>
-                  <li>{{$t('MyExperienceAigeo_5_1')}} <a href="http://api.aigeo.ru/pages/normalizer">Normalizer</a> {{$t('MyExperienceAigeo_5_2')}}</li>
-                  <li>{{$t('MyExperienceAigeo_6_1')}} <a href="https://github.com/capooti/geonode">Geonode</a> {{$t('MyExperienceAigeo_6_2')}} <a href="https://git.aigeo.ru/aigeo/geonode">{{$t('MyExperienceAigeo_6_3')}}</a>. {{$t('MyExperienceAigeo_6_4')}} <strong>CSW</strong> {{$t('MyExperienceAigeo_6_5')}}</li>
-                </ul>
-              </div>
-            </details>
-          </div>
-          <div class="card">
-            <h3>{{$t('July')}} 2015 - {{$t('August')}} 2015</h3>
-            <p class="text">
-              <strong>{{$t('JuniorWebDeveloper')}} | Alpateks</strong><br>
-              🔗 <a href="http://alpateks.ru/">http://alpateks.ru/</a><br>
-              ⚡ <em>{{$t('Skills')}}: Python(Django, Grab), PostgreSQL, Bash</em><br>
-            </p>
-            <details class="description">
-              <summary>🛠 {{$t('Description')}}</summary>
-              <div class="description-body">
-                <ul>
-                  <li>{{$t('MyExperienceAlpateks_1')}} Bitrix24.</li>
-                  <li>{{$t('MyExperienceAlpateks_2')}}</li>
-                  <li>{{$t('MyExperienceAlpateks_3')}}</li>
-                  <li>{{$t('MyExperienceAlpateks_4')}}</li>
+                  <li><strong>{{$t('MyExperienceAigeo_1_1')}}: </strong>
+                    <a href="http://references.aigeo.ru/">Aigeo References</a>, 
+                    <a href="http://references-map.aigeo.ru/">Aigeo References Map</a>,
+                    <a href="http://map.med-monitor.ru/">Medical Areas</a>(<a href="http://meduch2.aigeo.ru/">{{$t('MyExperienceAigeo_3_2')}}</a>),
+                    <a href="http://api.aigeo.ru/pages/normalizer">Normalizer</a>
+                  </li>
+                  <li><strong>{{$t('MyExperienceAigeo_4_1')}}:</strong> <a href="http://map.med-monitor.ru/">Medical Areas</a> {{$t('MyExperienceAigeo_4_2')}} <a href="http://med-monitor.ru/">Med-monitor</a>(<a href="http://med-monitor.aigeo.ru">{{$t('MyExperienceAigeo_4_3')}}</a>).</li>
+                  <li><strong>{{$t('MyExperienceAigeo_6_1')}}:</strong> <a href="https://github.com/capooti/geonode">Geonode API</a> {{$t('MyExperienceAigeo_6_2')}} <a href="https://git.aigeo.ru/aigeo/geonode">{{$t('MyExperienceAigeo_6_3')}}</a>.</li>
                 </ul>
               </div>
             </details>
