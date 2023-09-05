@@ -34,4 +34,10 @@ class GetUsers {
   }
 }
 
+// TODO: Use Closures?
+// function defineSwagger(endpoint, yupValidator, handler) {
+//   swaggerAddRoute(endpoint, yupValidator, handler);
+//   return handler;
+// }
+
 export default defineEventHandler(GetUsers.handler);

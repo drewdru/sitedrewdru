@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     enviroment: process.env.NODE_ENV,
     jwt: {
       secret: process.env.JWT_SECRET,
+      expires: process.env.JWT_EXPIRES,
+      refreshSecret: process.env.JWT_REFRESH_SECRET,
+      refreshExpires: process.env.JWT_REFRESH_EXPIRES,
     },
     mongodb: {
       url: process.env.DATABASE_URL,

@@ -3,23 +3,23 @@ import { mongoosePagination, Pagination } from "mongoose-paginate-ts";
 import mongooseUniqueValidator from "mongoose-unique-validator";
 import * as bcrypt from "bcrypt";
 
-const ROLES = {
-  USER: "user",
-  ADMIN: "admin",
-};
+export enum ROLES {
+  USER = "user",
+  ADMIN = "admin",
+}
 
-const GENDERS = {
-  FEMALE: "female",
-  MALE: "male",
-  OTHER: "other",
-};
+export enum GENDERS {
+  FEMALE = "female",
+  MALE = "male",
+  OTHER = "other",
+}
 
 interface IService {
   id: string;
   token: string;
 }
 
-interface IUser extends mongoose.Document {
+export interface IUser extends mongoose.Document {
   role: string;
   email: string;
   password?: string;
@@ -38,6 +38,7 @@ interface IUser extends mongoose.Document {
   resetPasswordToken?: string;
   resetPasswordExpires?: Date;
   isPremium: boolean;
+  verified: boolean;
   refreshToken?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -90,6 +91,11 @@ const UserSchema = new mongoose.Schema<IUser>(
       required: false,
     },
     isPremium: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    verified: {
       type: Boolean,
       required: true,
       default: false,
