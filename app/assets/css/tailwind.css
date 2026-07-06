@@ -1,0 +1,116 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Poppins", system-ui, sans-serif;
+}
+
+@layer base {
+  h1 {
+    font-family: var(--font-heading);
+    font-size: var(--text-5xl);
+    line-height: var(--text-5xl--line-height);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    line-height: var(--text-4xl--line-height);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    font-weight: 600;
+  }
+
+  h4 {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    font-weight: 600;
+  }
+
+  h5 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+    font-weight: 600;
+  }
+
+  h6 {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  .text-pretty {
+    text-wrap: balance;
+  }
+
+  @supports (text-wrap: pretty) {
+    .text-pretty {
+      text-wrap: pretty;
+    }
+  }
+}
+
+:root {
+  --ui-bg: #e5cbf6;
+  --ui-bg-muted: #dcc0ee;
+  --ui-bg-elevated: #d3b3e8;
+  --ui-bg-accented: #c9a3e3;
+
+  --ui-text: #000000;
+  --ui-text-toned: #0a0610;
+  --ui-text-muted: #140d1d;
+  --ui-text-dimmed: #2a1f35;
+  --ui-text-highlighted: #000000;
+
+  --ui-border: #c6a7da;
+  --ui-border-muted: #d5bbe5;
+  --ui-border-accented: #b48bcf;
+  --ui-border-inverted: #180128;
+
+  --ui-primary: #2f0e48;
+  --ui-secondary: #103c10;
+
+  --ui-success: #2f8f54;
+  --ui-warning: #d6a629;
+  --ui-error: #c74b6a;
+  --ui-info: #6c63d9;
+}
+
+.dark {
+  --ui-bg: #220932;
+  --ui-bg-muted: #2c1040;
+  --ui-bg-elevated: #34154c;
+  --ui-bg-accented: #421d60;
+
+  --ui-text: #ffffff;
+  --ui-text-toned: #f6efff;
+  --ui-text-muted: #eee1fb;
+  --ui-text-dimmed: #d8c3ea;
+  --ui-text-highlighted: #ffffff;
+
+  --ui-border-muted: #5b3875;
+  --ui-border-accented: #7b53a0;
+  --ui-border-inverted: #eed7fe;
+
+  --ui-primary: #d8b7f1;
+  --ui-secondary: #c3efc3;
+
+  --ui-success: #7fe0a3;
+  --ui-warning: #f2d06b;
+  --ui-error: #ff8aa4;
+  --ui-info: #a6b3ff;
+}

@@ -1,39 +1,33 @@
-# sitedrewdru
+# Drew Dru's personal site
 
-## Project setup
-```
-npm install
-```
+## Setup
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+Make sure to install the dependencies:
+
+```bash
+yarn install
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+yarn dev
 ```
 
-### Run your tests
-```
-npm run test
+## Production
+
+Build the application for production:
+
+```bash
+yarn build
 ```
 
-### Lints and fixes files
-```
-npm run lint
+Locally preview production build:
+
+```bash
+yarn preview
 ```
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
