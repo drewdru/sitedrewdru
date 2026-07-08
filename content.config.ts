@@ -15,6 +15,10 @@ export default defineContentConfig({
       type: 'page',
       source: 'news/**/*.md',
       schema: newsSchema
+    }),
+    profile: defineCollection({
+      type: 'page',
+      source: 'profile/**/*.md'
     })
   }
 })
