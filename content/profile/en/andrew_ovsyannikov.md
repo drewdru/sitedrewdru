@@ -10,7 +10,7 @@ about: |
 ::CvExperienceCard
 ---
 items:
-  - label: '05/2025 to date – layer3.press – Full-stack Developer'
+  - label: '05/2025 to date - layer3.press - Full-stack Developer'
     content: |
       **Site:** [layer3.press](https://layer3.press)
 
@@ -22,7 +22,7 @@ items:
         - Built scalable content aggregation, processing, and publishing pipelines supporting automated content creation and distribution.
     details: |
       **Nostr Ecosystem:**
-        - Designed and implemented a Nostr-based blogging ecosystem using Nostr protocol specifications (NIPs) and an event-driven architecture for content publishing (notes and articles), communication (direct messages), social features (pins, profile search, comments, reactions), and monetization (article donations via zaps).
+        - Designed and implemented a Nostr-based blogging ecosystem using Nostr protocol specifications (NIPs) and an event-driven architecture for content publishing (notes and articles), direct messages, social features (pins, profile search, comments, reactions), and monetization (article donations via zaps).
         - Built authentication systems supporting email OTP and Nostr-based authentication via secret keys or browser extensions.
         - Developed services for multi-relay event publishing, Nostr event indexing and caching, profile synchronization, and automated content publishing workflows.
 
@@ -52,7 +52,7 @@ items:
         - Built high-load background job processing with SSE notifications for long-running tasks and reactive UI updates.
         - Implemented X (Twitter) profile synchronization with Nostr blog.
         - Added hCaptcha-protected forms.
-  - label: '09/2023 to 04/2025 – EURO ATLANTIC SMART TECHNOLOGY LTD (SP. Z O.O) – Tech Lead / ML Engineer / Full-stack Developer'
+  - label: '09/2023 to 04/2025 - EURO ATLANTIC SMART TECHNOLOGY LTD (SP. Z O.O) - Tech Lead / ML Engineer / Full-stack Developer'
     content: |
       **Site:** [EURO ATLANTIC SMART TECHNOLOGY LTD](https://euro-atlantic.pl/)
 
@@ -71,14 +71,13 @@ items:
       **RAG & AI Optimization:**
         - Optimized RAG system accuracy using parameter tuning with Optuna, re-ranking with Cohere, and evaluation using RAGAS metrics.
         - Led integration of LangChain and Langflow to improve AI workflow development and orchestration.
-  - label: '11/2022 to 09/2023 – UDev – Full-stack Developer'
+  - label: '11/2022 to 09/2023 - UDev - Full-stack Developer'
     content: |
       **Site:** [UDev](https://udev.dev/)
 
       **Skills:** JS/TS (NestJS, Prisma), Python (FastAPI, Django), Socket.IO, React, PostgreSQL, Docker, Kubernetes, Kafka, MongoDB, GCP.
 
       **Overview:**
-
         - Modernized existing backend systems by migrating legacy architectures, improving performance, and introducing scalable solutions.
         - Developed voice assistant and IoT integrations using NLP-based command processing and smart speaker APIs.
     details: |
@@ -89,27 +88,26 @@ items:
 
       **Smart Speaker Integration:**
         - Developed Yandex Alice skill with authentication APIs to play background music on smart speakers using NLP-based command processing.
-  - label: '03/2022 to 11/2022 – Freelance (Upwork) – Full-stack Developer'
+  - label: '03/2022 to 11/2022 - Freelance (Upwork) - Full-stack Developer'
     content: |
       **Site:** [Upwork Profile](https://www.upwork.com/freelancers/~01e59297900f2b4845/)
 
       **Skills:** Node.js (Express), Python (Flask, Tornado), Vue, React, GraphQL, RabbitMQ, Docker, PostgreSQL.
 
       **Overview:**
-      - Developed full-stack solutions for gamified assessment and video surveillance platforms with real-time processing requirements.
-      - Designed scalable backend architectures, complex business logic, and configuration-driven frontend systems.
-      - Implemented real-time features including communication, video streaming, and data processing pipelines.
+        - Developed full-stack solutions for gamified assessment and video surveillance platforms with real-time processing requirements.
+        - Designed scalable backend architectures, complex business logic, and configuration-driven frontend systems.
+        - Implemented real-time features including communication, video streaming, and data processing pipelines.
     details: |
       **Gamified Assessment Platform [Cibirlan](https://cibirlan.com/):**
-        - Developed a tournament scheduling system for a gamified assessment platform.
+        - Developed a tournament scheduling system.
         - Implemented team creation algorithms with role assignment logic.
         - Built real-time chat functionality using Socket.IO.
 
       **Video Surveillance Platform:**
-        - Developed an administration panel with customizable dashboards and widgets.
         - Implemented WebRTC-based video streaming pipelines for real-time surveillance processing, enabling integration of computer vision algorithms including object tracking, image enhancement, and stream analysis.
-        - Designed a configuration-driven frontend architecture where UI components, layouts, and behavior were dynamically controlled through backend-provided configurations.
-  - label: '07/2021 to 03/2022 – Altermeliora – Full-stack Developer'
+        - Designed a configuration-driven frontend architecture of an administration panel where UI components, layouts, and behavior were dynamically controlled through backend-provided configurations.
+  - label: '07/2021 to 03/2022 - Altermeliora - Full-stack Developer'
     content: |
       **Site:** [Altermeliora](https://altermeliora.com/)
 
@@ -136,7 +134,7 @@ items:
         - Developed calorie calculation functionality.
         - Implemented cross-platform synchronization.
         - Built multilingual interfaces.
-  - label: '10/2020 to 06/2021 – Freelance (Upwork) – Full-stack Developer'
+  - label: '10/2020 to 06/2021 - Freelance (Upwork) - Full-stack Developer'
     content: |
       **Site:** [Upwork Profile](https://www.upwork.com/freelancers/~01e59297900f2b4845)
 
@@ -149,7 +147,7 @@ items:
     details: |
       **Freight Transportation Platform:**
         - Developed an administration panel for an MVP freight transportation system.
-        - Implemented Cognito-based authentication, geocoding, and data visualization using HERE Maps services.
+        - Implemented Cognito-based authentication, geocoding, and data visualization using [HERE Maps](https://here.com) services.
 
       **White-label SaaS Platform [I-EXP](https://www.linkedin.com/company/viartech/about/):**
         - Designed and implemented scalable architecture for white-label licensing with request-based billing.
@@ -157,7 +155,7 @@ items:
 
       **Website Security Analysis Platform:**
         - Developed a system for automated website security analysis and assessment.
-  - label: '08/2018 to 10/2020 – YLab – Lead Full-stack Developer'
+  - label: '08/2018 to 10/2020 - YLab - Lead Full-stack Developer'
     content: |
       **Site:** [YLab](https://ylab.io/)
 
@@ -183,7 +181,7 @@ items:
 
       **Internal Products:**
         - Developed internal tools including a CSV/XLS reporting aggregator, user testing platform, and OCR processing system.
-  - label: '09/2016 to 02/2018 – Aigeo – Full-stack Developer'
+  - label: '09/2016 to 02/2018 - Aigeo - Full-stack Developer'
     content: |
       **Site:** [Aigeo](https://aigeo.ru/)
 
