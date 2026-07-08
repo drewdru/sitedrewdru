@@ -18,6 +18,10 @@
           isOpen: global.openToWork,
           meetingLink: global.workMeetingLink
         }"
+        :document="{
+          label: t('DownloadCv'),
+          src: '/docs/CV_Ovsyannikov_A.K..pdf'
+        }"
       />
     </UPageHeader>
     <UPageBody>

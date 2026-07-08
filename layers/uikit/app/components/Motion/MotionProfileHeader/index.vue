@@ -110,6 +110,15 @@
               </span>
             </template>
           </UButton>
+          <UButton
+            v-if="document"
+            variant="link"
+            class="gap-2"
+            :to="document.src"
+            :label="document.label"
+            icon="i-lucide-download"
+            target="_blank"
+          />
         </div>
       </Motion>
       <div class="gap-x-4 inline-flex mt-4">
@@ -157,6 +166,10 @@ const props = defineProps<{
     label: string
     isOpen: boolean
     meetingLink: string
+  }
+  document?: {
+    label: string
+    src: string
   }
 }>()
 
