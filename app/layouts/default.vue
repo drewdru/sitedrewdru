@@ -6,6 +6,12 @@
       </template>
 
       <template #right>
+        <ULocaleSelect
+          variant="ghost"
+          :model-value="locale"
+          :locales="(locales as Locale<any>[])"
+          @update:model-value="setLocale($event as typeof locale)"
+        />
         <UColorModeButton />
 
         <UButton
@@ -49,5 +55,8 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '@nuxt/ui'
 import AppLogo from '~~/layers/uikit/app/components/AppLogo/index.vue'
+
+const { locale, setLocale, locales } = useI18n()
 </script>

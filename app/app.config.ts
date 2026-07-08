@@ -5,14 +5,31 @@ export default defineAppConfig({
         base: 'cursor-pointer disabled:cursor-not-allowed'
       }
     },
+    select: {
+      slots: {
+        base: 'cursor-pointer disabled:cursor-not-allowed',
+        item: 'cursor-pointer disabled:cursor-not-allowed'
+      }
+    },
+    selectMenu: {
+      slots: {
+        base: 'cursor-pointer disabled:cursor-not-allowed',
+        item: 'cursor-pointer disabled:cursor-not-allowed'
+      }
+    },
     accordion: {
       slots: {
         trigger: 'cursor-pointer disabled:cursor-not-allowed'
+      }
+    },
+    table: {
+      slots: {
+        td: 'whitespace-normal break-words align-top'
       }
     }
   },
   global: {
     openToWork: true,
-    meetingLink: 'https://calendly.com/drew-drux/30min'
+    workMeetingLink: 'https://calendly.com/drew-drux/30min'
   }
 })
