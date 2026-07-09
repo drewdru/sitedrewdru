@@ -159,7 +159,8 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     'nuxt-svgo',
-    'motion-v/nuxt'
+    'motion-v/nuxt',
+    '@pinia/nuxt'
   ],
 
   devtools: {
@@ -195,6 +196,11 @@ export default defineNuxtConfig({
   css: ['~/assets/css/tailwind.css'],
 
   site: { url: 'https://drewdru.com', name: 'DrewDru' },
+  content: {
+    renderer: {
+      anchorLinks: false
+    }
+  },
 
   runtimeConfig: RUNTIME_CONFIG,
 
@@ -260,5 +266,4 @@ export default defineNuxtConfig({
     autoImportPath: false,
     svgo: true
   }
-
 })

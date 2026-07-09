@@ -10,7 +10,7 @@
   >
     <Motion
       v-if="!!avatar?.src || !!avatar?.alt"
-      :initial="{
+      :initial="isHydrated ? undefined : {
         scale: 1.1,
         opacity: 0.3,
         filter: 'blur(20px)'
@@ -33,7 +33,7 @@
     </Motion>
     <div class="w-full flex flex-col gap-4 items-center">
       <Motion
-        :initial="{
+        :initial="isHydrated ? undefined : {
           scale: 1.1,
           opacity: 0.3,
           filter: 'blur(20px)'
@@ -50,7 +50,7 @@
         <h2>{{ title }}</h2>
       </Motion>
       <Motion
-        :initial="{
+        :initial="isHydrated ? undefined : {
           scale: 1.1,
           opacity: 0,
           filter: 'blur(20px)'
@@ -71,7 +71,7 @@
       </Motion>
       <Motion
         v-if="!!openTo"
-        :initial="{
+        :initial="isHydrated ? undefined : {
           scale: 1.1,
           opacity: 0,
           filter: 'blur(20px)'
@@ -125,7 +125,7 @@
         <Motion
           v-for="(link, index) of links"
           :key="index"
-          :initial="{
+          :initial="isHydrated ? undefined : {
             scale: 1.1,
             opacity: 0,
             filter: 'blur(20px)'
@@ -150,9 +150,13 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useAppStore } from '~~/layers/core/app/stores/app'
 import type { SocialLink } from '~~/layers/core/app/types/socialLinks'
 
 const { t } = useI18n()
+const appStore = useAppStore()
+const { isHydrated } = storeToRefs(appStore)
 
 const props = defineProps<{
   avatar?: {

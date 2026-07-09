@@ -6,7 +6,7 @@
   <UContainer>
     <MotionCard :delay="cardsDelay">
       <div class="flex flex-col gap-4">
-        <MDC :value="about" unwrap/>
+        <MDC :value="about" />
         <UCollapsible class="flex flex-col gap-2 w-full">
           <UButton
             class="group"

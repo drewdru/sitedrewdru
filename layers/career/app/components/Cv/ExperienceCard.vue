@@ -9,6 +9,7 @@
       <UAccordion
         :items="items"
         :unmount-on-hide="false"
+        type="multiple"
       >
         <template #body="{ item }">
           <MDC

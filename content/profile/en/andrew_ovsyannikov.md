@@ -13,9 +13,9 @@ items:
   - label: '05/2025 to date - layer3.press - Full-stack Developer'
     content: |
       **Site:** [layer3.press](https://layer3.press)
-
+      <br><br>
       **Skills:** JS/TS(Bun, Elysia, Drizzle, React, Remix, Zustand), PostgreSQL, Docker, Kubernetes, AWS, Kafka, Redis, Nostr, LLMs(ChatGPT, Gemini).
-      
+      <br><br>
       **Overview:**
         - Developed layer3.press, a multi-tenant blogging platform combining decentralized publishing via Nostr, subscription-based monetization, AI-powered content workflows, and automated publishing systems.
         - Designed and implemented core full-stack architecture, including backend APIs, frontend applications, authentication systems, event-driven services, background processing, and scheduled workflows.
@@ -25,17 +25,17 @@ items:
         - Designed and implemented a Nostr-based blogging ecosystem using Nostr protocol specifications (NIPs) and an event-driven architecture for content publishing (notes and articles), direct messages, social features (pins, profile search, comments, reactions), and monetization (article donations via zaps).
         - Built authentication systems supporting email OTP and Nostr-based authentication via secret keys or browser extensions.
         - Developed services for multi-relay event publishing, Nostr event indexing and caching, profile synchronization, and automated content publishing workflows.
-
+      <br>
       **Content Management & Creation:**
         - Developed a customizable MJML-based email template editor with dynamic content blocks, user metadata, and article data injection.
         - Built a Lexical-based editor with custom plugins for images, YouTube embeds, Nostr integration, and paywall functionality, including article preview support.
         - Implemented a Markdown-to-HTML conversion pipeline.
-      
+      <br>
       **Subscriptions & Monetization:**
         - Implemented subscription and monetization features including Stripe Connect integration, paid blog subscriptions, paywalled content access, and configurable subscription plans.
         - Developed guided onboarding flows with gamification, enabling bloggers to configure monetization and publishing settings, featuring a "go-live" mechanism that prevents automated publishing workflows to Nostr until configuration is complete.
         - Added publisher membership management.
-
+      <br>
       **AI-powered Features:**
         - Developed AI-powered content processing and generation features, including:
           - article summarization;
@@ -46,7 +46,7 @@ items:
         - Implemented real-time narrative generation for trending topics.
         - Developed AI-powered article re-ranking to surface the most relevant and interesting content.
         - Developed automated content processing pipelines for article creation, signing, and publishing using AWS KMS-based secret storage for secure key management.
-
+      <br>
       **Infrastructure and Integrations:**
         - Implemented RSS URL normalization for specific blogging platforms and developed crawling pipelines for automated content ingestion from RSS feeds and websites.
         - Built high-load background job processing with SSE notifications for long-running tasks and reactive UI updates.
@@ -55,9 +55,9 @@ items:
   - label: '09/2023 to 04/2025 - EURO ATLANTIC SMART TECHNOLOGY LTD (SP. Z O.O) - Tech Lead / ML Engineer / Full-stack Developer'
     content: |
       **Site:** [EURO ATLANTIC SMART TECHNOLOGY LTD](https://euro-atlantic.pl/)
-
+      <br><br>
       **Skills:** JS/TS (NestJS, Prisma), Python (FastAPI, PyTorch, NLTK), PostgreSQL, Docker, Kubernetes, RabbitMQ, Redis, Firebase, Azure (OpenAI, Storage, AI Speech, Custom Question Answering), AWS (S3, Transcribe, EC2), LLMs (Anthropic, ChatGPT, Gemini, Phi-3, Llama), LangChain, Langflow, ChromaDB.
-      
+      <br><br>
       **Overview:**
         - Led development of AI-powered knowledge management and Q&A platforms integrating modern LLMs, cloud AI services, and RAG-based systems.
         - Designed and implemented full-stack architecture including scalable backend services, real-time communication, AI workflows, and data processing pipelines.
@@ -67,16 +67,16 @@ items:
         - Developed an AI-powered Q&A chat system with REST API and SSE-based streaming responses using modern LLMs and cloud AI services.
         - Built knowledge base management workflows with document processing, OCR, audio transcription, and data preprocessing for RAG systems.
         - Integrated external knowledge sources and enterprise platforms including LMS Docebo, Google Drive, and AWS services.
-
+      <br>
       **RAG & AI Optimization:**
         - Optimized RAG system accuracy using parameter tuning with Optuna, re-ranking with Cohere, and evaluation using RAGAS metrics.
         - Led integration of LangChain and Langflow to improve AI workflow development and orchestration.
   - label: '11/2022 to 09/2023 - UDev - Full-stack Developer'
     content: |
       **Site:** [UDev](https://udev.dev/)
-
+      <br><br>
       **Skills:** JS/TS (NestJS, Prisma), Python (FastAPI, Django), Socket.IO, React, PostgreSQL, Docker, Kubernetes, Kafka, MongoDB, GCP.
-
+      <br><br>
       **Overview:**
         - Modernized existing backend systems by migrating legacy architectures, improving performance, and introducing scalable solutions.
         - Developed voice assistant and IoT integrations using NLP-based command processing and smart speaker APIs.
@@ -85,15 +85,15 @@ items:
         - Migrated the [Tumeke](https://www.tumeke.io/) project from Python to NestJS and redesigned the architecture for improved performance and maintainability.
         - Developed an algorithm for calculating and visualizing Ergonomic Posture Risk Assessment.
         - Optimized raw SQL queries and improved API response times by 30x.
-
+      <br>
       **Smart Speaker Integration:**
         - Developed Yandex Alice skill with authentication APIs to play background music on smart speakers using NLP-based command processing.
   - label: '03/2022 to 11/2022 - Freelance (Upwork) - Full-stack Developer'
     content: |
       **Site:** [Upwork Profile](https://www.upwork.com/freelancers/~01e59297900f2b4845/)
-
+      <br><br>
       **Skills:** Node.js (Express), Python (Flask, Tornado), Vue, React, GraphQL, RabbitMQ, Docker, PostgreSQL.
-
+      <br><br>
       **Overview:**
         - Developed full-stack solutions for gamified assessment and video surveillance platforms with real-time processing requirements.
         - Designed scalable backend architectures, complex business logic, and configuration-driven frontend systems.
@@ -103,16 +103,16 @@ items:
         - Developed a tournament scheduling system.
         - Implemented team creation algorithms with role assignment logic.
         - Built real-time chat functionality using Socket.IO.
-
+      <br>
       **Video Surveillance Platform:**
         - Implemented WebRTC-based video streaming pipelines for real-time surveillance processing, enabling integration of computer vision algorithms including object tracking, image enhancement, and stream analysis.
         - Designed a configuration-driven frontend architecture of an administration panel where UI components, layouts, and behavior were dynamically controlled through backend-provided configurations.
   - label: '07/2021 to 03/2022 - Altermeliora - Full-stack Developer'
     content: |
       **Site:** [Altermeliora](https://altermeliora.com/)
-
+      <br><br>
       **Skills:** TypeScript, Node.js (NestJS), React.js, Python (Django), PostgreSQL, Redis, MongoDB, Docker, GCP.
-
+      <br><br>
       **Overview:**
         - Developed a full-stack e-commerce and payment platform for selling digital courses and physical products.
         - Designed and implemented complex business workflows including product management, checkout processes, payments, invoicing, taxation, and sales analytics.
@@ -123,13 +123,13 @@ items:
         - Implemented invoice generation workflows with payment configuration, discounts, promo codes, and seller tax calculation.
         - Built customizable checkout flows with automated registration on third-party services.
         - Developed sales reporting and analytics functionality.
-
+      <br>
       **External Integrations:**
         - Integrated delivery services including Shiptor and ChinaDivision.
         - Integrated payment providers including Bluesnap, Fondy, PayPal, YooMoney, and Stripe.
         - Implemented email delivery workflows using SendGrid.
         - Integrated external course-selling platforms.
-
+      <br>
       **Additional Features:**
         - Developed calorie calculation functionality.
         - Implemented cross-platform synchronization.
@@ -137,9 +137,9 @@ items:
   - label: '10/2020 to 06/2021 - Freelance (Upwork) - Full-stack Developer'
     content: |
       **Site:** [Upwork Profile](https://www.upwork.com/freelancers/~01e59297900f2b4845)
-
+      <br><br>
       **Skills:** TypeScript, Node.js (NestJS), Angular, AWS (Amplify, Lambda, DynamoDB, Cognito), RabbitMQ, Docker.
-
+      <br><br>
       **Overview:**
         - Developed full-stack solutions for logistics, SaaS, and security-oriented platforms.
         - Designed scalable cloud architectures with AWS services, authentication systems, asynchronous processing, and flexible business workflows.
@@ -148,19 +148,19 @@ items:
       **Freight Transportation Platform:**
         - Developed an administration panel for an MVP freight transportation system.
         - Implemented Cognito-based authentication, geocoding, and data visualization using [HERE Maps](https://here.com) services.
-
+      <br>
       **White-label SaaS Platform [I-EXP](https://www.linkedin.com/company/viartech/about/):**
         - Designed and implemented scalable architecture for white-label licensing with request-based billing.
         - Developed a Telegram bot, neural network training data generation tools, image similarity vector search, and authentication workflows.
-
+      <br>
       **Website Security Analysis Platform:**
         - Developed a system for automated website security analysis and assessment.
   - label: '08/2018 to 10/2020 - YLab - Lead Full-stack Developer'
     content: |
       **Site:** [YLab](https://ylab.io/)
-
+      <br><br>
       **Skills:** Python (FastAPI, Django/DRF, Flask), SQLAlchemy, TensorFlow, TypeScript, AngularJS, Vue.js, Go, PostgreSQL, Redis, Celery, Docker, MinIO, S3, Scrapy, Selenium, ClickHouse, MS SQL.
-
+      <br><br>
       **Overview:**
         - Led development teams of up to 10 engineers while designing and implementing full-stack solutions across fintech, B2B, and internal products.
         - Collaborated directly with customers to translate business requirements into scalable technical solutions, planned development roadmaps, managed sprint execution, and coordinated feature delivery.
@@ -171,22 +171,22 @@ items:
         - Developed a MetaTrader 4 integration microservice, Telegram bot, referral program, and Forex calculation tools.
         - Integrated RBK.money, AccentPay, Interkassa, and SorexPay payment providers.
         - Integrated RAMM copy trading, Bpilot contract specifications, IndigoSoft services, Google Charts, Quill WYSIWYG editor, Claws&Horns, and SendGrid email delivery.
-
+      <br>
       **[B2B-export Platform](https://www.b2b-sn.com/):**
         - Developed administration panel, user account pages, email templates, category hierarchy management, and bulk product import.
         - Integrated ABBYY translation services for automated product localization.
-
+      <br>
       **[Carreta](https://carreta.ru/):**
         - Developed product price crawling and bulk price import functionality.
-
+      <br>
       **Internal Products:**
         - Developed internal tools including a CSV/XLS reporting aggregator, user testing platform, and OCR processing system.
   - label: '09/2016 to 02/2018 - Aigeo - Full-stack Developer'
     content: |
       **Site:** [Aigeo](https://aigeo.ru/)
-
+      <br><br>
       **Skills:** Python (Django, SQLAlchemy), TypeScript, AngularJS, OpenLayers 3, PostgreSQL, PostGIS.
-
+      <br><br>
       **Overview:**
         - Developed geospatial applications and mapping tools for the Yenisei GIS platform.
         - Designed full-stack GIS solutions combining interactive map interfaces with spatial data processing pipelines.
@@ -196,11 +196,39 @@ items:
         - Developed geospatial applications and interactive mapping tools using OpenLayers 3.
         - Implemented backend services for processing and managing spatial data with Python, PostgreSQL, and PostGIS.
         - Developed [medical GIS functionality](https://med-monitor.ru/) for visualization and analysis of healthcare-related geospatial data.
-
+      <br>
       **Geospatial Data Processing:**
         - Implemented [Aigeo References](http://references.aigeo.ru), a comprehensive geospatial reference management system.
         - Developed [geospatial data normalization tools](https://api.aigeo.ru/pages/normalizer) for addresses, coordinates, and administrative locations to improve the accuracy of spatial matching and mapping algorithms.
-
 ---
 ::
 
+::CvMarkdownCard
+---
+content: |
+  ### Degree
+  - Artificial intelligence - Master of Computer Science (MCS) - 2018 - SibSAU.
+  - Software engineering - Bachelor of Computer Science (BCompSc) - 2016 - SibSAU.
+---
+::
+
+
+::CvMarkdownCard
+---
+content: |
+  ### Personal Projects
+  <br>
+
+  Beyond my commercial experience, I continuously build personal projects to experiment with new technologies, explore architectural ideas, and develop production-quality systems from scratch.
+  Visit [dev.drewdru.com](https://dev.drewdru.com) to explore interactive demos and detailed project pages. If you'd like to dive into the implementation details, my [GitHub](https://github.com/drewdru) contains the source code for many of these projects.
+  <br><br>
+  #### Featured Project
+  <br>
+
+  **Site:** [ManeTalk](https://manetalk.com/en)
+
+  **Skills:** NestJS, Vue.js, Nuxt, Electron, RabbitMQ, Kafka, Docker, Godot, PostgreSQL, MinIO.
+
+  **Overview:** Developed the ManeTalk website with SSO authentication and a microservices-based backend for game modules. Designed scalable REST and event-driven APIs for managing profile data, character textures, inventories, and real-time chat integrated with the Godot Engine. Implemented advanced anti-abuse systems including per-endpoint rate limiting, gibberish and Detoxify message classification, and multi-account spam and flood detection using Longest Common Subsequence analysis. Built a Telegram bot for administration and moderation, along with a desktop game launcher featuring an integrated anti-cheat system.
+---
+::
