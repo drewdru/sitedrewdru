@@ -3,52 +3,46 @@
 <i18n locale="ru" lang="yaml" src="./locales/ru.yml" />
 
 <template>
-  <UContainer>
-    <MotionCard :delay="cardsDelay">
-      <div class="flex flex-col gap-4">
-        <MDC :value="about" />
-        <UCollapsible class="flex flex-col gap-2 w-full">
-          <UButton
-            class="group"
-            :label="t('ViewFullSkillSet')"
-            variant="soft"
-            trailing-icon="i-lucide-chevron-down"
-            :ui="{
-              trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200'
-            }"
-            block
+  <MotionCard>
+    <div class="flex flex-col gap-4">
+      <MDC :value="about" />
+      <UCollapsible class="flex flex-col gap-2 w-full">
+        <UButton
+          class="group"
+          :label="t('ViewFullSkillSet')"
+          variant="soft"
+          trailing-icon="i-lucide-chevron-down"
+          :ui="{
+            trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200'
+          }"
+          block
+        />
+        <template #content>
+          <UTable
+            :data="skills"
+            :columns="[
+              {
+                accessorKey: 'field',
+                header: '',
+                cell: ({ row }) => h(
+                  'span',
+                  { class: 'font-semibold text' },
+                  row.getValue('field')
+                )
+              },
+              {
+                accessorKey: 'value',
+                header: ''
+              }
+            ]"
           />
-          <template #content>
-            <UTable
-              :data="skills"
-              :columns="[
-                {
-                  accessorKey: 'field',
-                  header: '',
-                  cell: ({ row }) => h(
-                    'span',
-                    { class: 'font-semibold text' },
-                    row.getValue('field')
-                  )
-                },
-                {
-                  accessorKey: 'value',
-                  header: ''
-                }
-              ]"
-            />
-          </template>
-        </UCollapsible>
-      </div>
-    </MotionCard>
-  </UContainer>
+        </template>
+      </UCollapsible>
+    </div>
+  </MotionCard>
 </template>
 
 <script setup lang="ts">
-import MotionCard from '~~/layers/uikit/app/components/Motion/MotionCard/index.vue'
-import { careerSocialLinks } from '~~/layers/core/app/utils/socialLinks/careerSocialLinks'
-
-const cardsDelay = careerSocialLinks.length * 0.1
 const { t } = useI18n()
 
 defineProps({

@@ -38,7 +38,6 @@
 <script setup lang="ts">
 import { careerSocialLinks } from '~~/layers/core/app/utils/socialLinks/careerSocialLinks'
 import { useContentByLocale } from '~~/layers/core/app/composables/contentByLocale'
-import MotionProfileHeader from '~~/layers/uikit/app/components/Motion/MotionProfileHeader/index.vue'
 
 const { t } = useI18n()
 const { global } = useAppConfig()

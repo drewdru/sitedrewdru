@@ -7,8 +7,8 @@
    viewBox="0 0 135.46666 135.46667"
    version="1.1"
    id="svg8"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   sodipodi:docname="cutiemark white.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="logo.svg"
    style="enable-background:new"
    inkscape:export-filename="/home/drewdru/Pictures/DrewDru/cutiemark.png"
    inkscape:export-xdpi="105.59142"
@@ -46,21 +46,23 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="270.49999"
-     inkscape:cy="172"
+     inkscape:cx="270"
+     inkscape:cy="171.5"
      inkscape:document-units="mm"
-     inkscape:current-layer="g11025"
+     inkscape:current-layer="svg8"
      showgrid="false"
      inkscape:snap-page="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1000"
+     inkscape:window-width="1280"
+     inkscape:window-height="651"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:snap-object-midpoints="true"
      inkscape:snap-bbox="true"
      units="px"
-     inkscape:pagecheckerboard="0" />
+     inkscape:pagecheckerboard="0"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -73,60 +75,9 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="circle"
-     inkscape:groupmode="layer"
-     id="layer1"
-     style="display:inline"
-     transform="translate(0,-161.53332)" />
-  <g
-     inkscape:groupmode="layer"
-     id="layer3"
-     inkscape:label="circle-data"
-     style="display:inline"
-     transform="translate(0,-161.53332)" />
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="circle-border"
-     style="display:inline"
-     transform="translate(0,-161.53332)" />
-  <g
-     inkscape:groupmode="layer"
-     id="layer6"
-     inkscape:label="Dragon-fill"
-     style="display:inline"
-     transform="translate(0,-161.53332)" />
-  <g
-     inkscape:groupmode="layer"
-     id="layer7"
-     inkscape:label="Dragon-shadow"
-     style="display:inline"
-     transform="translate(0,-161.53332)" />
-  <g
-     inkscape:groupmode="layer"
-     id="layer5"
-     inkscape:label="Dragon-line"
-     style="display:inline"
-     transform="translate(0,-161.53332)">
-    <g
-       id="g6497"
-       transform="matrix(0.67168338,0,0,0.67168338,-28.000544,175.22207)" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer10"
-     inkscape:label="Dragon-eye"
-     style="display:inline"
-     transform="translate(0,-161.53332)" />
-  <g
-     inkscape:groupmode="layer"
-     id="layer12"
-     inkscape:label="Dragon-eye1"
-     transform="translate(0,-161.53332)" />
-  <g
      inkscape:groupmode="layer"
      id="layer11"
-     inkscape:label="Dragon-eye2"
+     inkscape:label="Dragon"
      style="display:inline"
      transform="translate(0,-161.53332)">
     <g

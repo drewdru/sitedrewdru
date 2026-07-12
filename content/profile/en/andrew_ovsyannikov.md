@@ -203,7 +203,7 @@ items:
 ---
 ::
 
-::CvMarkdownCard
+::MotionMarkdownCard
 ---
 content: |
   ### Degree
@@ -213,7 +213,7 @@ content: |
 ::
 
 
-::CvMarkdownCard
+::MotionMarkdownCard
 ---
 content: |
   ### Personal Projects

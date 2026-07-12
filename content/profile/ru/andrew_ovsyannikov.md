@@ -204,7 +204,7 @@ items:
 ---
 ::
 
-::CvMarkdownCard
+::MotionMarkdownCard
 ---
 content: |
   ### Образование
@@ -213,7 +213,7 @@ content: |
 ---
 ::
 
-::CvMarkdownCard
+::MotionMarkdownCard
 ---
 content: |
   ### Личные проекты

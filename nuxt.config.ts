@@ -144,6 +144,7 @@ const RUNTIME_CONFIG = {
   isDebug,
   isDebugLogin,
   enviroment: ENVIROMENT,
+  lastFmApiKey: import.meta.env.LAST_FM_API_KEY ?? UNSET_REQUIRED_VALUE,
   public: {
     isDebug,
     isDebugLogin
