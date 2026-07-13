@@ -1,3 +1,7 @@
+<i18n locale="en" lang="yaml" src="./locales/en.yml" />
+
+<i18n locale="ru" lang="yaml" src="./locales/ru.yml" />
+
 <template>
   <UPopover
     :content="{ side: 'top', align: 'start' }"
@@ -14,132 +18,42 @@
       <pre>{{ currentPose }}</pre>
     </UButton>
     <template #content>
-      <audio ref="audioPurring" preload="auto" class="hidden" />
+      <audio
+        ref="audioPurring"
+        preload="auto"
+        class="hidden"
+      />
       <div class="px-4 py-2 font-mono">
-        {{ kyushaMessage }}
+        {{ t(`PurringText${kyushaMessageNumber}`) }}
       </div>
     </template>
   </UPopover>
 </template>
 
 <script setup lang="ts">
+import { idlePoses, pettingPoses, rarePose } from './poses'
+import { randomArrayItem, randomInt } from '~~/layers/core/app/utils/randomValues'
+
+const { t } = useI18n()
 const audioPurring = ref<HTMLAudioElement>()
 const isOpen = ref(false)
 
-const idlePoses = [
-  `⠀╱|、
-(˚ˎ 。7
-|、˜〵
-じしˍ,)ノ`,
-
-  `⠀╱|、
-(•ˎ •7
-|、˜〵
-じしˍ,)ノ`,
-
-  `⠀╱|、
-(¬‿¬ 7
-|、˜〵
-じしˍ,)ノ`
-]
-
-const pettingPoses = [
-  `⠀╱|、
-(≧◡≦)7
-|、˜〵
-じしˍ,)ノ`,
-
-  `⠀╱|、
-(♡ˎ♡ 7
-|、˜〵
-じしˍ,)ノ`,
-
-  `⠀╱|、
-(•ᴗ< 7
-|、˜〵
-じしˍ,)ノ`
-]
-
-const rarePose = [
-  `⠀╱|、 zZ
-(－˘ －)
-|、˜〵
-じしˍ,)ノ`,
-  `⠀╱|、
-(⊙ˎ⊙ 7
-|、˜〵
-じしˍ,)ノ`,
-  `⠀╱|、
-(⊙ˎ⊙ 7
-|、˜〵
-じしˍ,)ノ`,
-  `⠀╱|、
-(◡_◡ 7
-|、˜〵
-じしˍ,)ノ`,
-  `⠀╱|、
-(¬_¬ 7
-|、˜〵
-じしˍ,)ノ`
-]
-
-const pettingMessages = [
-  'Kyusha is purring ♥',
-  'That feels nice ♥',
-  'More pets please~',
-  'Prrrrr...',
-  'I like it ♥',
-  `Don't stop yet ฅ^•ﻌ•^ฅ`,
-  'So happy!',
-  'This is the best spot ♥',
-  'Kyusha approves ♥',
-  'Keep going... purr purr~',
-  'I could stay like this forever ♥',
-  'Your hand is very comfy~',
-  'More love, please ♥',
-  'Nyaa~ that feels good!',
-  'Kyusha is very pleased',
-  'Purrrrrrrrr...',
-  'Happy cat noises ♥',
-  'This moment is perfect~',
-  'You are a good human ♥',
-  'Five more minutes? ฅ^•ω•^ฅ',
-  `Don't wake me from this happiness~`,
-  'Kyusha is melting ♥',
-  'A little more, please~',
-  'This is my favorite thing!',
-  'You made Kyusha smile ♥',
-  'Soft pets, soft feelings~',
-  'Kyusha feels loved',
-  'You may continue ♥',
-  'You have earned head pats privileges ♥',
-  'Kyusha has decided you are nice',
-  'Your petting skills are improving~',
-  'Kyusha will remember this kindness ♥',
-  'You are officially a cat friend!',
-  'The floof demands more attention!'
-]
-
-function randomItem<T>(arr: T[]) {
-  const value = arr[Math.floor(Math.random() * arr.length)]
-  return value as T
-}
-const currentPose = ref(randomItem(idlePoses))
-const kyushaMessage = ref(randomItem(pettingMessages))
+const kyushaMessageNumber = ref(randomInt(1, 34))
+const currentPose = ref(randomArrayItem(idlePoses))
 let pettingInterval: ReturnType<typeof setInterval>
 let closeTimer: ReturnType<typeof setTimeout>
 
-const runRandomPurring = () => {
+const playRandomPurring = () => {
   if (!audioPurring.value) {
     return
   }
-  audioPurring.value.src = `/audio/purring/${Math.floor(Math.random() * 5) + 1}.mp3`
+  audioPurring.value.src = `/audio/purring/${randomInt(1, 5)}.mp3`
   audioPurring.value.play()
 }
 
-const runRandomMeow = async () => {
+const playRandomMeow = async () => {
   const audio = new Audio()
-  audio.src = `/audio/meows/${Math.floor(Math.random() * 14) + 1}.mp3`
+  audio.src = `/audio/meows/${randomInt(1, 14)}.mp3`
   audio.volume = 1
   await audio.load()
   await audio.play()
@@ -149,12 +63,12 @@ const startPetting = () => {
   clearInterval(pettingInterval)
   clearTimeout(closeTimer)
 
-  kyushaMessage.value = randomItem(pettingMessages)
+  kyushaMessageNumber.value = randomInt(1, 34)
   isOpen.value = true
 
   pettingInterval = setInterval(() => {
-    currentPose.value = randomItem(pettingPoses)
-    runRandomPurring()
+    currentPose.value = randomArrayItem(pettingPoses)
+    playRandomPurring()
   }, 1350)
 }
 
@@ -166,10 +80,10 @@ const stopPetting = () => {
     isOpen.value = false
 
     if (Math.random() < 0.2) {
-      currentPose.value = randomItem(rarePose)
-      runRandomMeow()
+      currentPose.value = randomArrayItem(rarePose)
+      playRandomMeow()
     } else {
-      currentPose.value = randomItem(idlePoses)
+      currentPose.value = randomArrayItem(idlePoses)
     }
   }, 1000)
 }
