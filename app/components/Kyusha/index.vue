@@ -55,7 +55,7 @@ const playRandomMeow = async () => {
   const audio = new Audio()
   audio.src = `/audio/meows/${randomInt(1, 14)}.mp3`
   audio.volume = 1
-  await audio.load()
+  audio.load()
   await audio.play()
 }
 
