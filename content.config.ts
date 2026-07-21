@@ -19,6 +19,10 @@ export default defineContentConfig({
     profile: defineCollection({
       type: 'page',
       source: 'profile/**/*.md'
+    }),
+    about: defineCollection({
+      type: 'page',
+      source: 'about/**/*.md'
     })
   }
 })

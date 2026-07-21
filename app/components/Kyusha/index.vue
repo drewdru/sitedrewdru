@@ -5,11 +5,14 @@
 <template>
   <UPopover
     :content="{ side: 'top', align: 'start' }"
+    :ui="{
+      content: 'kyusha-message-popup'
+    }"
     :open="isOpen"
   >
     <UButton
       variant="ghost"
-      class="font-mono cursor-grab text-mono text-base text-left m-0 p-0 hover:bg-transparent active:bg-transparent"
+      class="touch-none select-none font-mono cursor-grab text-mono text-base text-left m-0 p-0 hover:bg-transparent active:bg-transparent"
       @pointerdown="startPetting"
       @pointerup="stopPetting"
       @pointerleave="stopPetting"
@@ -88,3 +91,30 @@ const stopPetting = () => {
   }, 1000)
 }
 </script>
+
+<style lang="scss">
+.kyusha-message-popup {
+  &::after {
+
+    content: "";
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    right: auto;
+    top: auto;
+    bottom: -1rem;
+    left: 3rem;
+
+    transform: translateX(-50%);
+
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 16px solid var(--ui-bg-elevated);
+    border-bottom: 0;
+
+    filter: drop-shadow(0 1px 0 var(--ui-border));
+  }
+}
+</style>
