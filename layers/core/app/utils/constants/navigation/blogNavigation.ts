@@ -1,0 +1,12 @@
+export const blogNavigation = [
+  {
+    label: 'Home',
+    icon: 'i-lucide-home',
+    to: '/'
+  },
+  {
+    label: 'About',
+    icon: 'i-lucide-book-open',
+    to: '/about'
+  }
+]

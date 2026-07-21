@@ -1,4 +1,4 @@
-import type { SocialLink } from '../../types/socialLinks'
+import type { SocialLink } from '../../../types/socialLinks'
 
 export const careerSocialLinks: SocialLink[] = [{
   'icon': 'i-simple-icons-telegram',

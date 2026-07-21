@@ -18,24 +18,7 @@
           block
         />
         <template #content>
-          <UTable
-            :data="skills"
-            :columns="[
-              {
-                accessorKey: 'field',
-                header: '',
-                cell: ({ row }) => h(
-                  'span',
-                  { class: 'font-semibold text' },
-                  row.getValue('field')
-                )
-              },
-              {
-                accessorKey: 'value',
-                header: ''
-              }
-            ]"
-          />
+          <LeftHeaderTable :data="skills" />
         </template>
       </UCollapsible>
     </div>
@@ -43,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+import type { TableRow } from '@nuxt/ui'
+
 const { t } = useI18n()
 
 defineProps({
@@ -61,5 +46,5 @@ const skills = computed(() => [
   { field: t('OperatingSystems'), value: 'Linux, Windows' },
   { field: t('OtherTechnologies'), value: 'Docker, Kubernetes, Nginx, Git, WebRTC, SocketIO' },
   { field: t('Languages'), value: 'Russian (Native), English (B2)' }
-])
+] as unknown as TableRow<{ field: string, value: string }>[])
 </script>
