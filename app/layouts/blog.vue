@@ -1,3 +1,7 @@
+<i18n locale="en" lang="yaml" src="~~/layers/core/app/utils/constants/navigation/locales/en.yml" />
+
+<i18n locale="ru" lang="yaml" src="~~/layers/core/app/utils/constants/navigation/locales/ru.yml" />
+
 <template>
   <div class="h-screen flex flex-col lg:overflow-hidden overflow-auto">
     <UMain class="h-full">
@@ -25,65 +29,15 @@
             }"
           >
             <template #left>
-              <UContainer>
+              <UContainer class="flex flex-col justify-between">
                 <UPageAnchors
-                  :links="[
-                    {
-                      label: 'link 1',
-                      icon: 'i-lucide-book-open',
-                      to: '/docs/getting-started'
-                    },
-                    {
-                      label: 'link 2',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    },
-                    {
-                      label: 'link 3',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    },
-                    {
-                      label: 'link 4',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    },
-                    {
-                      label: 'link 5',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    },
-                    {
-                      label: 'link 6',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    },
-                    {
-                      label: 'link 7',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    },
-                    {
-                      label: 'link 8',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    },
-                    {
-                      label: 'link 9',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    },
-                    {
-                      label: 'link 10 - max',
-                      icon: 'i-lucide-box',
-                      to: '/docs/components'
-                    }
-                  ]"
+                  :links="blogLinks"
                   :ui="{
                     list: 'flex flex-row flex-wrap gap-x-4 gap-y-2 lg:flex-col',
                     link: 'whitespace-nowrap'
                   }"
                 />
+                <Kyusha v-if="!isHomePage" />
               </UContainer>
             </template>
             <template #default>
@@ -93,7 +47,7 @@
               >
                 <UScrollArea
                   shadow
-                  class="p-1 h-full lg:h-[calc(100vh-12rem)]"
+                  class="p-1 sm:p-1 md:p-1 lg:p-1 h-full lg:h-[calc(100vh-12rem)]"
                   :ui="{ viewport: 'gap-4' }"
                 >
                   <slot />
@@ -106,35 +60,22 @@
                   base: 'w-full flex flex-col gap-4'
                 }"
               >
-                <UContainer>
-                  <UAvatar
-                    class="size-30 ring ring-default ring-offset-3 ring-offset-bg"
-                    :srcset="avatarSrcset"
-                    alt="Drew Dru"
-                    src="/img/avatars/drewdru.png"
-                  />
+                <UContainer class="w-full flex justify-center">
+                  <DrewDruAvatar :is-person="isAboutPage" />
                 </UContainer>
                 <UScrollArea
                   shadow
-                  class="p-1 h-full lg:h-[calc(100vh-17.5rem)] min-h-[10rem]"
-                  :ui="{ viewport: 'gap-4' }"
+                  class="sm:p-1 md:p-1 lg:p-1 h-full lg:h-[calc(100vh-17.5rem)] min-h-[10rem]"
+                  :ui="{ viewport: 'gap-4', root: 'p-1 sm:p-1 md:p-1 lg:p-1' }"
                 >
-                  <UCard :ui="{ body: 'lg:p-1' }">
-                    <UScrollArea
-                      shadow
-                      class="p-1 h-33"
+                  <NowListening />
+                  <UContainer class="flex flex-row justify-center">
+                    <img
+                      class="max-h-[10rem]"
+                      src="~/assets/img/animations/drewkisser.webp"
+                      alt="Drew Dru dancing animation by #Bakery #canada_cho_nado Telegram: https://t.me/bakery_3112 VK: https://vk.com/bakery_3112 VK donut: https://vk.com/donut/bakery_3112 Derpibooru: https://derpibooru.org/profiles/Bakery X: https://x.com/Bakery3112 Boosty: https://boosty.to/bakery3112"
                     >
-                      {{ data }}
-                    </UScrollArea>
-                  </UCard>
-                  <UCard :ui="{ body: 'lg:p-1' }">
-                    <UScrollArea
-                      shadow
-                      class="p-1 h-33"
-                    >
-                      {{ data }}
-                    </UScrollArea>
-                  </UCard>
+                  </UContainer>
                 </UScrollArea>
               </UContainer>
             </template>
@@ -148,22 +89,27 @@
               </p>
             </template>
 
+            <template #default>
+              <div class="flex flex-row">
+                <UButton
+                  v-for="(link, index) of personalSocialLinks"
+                  :key="index"
+                  v-bind="{ size: 'md', color: 'neutral', variant: 'ghost', ...link }"
+                />
+              </div>
+            </template>
+
             <template #right>
               <ULocaleSelect
                 variant="ghost"
                 :model-value="locale"
                 :locales="(locales as Locale<any>[])"
+                :ui="{
+                  trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200'
+                }"
                 @update:model-value="setLocale($event as typeof locale)"
               />
               <UColorModeButton />
-              <UButton
-                to="https://github.com/drewdru/sitedrewdru"
-                target="_blank"
-                icon="i-simple-icons-github"
-                aria-label="GitHub"
-                color="neutral"
-                variant="ghost"
-              />
             </template>
           </UFooter>
         </template>
@@ -174,185 +120,33 @@
 
 <script setup lang="ts">
 import type { Locale } from '@nuxt/ui'
+import { personalSocialLinks } from '~~/layers/core/app/utils/constants/socialLinks/personalSocialLinks'
+import { blogNavigation } from '~~/layers/core/app/utils/constants/navigation/blogNavigation'
 
-const { locale, setLocale, locales } = useI18n()
+const localePath = useLocalePath()
+const { t, locale, setLocale, locales } = useI18n()
+const route = useRoute()
+
+const isHomePage = computed(() => route.name?.toString().startsWith('index'))
+const isAboutPage = computed(() => route.name?.toString().startsWith('about'))
+
+const blogLinks = computed(() =>
+  blogNavigation.map(item => ({
+    ...item,
+    label: t(item.label),
+    to: localePath(item.to)
+  }))
+)
 
 useHead({
   htmlAttrs: { lang: locale.value },
   titleTemplate: 'Drew Dru - %s',
   bodyAttrs: {
-    class: 'blog-body'
+    class: 'magic-body'
   }
 })
-
-const img = useImage()
-const avatarSrcset = img.getSizes('/img/avatars/drewdru.png', {
-  sizes: 'sm:200px md:200px lg:200px xl:200px',
-  modifiers: { fit: 'cover', format: 'webp', quality: 80 }
-}).srcset
-
-const { data } = await useFetch(`/api/lastfm/user/drew-dru`)
 </script>
 
 <style lang="scss">
-.blog-body {
-  min-height: 100vh;
-  background: var(--ui-bg);
-
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: fixed;
-    inset: -8%;
-    background-image:
-      radial-gradient(
-        var(--fantasy-color),
-        color-mix(in srgb, var(--fantasy-color-soft) 30%, transparent) 2px,
-        transparent 31px
-      ),
-      radial-gradient(
-        ellipse at center,
-        var(--fantasy-color),
-        color-mix(in srgb, var(--fantasy-color-soft) 25%, transparent) 1.3px,
-        transparent 47px
-      ),
-      radial-gradient(
-        var(--fantasy-color),
-        color-mix(in srgb, var(--fantasy-color-soft) 20%, transparent) 2.6px,
-        transparent 36px
-      ),
-      radial-gradient(
-        ellipse at center,
-        color-mix(in srgb, var(--fantasy-color-soft) 40%, transparent),
-        color-mix(in srgb, var(--fantasy-color) 20%, transparent) 0.9px,
-        transparent 53px
-      ),
-      radial-gradient(
-        ellipse at center,
-        color-mix(in srgb, var(--fantasy-color-soft) 40%, transparent),
-        color-mix(in srgb, var(--fantasy-color) 20%, transparent) 0.9px,
-        transparent 53px
-      );
-
-    background-size:
-      587px 541px,
-      331px 377px,
-      257px 239px,
-      163px 181px,
-      433px 541px;
-
-    background-position:
-      13px 41px,
-      182px 67px,
-      91px 311px,
-      244px 149px;
-
-    animation:
-      starsPulse 8s cubic-bezier(.42,0,.22,1) infinite,
-      starsMove 111s cubic-bezier(.32,0,.12,1) infinite alternate,
-      starsFloat 111s cubic-bezier(.52,0,.32,1) infinite alternate;
-
-    animation-timing-function:
-      ease,
-      cubic-bezier(.6,0,.3,1),
-      cubic-bezier(.52,0,.32,1);
-
-    z-index: -1;
-  }
-
-  &::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--ui-bg) 60%, transparent),
-      color-mix(in srgb, var(--ui-bg-accented) 60%, transparent)
-    );
-    z-index: -2;
-  }
-}
-
-@keyframes starsPulse {
-  0%,
-  100% {
-    opacity: .55;
-    filter: brightness(.8);
-  }
-
-  50% {
-    opacity: 1;
-    filter: brightness(1.35);
-  }
-}
-
-@keyframes starsMove {
-  0% {
-    background-position:
-      0 0,
-      40px 60px,
-      130px 270px,
-      70px 100px;
-  }
-
-  18% {
-    background-position:
-      18px -12px,
-      25px 80px,
-      170px 230px,
-      95px 70px;
-  }
-
-  37% {
-    background-position:
-      -5px 30px,
-      60px 45px,
-      150px 190px,
-      120px 110px;
-  }
-
-  61% {
-    background-position:
-      40px 10px,
-      -10px 100px,
-      220px 210px,
-      130px 30px;
-  }
-
-  83% {
-    background-position:
-      60px 55px,
-      -35px 135px,
-      190px 170px,
-      170px 50px;
-  }
-
-  100% {
-    background-position:
-      80px 40px,
-      -40px 120px,
-      200px 180px,
-      150px 40px;
-  }
-}
-
-@keyframes starsFloat {
-  0% {
-    transform: translate(0,0) rotate(0deg) scale(1);
-  }
-
-  30% {
-    transform: translate(-8px,12px) rotate(.3deg) scale(1.01);
-  }
-
-  70% {
-    transform: translate(12px,-10px) rotate(-.2deg) scale(.995);
-  }
-
-  100% {
-    transform: translate(25px,8px) rotate(.4deg) scale(1.015);
-  }
-}
+@use '~/assets/scss/backgrounds/magicBody.scss';
 </style>

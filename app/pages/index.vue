@@ -1,22 +1,21 @@
+<i18n locale="en" lang="yaml" src="~/components/BlogPages/Home/locales/en.yml" />
+
+<i18n locale="ru" lang="yaml" src="~/components/BlogPages/Home/locales/ru.yml" />
+
 <template>
-  <div class="home text-left">
-    <h3 class="home text-center">
-      Welcome
-    </h3>
-    <div class="flex flex-row gap-4">
-      <Kyusha />
-      <pre class="font-mono text-mono text-base text-center">
-&nbsp;
-I'm glad to see you here friends!
-Be gentle petting my cat Kyusha
-&nbsp;</pre>
-    </div>
-    <p class="mt-2">I'm Drew Dru, and this is where </p>
-  </div>
+  <BlogPagesHome />
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n()
 definePageMeta({
   layout: 'blog'
+})
+useSeoMeta({
+  title: t('HomePageTitle'),
+  ogTitle: t('HomePageTitle'),
+  description: t('HomePageDescription'),
+  ogDescription: t('HomePageDescription'),
+  twitterDescription: t('HomePageDescription')
 })
 </script>
