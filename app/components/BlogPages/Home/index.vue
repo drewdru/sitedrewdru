@@ -4,7 +4,7 @@
 
 <template>
   <div class="home text-left">
-    <h3 class="home text-center">
+    <h3 class="text-center">
       {{ t('Welcome') }}
     </h3>
     <ProseBlockquote>

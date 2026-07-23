@@ -22,7 +22,7 @@
           <UPage
             class="h-full"
             :ui="{
-              root: 'lg:gap-1',
+              root: 'lg:gap-0',
               left: 'order-1',
               center: 'order-2',
               right: 'order-3 lg:px-0'
@@ -73,7 +73,7 @@
                     <img
                       class="max-h-[10rem]"
                       src="~/assets/img/animations/drewkisser.webp"
-                      alt="Drew Dru dancing animation by #Bakery #canada_cho_nado Telegram: https://t.me/bakery_3112 VK: https://vk.com/bakery_3112 VK donut: https://vk.com/donut/bakery_3112 Derpibooru: https://derpibooru.org/profiles/Bakery X: https://x.com/Bakery3112 Boosty: https://boosty.to/bakery3112"
+                      alt="Drew Dru dancing animation by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)"
                     >
                   </UContainer>
                 </UScrollArea>

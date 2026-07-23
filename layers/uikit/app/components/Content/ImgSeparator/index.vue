@@ -4,6 +4,7 @@
     :src="src"
     :alt="alt"
     :size="{ sm: 100, md: 100, xl: 100, lg: 100 }"
+    lazy
   />
 </template>
 

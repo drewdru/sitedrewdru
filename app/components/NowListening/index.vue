@@ -65,7 +65,8 @@ const tracks = (data.value?.recenttracks?.track ?? []).map(
     name: item.artist?.['#text'],
     description: item.name,
     avatar: {
-      src: item.image?.at(0)?.['#text']
+      src: item.image?.at(0)?.['#text'],
+      loading: 'lazy'
     },
     to: item.url,
     target: '_blank',

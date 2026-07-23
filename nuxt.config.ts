@@ -151,19 +151,11 @@ const RUNTIME_CONFIG = {
   }
 }
 export default defineNuxtConfig({
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/ui',
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-    '@nuxt/image',
-    '@nuxtjs/robots',
-    '@nuxtjs/sitemap',
-    'nuxt-svgo',
-    'motion-v/nuxt',
-    '@pinia/nuxt'
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', '@nuxtjs/robots', '@nuxtjs/sitemap', 'nuxt-svgo', 'motion-v/nuxt', '@pinia/nuxt', '@vueuse/nuxt'],
 
+  components: [
+    { path: '~/components', extensions: ['vue', 'tsx'] }
+  ],
   devtools: {
     enabled: isDebugTools
   },

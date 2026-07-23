@@ -3,8 +3,8 @@
 <i18n locale="ru" lang="yaml" src="./locales/ru.yml" />
 
 <template>
-  <div class="home text-left">
-    <h3 class="home text-center">
+  <div class="about text-left">
+    <h3 class="text-center">
       {{ t('AboutPageTitle') }}
     </h3>
     <template v-if="pageContent">

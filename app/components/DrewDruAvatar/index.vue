@@ -23,7 +23,7 @@
         class="size-30 ring ring-default ring-offset-3 ring-offset-bg"
         :srcset="drewdruAvatarSrcset"
         :class="{ 'animate-bounce-once': isBouncing }"
-        alt="Drew Dru by #Bakery #canada_cho_nado Telegram: https://t.me/bakery_3112 VK: https://vk.com/bakery_3112 VK donut: https://vk.com/donut/bakery_3112 Derpibooru: https://derpibooru.org/profiles/Bakery X: https://x.com/Bakery3112 Boosty: https://boosty.to/bakery3112"
+        alt="Drew Dru by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)"
         src="/img/avatars/drewdru.png"
         @click="toggleMirror"
       />
@@ -56,7 +56,7 @@
         class="size-30 ring ring-default ring-offset-3 ring-offset-bg"
         :srcset="drewdruAvatarSrcset"
         :class="{ 'animate-bounce-once': isBouncing }"
-        alt="Drew Dru by #Bakery #canada_cho_nado Telegram: https://t.me/bakery_3112 VK: https://vk.com/bakery_3112 VK donut: https://vk.com/donut/bakery_3112 Derpibooru: https://derpibooru.org/profiles/Bakery X: https://x.com/Bakery3112 Boosty: https://boosty.to/bakery3112"
+        alt="Drew Dru by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)"
         src="/img/avatars/drewdru.png"
       />
 
