@@ -88,6 +88,9 @@
   --ui-warning: #d6a629;
   --ui-error: #c74b6a;
   --ui-info: #6c63d9;
+
+  --fantasy-color: #320060;
+  --fantasy-color-soft: #510D91;
 }
 
 .dark {
@@ -113,4 +116,7 @@
   --ui-warning: #f2d06b;
   --ui-error: #ff8aa4;
   --ui-info: #a6b3ff;
+
+  --fantasy-color: #d8b45c;
+  --fantasy-color-soft: #f2ddb0;
 }

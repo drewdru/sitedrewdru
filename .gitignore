@@ -1,3 +1,6 @@
+# large images
+public/img/gallery
+
 # Nuxt dev/build outputs
 .output
 .data

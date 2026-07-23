@@ -144,24 +144,18 @@ const RUNTIME_CONFIG = {
   isDebug,
   isDebugLogin,
   enviroment: ENVIROMENT,
+  lastFmApiKey: import.meta.env.LAST_FM_API_KEY ?? UNSET_REQUIRED_VALUE,
   public: {
     isDebug,
     isDebugLogin
   }
 }
 export default defineNuxtConfig({
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/ui',
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-    '@nuxt/image',
-    '@nuxtjs/robots',
-    '@nuxtjs/sitemap',
-    'nuxt-svgo',
-    'motion-v/nuxt'
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', '@nuxtjs/robots', '@nuxtjs/sitemap', 'nuxt-svgo', 'motion-v/nuxt', '@pinia/nuxt', '@vueuse/nuxt'],
 
+  components: [
+    { path: '~/components', extensions: ['vue', 'tsx'] }
+  ],
   devtools: {
     enabled: isDebugTools
   },
@@ -195,6 +189,11 @@ export default defineNuxtConfig({
   css: ['~/assets/css/tailwind.css'],
 
   site: { url: 'https://drewdru.com', name: 'DrewDru' },
+  content: {
+    renderer: {
+      anchorLinks: false
+    }
+  },
 
   runtimeConfig: RUNTIME_CONFIG,
 
@@ -260,5 +259,4 @@ export default defineNuxtConfig({
     autoImportPath: false,
     svgo: true
   }
-
 })

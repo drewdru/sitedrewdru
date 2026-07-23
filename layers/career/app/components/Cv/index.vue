@@ -36,12 +36,11 @@
 </template>
 
 <script setup lang="ts">
-import { careerSocialLinks } from '~~/layers/core/app/utils/socialLinks/careerSocialLinks'
+import { careerSocialLinks } from '~~/layers/core/app/utils/constants/socialLinks/careerSocialLinks'
 import { useContentByLocale } from '~~/layers/core/app/composables/contentByLocale'
-import MotionProfileHeader from '~~/layers/uikit/app/components/Motion/MotionProfileHeader/index.vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const { global } = useAppConfig()
 
-const { data: pageContent } = await useContentByLocale('profile', 'andrew_ovsyannikov')
+const { data: pageContent } = await useContentByLocale('profile', 'andrew_ovsyannikov', locale)
 </script>

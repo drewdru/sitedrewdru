@@ -10,6 +10,9 @@
           variant="ghost"
           :model-value="locale"
           :locales="(locales as Locale<any>[])"
+          :ui="{
+            trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200'
+          }"
           @update:model-value="setLocale($event as typeof locale)"
         />
         <UColorModeButton />
@@ -59,4 +62,8 @@ import type { Locale } from '@nuxt/ui'
 import AppLogo from '~~/layers/uikit/app/components/AppLogo/index.vue'
 
 const { locale, setLocale, locales } = useI18n()
+useHead({
+  htmlAttrs: { lang: locale.value },
+  titleTemplate: 'Drew Dru - %s'
+})
 </script>

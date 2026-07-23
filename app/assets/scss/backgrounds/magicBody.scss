@@ -1,0 +1,159 @@
+.magic-body {
+  min-height: 100vh;
+  background: var(--ui-bg);
+
+  position: relative;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: -8%;
+    background-image:
+      radial-gradient(
+        var(--fantasy-color),
+        color-mix(in srgb, var(--fantasy-color-soft) 30%, transparent) 2px,
+        transparent 31px
+      ),
+      radial-gradient(
+        ellipse at center,
+        var(--fantasy-color),
+        color-mix(in srgb, var(--fantasy-color-soft) 25%, transparent) 1.3px,
+        transparent 47px
+      ),
+      radial-gradient(
+        var(--fantasy-color),
+        color-mix(in srgb, var(--fantasy-color-soft) 20%, transparent) 2.6px,
+        transparent 36px
+      ),
+      radial-gradient(
+        ellipse at center,
+        color-mix(in srgb, var(--fantasy-color-soft) 40%, transparent),
+        color-mix(in srgb, var(--fantasy-color) 20%, transparent) 0.9px,
+        transparent 53px
+      ),
+      radial-gradient(
+        ellipse at center,
+        color-mix(in srgb, var(--fantasy-color-soft) 40%, transparent),
+        color-mix(in srgb, var(--fantasy-color) 20%, transparent) 0.9px,
+        transparent 53px
+      );
+
+    background-size:
+      587px 541px,
+      331px 377px,
+      257px 239px,
+      163px 181px,
+      433px 541px;
+
+    background-position:
+      13px 41px,
+      182px 67px,
+      91px 311px,
+      244px 149px;
+
+    animation:
+      fantasyBackgroundPulse 8s cubic-bezier(.42,0,.22,1) infinite,
+      fantasyBackgroundMove 111s cubic-bezier(.32,0,.12,1) infinite alternate,
+      fantasyBackgroundFloat 111s cubic-bezier(.52,0,.32,1) infinite alternate;
+
+    animation-timing-function:
+      ease,
+      cubic-bezier(.6,0,.3,1),
+      cubic-bezier(.52,0,.32,1);
+
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--ui-bg) 60%, transparent),
+      color-mix(in srgb, var(--ui-bg-accented) 60%, transparent)
+    );
+    z-index: -2;
+  }
+}
+
+@keyframes fantasyBackgroundPulse {
+  0%,
+  100% {
+    opacity: .55;
+    filter: brightness(.8);
+  }
+
+  50% {
+    opacity: 1;
+    filter: brightness(1.35);
+  }
+}
+
+@keyframes fantasyBackgroundMove {
+  0% {
+    background-position:
+      0 0,
+      40px 60px,
+      130px 270px,
+      70px 100px;
+  }
+
+  18% {
+    background-position:
+      18px -12px,
+      25px 80px,
+      170px 230px,
+      95px 70px;
+  }
+
+  37% {
+    background-position:
+      -5px 30px,
+      60px 45px,
+      150px 190px,
+      120px 110px;
+  }
+
+  61% {
+    background-position:
+      40px 10px,
+      -10px 100px,
+      220px 210px,
+      130px 30px;
+  }
+
+  83% {
+    background-position:
+      60px 55px,
+      -35px 135px,
+      190px 170px,
+      170px 50px;
+  }
+
+  100% {
+    background-position:
+      80px 40px,
+      -40px 120px,
+      200px 180px,
+      150px 40px;
+  }
+}
+
+@keyframes fantasyBackgroundFloat {
+  0% {
+    transform: translate(0,0) rotate(0deg) scale(1);
+  }
+
+  30% {
+    transform: translate(-8px,12px) rotate(.3deg) scale(1.01);
+  }
+
+  70% {
+    transform: translate(12px,-10px) rotate(-.2deg) scale(.995);
+  }
+
+  100% {
+    transform: translate(25px,8px) rotate(.4deg) scale(1.015);
+  }
+}
