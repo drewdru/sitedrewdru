@@ -42,13 +42,15 @@
             </template>
             <template #default>
               <MotionCard
-                class="my-5 lg:my-0"
+                class="my-5 lg:my-0 p-0 test"
                 :bubble-right="true"
+                card-body-class="lg:p-0"
               >
                 <UScrollArea
+                  :key="route.fullPath"
                   shadow
-                  class="p-1 sm:p-1 md:p-1 lg:p-1 h-full lg:h-[calc(100vh-12rem)]"
-                  :ui="{ viewport: 'gap-4' }"
+                  class="p-1 sm:p-1 md:p-1 lg:p-1 h-full lg:h-[calc(100vh-9rem)]"
+                  :ui="{ viewport: 'gap-4 lg:p-6' }"
                 >
                   <slot />
                 </UScrollArea>

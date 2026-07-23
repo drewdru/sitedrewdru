@@ -17,7 +17,11 @@
         delay
       }"
     >
-      <UCard>
+      <UCard
+        :ui="{
+          body: cardBodyClass
+        }"
+      >
         <slot />
       </UCard>
     </Motion>
@@ -33,6 +37,10 @@ defineProps({
   bubbleRight: {
     type: Boolean,
     default: false
+  },
+  cardBodyClass: {
+    type: String,
+    default: ''
   }
 })
 </script>
