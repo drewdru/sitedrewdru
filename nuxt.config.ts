@@ -214,7 +214,6 @@ export default defineNuxtConfig({
     },
     openAPI: {
       production: false,
-      route: '/docs/_openapi.json',
       ui: {
         scalar: {
           darkMode: true,
