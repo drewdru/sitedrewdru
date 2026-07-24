@@ -29,7 +29,7 @@ size: 600
 - I enjoy polishing things until they feel just right, Whether it's code or a creative project.
 - Sweets are one of my greatest weaknesses (っˆڡˆς)
 - I fear of heights and spiders.
-- I especially drawn to fictional worlds with rich settings, memorable characters, interesting mechanics with topics like identity, technology, philosophy, and society.
+- I especially drawn to fictional worlds with rich settings, memorable characters with topics like identity, technology, philosophy, and society.
 
 ::ContentImgSeparator
 ---
