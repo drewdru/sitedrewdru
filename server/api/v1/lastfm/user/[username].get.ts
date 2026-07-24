@@ -49,3 +49,26 @@ export default defineCachedEventHandler(
     }
   }
 )
+
+defineRouteMeta({
+  openAPI: {
+    tags: ['API / v1 / lastfm / user'],
+    summary: 'Get recent Last.fm tracks',
+    description: 'Returns recent tracks listened by a Last.fm user',
+    parameters: [
+      {
+        name: 'username',
+        in: 'path',
+        required: true,
+        schema: {
+          type: 'string'
+        }
+      }
+    ],
+    responses: {
+      200: {
+        description: 'Recent tracks'
+      }
+    }
+  }
+})

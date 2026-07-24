@@ -1,0 +1,15 @@
+x-shared-env: &shared-env
+  environment:
+    DATA_DIR: ${DATA_DIR}
+    PG_DB: ${PG_DB}
+    PG_PASS: ${PG_PASS}
+    PG_USER: ${PG_USER}
+    PG_LOCAL_PORT: ${PG_LOCAL_PORT}
+    DATABASE_URL: ${DATABASE_URL}
+
+services:
+  postgres:
+    restart: always
+    <<: *shared-env
+    volumes: 
+      - "${DATA_DIR}/.local_data/postgresql:/var/lib/postgresql/data"

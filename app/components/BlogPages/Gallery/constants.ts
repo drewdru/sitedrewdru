@@ -24,7 +24,7 @@ export const gallery = [
   {
     type: 'youtube',
     src: '/img/gallery/drawn_for_me/2023_8_Drew_Dru_by_Canada_(Хлебушек)_32_drewkisser.webp',
-    alt: 'Drew Dru kisser by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)',
+    alt: '[Youtube Video](https://www.youtube.com/watch?v=x0vC-wR2P6M) Drew Dru kisser by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)',
     author: 'Bakery',
     category: 'drawnForMe',
     link: 'https://www.youtube.com/watch?v=x0vC-wR2P6M'
@@ -32,7 +32,7 @@ export const gallery = [
   {
     type: 'youtube',
     src: '/img/gallery/drawn_for_me/2022_3_Drew_Dru_by_Canada_(Хлебушек).png',
-    alt: 'Umpapa with Drew Dru by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)',
+    alt: '[Youtube Video](https://www.youtube.com/watch?v=6ZRxaa9YyiM) Umpapa with Drew Dru by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)',
     author: 'Bakery',
     category: 'drawnForMe',
     link: 'https://www.youtube.com/watch?v=6ZRxaa9YyiM'
@@ -40,7 +40,7 @@ export const gallery = [
   {
     type: 'youtube',
     src: '/img/gallery/digital_art/drewdru_2018_4_ball.png',
-    alt: 'Pony town ball with friends',
+    alt: '[Youtube Video](https://www.youtube.com/watch?v=K_ZpWL9iIMo) Pony town ball with friends by Drew Dru',
     author: 'Drew Dru',
     category: 'myArt',
     link: 'https://www.youtube.com/watch?v=K_ZpWL9iIMo'

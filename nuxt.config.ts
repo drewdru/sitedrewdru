@@ -151,7 +151,7 @@ const RUNTIME_CONFIG = {
   }
 }
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', '@nuxtjs/robots', '@nuxtjs/sitemap', 'nuxt-svgo', 'motion-v/nuxt', '@pinia/nuxt', '@vueuse/nuxt', '@scalar/nuxt'],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', '@nuxtjs/robots', '@nuxtjs/sitemap', 'nuxt-svgo', 'motion-v/nuxt', '@pinia/nuxt', '@vueuse/nuxt'],
 
   components: [
     { path: '~/components', extensions: ['vue', 'tsx'] },
@@ -208,6 +208,27 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2025-01-15',
+  nitro: {
+    experimental: {
+      openAPI: true
+    },
+    openAPI: {
+      production: false,
+      route: '/docs/_openapi.json',
+      ui: {
+        scalar: {
+          darkMode: true,
+          url: '/docs/_openapi.json',
+          route: '/docs'
+        }
+      },
+      meta: {
+        title: 'Personal Site API',
+        description: 'API documentation for my pesronal site',
+        version: '1.0.0'
+      }
+    }
+  },
 
   vite: {
     optimizeDeps: {

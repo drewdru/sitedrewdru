@@ -1,0 +1,9 @@
+datasource db {
+    provider = "postgresql"
+}
+
+generator client {
+    provider = "prisma-client"
+    previewFeatures = ["views", "typedSql"]
+    output   = "../app/generated/prisma"
+}

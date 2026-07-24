@@ -59,7 +59,7 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
-const { data } = await useFetch(`/api/lastfm/user/drew-dru`)
+const { data } = await useFetch(`/api/v1/lastfm/user/drew-dru`)
 const tracks = (data.value?.recenttracks?.track ?? []).map(
   item => ({
     name: item.artist?.['#text'],
