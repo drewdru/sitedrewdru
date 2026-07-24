@@ -15,7 +15,7 @@
       </UButton>
     </div>
     <UScrollArea
-      v-slot="{ item }"
+      v-slot="{ item, index }"
       :items="filteredGallery"
       orientation="vertical"
       :virtualize="{
@@ -32,13 +32,14 @@
         variant="soft"
       >
         <template #default>
-          <MotionZoomImg
+          <MotionZoomImgPreview
             v-if="item.type === 'img'"
             :src="item.src"
             :alt="item.alt"
             :size="{ sm: 200, md: 200, xl: 200, lg: 200 }"
             lazy
             img-class="w-full"
+            @open="onZoomed(index)"
           />
           <UButton
             v-else-if="item.type === 'youtube'"
@@ -54,7 +55,7 @@
               :src="item.src"
               :alt="item.alt"
               img-class="w-full"
-            />
+            >
           </UButton>
           <div
             v-if="item.label"
@@ -71,6 +72,26 @@
         </template>
       </UCard>
     </UScrollArea>
+    <MotionZoomImgModal
+      v-model:open="isZoomed"
+      :alt="currentImage?.alt"
+      :src="currentImage?.src ?? ''"
+    >
+      <template #previos>
+        <UButton
+          variant="ghost"
+          icon="i-lucide-chevron-left"
+          @click="onPrevious"
+        />
+      </template>
+      <template #next>
+        <UButton
+          variant="ghost"
+          icon="i-lucide-chevron-right"
+          @click="onNext"
+        />
+      </template>
+    </MotionZoomImgModal>
   </div>
 </template>
 
@@ -105,5 +126,26 @@ const filteredGallery = computed(() => {
 
 const setCategory = (category: GalleryCategory) => {
   selectedCategory.value = category.key
+}
+
+const zoomIndex = ref(0)
+const isZoomed = ref(false)
+const onZoomed = (index: number) => {
+  isZoomed.value = true
+  zoomIndex.value = index
+}
+
+const currentImage = computed(() =>
+  filteredGallery.value.at(zoomIndex.value)
+)
+
+const onPrevious = () => {
+  zoomIndex.value = (zoomIndex.value - 1 + filteredGallery.value.length)
+    % filteredGallery.value.length
+}
+
+const onNext = () => {
+  zoomIndex.value = (zoomIndex.value + 1)
+    % filteredGallery.value.length
 }
 </script>

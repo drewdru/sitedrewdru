@@ -151,10 +151,16 @@ const RUNTIME_CONFIG = {
   }
 }
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', '@nuxtjs/robots', '@nuxtjs/sitemap', 'nuxt-svgo', 'motion-v/nuxt', '@pinia/nuxt', '@vueuse/nuxt'],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', '@nuxtjs/robots', '@nuxtjs/sitemap', 'nuxt-svgo', 'motion-v/nuxt', '@pinia/nuxt', '@vueuse/nuxt', '@scalar/nuxt'],
 
   components: [
-    { path: '~/components', extensions: ['vue', 'tsx'] }
+    { path: '~/components', extensions: ['vue', 'tsx'] },
+    {
+      path: '~~/layers/uikit/app/components/Prose',
+      prefix: 'Prose',
+      extensions: ['vue', 'tsx'],
+      global: true
+    }
   ],
   devtools: {
     enabled: isDebugTools
