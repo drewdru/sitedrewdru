@@ -4,7 +4,7 @@
     :columns="[
       {
         accessorKey: 'field',
-        header: '',
+        header: undefined,
         cell: ({ row }) => h(
           'span',
           { class: 'font-semibold text' },
@@ -18,7 +18,7 @@
       },
       {
         accessorKey: 'value',
-        header: ''
+        header: undefined
       }
     ]"
   />

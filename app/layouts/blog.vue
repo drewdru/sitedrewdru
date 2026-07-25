@@ -9,7 +9,7 @@
         class="h-full"
         :ui="{
           title: 'font-heading',
-          container: 'py-0 sm:py-0 lg:py-0 sm:px-0',
+          container: 'py-0 sm:py-0 lg:py-0 sm:px-0 lg:px-4',
           body: 'p-0 my-5'
         }"
       >
@@ -23,9 +23,9 @@
             class="h-full"
             :ui="{
               root: 'lg:gap-0',
-              left: 'order-1',
-              center: 'order-2',
-              right: 'order-3 lg:px-0'
+              left: 'order-1 lg:p-0 lg:pl-4 lg:width-[13rem]',
+              center: 'order-2 lg:px-4',
+              right: 'order-3 lg:p-0 lg:width-[13rem]'
             }"
           >
             <template #left>
@@ -41,16 +41,28 @@
               </UContainer>
             </template>
             <template #default>
+              <UScrollArea
+                v-if="isGuestbookPage || isGalleryPage"
+                ref="scrollArea"
+                :key="route.path"
+                shadow
+                class="p-1 sm:p-1 md:p-1 lg:p-1 h-full lg:h-[calc(100vh-9rem)]"
+                :ui="{ viewport: 'blog-scrollArea-viewport gap-4 p-1 lg:p-1' }"
+              >
+                <slot />
+              </UScrollArea>
               <MotionCard
-                class="my-5 lg:my-0 p-0 test"
+                v-else
+                class="my-5 lg:my-0 px-0 lg:px-1"
                 :bubble-right="true"
-                card-body-class="lg:p-0"
+                card-body-class="lg:px-0"
               >
                 <UScrollArea
-                  :key="route.fullPath"
+                  ref="scrollArea"
+                  :key="route.path"
                   shadow
-                  class="p-1 sm:p-1 md:p-1 lg:p-1 h-full lg:h-[calc(100vh-9rem)]"
-                  :ui="{ viewport: 'gap-4 lg:p-6' }"
+                  class="px-1 sm:px-1 md:px-1 lg:px-1 h-full lg:h-[calc(100vh-12rem)]"
+                  :ui="{ viewport: 'blog-scrollArea-viewport gap-4 lg:px-6' }"
                 >
                   <slot />
                 </UScrollArea>
@@ -128,9 +140,19 @@ import { blogNavigation } from '~~/layers/core/app/utils/constants/navigation/bl
 const localePath = useLocalePath()
 const { t, locale, setLocale, locales } = useI18n()
 const route = useRoute()
+const scrollArea = useTemplateRef('scrollArea')
+
+provide('scrollToTop', async () => {
+  scrollArea.value?.$el?.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+})
 
 const isHomePage = computed(() => route.name?.toString().startsWith('index'))
 const isAboutPage = computed(() => route.name?.toString().startsWith('about'))
+const isGuestbookPage = computed(() => route.name?.toString().startsWith('guestbook'))
+const isGalleryPage = computed(() => route.name?.toString().startsWith('gallery'))
 
 const blogLinks = computed(() =>
   blogNavigation.map(item => ({

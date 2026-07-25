@@ -29,7 +29,7 @@
         :ui="{
           body: 'h-full flex flex-col gap-2'
         }"
-        variant="soft"
+        variant="subtle"
       >
         <template #default>
           <MotionZoomImgPreview

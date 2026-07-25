@@ -4,13 +4,14 @@
 
 <template>
   <div class="gallery text-left">
-    <h3 class="text-center mb-4">
-      {{ t('GalleryPageTitle') }}
-    </h3>
-
-    <p class="mb-4">
-      {{ t('GalleryPageDescription') }}
-    </p>
+    <UContainer>
+      <h3 class="text-center mb-4">
+        {{ t('GalleryPageTitle') }}
+      </h3>
+      <p class="mb-4">
+        {{ t('GalleryPageDescription') }}
+      </p>
+    </UContainer>
     <ImageGroup
       :gallery="gallery"
       :categories="categories"

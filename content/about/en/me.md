@@ -16,6 +16,7 @@ You'll see my ponysona throughout the site. After I watched MLP, it was so aweso
 src: /img/transparent/cutie_mark.png
 alt: Cutie mark by Drew Dru
 size: 600
+imgClass: w-full
 ---
 ::
 
