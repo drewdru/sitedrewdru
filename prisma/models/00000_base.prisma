@@ -5,5 +5,10 @@ datasource db {
 generator client {
     provider = "prisma-client"
     previewFeatures = ["views", "typedSql"]
-    output   = "../app/generated/prisma"
+    output   = "../shared/generated/prisma"
+}
+
+generator zod {
+    provider = "prisma-zod-generator"
+    output   = "../shared/generated/schemas"
 }

@@ -1,4 +1,4 @@
-import { safeJsonParse } from './layers/core/app/utils/stringTransform'
+import { safeJsonParse } from './shared/utils/stringTransform'
 
 const UNSET_REQUIRED_VALUE = 'NOT-SET'
 const ENVIROMENT = import.meta.env.NODE_ENV ?? 'development'
@@ -233,11 +233,18 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: [
         '@vue/devtools-core',
-        '@vue/devtools-kit'
+        '@vue/devtools-kit',
+        'zod/v4'
       ]
     },
     server: {
-      allowedHosts: true
+      allowedHosts: [
+        'localhost',
+        '127.0.0.1',
+        'drewdru.local',
+        'career.drewdru.local',
+        'projects.drewdru.local'
+      ]
     }
   },
 
@@ -256,9 +263,10 @@ export default defineNuxtConfig({
       useCookie: true,
       alwaysRedirect: true
     },
+    langDir: 'locales',
     locales: [
-      { code: 'en', name: 'English' },
-      { code: 'ru', name: 'Русский' }
+      { code: 'en', name: 'English', file: 'en.ts' },
+      { code: 'ru', name: 'Русский', file: 'ru.ts' }
     ]
   },
 

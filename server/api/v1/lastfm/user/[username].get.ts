@@ -1,12 +1,19 @@
-import { validateFetchResponse } from '~~/layers/core/app/utils/validateFetchError'
+import { z } from 'zod/v4'
+
+import { validateRouterParams } from '~~/server/utils/validators/pathParams'
+
+const paramsSchema = z.object({
+  username: z.string().meta({
+    description: 'LastFm username',
+    example: 'username'
+  })
+})
 
 export default defineCachedEventHandler(
   async (event) => {
     const config = useRuntimeConfig()
-    const username = getRouterParam(event, 'username')
-    if (!username) {
-      throw createError({ statusCode: 404 })
-    }
+    const { username } = await validateRouterParams(event, paramsSchema)
+
     try {
       const response = await fetch(
         `http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${
@@ -32,10 +39,10 @@ export default defineCachedEventHandler(
         },
         '@attr': {
           user: 'drew-dru',
-          totalPages: '7650',
+          totalPages: '0',
           page: '1',
           perPage: '50',
-          total: '382471'
+          total: '0'
         }
       }
     }

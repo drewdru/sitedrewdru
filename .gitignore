@@ -29,5 +29,5 @@ logs
 
 #local files
 .local_data/
-app/generated/prisma
+shared/generated/
 prisma/schema.prisma

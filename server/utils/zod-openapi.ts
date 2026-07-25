@@ -4,7 +4,18 @@ export function zodToOpenApiSchema(
   schema: z.ZodType
 ) {
   const jsonSchema = z.toJSONSchema(schema, {
-    io: 'input'
+    io: 'input',
+    unrepresentable: 'any',
+    override: (ctx) => {
+      if (ctx.zodSchema._zod?.def?.type === 'date') {
+        ctx.jsonSchema.type = 'string'
+        ctx.jsonSchema.format = 'date-time'
+      }
+      if (ctx.zodSchema._zod?.def?.type === 'bigint') {
+        ctx.jsonSchema.type = 'string'
+        ctx.jsonSchema.pattern = '^[0-9]+$'
+      }
+    }
   })
 
   delete jsonSchema.$schema

@@ -1,5 +1,5 @@
 import { PrismaPg } from '@prisma/adapter-pg'
-import { PrismaClient } from '../../app/generated/prisma/client'
+import { PrismaClient } from '~~/shared/generated/prisma/client'
 
 const prismaClientSingleton = () => {
   const pool = new PrismaPg({
