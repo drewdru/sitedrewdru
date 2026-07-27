@@ -1,5 +1,8 @@
 import { z } from 'zod/v4'
 
+import { GuestbookMessageSchema } from '~~/shared/generated/schemas/models'
+import { paginationSchema } from '~~/shared/schemas/pagination'
+
 export const DEFAULT_PAGE_SIZE = 10
 export const querySchema = z.object({
   page: z.coerce.number().int().min(1).optional().default(1).meta({
@@ -26,5 +29,13 @@ export const bodySchema = z.object({
     example: 'Hello from my guestbook!'
   })
 })
-
 export type BodySchema = z.infer<typeof bodySchema>
+
+export const GuestbookMessageResponseSchema = GuestbookMessageSchema.extend({
+  createdAt: z.iso.datetime()
+})
+export const responseGetSchema = z.object({
+  data: z.array(GuestbookMessageResponseSchema),
+  pagination: paginationSchema
+})
+export type ResponseGetSchema = z.infer<typeof responseGetSchema>

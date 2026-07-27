@@ -1,5 +1,4 @@
-import { GuestbookMessageSchema } from '~~/shared/generated/schemas/models'
-import { bodySchema } from '~~/shared/schemas/guestbook/messages'
+import { bodySchema, GuestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages'
 
 import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestBody } from '~~/server/utils/validators/body'
@@ -7,7 +6,6 @@ import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
 
 export default defineEventHandler(async (event) => {
   const { name, message, contact } = await validateRequestBody(event, bodySchema)
-
   const data = await prisma.guestbookMessage.create({
     data: {
       name,
@@ -32,7 +30,7 @@ defineApiMeta(
   {
     body: zodToOpenApiSchema(bodySchema),
     responses: {
-      201: zodToOpenApiSchema(GuestbookMessageSchema)
+      201: zodToOpenApiSchema(GuestbookMessageResponseSchema)
     }
   }
 )

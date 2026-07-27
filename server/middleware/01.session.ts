@@ -50,7 +50,6 @@ export default defineEventHandler({
   handler: async (event) => {
     const config = useRuntimeConfig()
     let sid = getCookie(event, 'sid')
-
     if (event.path.startsWith('/api/v')) {
       event.context.sessionData = await getSessionData(
         sid,

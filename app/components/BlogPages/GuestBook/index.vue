@@ -80,6 +80,7 @@
       </MotionCard>
       <AnimatedLoader :loading="sending || pending">
         <UPagination
+          v-show="data !== undefined"
           v-model:page="page"
           :total="data?.pagination.total"
           :sibling-count="1"
@@ -96,19 +97,26 @@
 
 <script setup lang="ts">
 import { useTimeAgo } from '@vueuse/core'
-import { type BodySchema, bodySchema } from '~~/shared/schemas/guestbook/messages'
+import { type BodySchema, bodySchema, type ResponseGetSchema } from '~~/shared/schemas/guestbook/messages'
 
 const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
+const toast = useToast()
 const scrollToTop = inject<() => void>('scrollToTop')
 const form = useTemplateRef('guestbookform')
 
+const data = ref<ResponseGetSchema | undefined>(undefined)
+const pending = ref(true)
+const sending = ref(false)
+const state = reactive<BodySchema>({
+  name: '',
+  contact: '',
+  message: ''
+})
+
 const page = computed({
-  get: () => {
-    scrollToTop?.()
-    return Number(route.query.page || 1)
-  },
+  get: () => Number(route.query.page || 1),
   set: (value) => {
     router.replace({
       query: {
@@ -119,21 +127,20 @@ const page = computed({
   }
 })
 
-const sending = ref(false)
-const state = reactive<BodySchema>({
-  name: '',
-  contact: '',
-  message: ''
-})
 const onSubmit = async () => {
   sending.value = true
 
   try {
-    const newMessage = await $fetch('/api/v1/guestbook/messages', {
+    const response = await fetch('/api/v1/guestbook/messages', {
       method: 'POST',
-      body: state,
-      credentials: 'include'
+      body: JSON.stringify(state),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      }
     })
+    await validateFetchResponse(response)
+    const newMessage = await response.json()
 
     state.name = ''
     state.contact = ''
@@ -150,15 +157,48 @@ const onSubmit = async () => {
         ]
       }
     }
+  } catch (error: any) {
+    toast.add({
+      title: t('Error'),
+      description: t(`validation.${error?.data?.errorCode ?? 'SomethingWentWrong'}`),
+      color: 'error',
+      icon: 'i-lucide-circle-alert'
+    })
+    form.value?.setErrors((error?.data?.errors ?? []).map((item: {name: string, message: string}) => ({
+      ...item,
+      message: t(`validation.${item.message}`)
+    })))
   } finally {
     sending.value = false
   }
 }
 
-const { data, pending, refresh } = await useFetch(`/api/v1/guestbook/messages`, {
-  query: computed(() => ({
-    page: page.value
-  })),
-  credentials: 'include'
+const refresh = async () => {
+  pending.value = true
+  try {
+    const response = await fetch(`/api/v1/guestbook/messages?page=${page.value}`, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    await validateFetchResponse(response)
+    data.value = await response.json()
+  } catch (error: any) {
+    toast.add({
+      title: t('ErrorLoadingData'),
+      description: t(`validation.${error?.data?.errorCode ?? 'SomethingWentWrong'}`),
+      color: 'error',
+      icon: 'i-lucide-circle-alert'
+    })
+  } finally {
+    pending.value = false
+  }
+}
+
+onMounted(() => refresh())
+watch(page, () => {
+  scrollToTop?.()
+  refresh()
 })
 </script>
