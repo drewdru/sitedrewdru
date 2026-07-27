@@ -1,3 +1,8 @@
 GuestBookPageTitle: Гостевая книга
 GuestBookPageDescription: Гостевая книга
 
+FormName: Имя
+FormHandleOptional: Юзернейм (опционально)
+FormHandleOptionalPlaceholder: ИД в мессенджерах и соцсетях, email...
+FormMessage: Сообщение
+PostMessage: Опубликовать сообщение

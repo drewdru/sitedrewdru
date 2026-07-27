@@ -1,5 +1,5 @@
 model GuestbookMessage {
-  id String  @id @db.Uuid @default(uuid())
+  id String  @id @db.Uuid @default(dbgenerated("uuidv7()"))
   message String @db.VarChar(500)
   name String @db.VarChar(25)
   contact String?  @db.VarChar(50)

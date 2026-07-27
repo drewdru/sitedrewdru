@@ -1,12 +1,13 @@
 import type { OpenAPIV3 } from 'openapi-types'
 
-import type { ApiMetaInput } from './zod-openapi'
-import { normalizeApiMeta } from './zod-openapi'
+import type { ApiMetaInput } from './zod/zodToOpenApi'
+import { normalizeApiMeta } from './zod/zodToOpenApi'
 
 export interface ApiMeta {
   parameters?: OpenAPIV3.ParameterObject[]
   requestBody?: OpenAPIV3.RequestBodyObject
-  responses?: Record<string, OpenAPIV3.ResponsesObject>
+  responses?: OpenAPIV3.ResponsesObject
+  security?: OpenAPIV3.SecurityRequirementObject[]
 }
 
 const registry = new Map<string, ApiMeta>()

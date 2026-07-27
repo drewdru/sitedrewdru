@@ -1,2 +1,8 @@
 GuestBookPageTitle: Guestbook
 GuestBookPageDescription: Guestbook
+
+FormName: Name
+FormHandleOptional: Handle (optional)
+FormHandleOptionalPlaceholder: Messenger, social media, email..
+FormMessage: Message
+PostMessage: Post message
