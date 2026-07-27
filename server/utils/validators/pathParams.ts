@@ -1,5 +1,7 @@
 import type { H3Event } from 'h3'
 import type { ZodType, z } from 'zod/v4'
+import { formatZodErrors } from '../zod/formatErrors'
+import { validationError } from '../errors'
 
 export async function validateRouterParams<T extends ZodType>(
   event: H3Event,
@@ -9,20 +11,8 @@ export async function validateRouterParams<T extends ZodType>(
     event,
     schema.safeParse
   )
-
   if (error) {
-    const errors: Record<string, string> = {}
-
-    for (const issue of error.issues) {
-      const field = issue.path.join('.')
-
-      if (field && !errors[field]) {
-        errors[field] = issue.message
-      }
-    }
-
-    throw Errors.validation('Invalid router parameters', { error, errors })
+    throw validationError('Invalid router parameters', formatZodErrors(error))
   }
-
   return data
 }

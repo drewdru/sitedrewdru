@@ -15,11 +15,22 @@ export default defineEventHandler(async () => {
     }
     spec.paths[path][method] = {
       ...spec.paths[path][method],
-      ...meta
+      ...meta,
+      security: meta.security ?? spec.paths[path][method].security
     }
   }
   return {
     ...spec,
-    servers: [] // allow both { url: 'http://127.0.0.1:3000' }, { url: 'http://localhost:3000' }
+    servers: [{ url: '' }, { url: 'http://127.0.0.1:3000' }, { url: 'http://localhost:3000' }],
+    components: {
+      securitySchemes: {
+        serverApiKey: {
+          description: 'SSR server API key',
+          type: 'apiKey',
+          name: 'authorization',
+          in: 'header'
+        }
+      }
+    }
   }
 })

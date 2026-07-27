@@ -1,49 +1,55 @@
 import type { H3Event } from 'h3'
 import type { ZodType, z } from 'zod/v4'
 
+import { formatZodErrors } from '../zod/formatErrors'
+import { validationError } from '../errors'
+
+type FormDataValue = string | {
+  filename: string
+  type?: string
+  data: Buffer
+}
+
+async function readFormData(event: H3Event): Promise<Record<string, FormDataValue>> {
+  const contentType = getHeader(event, 'content-type') || ''
+
+  if (!contentType.includes('multipart/form-data')) {
+    return await readBody(event)
+  }
+
+  const form = await readMultipartFormData(event)
+
+  const data: Record<string, FormDataValue> = {}
+
+  for (const field of form ?? []) {
+    if (!field.name) {
+      continue
+    }
+
+    if (field.filename) {
+      data[field.name] = {
+        filename: field.filename,
+        type: field.type,
+        data: field.data
+      }
+    } else {
+      data[field.name] = field.data?.toString() ?? ''
+    }
+  }
+
+  return data
+}
+
 export async function validateFormData<T extends ZodType>(
   event: H3Event,
   schema: T
 ): Promise<z.infer<T>> {
-  const contentType = getHeader(event, 'content-type') || ''
-  let formData: Record<string, string | File> = {}
-
-  if (contentType.includes('multipart/form-data')) {
-    const form = await readMultipartFormData(event)
-
-    if (form) {
-      for (const field of form) {
-        if (!field.name) continue
-
-        if (field.filename) {
-          formData[field.name] = new File(
-            [new Uint8Array(field.data)],
-            field.filename,
-            { type: field.type || 'application/octet-stream' }
-          )
-        } else {
-          formData[field.name] = field.data?.toString() || ''
-        }
-      }
-    }
-  } else {
-    formData = await readBody(event)
-  }
+  const formData = await readFormData(event)
 
   const { data, error } = schema.safeParse(formData)
 
   if (error) {
-    const errors: Record<string, string> = {}
-
-    for (const issue of error.issues) {
-      const field = issue.path.join('.')
-
-      if (field && !errors[field]) {
-        errors[field] = issue.message
-      }
-    }
-
-    throw Errors.validation('Invalid form data', { error, errors })
+    throw validationError('Invalid form data', formatZodErrors(error))
   }
 
   return data
