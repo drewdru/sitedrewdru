@@ -1,15 +1,30 @@
-x-shared-env: &shared-env
+x-common-env: &common-env
+  DATA_DIR: ${DATA_DIR}
+
+x-postgres-env: &postgres-env
   environment:
-    DATA_DIR: ${DATA_DIR}
+    <<: *common-env
     PG_DB: ${PG_DB}
     PG_PASS: ${PG_PASS}
     PG_USER: ${PG_USER}
     PG_LOCAL_PORT: ${PG_LOCAL_PORT}
     DATABASE_URL: ${DATABASE_URL}
 
+x-redis-env: &redis-env
+  environment:
+    <<: *common-env
+    REDIS_PASSWORD: ${REDIS_PASSWORD}
+    REDIS_LOCAL_PORT: ${REDIS_LOCAL_PORT}
+
 services:
   postgres:
     restart: always
-    <<: *shared-env
+    <<: *postgres-env
     volumes: 
       - "${DATA_DIR}/.local_data/postgresql:/var/lib/postgresql/data"
+
+  redis:
+    restart: always
+    <<: *redis-env
+    volumes: 
+      - "${DATA_DIR}/.local_data/redis:/data/"

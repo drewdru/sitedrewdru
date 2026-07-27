@@ -15,3 +15,18 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  redis:
+    image: redis:8-alpine
+    command:
+      - redis-server
+      - /data/redis.conf
+      - --requirepass ${REDIS_PASSWORD-password}
+    volumes:
+      - ./docs/redis/redis.conf:/data/redis.conf
+    ports:
+      - '${REDIS_LOCAL_PORT-16379}:6379'
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
