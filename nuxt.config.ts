@@ -145,6 +145,11 @@ const RUNTIME_CONFIG = {
   isDebugLogin,
   enviroment: ENVIROMENT,
   lastFmApiKey: import.meta.env.LAST_FM_API_KEY ?? UNSET_REQUIRED_VALUE,
+  lastFmUser: import.meta.env.LAST_FM_USERNAME ?? UNSET_REQUIRED_VALUE,
+  defaultRateLimitMs: import.meta.env.DEFAULT_RATE_LIMIT ?? 100,
+  defaultMaxRequestTries: import.meta.env.DEFAULT_MAX_BAD_REQUESTS_LIMIT ?? 100,
+  sessionMaxAgeSeconds: import.meta.env.SESSION_MAX_AGE_SECONDS ?? 604800, // 7d
+  serverApiKey: import.meta.env.SERVER_API_KEY ?? UNSET_REQUIRED_VALUE,
   public: {
     isDebug,
     isDebugLogin
