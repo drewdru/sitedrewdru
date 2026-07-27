@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: ${PG_USER-postgres}
+      POSTGRES_PASSWORD: ${PG_PASS-password}
+      POSTGRES_DB: ${PG_DB-postgres}
+    volumes: 
+      - ./.local_data/postgresql:/var/lib/postgresql
+    ports:
+      - '${PG_LOCAL_PORT-15432}:5432'
+    networks:
+      - default
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  redis:
+    image: redis:8-alpine
+    command:
+      - redis-server
+      - /data/redis.conf
+      - --requirepass ${REDIS_PASSWORD-password}
+    volumes:
+      - ./docs/redis/redis.conf:/data/redis.conf
+    ports:
+      - '${REDIS_LOCAL_PORT-16379}:6379'
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"

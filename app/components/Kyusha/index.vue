@@ -18,7 +18,9 @@
       @pointerleave="stopPetting"
       @pointercancel="stopPetting"
     >
-      <pre>{{ currentPose }}</pre>
+      <ClientOnly>
+        <pre>{{ currentPose }}</pre>
+      </ClientOnly>
     </UButton>
     <template #content>
       <audio
@@ -35,7 +37,6 @@
 
 <script setup lang="ts">
 import { idlePoses, pettingPoses, rarePose } from './poses'
-import { randomArrayItem, randomInt } from '~~/layers/core/app/utils/randomValues'
 
 const { t } = useI18n()
 const audioPurring = ref<HTMLAudioElement>()

@@ -1,0 +1,6 @@
+{
+  "$schema": "./node_modules/prisma-zod-generator/lib/config/schema.json",
+  "mode": "minimal",
+  "useMultipleFiles": true,
+  "zodImportTarget": "v4"
+}

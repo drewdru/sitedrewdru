@@ -1,4 +1,4 @@
-import { safeJsonParse } from './layers/core/app/utils/stringTransform'
+import { safeJsonParse } from './shared/utils/stringTransform'
 
 const UNSET_REQUIRED_VALUE = 'NOT-SET'
 const ENVIROMENT = import.meta.env.NODE_ENV ?? 'development'
@@ -145,6 +145,11 @@ const RUNTIME_CONFIG = {
   isDebugLogin,
   enviroment: ENVIROMENT,
   lastFmApiKey: import.meta.env.LAST_FM_API_KEY ?? UNSET_REQUIRED_VALUE,
+  lastFmUser: import.meta.env.LAST_FM_USERNAME ?? UNSET_REQUIRED_VALUE,
+  defaultRateLimitMs: import.meta.env.DEFAULT_RATE_LIMIT ?? 100,
+  defaultMaxRequestTries: import.meta.env.DEFAULT_MAX_BAD_REQUESTS_LIMIT ?? 100,
+  sessionMaxAgeSeconds: import.meta.env.SESSION_MAX_AGE_SECONDS ?? 604800, // 7d
+  serverApiKey: import.meta.env.SERVER_API_KEY ?? UNSET_REQUIRED_VALUE,
   public: {
     isDebug,
     isDebugLogin
@@ -154,7 +159,13 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', '@nuxtjs/robots', '@nuxtjs/sitemap', 'nuxt-svgo', 'motion-v/nuxt', '@pinia/nuxt', '@vueuse/nuxt'],
 
   components: [
-    { path: '~/components', extensions: ['vue', 'tsx'] }
+    { path: '~/components', extensions: ['vue', 'tsx'] },
+    {
+      path: '~~/layers/uikit/app/components/Prose',
+      prefix: 'Prose',
+      extensions: ['vue', 'tsx'],
+      global: true
+    }
   ],
   devtools: {
     enabled: isDebugTools
@@ -202,16 +213,43 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2025-01-15',
+  nitro: {
+    experimental: {
+      openAPI: true
+    },
+    openAPI: {
+      production: false,
+      ui: {
+        scalar: {
+          darkMode: true,
+          url: '/docs/_openapi.json',
+          route: '/docs'
+        }
+      },
+      meta: {
+        title: 'Personal Site API',
+        description: 'API documentation for my pesronal site',
+        version: '1.0.0'
+      }
+    }
+  },
 
   vite: {
     optimizeDeps: {
       include: [
         '@vue/devtools-core',
-        '@vue/devtools-kit'
+        '@vue/devtools-kit',
+        'zod/v4'
       ]
     },
     server: {
-      allowedHosts: true
+      allowedHosts: [
+        'localhost',
+        '127.0.0.1',
+        'drewdru.local',
+        'career.drewdru.local',
+        'projects.drewdru.local'
+      ]
     }
   },
 
@@ -230,9 +268,10 @@ export default defineNuxtConfig({
       useCookie: true,
       alwaysRedirect: true
     },
+    langDir: 'locales',
     locales: [
-      { code: 'en', name: 'English' },
-      { code: 'ru', name: 'Русский' }
+      { code: 'en', name: 'English', file: 'en.ts' },
+      { code: 'ru', name: 'Русский', file: 'ru.ts' }
     ]
   },
 

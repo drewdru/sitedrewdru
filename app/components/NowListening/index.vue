@@ -5,7 +5,7 @@
 <template>
   <UCard
     :ui="{
-      root: 'h-50 sm:h-50 md:h-50 lg:h-35 flex flex-col sm:p-1 md:p-1 lg:p-1',
+      root: 'h-50 sm:h-50 md:h-50 lg:h-45 flex flex-col sm:p-1 md:p-1 lg:p-1',
       body: 'sm:p-5 md:p-5 lg:p-1 flex flex-col overflow-hidden'
     }"
   >
@@ -20,14 +20,14 @@
       }"
     >
       <UPageCard
-        v-for="(track, index) in tracks"
+        v-for="(track, index) in (tracks ?? [])"
         :key="index"
         variant="ghost"
         :to="track.to"
         :target="track.target"
         :ui="{
           root: 'sm:p-1 md:p-1 lg:p-1',
-          body: 'sm:p-1 md:p-1 lg:p-1',
+          body: 'w-full sm:p-1 md:p-1 lg:p-1',
           container: 'sm:p-1 md:p-1 lg:p-1'
         }"
       >
@@ -37,7 +37,12 @@
             :description="track.description"
             :avatar="track.avatar"
             size="xl"
-            class="relative"
+            class="w-full relative"
+            :ui="{
+              name: 'wrap-anywhere',
+              description: 'wrap-anywhere',
+              wrapper: 'w-full'
+            }"
           />
         </template>
       </UPageCard>
@@ -58,19 +63,31 @@
 </template>
 
 <script setup lang="ts">
+import { useLastFmStore } from '~~/layers/core/app/stores/lastFm'
+
 const { t } = useI18n()
-const { data } = await useFetch(`/api/lastfm/user/drew-dru`)
-const tracks = (data.value?.recenttracks?.track ?? []).map(
-  item => ({
-    name: item.artist?.['#text'],
-    description: item.name,
-    avatar: {
-      src: item.image?.at(0)?.['#text'],
-      loading: 'lazy'
-    },
-    to: item.url,
-    target: '_blank',
-    nowplaying: item['@attr']?.nowplaying === 'true'
+const runtimeConfig = useRuntimeConfig()
+const lastFmStore = useLastFmStore()
+const { tracks } = storeToRefs(lastFmStore)
+
+if (import.meta.server) {
+  const { data } = await useFetch(`/webhooks/v1/lastfm/user/${runtimeConfig.lastFmUser}`, {
+    headers: {
+      authorization: runtimeConfig.serverApiKey
+    }
   })
-)
+  lastFmStore.setTracks((data.value?.recenttracks?.track ?? []).map(
+    item => ({
+      name: item.artist?.['#text'],
+      description: item.name,
+      avatar: {
+        src: item.image?.at(0)?.['#text'],
+        loading: 'lazy'
+      },
+      to: item.url,
+      target: '_blank',
+      nowplaying: item?.['@attr']?.nowplaying === 'true'
+    })
+  ))
+}
 </script>

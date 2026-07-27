@@ -13,5 +13,10 @@ export const blogNavigation = [
     label: 'Gallery',
     icon: 'i-lucide-images',
     to: '/gallery'
+  },
+  {
+    label: 'Guestbook',
+    icon: 'i-lucide-notebook-pen',
+    to: '/guestbook'
   }
 ]

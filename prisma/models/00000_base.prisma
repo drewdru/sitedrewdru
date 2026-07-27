@@ -1,0 +1,14 @@
+datasource db {
+    provider = "postgresql"
+}
+
+generator client {
+    provider = "prisma-client"
+    previewFeatures = ["views", "typedSql"]
+    output   = "../shared/generated/prisma"
+}
+
+generator zod {
+    provider = "prisma-zod-generator"
+    output   = "../shared/generated/schemas"
+}

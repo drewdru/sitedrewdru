@@ -1,0 +1,7 @@
+services:
+  postgres:
+    env_file:
+      - .env
+  redis:
+    env_file:
+      - .env
