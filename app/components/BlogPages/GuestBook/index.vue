@@ -11,7 +11,7 @@
       <UForm
         ref="guestbookform"
         :schema="bodySchema"
-        :state="state"
+        :state="formState"
         @submit="onSubmit"
       >
         <div class="flex flex-row gap-4">
@@ -20,14 +20,14 @@
               name="name"
               :label="t('FormName')"
             >
-              <UInput v-model="state.name" />
+              <UInput v-model="formState.name" />
             </UFormField>
             <UFormField
               name="contact"
               :label="t('FormHandleOptional')"
             >
               <UInput
-                v-model="state.contact"
+                v-model="formState.contact"
                 :placeholder="t('FormHandleOptionalPlaceholder')"
               />
             </UFormField>
@@ -38,7 +38,7 @@
               :label="t('FormMessage')"
             >
               <UTextarea
-                v-model="state.message"
+                v-model="formState.message"
                 class="w-full"
                 :ui="{
                   base: 'w-full h-[88px]'
@@ -50,8 +50,8 @@
             </UFormField>
             <UButton
               type="submit"
-              :loading="sending"
-              :disabled="sending || !data"
+              :loading="formLoading"
+              :disabled="formLoading || !data"
               block
             >
               {{ t('PostMessage') }}
@@ -78,7 +78,7 @@
           {{ message.message }}
         </div>
       </MotionCard>
-      <AnimatedLoader :loading="sending || pending">
+      <AnimatedLoader :loading="formLoading || loading">
         <UPagination
           v-show="data !== undefined"
           v-model:page="page"
@@ -97,6 +97,9 @@
 
 <script setup lang="ts">
 import { useTimeAgo } from '@vueuse/core'
+import { fetchMessages } from '~~/layers/core/app/utils/api/guestbook/fetchMessages'
+import { fetchPostMessage } from '~~/layers/core/app/utils/api/guestbook/postMessage'
+import { translateFormErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
 import { type BodySchema, bodySchema, type ResponseGetSchema } from '~~/shared/schemas/guestbook/messages'
 
 const { t } = useI18n()
@@ -107,13 +110,18 @@ const scrollToTop = inject<() => void>('scrollToTop')
 const form = useTemplateRef('guestbookform')
 
 const data = ref<ResponseGetSchema | undefined>(undefined)
-const pending = ref(true)
-const sending = ref(false)
-const state = reactive<BodySchema>({
+const loading = ref(true)
+const formLoading = ref(false)
+const formState = reactive<BodySchema>({
   name: '',
   contact: '',
   message: ''
 })
+const clearFormState = () => {
+  formState.name = ''
+  formState.contact = ''
+  formState.message = ''
+}
 
 const page = computed({
   get: () => Number(route.query.page || 1),
@@ -128,25 +136,11 @@ const page = computed({
 })
 
 const onSubmit = async () => {
-  sending.value = true
-
+  formLoading.value = true
   try {
-    const response = await fetch('/api/v1/guestbook/messages', {
-      method: 'POST',
-      body: JSON.stringify(state),
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-    await validateFetchResponse(response)
-    const newMessage = await response.json()
-
-    state.name = ''
-    state.contact = ''
-    state.message = ''
-
-    await refresh()
+    const newMessage = await fetchPostMessage(formState)
+    clearFormState()
+    await refetch()
     const hasMessage = data.value?.data.find(item => item.id === newMessage.id)
     if (!hasMessage) {
       data.value = {
@@ -164,26 +158,16 @@ const onSubmit = async () => {
       color: 'error',
       icon: 'i-lucide-circle-alert'
     })
-    form.value?.setErrors((error?.data?.errors ?? []).map((item: {name: string, message: string}) => ({
-      ...item,
-      message: t(`validation.${item.message}`)
-    })))
+    form.value?.setErrors(translateFormErrors(t, error?.data?.errors))
   } finally {
-    sending.value = false
+    formLoading.value = false
   }
 }
 
-const refresh = async () => {
-  pending.value = true
+const refetch = async () => {
+  loading.value = true
   try {
-    const response = await fetch(`/api/v1/guestbook/messages?page=${page.value}`, {
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-    await validateFetchResponse(response)
-    data.value = await response.json()
+    data.value = await fetchMessages(page.value)
   } catch (error: any) {
     toast.add({
       title: t('ErrorLoadingData'),
@@ -192,13 +176,13 @@ const refresh = async () => {
       icon: 'i-lucide-circle-alert'
     })
   } finally {
-    pending.value = false
+    loading.value = false
   }
 }
 
-onMounted(() => refresh())
+onMounted(() => refetch())
 watch(page, () => {
   scrollToTop?.()
-  refresh()
+  refetch()
 })
 </script>
