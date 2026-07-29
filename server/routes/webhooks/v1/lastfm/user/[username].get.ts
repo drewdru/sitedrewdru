@@ -34,8 +34,8 @@ const responseSchema = z.object({
 export default defineCachedEventHandler(
   async (event) => {
     const config = useRuntimeConfig()
-    if (event.context.authorization !== config.serverApiKey) {
-      throw forbiddenError('Invalid session')
+    if (event.context.authorization !== config.webhooks.serverApiKey) {
+      throw forbiddenError('INVALID_SESSION')
     }
     const { username } = await validateRouterParams(event, paramsSchema)
 
@@ -44,7 +44,7 @@ export default defineCachedEventHandler(
         `http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${
           username
         }&api_key=${
-          config.lastFmApiKey
+          config.lastFm.apiKey
         }&format=json`,
         {
           method: 'GET',
@@ -79,7 +79,7 @@ export default defineCachedEventHandler(
     name: `lastfm_user_tracks`,
     getKey: (event) => {
       const config = useRuntimeConfig()
-      const isAllow = event.context.authorization === config.serverApiKey
+      const isAllow = event.context.authorization === config.webhooks.serverApiKey
       const username = getRouterParam(event, 'username')!
       return `username:${isAllow ? username : ''}`
     }

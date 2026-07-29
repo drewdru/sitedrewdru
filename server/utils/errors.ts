@@ -18,7 +18,7 @@ export const validationError = (
   })
 
 export const forbiddenError = (
-  message?: string,
+  errorCode?: 'INVALID_SESSION' | 'FORBIDDEN_ERROR',
   details?: {
     errorCode?: string
     errors?: { name?: string; message: string }[]
@@ -27,11 +27,11 @@ export const forbiddenError = (
 ) =>
   createError({
     statusCode: 403,
-    statusMessage: message ?? 'Forbidden',
+    statusMessage: 'Forbidden',
     data: {
       ...(details?.data ?? {}),
       ...(details?.errors ? { errors: details.errors } : {}),
-      ...(details?.errorCode ? { errorCode: details.errorCode } : { errorCode: 'FORBIDDEN_ERROR' }),
+      ...(details?.errorCode ? { errorCode: details.errorCode } : { errorCode: errorCode ?? 'FORBIDDEN_ERROR' }),
       timestamp: new Date().toISOString()
     }
   })
