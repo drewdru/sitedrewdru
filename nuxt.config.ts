@@ -1,18 +1,22 @@
 import { safeJsonParse } from './shared/utils/stringTransform'
 
 const UNSET_REQUIRED_VALUE = 'NOT-SET'
-const ENVIROMENT = import.meta.env.NODE_ENV ?? 'development'
+const ENVIRONMENT = import.meta.env.NODE_ENV ?? 'development'
+const DOMAIN = import.meta.env.DOMAIN ?? 'drewdru.com'
 
 const isDebug = safeJsonParse<boolean>(import.meta.env.VITE_DEBUG ?? 'false') ?? false
-const isDebugTools = ENVIROMENT === 'development'
+const isDebugTools = ENVIRONMENT === 'development'
 const isDebugLogin = safeJsonParse<boolean>(import.meta.env.VITE_DEBUG_LOGIN ?? 'false') ?? false
 
 const DESCRIPTION = 'Hello, my name is Drew Dru. I\'m a software engineer, tech lead, software architect, and AI engineer who enjoys building scalable systems, distributed architectures, and machine learning applications. I\'m specialising in TypeScript, Node.js, NestJS, Python, PostgreSQL, AWS, Kubernetes, and scalable distributed systems. I also known as pony who loves fantasy. Welcome to my personal website, blog, and portfolio.'
 const KEYWORDS = 'DrewDru, Drew Dru, Andrew Ovsyannikov, Full Stack Developer, Full Stack Engineer, Software Engineer, Tech Lead, Software Architect, AI Engineer, Machine Learning Engineer, TypeScript Developer, Node.js Developer, NestJS Developer, Python Developer, FastAPI, Django, React, Vue, Nuxt, PostgreSQL, MongoDB, Redis, Kafka, RabbitMQ, AWS, Docker, Kubernetes, WebRTC, Nostr, Distributed Systems, Backend Developer, Frontend Developer, Portfolio, Blog, Pony'
 
+const SEO_LOGO_1200_PATH = `https://${DOMAIN}/img/seo/logo_1200.png`
+const SEO_PERSON_ID = `https://${DOMAIN}/#person`
+const SEO_AUTHOR = 'Drew Dru'
 const SEO_METADATA = [
-  { name: 'author', content: 'Drew Dru' },
-  { property: 'og:title', content: 'Drew Dru' },
+  { name: 'author', content: SEO_AUTHOR },
+  { property: 'og:title', content: SEO_AUTHOR },
   {
     name: 'description',
     content: DESCRIPTION
@@ -29,23 +33,23 @@ const SEO_METADATA = [
   { property: 'og:type', content: 'website' },
   {
     property: 'og:image',
-    content: 'https://drewdru.com/img/seo/logo_1200.png'
+    content: SEO_LOGO_1200_PATH
   },
   {
     property: 'og:vk:image',
-    content: 'https://drewdru.com/img/seo/logo_1200.png'
+    content: SEO_LOGO_1200_PATH
   },
   {
     property: 'og:fb:image',
-    content: 'https://drewdru.com/img/seo/logo_1200.png'
+    content: SEO_LOGO_1200_PATH
   },
   {
     property: 'og:twitter:image',
-    content: 'https://drewdru.com/img/seo/logo_1200.png'
+    content: SEO_LOGO_1200_PATH
   },
   { name: 'twitter:card', content: 'summary_large_image' },
   { name: 'twitter:site', content: '@DrewDru' },
-  { name: 'twitter:title', content: 'DrewDru' },
+  { name: 'twitter:title', content: 'Drew Dru' },
   {
     name: 'twitter:description',
     content: DESCRIPTION
@@ -53,25 +57,25 @@ const SEO_METADATA = [
   { property: 'og:image:type', content: 'image/png' },
   { property: 'og:image:width', content: '1200' },
   { property: 'og:image:height', content: '630' },
-  { property: 'og:url', content: 'https://drewdru.com/' },
+  { property: 'og:url', content: `https://${DOMAIN}/` },
   { property: 'og:locale', content: 'en' },
   { property: 'og:locale:alternate', content: 'ru' }
 ]
 const SEO_LINKS = [
-  { rel: 'canonical', href: 'https://drewdru.com/en' },
-  { rel: 'alternate', href: 'https://drewdru.com' },
-  { rel: 'alternate', href: 'https://drewdru.com/ru' }
+  { rel: 'canonical', href: `https://${DOMAIN}/en` },
+  { rel: 'alternate', href: `https://${DOMAIN}` },
+  { rel: 'alternate', href: `https://${DOMAIN}/ru` }
 ]
 const SEO_LD_JSON = [
   {
     '@type': 'Person',
-    '@id': 'https://drewdru.com/#person',
-    'name': 'DrewDru',
+    '@id': SEO_PERSON_ID,
+    'name': 'Drew Dru',
     'alternateName': 'Andrew Ovsyannikov',
-    'url': 'https://drewdru.com/',
+    'url': `https://${DOMAIN}/`,
     'logo': {
       '@type': 'ImageObject',
-      'url': 'https://drewdru.com/img/seo/logo.svg'
+      'url': `https://${DOMAIN}/img/seo/logo.svg`
     },
     'jobTitle': [
       'Software Engineer',
@@ -96,46 +100,46 @@ const SEO_LD_JSON = [
   },
   {
     '@type': 'WebSite',
-    '@id': 'https://drewdru.com/#website',
-    'url': 'https://drewdru.com/',
-    'name': 'DrewDru',
+    '@id': `https://${DOMAIN}/#website`,
+    'url': `https://${DOMAIN}/`,
+    'name': 'Drew Dru',
     'abstract': DESCRIPTION,
     'description': DESCRIPTION,
     'keywords': KEYWORDS,
     'inLanguage': ['en', 'ru'],
     'publisher': {
-      '@id': 'https://drewdru.com/#person'
+      '@id': SEO_PERSON_ID
     },
     'author': {
-      '@id': 'https://drewdru.com/#person'
+      '@id': SEO_PERSON_ID
     },
     'creator': {
-      '@id': 'https://drewdru.com/#person'
+      '@id': SEO_PERSON_ID
     }
   },
   {
     '@type': 'WebPage',
-    '@id': 'https://drewdru.com/#home',
-    'url': 'https://drewdru.com/',
-    'name': 'Drew Dru',
+    '@id': `https://${DOMAIN}/#home`,
+    'url': `https://${DOMAIN}/`,
+    'name': SEO_AUTHOR,
     'isPartOf': {
-      '@id': 'https://drewdru.com/#website'
+      '@id': `https://${DOMAIN}/#website`
     },
     'mainEntity': {
-      '@id': 'https://drewdru.com/#person'
+      '@id': SEO_PERSON_ID
     },
     'author': {
-      '@id': 'https://drewdru.com/#person'
+      '@id': SEO_PERSON_ID
     },
     'creator': {
-      '@id': 'https://drewdru.com/#person'
+      '@id': SEO_PERSON_ID
     }
   },
   {
     '@type': 'ProfilePage',
-    '@id': 'https://drewdru.com/#profile',
+    '@id': `https://${DOMAIN}/#profile`,
     'mainEntity': {
-      '@id': 'https://drewdru.com/#person'
+      '@id': SEO_PERSON_ID
     }
   }
 ]
@@ -143,16 +147,31 @@ const SEO_LD_JSON = [
 const RUNTIME_CONFIG = {
   isDebug,
   isDebugLogin,
-  enviroment: ENVIROMENT,
-  lastFmApiKey: import.meta.env.LAST_FM_API_KEY ?? UNSET_REQUIRED_VALUE,
-  lastFmUser: import.meta.env.LAST_FM_USERNAME ?? UNSET_REQUIRED_VALUE,
-  defaultRateLimitMs: import.meta.env.DEFAULT_RATE_LIMIT ?? 100,
-  defaultMaxRequestTries: import.meta.env.DEFAULT_MAX_BAD_REQUESTS_LIMIT ?? 100,
-  sessionMaxAgeSeconds: import.meta.env.SESSION_MAX_AGE_SECONDS ?? 604800, // 7d
-  serverApiKey: import.meta.env.SERVER_API_KEY ?? UNSET_REQUIRED_VALUE,
+  environment: ENVIRONMENT,
+  secret: import.meta.env.SECRET,
+  rateLimit: {
+    defaultLimitMs: import.meta.env.DEFAULT_RATE_LIMIT ?? 100,
+    defaultMaxRequestTries: import.meta.env.DEFAULT_MAX_BAD_REQUESTS_LIMIT ?? 100,
+    visitorDataMaxAgeSeconds: import.meta.env.VISITOR_DATA_MAX_AGE_SECONDS ?? 604800, // 7d
+    maxRecaptchaErrors: import.meta.env.MAX_RECAPTCHA_ERRORS ?? 3,
+  },
+  webhooks: {
+    serverApiKey: import.meta.env.SERVER_API_KEY ?? UNSET_REQUIRED_VALUE,
+  },
+  google: {
+    projectId: import.meta.env.GOOGLE_PROJECT_ID ?? UNSET_REQUIRED_VALUE,
+    apiKey: import.meta.env.GOOGLE_API_KEY ?? UNSET_REQUIRED_VALUE,
+  },
+  lastFm: {
+    apiKey: import.meta.env.LAST_FM_API_KEY ?? UNSET_REQUIRED_VALUE,
+    username: import.meta.env.LAST_FM_USERNAME ?? UNSET_REQUIRED_VALUE,
+  },
   public: {
     isDebug,
-    isDebugLogin
+    isDebugLogin,
+    recaptcha: {
+      v2SiteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? UNSET_REQUIRED_VALUE,
+    }
   }
 }
 export default defineNuxtConfig({
@@ -192,7 +211,7 @@ export default defineNuxtConfig({
       ],
       link: [
         ...SEO_LINKS,
-        { rel: 'icon', href: 'https://drewdru.com/favicon.ico' }
+        { rel: 'icon', href: `https://${DOMAIN}/favicon.ico` }
       ]
     }
   },
