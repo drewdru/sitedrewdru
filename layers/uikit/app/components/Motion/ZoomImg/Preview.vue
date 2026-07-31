@@ -4,7 +4,7 @@
       'object-contain cursor-zoom-in',
       imgClass
     ]"
-    :sizes="`sm:${size.sm}px md:${size.md}px lg:${size.lg}px xl:${size.xl}px`"
+    :sizes="`xs:${size.xs}px sm:${size.sm}px md:${size.md}px lg:${size.lg}px xl:${size.xl}px`"
     :modifiers="{ fit: 'cover', format: 'webp', quality: props.quality ?? 80 }"
     :src="src"
     :alt="alt"
@@ -17,6 +17,7 @@
 const props = defineProps<{
   src: string
   size?: {
+    xs?: number
     sm?: number
     md?: number
     lg?: number
@@ -29,6 +30,7 @@ const props = defineProps<{
 }>()
 
 const size = computed(() => ({
+  xs: (typeof props.size === 'number' ? props.size : props.size?.xs) ?? 100,
   sm: (typeof props.size === 'number' ? props.size : props.size?.sm) ?? 100,
   md: (typeof props.size === 'number' ? props.size : props.size?.md) ?? 100,
   lg: (typeof props.size === 'number' ? props.size : props.size?.lg) ?? 100,
