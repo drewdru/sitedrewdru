@@ -1,6 +1,10 @@
 import { SUBDOMAIN_ROUTES, type Subdomain } from '~~/layers/core/app/composables/subdomainUrl'
 
 export default defineEventHandler((event) => {
+  if (event.method !== 'GET') {
+    return
+  }
+
   const config = useRuntimeConfig()
   const isInternalPath = event.path.startsWith('/api')
     || event.path.startsWith('/_')
@@ -11,7 +15,7 @@ export default defineEventHandler((event) => {
       '/sitemap_index.xml',
       '/sitemap.xml'
     ].includes(event.path)
-  if (event.method !== 'GET' || isInternalPath) {
+  if (isInternalPath) {
     return
   }
 
@@ -22,16 +26,29 @@ export default defineEventHandler((event) => {
     return
   }
 
+  let locale: string
   const localeMatch = event.path.match(
     new RegExp(`^/(${config.locales.join('|')})(/|$)`)
   )
-  const locale = localeMatch ? `/${localeMatch[1]}` : `/${getCookie(event, 'i18n_redirected') || 'en'}`
-  const path = localeMatch
+  if (localeMatch) {
+    locale = `/${localeMatch[1]}`
+  } else {
+    const cookieLocale = getCookie(event, 'i18n_redirected')
+    locale = config.locales.includes(cookieLocale ?? '')
+      ? `/${cookieLocale}`
+      : `/${config.locales.at(0) ?? 'en'}`
+  }
+
+  const normalizedPath = localeMatch
     ? event.path.slice(locale.length) || '/'
     : event.path || '/'
-  if (path.startsWith(prefix)) {
+  if (normalizedPath.startsWith(prefix)) {
     return
   }
 
-  return sendRedirect(event, `${locale}${prefix}${path}${url.search}`, 302)
+  return sendRedirect(
+    event,
+    `${locale}${prefix}${normalizedPath}${url.search}`,
+    302
+  )
 })

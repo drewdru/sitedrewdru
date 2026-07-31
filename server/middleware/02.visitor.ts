@@ -110,8 +110,8 @@ export default defineEventHandler(async (event) => {
   const visitorData = generateVisitorData(config.secret)
   setCookie(event, 'visitor', `${visitorData.visitorId}.${visitorData.signature}`, {
     ...(config.environment === 'production'
-    ? { domain: config.domain }
-    : {}),
+      ? { domain: config.domain }
+      : {}),
     httpOnly: true,
     secure: true,
     sameSite: 'lax',

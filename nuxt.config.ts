@@ -237,7 +237,7 @@ export default defineNuxtConfig({
   runtimeConfig: RUNTIME_CONFIG,
 
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: false }
   },
 
   compatibilityDate: '2025-01-15',
@@ -259,7 +259,7 @@ export default defineNuxtConfig({
         description: 'API documentation for my pesronal site',
         version: '1.0.0'
       }
-    }
+    },
   },
 
   vite: {
