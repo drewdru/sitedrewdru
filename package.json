@@ -6,6 +6,7 @@
   "author": "Drew Dru",
   "scripts": {
     "build": "npm run prismixed && nuxt build",
+    "prod": "node .output/server/index.mjs",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
