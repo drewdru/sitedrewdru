@@ -11,8 +11,8 @@
       <UForm
         ref="guestbookform"
         :schema="bodySchema"
-        :state="state"
-        @submit="onSubmit"
+        :state="formState"
+        @submit="() => {showRecaptcha = true}"
       >
         <div class="flex flex-row gap-4">
           <div class="flex flex-col gap-4 min-w-[12rem] w-[16rem] h-[11.75rem] justify-between">
@@ -20,14 +20,14 @@
               name="name"
               :label="t('FormName')"
             >
-              <UInput v-model="state.name" />
+              <UInput v-model="formState.name" />
             </UFormField>
             <UFormField
               name="contact"
               :label="t('FormHandleOptional')"
             >
               <UInput
-                v-model="state.contact"
+                v-model="formState.contact"
                 :placeholder="t('FormHandleOptionalPlaceholder')"
               />
             </UFormField>
@@ -38,7 +38,7 @@
               :label="t('FormMessage')"
             >
               <UTextarea
-                v-model="state.message"
+                v-model="formState.message"
                 class="w-full"
                 :ui="{
                   base: 'w-full h-[88px]'
@@ -48,14 +48,28 @@
                 @keydown.meta.enter="form?.submit()"
               />
             </UFormField>
-            <UButton
-              type="submit"
-              :loading="sending"
-              :disabled="sending || !data"
-              block
+            <UPopover
+              :open="showRecaptcha"
+              @update:open="(value) => value ? undefined : showRecaptcha = false"
             >
-              {{ t('PostMessage') }}
-            </UButton>
+              <UButton
+                type="submit"
+                :loading="formLoading"
+                :disabled="formLoading || !data"
+                block
+              >
+                {{ t('PostMessage') }}
+              </UButton>
+
+              <template #content>
+                <RecaptchaCheckbox
+                  v-model="formState.captcha"
+                  @expired="formState.captcha = undefined"
+                  @error="formState.captcha = undefined"
+                  @update:model-value="onSubmit"
+                />
+              </template>
+            </UPopover>
           </div>
         </div>
       </UForm>
@@ -65,21 +79,11 @@
         v-for="message in (data?.data ?? [])"
         :key="message.id"
       >
-        <div class="flex flex-row justify-between">
-          <div class="text-muted">
-            {{ message.contact ? `${message.name} (${message.contact})` : `${message.name}` }}
-          </div>
-          <div class="text-dimmed text-xs text-center">
-            {{ useTimeAgo(message.createdAt) }}
-          </div>
-        </div>
-        <USeparator class="mb-4" />
-        <div class="break-words whitespace-pre-line">
-          {{ message.message }}
-        </div>
+        <BlogPagesGuestBookMessage :content="message" @update="onMessageUpdated" />
       </MotionCard>
-      <AnimatedLoader :loading="sending || pending">
+      <AnimatedLoader :loading="formLoading || loading">
         <UPagination
+          v-show="data !== undefined"
           v-model:page="page"
           :total="data?.pagination.total"
           :sibling-count="1"
@@ -95,20 +99,37 @@
 </template>
 
 <script setup lang="ts">
-import { useTimeAgo } from '@vueuse/core'
-import { type BodySchema, bodySchema } from '~~/shared/schemas/guestbook/messages'
+import { fetchMessages } from '~~/layers/core/app/utils/api/guestbook/fetchMessages'
+import { fetchPostMessage } from '~~/layers/core/app/utils/api/guestbook/postMessage'
+import { translateFormErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
+import { type BodySchema, bodySchema, type GuestbookMessageResponseSchema, type ResponseGetSchema } from '~~/shared/schemas/guestbook/messages'
 
 const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
+const toast = useToast()
 const scrollToTop = inject<() => void>('scrollToTop')
 const form = useTemplateRef('guestbookform')
 
+const data = ref<ResponseGetSchema | undefined>(undefined)
+const loading = ref(true)
+const formLoading = ref(false)
+const showRecaptcha = ref(false)
+const formState = reactive<BodySchema>({
+  name: '',
+  contact: '',
+  message: '',
+  captcha: '',
+})
+const clearFormState = () => {
+  formState.name = ''
+  formState.contact = ''
+  formState.message = ''
+  formState.captcha = ''
+}
+
 const page = computed({
-  get: () => {
-    scrollToTop?.()
-    return Number(route.query.page || 1)
-  },
+  get: () => Number(route.query.page || 1),
   set: (value) => {
     router.replace({
       query: {
@@ -119,27 +140,13 @@ const page = computed({
   }
 })
 
-const sending = ref(false)
-const state = reactive<BodySchema>({
-  name: '',
-  contact: '',
-  message: ''
-})
 const onSubmit = async () => {
-  sending.value = true
-
+  showRecaptcha.value = false
+  formLoading.value = true
   try {
-    const newMessage = await $fetch('/api/v1/guestbook/messages', {
-      method: 'POST',
-      body: state,
-      credentials: 'include'
-    })
-
-    state.name = ''
-    state.contact = ''
-    state.message = ''
-
-    await refresh()
+    const newMessage = await fetchPostMessage(formState)
+    clearFormState()
+    await refetch()
     const hasMessage = data.value?.data.find(item => item.id === newMessage.id)
     if (!hasMessage) {
       data.value = {
@@ -150,15 +157,47 @@ const onSubmit = async () => {
         ]
       }
     }
+  } catch (error: any) {
+    toast.add({
+      title: t('Error'),
+      description: t(`validation.${error?.data?.errorCode ?? 'SomethingWentWrong'}`),
+      color: 'error',
+      icon: 'i-lucide-circle-alert'
+    })
+    form.value?.setErrors(translateFormErrors(t, error?.data?.errors))
   } finally {
-    sending.value = false
+    formLoading.value = false
   }
 }
 
-const { data, pending, refresh } = await useFetch(`/api/v1/guestbook/messages`, {
-  query: computed(() => ({
-    page: page.value
-  })),
-  credentials: 'include'
+const onMessageUpdated = (message: GuestbookMessageResponseSchema) => {
+  data.value = {
+    ...data.value!,
+    data: data.value!.data.map((item) =>
+      item.id === message.id ? message : item
+    ),
+  }
+}
+
+const refetch = async () => {
+  loading.value = true
+  try {
+    data.value = await fetchMessages(page.value)
+  } catch (error: any) {
+    toast.add({
+      title: t('ErrorLoadingData'),
+      description: t(`validation.${error?.data?.errorCode ?? 'SomethingWentWrong'}`),
+      color: 'error',
+      icon: 'i-lucide-circle-alert'
+    })
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => refetch())
+watch(page, () => {
+  scrollToTop?.()
+  refetch()
 })
 </script>

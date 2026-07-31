@@ -1,9 +1,12 @@
 model GuestbookMessage {
   id String  @id @db.Uuid @default(dbgenerated("uuidv7()"))
+  visitorId String @db.VarChar(43) @map("visitor_id")
   message String @db.VarChar(500)
   name String @db.VarChar(25)
   contact String?  @db.VarChar(50)
+
   createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
   @@map("guestbook_messages")
 }

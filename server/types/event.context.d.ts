@@ -4,10 +4,15 @@ declare module 'h3' {
     requestId: string
     requestTime: number
     authorization?: string
-    sessionId: string
-    sessionData?: {
-      lastRequestTime: number
-      badTries: number
+    visitor: {
+      id: string
+      data: {
+        lastRequestTime: number
+        badTries: number
+        badRecaptchaTries: number
+        banned?: true
+        reason?: 'rate-limit'
+      }
     }
   }
 }

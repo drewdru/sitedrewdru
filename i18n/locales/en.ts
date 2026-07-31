@@ -1,5 +1,14 @@
 export default {
+  Error: 'Error',
+  ErrorLoadingData: 'Error loading data',
+  SomethingWentWrong: 'Something went wrong..',
+  SomethingWentWrongReloadPage: 'Something went wrong. Try to reload page.',
   validation: {
+    SomethingWentWrong: 'Something went wrong..',
+    FORBIDDEN_ERROR: 'Forbidden',
+    VALIDATION_ERROR: 'Validation Error',
+    INVALID_SESSION: 'Access to certain features has been temporarily restricted',
+
     required: 'This field is required',
     invalid_type: 'Invalid value',
 

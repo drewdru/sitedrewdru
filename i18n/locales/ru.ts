@@ -1,5 +1,14 @@
 export default {
+  Error: 'Ошибка',
+  ErrorLoadingData: 'Ошибка загрузки данных',
+  SomethingWentWrong: 'Что-то пошло не так...',
+  SomethingWentWrongReloadPage: 'Что-то пошло не так. Попробуйте перезагрузить страницу.',
   validation: {
+    SomethingWentWrong: 'Что-то пошло не так...',
+    FORBIDDEN_ERROR: 'Нет доступа',
+    VALIDATION_ERROR: 'Ошибка валидации',
+    INVALID_SESSION: 'Доступ к некоторым функциям временно ограничен',
+
     required: 'Поле обязательно для заполнения',
     invalid_type: 'Некорректное значение',
 

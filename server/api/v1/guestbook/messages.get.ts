@@ -1,8 +1,4 @@
-import { z } from 'zod/v4'
-
-import { GuestbookMessageSchema } from '~~/shared/generated/schemas/models'
-import { paginationSchema } from '~~/shared/schemas/pagination'
-import { DEFAULT_PAGE_SIZE, querySchema } from '~~/shared/schemas/guestbook/messages'
+import { DEFAULT_PAGE_SIZE, querySchema, responseGetSchema } from '~~/shared/schemas/guestbook/messages'
 
 import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestQuery } from '~~/server/utils/validators/query'
@@ -23,7 +19,10 @@ export default defineCachedEventHandler(
     ])
     const totalPages = Math.ceil(total / pageSize)
     return {
-      data: messages,
+      data: messages.map((message) => ({
+        ...message,
+        editable: message.visitorId === `#${event.context.visitor.id.slice(0, 8)}`
+      })),
       pagination: {
         page,
         pageSize,
@@ -63,10 +62,7 @@ defineApiMeta(
   {
     query: zodToOpenApiSchema(querySchema),
     responses: {
-      200: zodToOpenApiSchema(z.object({
-        data: z.array(GuestbookMessageSchema),
-        pagination: paginationSchema
-      }))
+      200: zodToOpenApiSchema(responseGetSchema)
     }
   }
 )

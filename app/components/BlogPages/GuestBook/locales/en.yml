@@ -6,3 +6,7 @@ FormHandleOptional: Handle (optional)
 FormHandleOptionalPlaceholder: Messenger, social media, email..
 FormMessage: Message
 PostMessage: Post message
+UpdateMessage: Update message
+
+VisitorId: Visitor ID
+Edited: Edited

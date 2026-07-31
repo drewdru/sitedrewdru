@@ -16,15 +16,6 @@
           @update:model-value="setLocale($event as typeof locale)"
         />
         <UColorModeButton />
-
-        <UButton
-          to="https://github.com/drewdru/sitedrewdru"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
-        />
       </template>
     </UHeader>
 
@@ -45,7 +36,7 @@
 
       <template #right>
         <UButton
-          to="https://github.com/drewdru/sitedrewdru"
+          to="https://github.com/drewdru"
           target="_blank"
           icon="i-simple-icons-github"
           aria-label="GitHub"

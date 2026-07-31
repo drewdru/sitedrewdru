@@ -9,4 +9,5 @@ export default defineEventHandler(async (event) => {
     || event.node.req?.socket?.remoteAddress
     || '127.0.0.1'
   event.context.authorization = getHeader(event, 'authorization')
+  event.context.userAgent = getHeader(event, 'user-agent')
 })

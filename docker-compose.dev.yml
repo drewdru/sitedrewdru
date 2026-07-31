@@ -5,3 +5,15 @@ services:
   redis:
     env_file:
       - .env
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      REDIS_HOSTS: redis
+      REDIS_HOST: redis
+      REDIS_PORT: ${REDIS_LOCAL_PORT-16379}:6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      HTTP_USER: ${REDIS_ROOT_USER-root}
+      HTTP_PASSWORD: ${REDIS_ROOT_PASSWORD-root}
+    ports:
+      - 18081:8081

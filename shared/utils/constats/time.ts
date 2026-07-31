@@ -1,0 +1,1 @@
+export const TWO_YEARS_IN_SCEOND = 63072000

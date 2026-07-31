@@ -6,3 +6,7 @@ FormHandleOptional: Юзернейм (опционально)
 FormHandleOptionalPlaceholder: ИД в мессенджерах и соцсетях, email...
 FormMessage: Сообщение
 PostMessage: Опубликовать сообщение
+UpdateMessage: Обновить сообщение
+
+VisitorId: ИД посетителя
+Edited: Отредактировано
