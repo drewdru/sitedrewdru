@@ -1,6 +1,6 @@
 export const SUBDOMAIN_ROUTES = {
   career: '/cv',
-  projects: '/dev'
+  dev: '/projects'
 } as const
 
 export type Subdomain = keyof typeof SUBDOMAIN_ROUTES

@@ -25,8 +25,8 @@ services:
     env_file:
       - .env
     volumes: 
-      # - "${DATA_DIR}/.local_data/postgresql:/var/lib/postgresql/data"
-      - ".local_data/postgresql:/var/lib/postgresql/data"
+      # - "${DATA_DIR}/.local_data/postgresql:/var/lib/postgresql"
+      - ".local_data/postgresql:/var/lib/postgresql"
 
   redis:
     restart: always

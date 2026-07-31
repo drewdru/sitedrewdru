@@ -1,15 +1,16 @@
 #!/bin/bash
-docker compose -f docker-compose.yml -f docker-compose.prod.yml stop
+nvm use v24.16.0
 git pull origin main
+docker compose -f docker-compose.yml -f docker-compose.prod.yml stop
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 yarn db:generate
-yarn db:migrate:dev
+yarn db:migrate:deploy
 echo "Starting installation..."
 yarn install
 echo "Build started..."
 yarn build
 echo "Production server starting..."
-sudo pm2 stop sitedrewdru
-sudo pm2 delete sitedrewdru
-sudo pm2 start yarn --name sitedrewdru -- run prod
-sudo pm2 save
+pm2 stop sitedrewdru
+pm2 delete sitedrewdru
+pm2 start npm --name sitedrewdru -- run prod
+pm2 save

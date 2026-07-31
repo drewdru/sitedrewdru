@@ -144,11 +144,18 @@ const SEO_LD_JSON = [
   }
 ]
 
+const i18nLocales = [
+  { code: 'en', name: 'English', file: 'en.ts' },
+  { code: 'ru', name: 'Русский', file: 'ru.ts' }
+]
+const locales = i18nLocales.map(item => item.code)
+
 const RUNTIME_CONFIG = {
   isDebug,
   isDebugLogin,
   environment: ENVIRONMENT,
   secret: import.meta.env.SECRET,
+  locales,
   rateLimit: {
     defaultLimitMs: Number.parseInt(import.meta.env.DEFAULT_RATE_LIMIT ?? '100', 10) || 100,
     defaultMaxRequestTries: Number.parseInt(import.meta.env.DEFAULT_MAX_BAD_REQUESTS_LIMIT ?? '100', 10) || 100,
@@ -269,7 +276,7 @@ export default defineNuxtConfig({
         '127.0.0.1',
         'drewdru.local',
         'career.drewdru.local',
-        'projects.drewdru.local'
+        'dev.drewdru.local'
       ]
     }
   },
@@ -290,10 +297,7 @@ export default defineNuxtConfig({
       alwaysRedirect: true
     },
     langDir: 'locales',
-    locales: [
-      { code: 'en', name: 'English', file: 'en.ts' },
-      { code: 'ru', name: 'Русский', file: 'ru.ts' }
-    ]
+    locales: i18nLocales
   },
 
   robots: {
