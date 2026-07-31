@@ -1,4 +1,4 @@
-import { bodySchema, guestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages'
+import { editSchema, guestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages'
 
 import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestBody } from '~~/server/utils/validators/body'
@@ -6,17 +6,21 @@ import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
 import { validateRecaptcha } from '~~/server/utils/services/google/recaptcha'
 
 export default defineEventHandler(async (event) => {
-  const { name, message, contact, captcha } = await validateRequestBody(event, bodySchema)
+  const { id, message, captcha } = await validateRequestBody(event, editSchema)
   await validateRecaptcha(event, captcha) 
-  const data = await prisma.guestbookMessage.create({
-    data: {
-      name,
-      message,
-      contact,
+  const data = await prisma.guestbookMessage.update({
+    where: {
+      id,
       visitorId: event.context.visitor.id
+    },
+    data: {
+      message,
     }
   })
-  setResponseStatus(event, 201)
+  if (!data) {
+    throw forbiddenError('FORBIDDEN_ERROR')
+  }
+  setResponseStatus(event, 204)
   return {
     ...data,
     editable: data.visitorId === `#${event.context.visitor.id.slice(0, 8)}`
@@ -26,15 +30,15 @@ export default defineEventHandler(async (event) => {
 defineRouteMeta({
   openAPI: {
     tags: ['API / v1 / guestbook / messages'],
-    summary: 'Create guestbook message',
-    description: 'Creates a new guestbook message'
+    summary: 'Edit guestbook message',
+    description: 'Update a guestbook message'
   }
 })
 
 defineApiMeta(
-  'POST /api/v1/guestbook/messages',
+  'PATCH /api/v1/guestbook/messages',
   {
-    body: zodToOpenApiSchema(bodySchema),
+    body: zodToOpenApiSchema(editSchema),
     responses: {
       201: zodToOpenApiSchema(guestbookMessageResponseSchema)
     }

@@ -150,10 +150,10 @@ const RUNTIME_CONFIG = {
   environment: ENVIRONMENT,
   secret: import.meta.env.SECRET,
   rateLimit: {
-    defaultLimitMs: import.meta.env.DEFAULT_RATE_LIMIT ?? 100,
-    defaultMaxRequestTries: import.meta.env.DEFAULT_MAX_BAD_REQUESTS_LIMIT ?? 100,
-    visitorDataMaxAgeSeconds: import.meta.env.VISITOR_DATA_MAX_AGE_SECONDS ?? 604800, // 7d
-    maxRecaptchaErrors: import.meta.env.MAX_RECAPTCHA_ERRORS ?? 3,
+    defaultLimitMs: Number.parseInt(import.meta.env.DEFAULT_RATE_LIMIT ?? '100', 10) || 100,
+    defaultMaxRequestTries: Number.parseInt(import.meta.env.DEFAULT_MAX_BAD_REQUESTS_LIMIT ?? '100', 10) || 100,
+    visitorDataMaxAgeSeconds: Number.parseInt(import.meta.env.VISITOR_DATA_MAX_AGE_SECONDS ?? '604800', 10) || 604800, // 7d
+    maxRecaptchaErrors: Number.parseInt(import.meta.env.MAX_RECAPTCHA_ERRORS ?? '3', 10) || 3,
   },
   webhooks: {
     serverApiKey: import.meta.env.SERVER_API_KEY ?? UNSET_REQUIRED_VALUE,
@@ -169,8 +169,10 @@ const RUNTIME_CONFIG = {
   public: {
     isDebug,
     isDebugLogin,
-    recaptcha: {
-      v2SiteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? UNSET_REQUIRED_VALUE,
+    google: {
+      recaptcha: {
+        v2SiteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? UNSET_REQUIRED_VALUE,
+      }
     }
   }
 }

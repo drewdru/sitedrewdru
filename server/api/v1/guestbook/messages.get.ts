@@ -19,7 +19,10 @@ export default defineCachedEventHandler(
     ])
     const totalPages = Math.ceil(total / pageSize)
     return {
-      data: messages,
+      data: messages.map((message) => ({
+        ...message,
+        editable: message.visitorId === `#${event.context.visitor.id.slice(0, 8)}`
+      })),
       pagination: {
         page,
         pageSize,

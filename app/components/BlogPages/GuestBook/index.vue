@@ -12,7 +12,7 @@
         ref="guestbookform"
         :schema="bodySchema"
         :state="formState"
-        @submit="onSubmit"
+        @submit="() => {showRecaptcha = true}"
       >
         <div class="flex flex-row gap-4">
           <div class="flex flex-col gap-4 min-w-[12rem] w-[16rem] h-[11.75rem] justify-between">
@@ -48,14 +48,28 @@
                 @keydown.meta.enter="form?.submit()"
               />
             </UFormField>
-            <UButton
-              type="submit"
-              :loading="formLoading"
-              :disabled="formLoading || !data"
-              block
+            <UPopover
+              :open="showRecaptcha"
+              @update:open="(value) => value ? undefined : showRecaptcha = false"
             >
-              {{ t('PostMessage') }}
-            </UButton>
+              <UButton
+                type="submit"
+                :loading="formLoading"
+                :disabled="formLoading || !data"
+                block
+              >
+                {{ t('PostMessage') }}
+              </UButton>
+
+              <template #content>
+                <RecaptchaCheckbox
+                  v-model="formState.captcha"
+                  @expired="formState.captcha = undefined"
+                  @error="formState.captcha = undefined"
+                  @update:model-value="onSubmit"
+                />
+              </template>
+            </UPopover>
           </div>
         </div>
       </UForm>
@@ -65,18 +79,7 @@
         v-for="message in (data?.data ?? [])"
         :key="message.id"
       >
-        <div class="flex flex-row justify-between">
-          <div class="text-muted">
-            {{ message.contact ? `${message.name} (${message.contact})` : `${message.name}` }}
-          </div>
-          <div class="text-dimmed text-xs text-center">
-            {{ useTimeAgo(message.createdAt) }}
-          </div>
-        </div>
-        <USeparator class="mb-4" />
-        <div class="break-words whitespace-pre-line">
-          {{ message.message }}
-        </div>
+        <BlogPagesGuestBookMessage :content="message" @update="onMessageUpdated" />
       </MotionCard>
       <AnimatedLoader :loading="formLoading || loading">
         <UPagination
@@ -96,11 +99,10 @@
 </template>
 
 <script setup lang="ts">
-import { useTimeAgo } from '@vueuse/core'
 import { fetchMessages } from '~~/layers/core/app/utils/api/guestbook/fetchMessages'
 import { fetchPostMessage } from '~~/layers/core/app/utils/api/guestbook/postMessage'
 import { translateFormErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
-import { type BodySchema, bodySchema, type ResponseGetSchema } from '~~/shared/schemas/guestbook/messages'
+import { type BodySchema, bodySchema, type GuestbookMessageResponseSchema, type ResponseGetSchema } from '~~/shared/schemas/guestbook/messages'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -112,15 +114,18 @@ const form = useTemplateRef('guestbookform')
 const data = ref<ResponseGetSchema | undefined>(undefined)
 const loading = ref(true)
 const formLoading = ref(false)
+const showRecaptcha = ref(false)
 const formState = reactive<BodySchema>({
   name: '',
   contact: '',
-  message: ''
+  message: '',
+  captcha: '',
 })
 const clearFormState = () => {
   formState.name = ''
   formState.contact = ''
   formState.message = ''
+  formState.captcha = ''
 }
 
 const page = computed({
@@ -136,6 +141,7 @@ const page = computed({
 })
 
 const onSubmit = async () => {
+  showRecaptcha.value = false
   formLoading.value = true
   try {
     const newMessage = await fetchPostMessage(formState)
@@ -161,6 +167,15 @@ const onSubmit = async () => {
     form.value?.setErrors(translateFormErrors(t, error?.data?.errors))
   } finally {
     formLoading.value = false
+  }
+}
+
+const onMessageUpdated = (message: GuestbookMessageResponseSchema) => {
+  data.value = {
+    ...data.value!,
+    data: data.value!.data.map((item) =>
+      item.id === message.id ? message : item
+    ),
   }
 }
 

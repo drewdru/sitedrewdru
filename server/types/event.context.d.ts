@@ -6,10 +6,11 @@ declare module 'h3' {
     authorization?: string
     visitor: {
       id: string
-      data?: {
+      data: {
         lastRequestTime: number
-        badTries: number,
-        banned?: true,
+        badTries: number
+        badRecaptchaTries: number
+        banned?: true
         reason?: 'rate-limit'
       }
     }

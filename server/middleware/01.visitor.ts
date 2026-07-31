@@ -54,7 +54,8 @@ const getVisitorData = async (
   let visitorData = safeJsonParse<H3EventContext['visitor']['data']>(visitorStringData)
   visitorData ??= {
     lastRequestTime: Date.now(),
-    badTries: 0
+    badTries: 0,
+    badRecaptchaTries: 0
   }
   if (visitorData.banned) {
     throw forbiddenError('INVALID_SESSION')
@@ -121,7 +122,8 @@ export default defineEventHandler(async (event) => {
     visitorData.visitorId,
     JSON.stringify({
       lastRequestTime: event.context.requestTime,
-      badTries: 0
+      badTries: 0,
+      badRecaptchaTries: 0
     } satisfies H3EventContext['visitor']['data']),
     'EX',
     config.rateLimit.visitorDataMaxAgeSeconds,
