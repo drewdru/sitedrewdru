@@ -238,7 +238,6 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/**': { prerender: false },
-    '/cv': { prerender: true },
   },
 
   compatibilityDate: '2025-01-15',
