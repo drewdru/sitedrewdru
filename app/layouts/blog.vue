@@ -15,7 +15,10 @@
       >
         <template #top>
           <UContainer class="flex justify-center p-2">
-            <AppLogoWithText class="h-6 w-auto text-current group-hover:text-primary transition-colors" />
+            <AppLogoWithText
+              class="h-6 w-auto text-current group-hover:text-primary transition-colors"
+              to="/welcome"
+            />
           </UContainer>
         </template>
         <template #body>

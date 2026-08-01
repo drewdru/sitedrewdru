@@ -2,7 +2,7 @@ export const blogNavigation = [
   {
     label: 'Home',
     icon: 'i-lucide-home',
-    to: '/'
+    to: '/welcome'
   },
   {
     label: 'About',
