@@ -17,6 +17,6 @@ useSeoMeta({
   twitterDescription: t('HomePageDescription')
 })
 onMounted(() => {
-  navigateTo('/welcome', { replace: true })
+  navigateTo('/welcome', { replace: true, external: true })
 })
 </script>
