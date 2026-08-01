@@ -237,7 +237,8 @@ export default defineNuxtConfig({
   runtimeConfig: RUNTIME_CONFIG,
 
   routeRules: {
-    '/': { prerender: false }
+    '/**': { prerender: false },
+    '/cv': { prerender: true },
   },
 
   compatibilityDate: '2025-01-15',
