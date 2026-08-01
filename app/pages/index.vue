@@ -16,7 +16,8 @@ useSeoMeta({
   ogDescription: t('HomePageDescription'),
   twitterDescription: t('HomePageDescription')
 })
+const localePath = useLocalePath()
 onMounted(() => {
-  navigateTo('/welcome', { replace: true, external: true })
+  navigateTo(localePath('/welcome'), { external: true })
 })
 </script>
