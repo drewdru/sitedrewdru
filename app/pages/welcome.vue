@@ -2,12 +2,14 @@
 
 <i18n locale="ru" lang="yaml" src="~/components/BlogPages/Home/locales/ru.yml" />
 
-<template></template>
+<template>
+  <BlogPagesHome />
+</template>
 
 <script setup lang="ts">
 const { t } = useI18n()
 definePageMeta({
-  layout: 'infinity-loading'
+  layout: 'blog'
 })
 useSeoMeta({
   title: t('HomePageTitle'),
@@ -15,8 +17,5 @@ useSeoMeta({
   description: t('HomePageDescription'),
   ogDescription: t('HomePageDescription'),
   twitterDescription: t('HomePageDescription')
-})
-onMounted(() => {
-  navigateTo('/welcome', { replace: true })
 })
 </script>
