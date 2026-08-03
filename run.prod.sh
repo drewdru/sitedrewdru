@@ -1,5 +1,5 @@
 #!/bin/bash
-nvm use v24.16.0
+nvm use v24.18.1
 git pull origin main
 docker compose -f docker-compose.yml -f docker-compose.prod.yml stop
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d

@@ -33,6 +33,7 @@ services:
     # <<: *redis-env
     env_file:
       - .env
-    volumes: 
+    volumes: !override
       # - "${DATA_DIR}/.local_data/redis:/data/"
-      - ".local_data/redis:/data/"
+      - .local_data/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - .local_data/redis/data:/data/
