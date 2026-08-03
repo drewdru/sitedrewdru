@@ -20,10 +20,11 @@ services:
     image: redis:8-alpine
     command:
       - redis-server
-      - /data/redis.conf
+      - /usr/local/etc/redis/redis.conf
       - --requirepass ${REDIS_PASSWORD-password}
     volumes:
-      - ./docs/redis/redis.conf:/data/redis.conf
+      - ./docs/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - .local_data/redis/data:/data/
     ports:
       - '${REDIS_LOCAL_PORT-16379}:6379'
     logging:

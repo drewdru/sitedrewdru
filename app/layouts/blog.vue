@@ -40,7 +40,7 @@
                     link: 'whitespace-nowrap'
                   }"
                 />
-                <Kyusha v-if="!isHomePage" />
+                <Kyusha v-if="!isWelcomePage" />
               </UContainer>
             </template>
             <template #default>
@@ -152,7 +152,7 @@ provide('scrollToTop', async () => {
   })
 })
 
-const isHomePage = computed(() => route.name?.toString().startsWith('index'))
+const isWelcomePage = computed(() => route.name?.toString().startsWith('welcome'))
 const isAboutPage = computed(() => route.name?.toString().startsWith('about'))
 const isGuestbookPage = computed(() => route.name?.toString().startsWith('guestbook'))
 const isGalleryPage = computed(() => route.name?.toString().startsWith('gallery'))
