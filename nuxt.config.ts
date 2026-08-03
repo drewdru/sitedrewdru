@@ -153,6 +153,7 @@ const locales = i18nLocales.map(item => item.code)
 const RUNTIME_CONFIG = {
   isDebug,
   isDebugLogin,
+  domain: DOMAIN,
   environment: ENVIRONMENT,
   secret: import.meta.env.SECRET,
   locales,
