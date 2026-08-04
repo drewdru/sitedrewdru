@@ -3,7 +3,18 @@
 <i18n locale="ru" lang="yaml" src="~~/layers/core/app/utils/constants/navigation/locales/ru.yml" />
 
 <template>
-  <div class="h-screen flex flex-col lg:overflow-hidden overflow-auto">
+  <div class="h-screen flex flex-col lg:overflow-hidden overflow-auto magic-body">
+    <div class="magic-layer magic-layer-1">
+      <div class="magic-particles"></div>
+    </div>
+    <div class="magic-layer magic-layer-2">
+      <div class="magic-particles"></div>
+    </div>
+    <div class="magic-layer magic-layer-3">
+      <div class="magic-particles"></div>
+    </div>
+    <div class="magic-glow"></div>
+
     <UMain class="h-full">
       <UPageHero
         class="h-full"
@@ -168,9 +179,6 @@ const blogLinks = computed(() =>
 useHead({
   htmlAttrs: { lang: locale.value },
   titleTemplate: 'Drew Dru - %s',
-  bodyAttrs: {
-    class: 'magic-body'
-  }
 })
 </script>
 
