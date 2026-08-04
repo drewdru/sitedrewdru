@@ -152,4 +152,10 @@
       transform: translate3d(-120px,80px,0);
     }
   }
+
+  @media (max-width: 639px) {
+    .magic-layer {
+      display: none;
+    }
+  }
 }
