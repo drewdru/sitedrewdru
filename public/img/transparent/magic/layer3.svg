@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1536"
+    height="1536"
+    viewBox="0 0 1536 1536">
+    
+    <defs>
+        <radialGradient id="particle">
+            <stop offset="0%" stop-color="white" stop-opacity="1"/>
+            <stop offset="35%" stop-color="white" stop-opacity=".65"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+
+    <circle
+        cx="352.26"
+        cy="684.44"
+        r="21.06"
+        opacity="0.452"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="516.32"
+        cy="1155.56"
+        r="37.68"
+        opacity="0.934"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="955.77"
+        cy="598.41"
+        r="18.67"
+        opacity="0.995"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1427.28"
+        cy="1062.85"
+        r="36.65"
+        opacity="0.328"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1136.69"
+        cy="1433.96"
+        r="10.04"
+        opacity="0.732"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="519.56"
+        cy="897.73"
+        r="13.21"
+        opacity="0.750"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="322.08"
+        cy="769.76"
+        r="34.43"
+        opacity="0.867"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="901.26"
+        cy="52.39"
+        r="28.29"
+        opacity="0.682"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="117.27"
+        cy="839.28"
+        r="18.25"
+        opacity="0.831"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="762.13"
+        cy="842.22"
+        r="15.04"
+        opacity="0.579"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="335.20"
+        cy="866.99"
+        r="12.65"
+        opacity="0.383"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1461.45"
+        cy="1145.19"
+        r="26.09"
+        opacity="0.915"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1429.83"
+        cy="470.63"
+        r="39.59"
+        opacity="0.994"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="190.29"
+        cy="1280.99"
+        r="11.01"
+        opacity="0.982"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="900.94"
+        cy="406.57"
+        r="18.01"
+        opacity="0.258"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1072.95"
+        cy="1233.96"
+        r="29.27"
+        opacity="0.539"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1004.11"
+        cy="764.55"
+        r="22.18"
+        opacity="0.549"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="527.10"
+        cy="1041.59"
+        r="28.84"
+        opacity="0.517"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="831.75"
+        cy="777.41"
+        r="28.31"
+        opacity="0.290"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1261.88"
+        cy="440.11"
+        r="27.45"
+        opacity="0.949"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1070.98"
+        cy="231.37"
+        r="18.62"
+        opacity="0.746"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1051.95"
+        cy="1391.96"
+        r="37.60"
+        opacity="0.260"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="431.78"
+        cy="550.19"
+        r="29.17"
+        opacity="0.369"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="498.67"
+        cy="1414.70"
+        r="18.00"
+        opacity="0.570"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1381.87"
+        cy="910.49"
+        r="27.05"
+        opacity="0.315"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1526.78"
+        cy="109.94"
+        r="12.92"
+        opacity="0.947"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="-9.22"
+        cy="109.94"
+        r="12.92"
+        opacity="0.947"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="924.65"
+        cy="309.00"
+        r="13.91"
+        opacity="0.900"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="925.73"
+        cy="710.77"
+        r="26.92"
+        opacity="0.654"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="1139.92"
+        cy="577.26"
+        r="10.33"
+        opacity="0.935"
+        fill="url(#particle)"
+    />
+    
+    <circle
+        cx="216.94"
+        cy="253.78"
+        r="24.91"
+        opacity="0.521"
+        fill="url(#particle)"
+    />
+    </svg>

@@ -4,15 +4,9 @@
 
 <template>
   <div class="h-screen flex flex-col lg:overflow-hidden overflow-auto magic-body">
-    <div class="magic-layer magic-layer-1">
-      <div class="magic-particles"></div>
-    </div>
-    <div class="magic-layer magic-layer-2">
-      <div class="magic-particles"></div>
-    </div>
-    <div class="magic-layer magic-layer-3">
-      <div class="magic-particles"></div>
-    </div>
+    <div class="magic-layer magic-layer-1"></div>
+    <div class="magic-layer magic-layer-2"></div>
+    <div class="magic-layer magic-layer-3"></div>
     <div class="magic-glow"></div>
 
     <UMain class="h-full">

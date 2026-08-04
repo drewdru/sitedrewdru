@@ -6,89 +6,29 @@
 
   .magic-layer {
     position: fixed;
-    inset: -8%;
+    inset: 0;
     pointer-events: none;
     z-index: -1;
 
-    .magic-particles {
-      position: absolute;
-      inset: 0;
-    }
+    background-repeat: repeat;
+    background-color: var(--fantasy-color);
+    mask-repeat: repeat;
+    mask-position: 0 0;
+    mask-size: 768px 768px;
+    width: 100%;
 
     &.magic-layer-1 {
-      animation:
-        fantasyDrift1 111s cubic-bezier(.32,0,.12,1) infinite alternate,
-        fantasyPulse1 8s cubic-bezier(.42,0,.22,1) infinite;
-      
-      .magic-particles {
-        background-image:
-          radial-gradient(
-            var(--fantasy-color),
-            color-mix(in srgb, var(--fantasy-color-soft) 30%, transparent) 2px,
-            transparent 31px
-          ),
-          radial-gradient(
-            ellipse at center,
-            var(--fantasy-color),
-            color-mix(in srgb, var(--fantasy-color-soft) 25%, transparent) 1.3px,
-            transparent 47px
-          );
-
-        background-size:
-          587px 541px,
-          331px 377px;
-        background-position:
-          13px 41px,
-          182px 67px;
-      }
+      mask-image: url("/img/transparent/magic/layer1.svg");
     }
 
     &.magic-layer-2 {
-      animation:
-        fantasyDrift2 145s cubic-bezier(.52,0,.32,1) infinite alternate-reverse,
-        fantasyPulse2 12s cubic-bezier(.42,0,.22,1) infinite;
-
-      .magic-particles {
-        background-image:
-          radial-gradient(
-            var(--fantasy-color),
-            color-mix(in srgb, var(--fantasy-color-soft) 20%, transparent) 2.6px,
-            transparent 36px
-          ),
-          radial-gradient(
-            ellipse at center,
-            color-mix(in srgb, var(--fantasy-color-soft) 40%, transparent),
-            color-mix(in srgb, var(--fantasy-color) 20%, transparent) .9px,
-            transparent 53px
-          );
-
-        background-size:
-          257px 239px,
-          163px 181px;
-        background-position:
-          91px 311px,
-          244px 149px;
-      }
+      background-color: var(--fantasy-color-soft);
+      mask-image: url("/img/transparent/magic/layer2.svg");
     }
 
     &.magic-layer-3 {
       opacity: .7;
-      animation: fantasyDrift3 190s cubic-bezier(.6,0,.3,1) infinite alternate;
-
-      .magic-particles {
-        background-image:
-          radial-gradient(
-            ellipse at center,
-            color-mix(in srgb, var(--fantasy-color-soft) 40%, transparent),
-            color-mix(in srgb, var(--fantasy-color) 20%, transparent) .9px,
-            transparent 53px
-          );
-
-        background-size:
-          433px 541px;
-        background-position:
-          0 0;
-      }
+      mask-image: url("/img/transparent/magic/layer3.svg");
     }
   }
 
@@ -103,54 +43,6 @@
         color-mix(in srgb, var(--ui-bg) 60%, transparent),
         color-mix(in srgb, var(--ui-bg-accented) 60%, transparent)
       );
-  }
-
-  @keyframes fantasyPulse1 {
-    0%,
-    100% {
-      opacity: .55;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-
-  @keyframes fantasyPulse2 {
-    0%,
-    100% {
-      opacity: .35;
-    }
-    50% {
-      opacity: .85;
-    }
-  }
-
-  @keyframes fantasyDrift1 {
-    from {
-      transform: translate3d(0,0,0);
-    }
-    to {
-      transform: translate3d(80px,40px,0);
-    }
-  }
-
-  @keyframes fantasyDrift2 {
-    from {
-      transform: translate3d(0,0,0);
-    }
-    to {
-      transform: translate3d(-60px,70px,0);
-    }
-  }
-
-  @keyframes fantasyDrift3 {
-    from {
-      transform: translate3d(0,0,0);
-    }
-    to {
-      transform: translate3d(-120px,80px,0);
-    }
   }
 
   @media (max-width: 639px) {

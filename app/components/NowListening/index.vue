@@ -71,7 +71,7 @@ const lastFmStore = useLastFmStore()
 const { tracks } = storeToRefs(lastFmStore)
 
 if (import.meta.server) {
-  const { data } = await useFetch(`/webhooks/v1/lastfm/user/${runtimeConfig.lastFm.username}`, {
+  const { data } = await useFetch(`/_webhooks/v1/lastfm/user/${runtimeConfig.lastFm.username}`, {
     headers: {
       authorization: runtimeConfig.webhooks.serverApiKey
     }

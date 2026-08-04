@@ -88,14 +88,14 @@ export default defineCachedEventHandler(
 
 defineRouteMeta({
   openAPI: {
-    tags: ['webhooks / v1 / lastfm / user'],
+    tags: ['_webhooks / v1 / lastfm / user'],
     summary: 'Get recent Last.fm tracks',
     description: 'Returns recent tracks listened by a Last.fm user'
   }
 })
 
 defineApiMeta(
-  'GET /webhooks/v1/lastfm/user/{username}',
+  'GET /_webhooks/v1/lastfm/user/{username}',
   {
     security: [{ serverApiKey: [] }],
     params: zodToOpenApiSchema(paramsSchema),
