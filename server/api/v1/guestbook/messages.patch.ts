@@ -7,14 +7,14 @@ import { validateRecaptcha } from '~~/server/utils/services/google/recaptcha'
 
 export default defineEventHandler(async (event) => {
   const { id, message, captcha } = await validateRequestBody(event, editSchema)
-  await validateRecaptcha(event, captcha) 
+  await validateRecaptcha(event, captcha)
   const data = await prisma.guestbookMessage.update({
     where: {
       id,
       visitorId: event.context.visitor.id
     },
     data: {
-      message,
+      message
     }
   })
   if (!data) {

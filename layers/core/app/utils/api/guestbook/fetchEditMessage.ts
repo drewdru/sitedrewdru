@@ -1,4 +1,4 @@
-import type { EditSchema } from "~~/shared/schemas/guestbook/messages"
+import type { EditSchema } from '~~/shared/schemas/guestbook/messages'
 
 export const fetchEditMessage = async (body: EditSchema) => {
   const response = await fetch('/api/v1/guestbook/messages', {
@@ -6,7 +6,7 @@ export const fetchEditMessage = async (body: EditSchema) => {
     body: JSON.stringify(body),
     credentials: 'include',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     }
   })
   await validateFetchResponse(response)

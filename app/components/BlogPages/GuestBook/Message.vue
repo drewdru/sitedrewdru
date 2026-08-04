@@ -4,19 +4,24 @@
 
 <template>
   <div class="text-xs text-dimmed">
-    {{t('VisitorId')}}: {{ content.visitorId }}
+    {{ t('VisitorId') }}: {{ content.visitorId }}
   </div>
-  <div v-if="content.editable" class="absolute right-1 top-1">
+  <div
+    v-if="content.editable"
+    class="absolute right-1 top-1"
+  >
     <UButton
       v-if="mode==='view'"
-      class="rounded" variant="ghost"
+      class="rounded"
+      variant="ghost"
       size="xs"
       icon="i-lucide-pencil"
       @click="() => { mode = 'edit' }"
     />
     <UButton
       v-else
-      class="rounded" variant="ghost"
+      class="rounded"
+      variant="ghost"
       size="xs"
       icon="i-lucide-eye"
       @click="() => { mode = 'view' }"
@@ -50,7 +55,7 @@
     :ui="{
       base: 'flex flex-col gap-4'
     }"
-    @submit="() => {showRecaptcha = true}"
+    @submit="() => { showRecaptcha = true }"
   >
     <UFormField
       name="message"
@@ -90,20 +95,19 @@
       </template>
     </UPopover>
   </UForm>
-
 </template>
 
 <script setup lang="ts">
 import { useTimeAgoIntl } from '@vueuse/core'
-import { fetchEditMessage } from '~~/layers/core/app/utils/api/guestbook/fetchEditMessage';
-import { translateFormErrors } from '~~/layers/core/app/utils/form/tranlateErrors';
-import { type EditSchema, editSchema, type GuestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages';
+import { fetchEditMessage } from '~~/layers/core/app/utils/api/guestbook/fetchEditMessage'
+import { translateFormErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
+import { type EditSchema, editSchema, type GuestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages'
 
 const props = defineProps<{
   content: GuestbookMessageResponseSchema
 }>()
 const emit = defineEmits<{
-  (e: "update", value: GuestbookMessageResponseSchema): void
+  (e: 'update', value: GuestbookMessageResponseSchema): void
 }>()
 const form = useTemplateRef('guestbookeditform')
 
@@ -116,9 +120,8 @@ const formLoading = ref(false)
 const formState = reactive<EditSchema>({
   id: props.content.id,
   message: props.content.message,
-  captcha: '',
+  captcha: ''
 })
-
 
 const onSubmit = async () => {
   showRecaptcha.value = false

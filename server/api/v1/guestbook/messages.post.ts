@@ -7,7 +7,7 @@ import { validateRecaptcha } from '~~/server/utils/services/google/recaptcha'
 
 export default defineEventHandler(async (event) => {
   const { name, message, contact, captcha } = await validateRequestBody(event, bodySchema)
-  await validateRecaptcha(event, captcha) 
+  await validateRecaptcha(event, captcha)
   const data = await prisma.guestbookMessage.create({
     data: {
       name,

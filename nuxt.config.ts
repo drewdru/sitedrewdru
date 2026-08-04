@@ -161,25 +161,25 @@ const RUNTIME_CONFIG = {
     defaultLimitMs: Number.parseInt(import.meta.env.DEFAULT_RATE_LIMIT ?? '100', 10) || 100,
     defaultMaxRequestTries: Number.parseInt(import.meta.env.DEFAULT_MAX_BAD_REQUESTS_LIMIT ?? '100', 10) || 100,
     visitorDataMaxAgeSeconds: Number.parseInt(import.meta.env.VISITOR_DATA_MAX_AGE_SECONDS ?? '604800', 10) || 604800, // 7d
-    maxRecaptchaErrors: Number.parseInt(import.meta.env.MAX_RECAPTCHA_ERRORS ?? '3', 10) || 3,
+    maxRecaptchaErrors: Number.parseInt(import.meta.env.MAX_RECAPTCHA_ERRORS ?? '3', 10) || 3
   },
   webhooks: {
-    serverApiKey: import.meta.env.SERVER_API_KEY ?? UNSET_REQUIRED_VALUE,
+    serverApiKey: import.meta.env.SERVER_API_KEY ?? UNSET_REQUIRED_VALUE
   },
   google: {
     projectId: import.meta.env.GOOGLE_PROJECT_ID ?? UNSET_REQUIRED_VALUE,
-    apiKey: import.meta.env.GOOGLE_API_KEY ?? UNSET_REQUIRED_VALUE,
+    apiKey: import.meta.env.GOOGLE_API_KEY ?? UNSET_REQUIRED_VALUE
   },
   lastFm: {
     apiKey: import.meta.env.LAST_FM_API_KEY ?? UNSET_REQUIRED_VALUE,
-    username: import.meta.env.LAST_FM_USERNAME ?? UNSET_REQUIRED_VALUE,
+    username: import.meta.env.LAST_FM_USERNAME ?? UNSET_REQUIRED_VALUE
   },
   public: {
     isDebug,
     isDebugLogin,
     google: {
       recaptcha: {
-        v2SiteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? UNSET_REQUIRED_VALUE,
+        v2SiteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? UNSET_REQUIRED_VALUE
       }
     }
   }
@@ -238,7 +238,7 @@ export default defineNuxtConfig({
   runtimeConfig: RUNTIME_CONFIG,
 
   routeRules: {
-    '/**': { prerender: false },
+    '/**': { prerender: false }
   },
 
   compatibilityDate: '2025-01-15',
@@ -260,7 +260,7 @@ export default defineNuxtConfig({
         description: 'API documentation for my pesronal site',
         version: '1.0.0'
       }
-    },
+    }
   },
 
   vite: {
@@ -286,7 +286,11 @@ export default defineNuxtConfig({
     config: {
       stylistic: {
         commaDangle: 'never',
-        braceStyle: '1tbs'
+        braceStyle: '1tbs',
+        indent: 2,
+        quotes: 'single',
+        semi: false,
+        jsx: false
       }
     }
   },

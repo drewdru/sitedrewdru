@@ -1,4 +1,4 @@
-import type { BodySchema } from "~~/shared/schemas/guestbook/messages"
+import type { BodySchema } from '~~/shared/schemas/guestbook/messages'
 
 export const fetchPostMessage = async (body: BodySchema) => {
   const response = await fetch('/api/v1/guestbook/messages', {
@@ -6,7 +6,7 @@ export const fetchPostMessage = async (body: BodySchema) => {
     body: JSON.stringify(body),
     credentials: 'include',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     }
   })
   await validateFetchResponse(response)

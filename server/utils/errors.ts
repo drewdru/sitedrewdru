@@ -2,7 +2,7 @@ export const validationError = (
   message?: string,
   details?: {
     errorCode?: string
-    errors?: { name?: string; message: string; }[]
+    errors?: { name?: string, message: string }[]
     data?: Record<string, unknown>
   }
 ) =>
@@ -21,7 +21,7 @@ export const forbiddenError = (
   errorCode?: 'INVALID_SESSION' | 'FORBIDDEN_ERROR',
   details?: {
     errorCode?: string
-    errors?: { name?: string; message: string }[]
+    errors?: { name?: string, message: string }[]
     data?: Record<string, unknown>
   }
 ) =>

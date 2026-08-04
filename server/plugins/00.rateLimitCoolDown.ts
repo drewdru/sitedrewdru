@@ -1,5 +1,5 @@
 export default defineNitroPlugin((nitroApp) => {
-  nitroApp.hooks.hook("beforeResponse", async (event) => {
+  nitroApp.hooks.hook('beforeResponse', async (event) => {
     const isProtectedRequest = event.path.startsWith('/api/v')
     const isSuccess = event.node.res.statusCode >= 200
       && event.node.res.statusCode < 300
@@ -16,7 +16,7 @@ export default defineNitroPlugin((nitroApp) => {
         badTries
       } satisfies H3EventContext['visitor']['data']),
       'EX',
-      config.rateLimit.visitorDataMaxAgeSeconds,
+      config.rateLimit.visitorDataMaxAgeSeconds
     )
-  });
-});
+  })
+})

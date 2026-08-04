@@ -4,10 +4,10 @@
 
 <template>
   <div class="h-screen flex flex-col lg:overflow-hidden overflow-auto magic-body">
-    <div class="magic-layer magic-layer-1"></div>
-    <div class="magic-layer magic-layer-2"></div>
-    <div class="magic-layer magic-layer-3"></div>
-    <div class="magic-glow"></div>
+    <div class="magic-layer magic-layer-1" />
+    <div class="magic-layer magic-layer-2" />
+    <div class="magic-layer magic-layer-3" />
+    <div class="magic-glow" />
 
     <UMain class="h-full">
       <UPageHero
@@ -172,7 +172,7 @@ const blogLinks = computed(() =>
 
 useHead({
   htmlAttrs: { lang: locale.value },
-  titleTemplate: 'Drew Dru - %s',
+  titleTemplate: 'Drew Dru - %s'
 })
 </script>
 

@@ -12,7 +12,7 @@
         ref="guestbookform"
         :schema="bodySchema"
         :state="formState"
-        @submit="() => {showRecaptcha = true}"
+        @submit="() => { showRecaptcha = true }"
       >
         <div class="flex flex-row gap-4">
           <div class="flex flex-col gap-4 min-w-[12rem] w-[16rem] h-[11.75rem] justify-between">
@@ -79,7 +79,10 @@
         v-for="message in (data?.data ?? [])"
         :key="message.id"
       >
-        <BlogPagesGuestBookMessage :content="message" @update="onMessageUpdated" />
+        <BlogPagesGuestBookMessage
+          :content="message"
+          @update="onMessageUpdated"
+        />
       </MotionCard>
       <AnimatedLoader :loading="formLoading || loading">
         <UPagination
@@ -119,7 +122,7 @@ const formState = reactive<BodySchema>({
   name: '',
   contact: '',
   message: '',
-  captcha: '',
+  captcha: ''
 })
 const clearFormState = () => {
   formState.name = ''
@@ -173,9 +176,9 @@ const onSubmit = async () => {
 const onMessageUpdated = (message: GuestbookMessageResponseSchema) => {
   data.value = {
     ...data.value!,
-    data: data.value!.data.map((item) =>
+    data: data.value!.data.map(item =>
       item.id === message.id ? message : item
-    ),
+    )
   }
 }
 

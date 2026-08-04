@@ -8,10 +8,6 @@ export default withNuxt({
       argsIgnorePattern: '^_',
       caughtErrorsIgnorePattern: '^_'
     }],
-    '@typescript-eslint/no-explicit-any': ['error', {
-      varsIgnorePattern: 'error',
-      argsIgnorePattern: 'error',
-      caughtErrorsIgnorePattern: 'error'
-    }]
+    '@typescript-eslint/no-explicit-any': 'error'
   }
 })

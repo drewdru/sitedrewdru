@@ -72,7 +72,7 @@ const getVisitorData = async (
         reason: 'rate-limit'
       } satisfies H3EventContext['visitor']['data']),
       'EX',
-      visitorDataMaxAgeSeconds,
+      visitorDataMaxAgeSeconds
     )
     throw forbiddenError('INVALID_SESSION')
   }
@@ -81,7 +81,7 @@ const getVisitorData = async (
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  let visitor = getCookie(event, 'visitor')
+  const visitor = getCookie(event, 'visitor')
   if (event.path.startsWith('/api/v')) {
     event.context.visitor = await getVisitorData(
       visitor,
@@ -89,7 +89,7 @@ export default defineEventHandler(async (event) => {
       config.rateLimit.defaultLimitMs,
       config.rateLimit.defaultMaxRequestTries,
       config.rateLimit.visitorDataMaxAgeSeconds,
-      config.secret,
+      config.secret
     )
     return
   }
@@ -126,6 +126,6 @@ export default defineEventHandler(async (event) => {
       badRecaptchaTries: 0
     } satisfies H3EventContext['visitor']['data']),
     'EX',
-    config.rateLimit.visitorDataMaxAgeSeconds,
+    config.rateLimit.visitorDataMaxAgeSeconds
   )
 })

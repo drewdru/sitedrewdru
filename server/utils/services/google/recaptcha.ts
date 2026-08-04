@@ -1,4 +1,4 @@
-import { H3Event } from "#imports";
+import type { H3Event } from '#imports'
 
 export const validateRecaptcha = async (event: H3Event, captcha?: string) => {
   if (!captcha) {
@@ -15,25 +15,25 @@ export const validateRecaptcha = async (event: H3Event, captcha?: string) => {
             token: captcha,
             siteKey: config.public.google.recaptcha.v2SiteKey,
             userIpAddress: event.context.realIp,
-            userAgent: event.context.userAgent,
-          },
+            userAgent: event.context.userAgent
+          }
         }),
         headers: {
           'Content-Type': 'application/json',
-          charset: 'UTF-8',
-        },
-      },
-    );
-    await validateFetchResponse(response);
+          'charset': 'UTF-8'
+        }
+      }
+    )
+    await validateFetchResponse(response)
     const result:
       | {
-          tokenProperties?: {
-            valid?: boolean;
-          };
+        tokenProperties?: {
+          valid?: boolean
         }
-      | undefined = await response.json();
+      }
+      | undefined = await response.json()
     if (!result?.tokenProperties?.valid) {
-      throw new Error('Invalid token');
+      throw new Error('Invalid token')
     }
   } catch {
     event.context.visitor.data.badTries++
@@ -48,8 +48,8 @@ export const validateRecaptcha = async (event: H3Event, captcha?: string) => {
         reason: 'rate-limit'
       } satisfies H3EventContext['visitor']['data']),
       'EX',
-      config.rateLimit.visitorDataMaxAgeSeconds,
+      config.rateLimit.visitorDataMaxAgeSeconds
     )
     throw forbiddenError()
   }
-} 
+}

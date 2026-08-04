@@ -4,7 +4,7 @@
 
 <template>
   <MotionCard>
-    <h3>{{t('ProfessionalExperience')}}</h3>
+    <h3>{{ t('ProfessionalExperience') }}</h3>
     <UAccordion
       :items="items"
       :unmount-on-hide="false"

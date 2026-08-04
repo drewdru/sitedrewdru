@@ -4,7 +4,10 @@
     class="group inline-flex items-center gap-2 text-toned hover:text-primary transition-colors"
   >
     <Logo class="h-6 w-auto text-current group-hover:text-primary transition-colors" />
-    <span v-if="full" class="font-heading font-semibold text-2xl">
+    <span
+      v-if="full"
+      class="font-heading font-semibold text-2xl"
+    >
       Drew Dru
     </span>
   </NuxtLink>
