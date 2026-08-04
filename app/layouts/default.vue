@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--ui-bg)_60%,transparent),color-mix(in_srgb,var(--ui-bg-accented)_60%,transparent))]">
     <UHeader>
       <template #left>
         <AppLogo :full="true" />
