@@ -5,7 +5,7 @@
 <template>
   <UContainer
     :ui="{
-      base: 'w-full flex flex-row'
+      base: 'w-full flex flex-col sm:flex-row'
     }"
   >
     <Motion
@@ -23,6 +23,7 @@
       :transition="{
         duration: 0.6
       }"
+      class="flex justify-center"
     >
       <UAvatar
         class="size-50 ring ring-default ring-offset-3 ring-offset-bg"
@@ -31,7 +32,7 @@
         :src="avatar?.src"
       />
     </Motion>
-    <div class="w-full flex flex-col gap-4 items-center">
+    <div class="w-full mt-4 flex flex-col gap-4 items-center sm:mt-0 ml-0 sm:ml-4 text-center">
       <Motion
         :initial="isHydrated ? undefined : {
           scale: 1.1,
@@ -87,7 +88,7 @@
         }"
       >
         <div
-          class="flex items-center gap-2"
+          class="w-full flex items-center gap-2"
         >
           <UButton
             :color="openTo.isOpen ? 'success' : 'error'"
@@ -121,7 +122,7 @@
           />
         </div>
       </Motion>
-      <div class="gap-x-4 inline-flex mt-4">
+      <div class="gap-x-4 mt-4 w-full flex flex-row flex-wrap justify-center">
         <Motion
           v-for="(link, index) of links"
           :key="index"
