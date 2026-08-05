@@ -1,4 +1,5 @@
 import { editSchema, guestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages'
+import { errorSchema } from '~~/shared/schemas/errors'
 
 import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestBody } from '~~/server/utils/validators/body'
@@ -45,7 +46,9 @@ defineApiMeta(
   {
     body: zodToOpenApiSchema(editSchema),
     responses: {
-      201: zodToOpenApiSchema(guestbookMessageResponseSchema)
+      201: zodToOpenApiSchema(guestbookMessageResponseSchema),
+      500: zodToOpenApiSchema(errorSchema),
+      404: zodToOpenApiSchema(errorSchema)
     }
   }
 )
