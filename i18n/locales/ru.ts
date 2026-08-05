@@ -3,12 +3,12 @@ export default {
   ErrorLoadingData: 'Ошибка загрузки данных',
   SomethingWentWrong: 'Что-то пошло не так...',
   SomethingWentWrongReloadPage: 'Что-то пошло не так. Попробуйте перезагрузить страницу.',
+  FORBIDDEN_ERROR: 'Нет доступа',
+  VALIDATION_ERROR: 'Неверные данные',
+  INVALID_SESSION: 'Доступ к некоторым функциям временно ограничен',
+  INTERNAL_SERVER_ERROR: 'Что-то пошло не так...',
+  NOT_FOUND: 'Не найдено',
   validation: {
-    SomethingWentWrong: 'Что-то пошло не так...',
-    FORBIDDEN_ERROR: 'Нет доступа',
-    VALIDATION_ERROR: 'Ошибка валидации',
-    INVALID_SESSION: 'Доступ к некоторым функциям временно ограничен',
-
     required: 'Поле обязательно для заполнения',
     invalid_type: 'Некорректное значение',
 

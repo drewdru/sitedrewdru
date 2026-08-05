@@ -104,7 +104,7 @@
 <script setup lang="ts">
 import { fetchMessages } from '~~/layers/core/app/utils/api/guestbook/fetchMessages'
 import { fetchPostMessage } from '~~/layers/core/app/utils/api/guestbook/postMessage'
-import { translateFormErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
+import { translateFormErrors, translateServerErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
 import { type BodySchema, bodySchema, type GuestbookMessageResponseSchema, type ResponseGetSchema } from '~~/shared/schemas/guestbook/messages'
 
 const { t } = useI18n()
@@ -162,8 +162,7 @@ const onSubmit = async () => {
     }
   } catch (error: any) {
     toast.add({
-      title: t('Error'),
-      description: t(`validation.${error?.data?.errorCode ?? 'SomethingWentWrong'}`),
+      ...translateServerErrors(t, error?.statusCode, error?.data?.errorCode),
       color: 'error',
       icon: 'i-lucide-circle-alert'
     })
@@ -188,8 +187,8 @@ const refetch = async () => {
     data.value = await fetchMessages(page.value)
   } catch (error: any) {
     toast.add({
+      ...translateServerErrors(t, error?.statusCode, error?.data?.errorCode),
       title: t('ErrorLoadingData'),
-      description: t(`validation.${error?.data?.errorCode ?? 'SomethingWentWrong'}`),
       color: 'error',
       icon: 'i-lucide-circle-alert'
     })

@@ -4,11 +4,13 @@ import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestBody } from '~~/server/utils/validators/body'
 import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
 import { validateRecaptcha } from '~~/server/utils/services/google/recaptcha'
+import { notFoundError } from '~~/server/utils/errors'
+import { tryAwaitOrDefault } from '~~/shared/utils/tryAwaitOrDefault'
 
 export default defineEventHandler(async (event) => {
   const { id, message, captcha } = await validateRequestBody(event, editSchema)
   await validateRecaptcha(event, captcha)
-  const data = await prisma.guestbookMessage.update({
+  const data = await tryAwaitOrDefault(prisma.guestbookMessage.update({
     where: {
       id,
       visitorId: event.context.visitor.id
@@ -16,9 +18,12 @@ export default defineEventHandler(async (event) => {
     data: {
       message
     }
-  })
+  }), 'error')
+  if (data === 'error') {
+    throw internalServerError()
+  }
   if (!data) {
-    throw forbiddenError('FORBIDDEN_ERROR')
+    throw notFoundError()
   }
   setResponseStatus(event, 204)
   return {

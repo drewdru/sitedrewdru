@@ -100,7 +100,7 @@
 <script setup lang="ts">
 import { useTimeAgoIntl } from '@vueuse/core'
 import { fetchEditMessage } from '~~/layers/core/app/utils/api/guestbook/fetchEditMessage'
-import { translateFormErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
+import { translateFormErrors, translateServerErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
 import { type EditSchema, editSchema, type GuestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages'
 
 const props = defineProps<{
@@ -134,10 +134,8 @@ const onSubmit = async () => {
     })
     mode.value = 'view'
   } catch (error: any) {
-    console.log(error)
     toast.add({
-      title: t('Error'),
-      description: t(`validation.${error?.data?.errorCode ?? 'SomethingWentWrong'}`),
+      ...translateServerErrors(t, error?.statusCode, error?.data?.errorCode),
       color: 'error',
       icon: 'i-lucide-circle-alert'
     })

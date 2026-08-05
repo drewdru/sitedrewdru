@@ -3,12 +3,13 @@ export default {
   ErrorLoadingData: 'Error loading data',
   SomethingWentWrong: 'Something went wrong..',
   SomethingWentWrongReloadPage: 'Something went wrong. Try to reload page.',
-  validation: {
-    SomethingWentWrong: 'Something went wrong..',
-    FORBIDDEN_ERROR: 'Forbidden',
-    VALIDATION_ERROR: 'Validation Error',
-    INVALID_SESSION: 'Access to certain features has been temporarily restricted',
+  FORBIDDEN_ERROR: 'Forbidden',
+  VALIDATION_ERROR: 'Incorrect data',
+  INVALID_SESSION: 'Access to certain features has been temporarily restricted',
+  INTERNAL_SERVER_ERROR: 'Something went wrong..',
+  NOT_FOUND: 'Not found',
 
+  validation: {
     required: 'This field is required',
     invalid_type: 'Invalid value',
 

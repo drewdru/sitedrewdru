@@ -9,7 +9,7 @@ export async function validateRequestQuery<T extends ZodType>(
 ): Promise<z.infer<T>> {
   const { data, error } = await getValidatedQuery(event, schema.safeParse)
   if (error) {
-    throw validationError('Invalid query parameters', formatZodErrors(error))
+    throw validationError(formatZodErrors(error))
   }
   return data
 }

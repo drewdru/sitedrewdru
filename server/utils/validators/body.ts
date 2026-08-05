@@ -10,7 +10,7 @@ export async function validateRequestBody<T extends ZodType>(
 ): Promise<z.infer<T>> {
   const { data, error } = await readValidatedBody(event, schema.safeParse)
   if (error) {
-    throw validationError('Invalid request body', formatZodErrors(error))
+    throw validationError(formatZodErrors(error))
   }
   return data
 }
