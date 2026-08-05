@@ -12,6 +12,8 @@ declare module 'h3' {
         badRecaptchaTries: number
         banned?: true
         reason?: 'rate-limit'
+        name?: string
+        contact?: string
       }
     }
   }

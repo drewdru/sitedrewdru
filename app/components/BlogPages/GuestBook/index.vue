@@ -14,64 +14,66 @@
         :state="formState"
         @submit="() => { showRecaptcha = true }"
       >
-        <div class="flex flex-row gap-4">
-          <div class="flex flex-col gap-4 min-w-[12rem] w-[16rem] h-[11.75rem] justify-between">
-            <UFormField
-              name="name"
-              :label="t('FormName')"
-            >
-              <UInput v-model="formState.name" />
-            </UFormField>
-            <UFormField
-              name="contact"
-              :label="t('FormHandleOptional')"
-            >
-              <UInput
-                v-model="formState.contact"
-                :placeholder="t('FormHandleOptionalPlaceholder')"
-              />
-            </UFormField>
-          </div>
-          <div class="w-full flex flex-col gap-4 h-[11.75rem] justify-between">
-            <UFormField
-              name="message"
-              :label="t('FormMessage')"
-            >
-              <UTextarea
-                v-model="formState.message"
-                class="w-full"
-                :ui="{
-                  base: 'w-full h-[88px]'
-                }"
-                height="88px"
-                @keydown.ctrl.enter="form?.submit()"
-                @keydown.meta.enter="form?.submit()"
-              />
-            </UFormField>
-            <UPopover
-              :open="showRecaptcha"
-              @update:open="(value) => value ? undefined : showRecaptcha = false"
-            >
-              <UButton
-                type="submit"
-                :loading="formLoading"
-                :disabled="formLoading || !data"
-                block
+        <AnimatedLoader :loading="!isHydrated">
+          <div class="flex flex-row gap-4">
+            <div class="flex flex-col gap-4 min-w-[12rem] w-[16rem] h-[11.75rem] justify-between">
+              <UFormField
+                name="name"
+                :label="t('FormName')"
               >
-                {{ t('PostMessage') }}
-              </UButton>
-
-              <template #content>
-                <RecaptchaCheckbox
-                  v-model="formState.captcha"
-                  @expired="formState.captcha = undefined"
-                  @error="formState.captcha = undefined"
-                  @update:model-value="onSubmit"
+                <UInput v-model="formState.name" />
+              </UFormField>
+              <UFormField
+                name="contact"
+                :label="t('FormHandleOptional')"
+              >
+                <UInput
+                  v-model="formState.contact"
+                  :placeholder="t('FormHandleOptionalPlaceholder')"
                 />
-              </template>
-            </UPopover>
+              </UFormField>
+            </div>
+            <div class="w-full flex flex-col gap-4 h-[11.75rem] justify-between">
+              <UFormField
+                name="message"
+                :label="t('FormMessage')"
+              >
+                <UTextarea
+                  v-model="formState.message"
+                  class="w-full"
+                  :ui="{
+                    base: 'w-full h-[88px]'
+                  }"
+                  height="88px"
+                  @keydown.ctrl.enter="form?.submit()"
+                  @keydown.meta.enter="form?.submit()"
+                />
+              </UFormField>
+              <UPopover
+                :open="showRecaptcha"
+                @update:open="(value) => value ? undefined : showRecaptcha = false"
+              >
+                <UButton
+                  type="submit"
+                  :loading="formLoading"
+                  :disabled="formLoading || !data"
+                  block
+                >
+                  {{ t('PostMessage') }}
+                </UButton>
+
+                <template #content>
+                  <RecaptchaCheckbox
+                    v-model="formState.captcha"
+                    @expired="formState.captcha = undefined"
+                    @error="formState.captcha = undefined"
+                    @update:model-value="onSubmit"
+                  />
+                </template>
+              </UPopover>
+            </div>
           </div>
-        </div>
+        </AnimatedLoader>
       </UForm>
     </MotionCard>
     <UContainer class="flex flex-col gap-4 lg:px-0 py-4">
@@ -102,6 +104,7 @@
 </template>
 
 <script setup lang="ts">
+import { useVisitorStore } from '~~/layers/core/app/stores/visitor'
 import { fetchMessages } from '~~/layers/core/app/utils/api/guestbook/fetchMessages'
 import { fetchPostMessage } from '~~/layers/core/app/utils/api/guestbook/postMessage'
 import { translateFormErrors, translateServerErrors } from '~~/layers/core/app/utils/form/tranlateErrors'
@@ -114,6 +117,9 @@ const toast = useToast()
 const scrollToTop = inject<() => void>('scrollToTop')
 const form = useTemplateRef('guestbookform')
 
+const visitorStore = useVisitorStore()
+const { isHydrated, visitor } = storeToRefs(visitorStore)
+
 const data = ref<ResponseGetSchema | undefined>(undefined)
 const loading = ref(true)
 const formLoading = ref(false)
@@ -125,8 +131,6 @@ const formState = reactive<BodySchema>({
   captcha: ''
 })
 const clearFormState = () => {
-  formState.name = ''
-  formState.contact = ''
   formState.message = ''
   formState.captcha = ''
 }
@@ -202,4 +206,11 @@ watch(page, () => {
   scrollToTop?.()
   refetch()
 })
+watch(isHydrated, (hydrated) => {
+  if (!hydrated) {
+    return
+  }
+  formState.name = visitor.value?.name ?? ''
+  formState.contact = visitor.value?.contact ?? ''
+}, { immediate: true })
 </script>
