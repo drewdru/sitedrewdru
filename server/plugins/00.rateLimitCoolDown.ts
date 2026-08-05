@@ -7,11 +7,11 @@ export default defineNitroPlugin((nitroApp) => {
       return
     }
     const config = useRuntimeConfig()
-    const badTries = Math.max(0, (event.context.visitorData?.badTries ?? 0) - 1)
+    const badTries = Math.max(0, event.context.visitor.data.badTries - 1)
     await redis.set(
       event.context.visitor.id,
       JSON.stringify({
-        ...event.context.visitorData,
+        ...event.context.visitor.data,
         lastRequestTime: event.context.requestTime,
         badTries
       } satisfies H3EventContext['visitor']['data']),

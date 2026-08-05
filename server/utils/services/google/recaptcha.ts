@@ -35,6 +35,7 @@ export const validateRecaptcha = async (event: H3Event, captcha?: string) => {
     if (!result?.tokenProperties?.valid) {
       throw new Error('Invalid token')
     }
+    event.context.visitor.data.badRecaptchaTries = Math.max(0, event.context.visitor.data.badRecaptchaTries - 1)
   } catch {
     event.context.visitor.data.badTries++
     event.context.visitor.data.badRecaptchaTries++

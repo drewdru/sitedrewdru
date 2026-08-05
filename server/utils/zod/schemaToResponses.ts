@@ -2,7 +2,7 @@ import type { z } from 'zod/v4'
 import type { OpenAPIV3 } from 'openapi-types'
 
 export const schemaToResponses = (
-  responses?: Record<number, z.core.JSONSchema.BaseSchema>
+  responses?: Record<number, z.core.JSONSchema.BaseSchema | undefined>
 ): OpenAPIV3.ResponsesObject | undefined => {
   if (!responses) {
     return undefined

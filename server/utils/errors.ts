@@ -1,78 +1,75 @@
+import { constants } from 'node:http2'
+
+import type en from '~~/i18n/locales/en'
+
+type ValidationKeys = keyof typeof en.serverErrors.validation
+type NotFoundKeys = keyof typeof en.serverErrors.notFound
+type ForbiddenKeys = keyof typeof en.serverErrors.forbidden
+type InternalErrorKeys = keyof typeof en.serverErrors.internal
+type ConflictKeys = keyof typeof en.serverErrors.conflict
+
+type ErrorDetails = {
+  errorCode?: string
+  errors?: { name?: string, message: string }[]
+  data?: Record<string, unknown>
+}
+
+export const createErrorData = (
+  errorCode: string,
+  details?: ErrorDetails
+) => ({
+  ...(details?.data ?? {}),
+  ...(details?.errors ? { errors: details.errors } : {}),
+  errorCode: details?.errorCode ?? errorCode,
+  timestamp: new Date().toISOString()
+})
+
 export const validationError = (
-  details?: {
-    errorCode?: string
-    errors?: { name?: string, message: string }[]
-    data?: Record<string, unknown>
-  }
+  errorCode: ValidationKeys = 'VALIDATION_ERROR',
+  details?: ErrorDetails
 ) =>
   createError({
-    statusCode: 400,
-    statusMessage: 'Validation Error',
-    data: {
-      ...(details?.data ?? {}),
-      ...(details?.errors ? { errors: details.errors } : {}),
-      ...(details?.errorCode ? { errorCode: details.errorCode } : { errorCode: 'VALIDATION_ERROR' }),
-      timestamp: new Date().toISOString()
-    }
+    statusCode: constants.HTTP_STATUS_BAD_REQUEST,
+    statusMessage: 'Bad Request',
+    data: createErrorData(errorCode, details)
   })
 
 export const notFoundError = (
-  errorCode?: 'NOT_FOUND',
-  details?: {
-    errorCode?: string
-    errors?: { name?: string, message: string }[]
-    data?: Record<string, unknown>
-  }
+  errorCode: NotFoundKeys = 'NOT_FOUND',
+  details?: ErrorDetails
 ) =>
   createError({
-    statusCode: 404,
+    statusCode: constants.HTTP_STATUS_NOT_FOUND,
     statusMessage: 'Not found',
-    data: {
-      ...(details?.data ?? {}),
-      ...(details?.errors ? { errors: details.errors } : {}),
-      ...(details?.errorCode ? { errorCode: details.errorCode } : { errorCode: errorCode ?? 'FORBIDDEN_ERROR' }),
-      timestamp: new Date().toISOString()
-    }
+    data: createErrorData(errorCode, details)
   })
 
 export const forbiddenError = (
-  errorCode?: 'INVALID_SESSION' | 'FORBIDDEN_ERROR',
-  details?: {
-    errorCode?: string
-    errors?: { name?: string, message: string }[]
-    data?: Record<string, unknown>
-  }
+  errorCode: ForbiddenKeys = 'FORBIDDEN_ERROR',
+  details?: ErrorDetails
 ) =>
   createError({
-    statusCode: 403,
+    statusCode: constants.HTTP_STATUS_FORBIDDEN,
     statusMessage: 'Forbidden',
-    data: {
-      ...(details?.data ?? {}),
-      ...(details?.errors ? { errors: details.errors } : {}),
-      ...(details?.errorCode ? { errorCode: details.errorCode } : { errorCode: errorCode ?? 'FORBIDDEN_ERROR' }),
-      timestamp: new Date().toISOString()
-    }
+    data: createErrorData(errorCode, details)
   })
 
 export const internalServerError = (
-  errorCode: 'INTERNAL_SERVER_ERROR'
-    // | 'DATABASE_ERROR'
-    // | 'EXTERNAL_SERVICE_ERROR'
-    // | 'CONFIGURATION_ERROR'
-    = 'INTERNAL_SERVER_ERROR',
-  details?: {
-    errorCode?: string
-    errors?: { name?: string, message: string }[]
-    data?: Record<string, unknown>
-  }
+  errorCode: InternalErrorKeys = 'INTERNAL_SERVER_ERROR',
+  details?: ErrorDetails
 ) =>
   createError({
-    statusCode: 500,
+    statusCode: constants.HTTP_STATUS_INTERNAL_SERVER_ERROR,
     statusMessage: 'Internal Server Error',
-    data: {
-      ...(details?.data ?? {}),
-      ...(details?.errors ? { errors: details.errors } : {}),
-      ...(details?.errorCode ? { errorCode: details.errorCode } : { errorCode: errorCode ?? 'FORBIDDEN_ERROR' }),
-      timestamp: new Date().toISOString()
-    }
+    data: createErrorData(errorCode, details)
+  })
+
+export const conflictError = (
+  errorCode: ConflictKeys = 'CONFLICT_ERROR',
+  details?: ErrorDetails
+) =>
+  createError({
+    statusCode: constants.HTTP_STATUS_CONFLICT,
+    statusMessage: 'Internal Server Error',
+    data: createErrorData(errorCode, details)
   })

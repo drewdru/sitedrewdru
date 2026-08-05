@@ -1,3 +1,4 @@
+import { constants } from 'node:http2'
 import { z } from 'zod/v4'
 import { forbiddenError } from '~~/server/utils/errors'
 
@@ -100,7 +101,7 @@ defineApiMeta(
     security: [{ serverApiKey: [] }],
     params: zodToOpenApiSchema(paramsSchema),
     responses: {
-      200: zodToOpenApiSchema(responseSchema)
+      [constants.HTTP_STATUS_OK]: zodToOpenApiSchema(responseSchema)
     }
   }
 )

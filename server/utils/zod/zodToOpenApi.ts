@@ -31,7 +31,7 @@ export interface ApiMetaInput {
   query?: z.core.JSONSchema.BaseSchema
   params?: z.core.JSONSchema.BaseSchema
   body?: z.core.JSONSchema.BaseSchema
-  responses?: Record<number, z.core.JSONSchema.BaseSchema>
+  responses?: Record<number, z.core.JSONSchema.BaseSchema | undefined>
   security?: OpenAPIV3.SecurityRequirementObject[]
 }
 

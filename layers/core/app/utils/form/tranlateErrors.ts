@@ -3,7 +3,7 @@ export const translateFormErrors = (
   errors?: { name: string, message: string }[]
 ) => (errors ?? []).map(item => ({
   ...item,
-  message: t(`validation.${item.message}`)
+  message: t(`serverErrors.validation.${item.message}`)
 }))
 
 export const translateServerErrors = (
@@ -14,28 +14,33 @@ export const translateServerErrors = (
   switch (statusCode) {
     case 400:
       return {
-        title: t('VALIDATION_ERROR'),
-        description: t(errorCode ? `validation.${errorCode}` : 'SomethingWentWrong')
+        title: t('serverErrors.validation.VALIDATION_ERROR'),
+        description: t(errorCode ? `serverErrors.validation.${errorCode}` : 'SomethingWentWrong')
       }
     case 403:
       return {
-        title: t('FORBIDDEN_ERROR'),
-        description: t(errorCode ?? 'SomethingWentWrong')
+        title: t('serverErrors.forbidden.FORBIDDEN_ERROR'),
+        description: t(errorCode ? `serverErrors.forbidden.${errorCode}` : 'SomethingWentWrong')
       }
     case 404:
       return {
-        title: t('VALIDATION_ERROR'),
-        description: t(errorCode ?? 'SomethingWentWrong')
+        title: t('serverErrors.validation.VALIDATION_ERROR'),
+        description: t(errorCode ? `serverErrors.notFound.${errorCode}` : 'SomethingWentWrong')
+      }
+    case 409:
+      return {
+        title: t('serverErrors.conflict.CONFLICT_ERROR'),
+        description: t(errorCode ? `serverErrors.conflict.${errorCode}` : 'SomethingWentWrong')
       }
     case 500:
       return {
-        title: t('INTERNAL_SERVER_ERROR'),
-        description: t(errorCode ?? 'SomethingWentWrong')
+        title: t('serverErrors.internal.INTERNAL_SERVER_ERROR'),
+        description: t(errorCode ? `serverErrors.internal.${errorCode}` : 'SomethingWentWrong')
       }
     default:
       return {
         title: t('Error'),
-        description: t(errorCode ?? 'SomethingWentWrong')
+        description: t('SomethingWentWrong')
       }
   }
 }

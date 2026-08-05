@@ -5,6 +5,7 @@ import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestBody } from '~~/server/utils/validators/body'
 import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
 import { validateRecaptcha } from '~~/server/utils/services/google/recaptcha'
+import { constants } from 'node:http2'
 
 export default defineEventHandler(async (event) => {
   const { name, message, contact, captcha } = await validateRequestBody(event, bodySchema)
@@ -18,7 +19,9 @@ export default defineEventHandler(async (event) => {
         visitorId: event.context.visitor.id
       }
     })
-    setResponseStatus(event, 201)
+    event.context.visitor.data.name = name
+    event.context.visitor.data.contact = contact
+    setResponseStatus(event, constants.HTTP_STATUS_OK)
     return {
       ...data,
       editable: data.visitorId === `#${event.context.visitor.id.slice(0, 8)}`
@@ -41,8 +44,8 @@ defineApiMeta(
   {
     body: zodToOpenApiSchema(bodySchema),
     responses: {
-      201: zodToOpenApiSchema(guestbookMessageResponseSchema),
-      500: zodToOpenApiSchema(errorSchema)
+      [constants.HTTP_STATUS_OK]: zodToOpenApiSchema(guestbookMessageResponseSchema),
+      [constants.HTTP_STATUS_INTERNAL_SERVER_ERROR]: zodToOpenApiSchema(errorSchema)
     }
   }
 )

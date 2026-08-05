@@ -5,6 +5,7 @@ import { validateRequestQuery } from '~~/server/utils/validators/query'
 import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
 import { internalServerError } from '~~/server/utils/errors'
 import { errorSchema } from '~~/shared/schemas/errors'
+import { constants } from 'node:http2'
 
 export default defineCachedEventHandler(
   async (event) => {
@@ -68,8 +69,8 @@ defineApiMeta(
   {
     query: zodToOpenApiSchema(querySchema),
     responses: {
-      200: zodToOpenApiSchema(responseGetSchema),
-      500: zodToOpenApiSchema(errorSchema)
+      [constants.HTTP_STATUS_OK]: zodToOpenApiSchema(responseGetSchema),
+      [constants.HTTP_STATUS_INTERNAL_SERVER_ERROR]: zodToOpenApiSchema(errorSchema)
     }
   }
 )
