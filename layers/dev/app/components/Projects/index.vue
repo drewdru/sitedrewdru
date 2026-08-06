@@ -7,24 +7,30 @@
     <UPageBody>
       <UContainer>
         <UPageGrid>
-          <UCard :ui="{ body: 'sm:p-0 p-0', footer: 'sm:p-0 p-0' }">
+          <UCard
+            v-for="project in projects"
+            :key="project.title"
+            :ui="{
+              body: 'sm:p-0 p-0',
+              footer: 'sm:p-0 p-0',
+              header: 'flex flex-row justify-center'
+            }"
+          >
             <template #header>
               <NuxtLink
-                to="https://manetalk.com"
-                target="_blank"
-                external
+                v-bind="{ ...project?.link }"
                 class="group inline-flex items-center gap-2 text-toned hover:text-primary transition-colors"
               >
                 <UIcon name="i-lucide-link" />
                 <span class="font-heading font-semibold text-2xl">
-                  ManeTalk
+                  {{ project?.title }}
                 </span>
               </NuxtLink>
             </template>
             <template #default>
               <MotionZoomImg
-                src="/img/devpreview/manetalk.png"
-                alt="Manetalk home page"
+                :src="project?.preview.src"
+                :alt="project?.preview.alt"
                 :size="{ xs: 300, sm: 610, md: 500, xl: 384, lg: 384 }"
                 lazy
               />
@@ -33,7 +39,7 @@
               <UButton
                 variant="ghost"
                 class="w-full justify-center"
-                @click="() => { open = true }"
+                @click="showModal(project)"
               >
                 {{ t('ReadMore') }}
               </UButton>
@@ -57,33 +63,34 @@
       </UContainer>
       <UModal
         v-model:open="open"
+        :ui="{
+          header: 'justify-center',
+          footer: 'justify-center'
+        }"
       >
         <template #title>
-          ManeTalk
+          {{ modalData?.title }}
         </template>
         <template #body>
           <div class="w-full flex flex-col gap-2">
             <div>
-              {{ t('Site') }}:
-              <NuxtLink
-                to="https://manetalk.com"
-                target="_blank"
-                external
-                class="group inline-flex items-center gap-2 text-toned hover:text-primary transition-colors"
-              >
-                <UIcon name="i-lucide-link" />
-                <span class="font-heading font-semibold">
-                  ManeTalk
-                </span>
-              </NuxtLink>
+              {{ t('Skills') }}: {{ modalData?.skills }}
             </div>
             <div>
-              {{ t('Skills') }}: NestJS, Vue.js, Nuxt, Electron, RabbitMQ, Kafka, Docker, Godot, PostgreSQL, MinIO
-            </div>
-            <div>
-              {{ t('Overview') }}: {{ t('ManeTalkOverview') }}
+              {{ t('Overview') }}: {{ modalData?.overview }}
             </div>
           </div>
+        </template>
+        <template #footer>
+          <UButton
+            variant="solid"
+            icon="i-lucide-link"
+            :to="modalData?.link.to"
+            :external="modalData?.link.external"
+            :target="modalData?.link.target"
+          >
+            {{ t('OpenProject') }} {{ modalData?.title }}
+          </UButton>
         </template>
       </UModal>
     </UPageBody>
@@ -94,4 +101,39 @@
 const { t } = useI18n()
 
 const open = ref(false)
+
+interface Project {
+  link: {
+    to: string
+    target: string
+    external: boolean
+  }
+  title: string
+  skills: string
+  overview: string
+  preview: {
+    src: string
+    alt: string
+  }
+}
+const modalData = ref<Project | null>(null)
+const projects = computed(() => ([{
+  link: {
+    to: 'https://manetalk.com',
+    target: '_blank',
+    external: true
+  },
+  title: 'ManeTalk',
+  skills: 'NestJS, Vue.js, Nuxt, Electron, RabbitMQ, Kafka, Docker, Godot, PostgreSQL, MinIO',
+  overview: t('ManeTalkOverview'),
+  preview: {
+    src: '/img/devpreview/manetalk.png',
+    alt: t('ManetalkPreviewAlt')
+  }
+} satisfies Project]))
+
+const showModal = (project: Project) => {
+  modalData.value = project
+  open.value = true
+}
 </script>

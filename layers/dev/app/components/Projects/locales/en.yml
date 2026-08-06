@@ -7,3 +7,4 @@ Site: Site
 Skills: Skills
 Overview: Overview
 ManeTalkOverview: Developed the ManeTalk website with SSO authentication and a microservices-based backend for game modules. Designed scalable REST and event-driven APIs for managing profile data, character textures, inventories, and real-time chat integrated with the Godot Engine. Implemented advanced anti-abuse systems including per-endpoint rate limiting, gibberish and Detoxify message classification, and multi-account spam and flood detection using Longest Common Subsequence analysis. Built a Telegram bot for administration and moderation, along with a desktop game launcher featuring an integrated anti-cheat system.
+OpenProject: Open
