@@ -6,6 +6,7 @@ declare module 'h3' {
     authorization?: string
     visitor: {
       id: string
+      publicId: string
       data: {
         lastRequestTime: number
         badTries: number

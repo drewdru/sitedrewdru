@@ -12,7 +12,7 @@ export async function validateRouterParams<T extends ZodType>(
     schema.safeParse
   )
   if (error) {
-    throw validationError(formatZodErrors(error))
+    throw validationError('VALIDATION_ERROR', formatZodErrors(error))
   }
   return data
 }

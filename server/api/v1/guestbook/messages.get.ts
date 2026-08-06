@@ -1,11 +1,12 @@
+import { constants } from 'node:http2'
+
 import { DEFAULT_PAGE_SIZE, querySchema, responseGetSchema } from '~~/shared/schemas/guestbook/messages'
+import { errorSchema } from '~~/shared/schemas/errors'
 
 import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestQuery } from '~~/server/utils/validators/query'
 import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
 import { internalServerError } from '~~/server/utils/errors'
-import { errorSchema } from '~~/shared/schemas/errors'
-import { constants } from 'node:http2'
 
 export default defineCachedEventHandler(
   async (event) => {
@@ -22,10 +23,11 @@ export default defineCachedEventHandler(
         prisma.guestbookMessage.count()
       ])
       const totalPages = Math.ceil(total / pageSize)
+      setResponseStatus(event, constants.HTTP_STATUS_OK)
       return {
         data: messages.map(message => ({
           ...message,
-          editable: message.visitorId === `#${event.context.visitor.id.slice(0, 8)}`
+          editable: message.visitorId === event.context.visitor.publicId
         })),
         pagination: {
           page,

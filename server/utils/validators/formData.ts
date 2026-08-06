@@ -49,7 +49,7 @@ export async function validateFormData<T extends ZodType>(
   const { data, error } = schema.safeParse(formData)
 
   if (error) {
-    throw validationError(formatZodErrors(error))
+    throw validationError('VALIDATION_ERROR', formatZodErrors(error))
   }
 
   return data

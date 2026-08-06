@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
   setResponseStatus(event, constants.HTTP_STATUS_OK)
   return {
     ...data,
-    editable: data.visitorId === `#${event.context.visitor.id.slice(0, 8)}`
+    editable: data.visitorId === event.context.visitor.publicId
   }
 })
 
