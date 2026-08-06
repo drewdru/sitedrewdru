@@ -3,6 +3,7 @@ import { constants } from 'node:http2'
 import { roomPathSchema } from '~~/shared/schemas/games/path'
 import { safeAwait } from '~~/shared/utils/safeAwait'
 import { errorSchema } from '~~/shared/schemas/errors'
+import type { WebRtcP2PPeerJoined } from '~~/shared/types/sse/webrtc'
 
 import { redis } from '~~/server/utils/redis'
 import { conflictError, notFoundError } from '~~/server/utils/errors'
@@ -39,10 +40,13 @@ export default defineEventHandler(async (event) => {
     await redis.publish(
       `webrtc:p2p:signal:${room.host}`,
       JSON.stringify({
-        type: 'peer_joined',
-        gameId,
-        roomId
-      })
+        type: 'webrtc.p2p.peer_joined',
+        data: {
+          gameId,
+          roomId,
+          peerId: event.context.visitor.publicId
+        }
+      } satisfies WebRtcP2PPeerJoined)
     )
     setResponseStatus(event, constants.HTTP_STATUS_NO_CONTENT)
   } catch {

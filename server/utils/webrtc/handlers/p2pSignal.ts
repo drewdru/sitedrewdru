@@ -5,8 +5,5 @@ export const onWebRtcP2PSignal = async (visitorPublicId: string, message: string
   if (!stream) {
     return
   }
-  await stream.push({
-    event: 'message',
-    data: message
-  })
+  await stream.push(message)
 }

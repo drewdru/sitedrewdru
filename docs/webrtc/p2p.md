@@ -150,7 +150,8 @@ It looks up the host's SSE connection and pushes:
 {
   "type": "peer_joined",
   "gameId": "...",
-  "roomId": "..."
+  "roomId": "...",
+  "peerId": "..."
 }
 ```
 

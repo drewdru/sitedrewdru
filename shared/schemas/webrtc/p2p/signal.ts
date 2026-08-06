@@ -17,6 +17,7 @@ export const signalMessageSchema = z.discriminatedUnion('kind', [
   sessionSignalSchema,
   iceSignalSchema
 ])
+export type SignalMessageSchema = z.infer<typeof signalMessageSchema>
 
 export const signalBodySchema = z.object({
   peerId: z.string().trim().min(9).max(9),

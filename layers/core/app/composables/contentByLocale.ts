@@ -1,13 +1,13 @@
 import type { Collections } from '@nuxt/content'
 
-export function useContentByLocale(
+export const useContentByLocale = (
   collection: keyof Collections,
   slug: string,
   locale: Ref<string>,
   options?: {
     fallbackLocale?: string
   }
-) {
+) => {
   const fallbackLocale = options?.fallbackLocale ?? 'en'
   return useAsyncData(
     `${collection}-${slug}-${locale.value}`,

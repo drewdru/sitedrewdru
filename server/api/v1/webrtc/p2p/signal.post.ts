@@ -2,7 +2,7 @@ import { constants } from 'node:http2'
 
 import { redis } from '~~/server/utils/redis'
 import { errorSchema } from '~~/shared/schemas/errors'
-
+import type { WebRtcP2PSignal } from '~~/shared/types/sse/webrtc'
 import { signalBodySchema } from '~~/shared/schemas/webrtc/p2p/signal'
 
 export default defineEventHandler(async (event) => {
@@ -20,9 +20,11 @@ export default defineEventHandler(async (event) => {
     await redis.publish(
       `webrtc:p2p:signal:${peerId}`,
       JSON.stringify({
-        type: 'signal',
-        signal: signal
-      })
+        type: 'webrtc.p2p.signal',
+        data: {
+          signal: signal
+        }
+      } satisfies WebRtcP2PSignal)
     )
     setResponseStatus(event, constants.HTTP_STATUS_NO_CONTENT)
   } catch {
