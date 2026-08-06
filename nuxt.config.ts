@@ -262,7 +262,6 @@ export default defineNuxtConfig({
       }
     }
   },
-
   vite: {
     optimizeDeps: {
       include: [
@@ -279,6 +278,12 @@ export default defineNuxtConfig({
         'career.drewdru.local',
         'dev.drewdru.local'
       ]
+    }
+  },
+  hooks: {
+    // https://github.com/nuxt/nuxt/issues/33987
+    close: (nuxt) => {
+      if (!nuxt.options._prepare) process.exit(0)
     }
   },
 
