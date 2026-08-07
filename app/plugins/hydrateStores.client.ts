@@ -8,5 +8,5 @@ export default defineNuxtPlugin(() => {
 
   const sseStore = useSseStore()
   const visitorStore = useVisitorStore()
-  visitorStore.hydrate(sseStore.init)
+  visitorStore.hydrate(sseStore.hydrate)
 })

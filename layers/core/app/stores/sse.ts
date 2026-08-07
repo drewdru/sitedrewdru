@@ -7,6 +7,9 @@ type SseBroadcastMessage
     timestamp: number
   }
   | {
+    type: 'tab:ping'
+  }
+  | {
     type: 'sse:event'
     message: ServerSentEvents
   }
@@ -14,15 +17,26 @@ type SseBroadcastMessage
 export const useSseStore = defineStore('sseStore', () => {
   const getHandler = useSseHandlers()
   const isLeader = ref(false)
-  const isConnected = ref(false)
+  const isRealtimeConnected = ref(false)
+  const isHydrated = ref(false)
 
   let eventSource: EventSource | null = null
   let broadcastChannel: BroadcastChannel | null = null
   let heartbeatTimer: ReturnType<typeof setInterval> | null = null
   let monitorTimer: ReturnType<typeof setInterval> | null = null
   let lastHeartbeat = 0
+  let hasOtherTabs = false
 
-  function init() {
+  function startTimers() {
+    if (!monitorTimer) {
+      startLeaderMonitor()
+    }
+    if (isLeader.value && !heartbeatTimer) {
+      startHeartbeat()
+    }
+  }
+
+  function hydrate() {
     if (broadcastChannel) {
       return
     }
@@ -33,6 +47,11 @@ export const useSseStore = defineStore('sseStore', () => {
       switch (message.type) {
         case 'leader:heartbeat':
           lastHeartbeat = message.timestamp
+          isRealtimeConnected.value = true
+          break
+        case 'tab:ping':
+          hasOtherTabs = true
+          startTimers()
           break
         case 'sse:event':
           handleEvent(message.message)
@@ -42,9 +61,8 @@ export const useSseStore = defineStore('sseStore', () => {
       }
     }
 
-    lastHeartbeat = Date.now()
-    startLeaderMonitor()
     tryBecomeLeader()
+    isHydrated.value = true
   }
 
   async function tryBecomeLeader() {
@@ -54,6 +72,9 @@ export const useSseStore = defineStore('sseStore', () => {
 
     if (!('locks' in navigator) || !window.isSecureContext) {
       isLeader.value = true
+      if (hasOtherTabs) {
+        startTimers()
+      }
       startSse()
       return
     }
@@ -65,11 +86,19 @@ export const useSseStore = defineStore('sseStore', () => {
         ifAvailable: true
       },
       async (lock) => {
-        if (!lock || isLeader.value) {
+        if (!lock) {
+          hasOtherTabs = true
+          startTimers()
+          broadcastChannel?.postMessage({
+            type: 'tab:ping'
+          } satisfies SseBroadcastMessage)
           return
         }
 
         isLeader.value = true
+        if (hasOtherTabs) {
+          startTimers()
+        }
         startSse()
 
         await new Promise<void>((resolve) => {
@@ -85,22 +114,21 @@ export const useSseStore = defineStore('sseStore', () => {
   }
 
   function handleSseReplaced() {
-    isLeader.value = false
-    if (heartbeatTimer) {
-      clearInterval(heartbeatTimer)
-      heartbeatTimer = null
-    }
     eventSource?.close()
     eventSource = null
+    if (!('locks' in navigator) || !window.isSecureContext) {
+      isLeader.value = false
+      tryBecomeLeader()
+    }
   }
 
   function startSse() {
     eventSource = new EventSource('/api/v1/sse/events')
     eventSource.onopen = () => {
-      isConnected.value = true
+      isRealtimeConnected.value = true
     }
     eventSource.onerror = () => {
-      isConnected.value = false
+      isRealtimeConnected.value = false
     }
     eventSource.onmessage = (event) => {
       const message = safeJsonParse<ServerSentEvents>(event.data)
@@ -112,7 +140,6 @@ export const useSseStore = defineStore('sseStore', () => {
       }
       broadcastEvent(message)
     }
-    startHeartbeat()
   }
 
   function broadcastEvent(message: ServerSentEvents) {
@@ -132,7 +159,13 @@ export const useSseStore = defineStore('sseStore', () => {
   }
 
   function startHeartbeat() {
+    if (heartbeatTimer) {
+      return
+    }
     heartbeatTimer = setInterval(() => {
+      if (!isLeader.value || !isRealtimeConnected.value) {
+        return
+      }
       broadcastChannel?.postMessage({
         type: 'leader:heartbeat',
         timestamp: Date.now()
@@ -141,12 +174,16 @@ export const useSseStore = defineStore('sseStore', () => {
   }
 
   function startLeaderMonitor() {
+    if (monitorTimer) {
+      return
+    }
     monitorTimer = setInterval(() => {
       if (isLeader.value) {
         return
       }
       const timeout = Date.now() - lastHeartbeat
       if (timeout > 10000) {
+        isRealtimeConnected.value = false
         tryBecomeLeader()
       }
     }, 3000)
@@ -157,18 +194,21 @@ export const useSseStore = defineStore('sseStore', () => {
     eventSource = null
     if (heartbeatTimer) {
       clearInterval(heartbeatTimer)
+      heartbeatTimer = null
     }
     if (monitorTimer) {
       clearInterval(monitorTimer)
+      monitorTimer = null
     }
     broadcastChannel?.close()
     broadcastChannel = null
   }
 
   return {
-    init,
+    isHydrated,
+    hydrate,
     destroy,
     isLeader,
-    isConnected
+    isRealtimeConnected
   }
 })
