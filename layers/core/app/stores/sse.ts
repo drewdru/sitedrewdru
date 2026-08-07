@@ -8,7 +8,7 @@ type SseBroadcastMessage
   }
   | {
     type: 'sse:event'
-    data: string
+    message: ServerSentEvents
   }
 
 export const useSseStore = defineStore('sseStore', () => {
@@ -35,7 +35,7 @@ export const useSseStore = defineStore('sseStore', () => {
           lastHeartbeat = message.timestamp
           break
         case 'sse:event':
-          handleEvent(message.data)
+          handleEvent(message.message)
           break
         default:
           break
@@ -49,6 +49,12 @@ export const useSseStore = defineStore('sseStore', () => {
 
   async function tryBecomeLeader() {
     if (!broadcastChannel || isLeader.value) {
+      return
+    }
+
+    if (!('locks' in navigator) || !window.isSecureContext) {
+      isLeader.value = true
+      startSse()
       return
     }
 
@@ -78,6 +84,16 @@ export const useSseStore = defineStore('sseStore', () => {
     )
   }
 
+  function handleSseReplaced() {
+    isLeader.value = false
+    if (heartbeatTimer) {
+      clearInterval(heartbeatTimer)
+      heartbeatTimer = null
+    }
+    eventSource?.close()
+    eventSource = null
+  }
+
   function startSse() {
     eventSource = new EventSource('/api/v1/sse/events')
     eventSource.onopen = () => {
@@ -87,24 +103,27 @@ export const useSseStore = defineStore('sseStore', () => {
       isConnected.value = false
     }
     eventSource.onmessage = (event) => {
-      broadcastEvent(event.data)
+      const message = safeJsonParse<ServerSentEvents>(event.data)
+      if (!message?.type) {
+        return
+      }
+      if (message.type === 'sse.replaced') {
+        return handleSseReplaced()
+      }
+      broadcastEvent(message)
     }
     startHeartbeat()
   }
 
-  function broadcastEvent(data: string) {
-    handleEvent(data)
+  function broadcastEvent(message: ServerSentEvents) {
+    handleEvent(message)
     broadcastChannel?.postMessage({
       type: 'sse:event',
-      data
+      message
     } satisfies SseBroadcastMessage)
   }
 
-  function handleEvent(data: string) {
-    const message = safeJsonParse<ServerSentEvents>(data)
-    if (!message?.type) {
-      return
-    }
+  function handleEvent(message: ServerSentEvents) {
     const handler = getHandler(message.type)
     if (!handler) {
       return
