@@ -6,7 +6,7 @@ export const guestbookExtension = Prisma.defineExtension({
 
   result: {
     guestbookMessage: {
-      ...obfuscatedFields,
-    },
-  },
-});
+      ...obfuscatedFields
+    }
+  }
+})

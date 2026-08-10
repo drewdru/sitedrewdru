@@ -37,7 +37,7 @@ export type BodySchema = z.infer<typeof bodySchema>
 
 export const editSchema = bodySchema.pick({
   message: true,
-  captcha: true,
+  captcha: true
 }).extend({
   id: z.uuidv7()
 })

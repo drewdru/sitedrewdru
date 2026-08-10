@@ -1,5 +1,6 @@
 # large images
 public/img/gallery
+public/games
 
 # Nuxt dev/build outputs
 .output

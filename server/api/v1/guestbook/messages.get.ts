@@ -1,36 +1,45 @@
+import { constants } from 'node:http2'
+
 import { DEFAULT_PAGE_SIZE, querySchema, responseGetSchema } from '~~/shared/schemas/guestbook/messages'
+import { errorSchema } from '~~/shared/schemas/errors'
 
 import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestQuery } from '~~/server/utils/validators/query'
 import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
+import { internalServerError } from '~~/server/utils/errors'
 
 export default defineCachedEventHandler(
   async (event) => {
     const { page, pageSize } = await validateRequestQuery(event, querySchema)
-    const [messages, total] = await prisma.$transaction([
-      prisma.guestbookMessage.findMany({
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        orderBy: {
-          createdAt: 'desc'
+    try {
+      const [messages, total] = await prisma.$transaction([
+        prisma.guestbookMessage.findMany({
+          take: pageSize,
+          skip: (page - 1) * pageSize,
+          orderBy: {
+            createdAt: 'desc'
+          }
+        }),
+        prisma.guestbookMessage.count()
+      ])
+      const totalPages = Math.ceil(total / pageSize)
+      setResponseStatus(event, constants.HTTP_STATUS_OK)
+      return {
+        data: messages.map(message => ({
+          ...message,
+          editable: message.visitorId === event.context.visitor.publicId
+        })),
+        pagination: {
+          page,
+          pageSize,
+          total,
+          totalPages,
+          hasNext: page < totalPages,
+          hasPrev: page > 1
         }
-      }),
-      prisma.guestbookMessage.count()
-    ])
-    const totalPages = Math.ceil(total / pageSize)
-    return {
-      data: messages.map((message) => ({
-        ...message,
-        editable: message.visitorId === `#${event.context.visitor.id.slice(0, 8)}`
-      })),
-      pagination: {
-        page,
-        pageSize,
-        total,
-        totalPages,
-        hasNext: page < totalPages,
-        hasPrev: page > 1
       }
+    } catch {
+      throw internalServerError()
     }
   },
   {
@@ -62,7 +71,8 @@ defineApiMeta(
   {
     query: zodToOpenApiSchema(querySchema),
     responses: {
-      200: zodToOpenApiSchema(responseGetSchema)
+      [constants.HTTP_STATUS_OK]: zodToOpenApiSchema(responseGetSchema),
+      [constants.HTTP_STATUS_INTERNAL_SERVER_ERROR]: zodToOpenApiSchema(errorSchema)
     }
   }
 )

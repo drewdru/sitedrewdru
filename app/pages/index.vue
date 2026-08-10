@@ -2,8 +2,6 @@
 
 <i18n locale="ru" lang="yaml" src="~/components/BlogPages/Home/locales/ru.yml" />
 
-<template></template>
-
 <script setup lang="ts">
 const { t } = useI18n()
 definePageMeta({

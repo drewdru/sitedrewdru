@@ -13,7 +13,7 @@ export function resolveSubdomainPath(path: string, sub?: Subdomain) {
   return path === '/' ? prefix : `${prefix}${path}`
 }
 
-export function useCurrentDomainUrl() {
+export const useCurrentDomainUrl = () => {
   const localePath = useLocalePath()
   const url = useRequestURL()
   const sub = url.hostname.split('.')[0] as Subdomain | undefined
