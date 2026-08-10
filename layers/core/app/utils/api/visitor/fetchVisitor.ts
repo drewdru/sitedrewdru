@@ -1,4 +1,6 @@
-export const fetchVisitor = async () => {
+import type { ResponseGetSelfSchema } from '~~/shared/schemas/visitor'
+
+export const fetchVisitor = async (): Promise<ResponseGetSelfSchema> => {
   const response = await fetch(`/api/v1/visitor`, {
     credentials: 'include',
     headers: {

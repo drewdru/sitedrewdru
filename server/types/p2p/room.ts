@@ -1,4 +1,4 @@
-export interface OneToOneRoom {
+export interface P2PRoom {
+  [key: string]: string
   host: string
-  client?: string
 }

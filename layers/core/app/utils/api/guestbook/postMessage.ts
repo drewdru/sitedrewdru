@@ -1,6 +1,6 @@
-import type { BodySchema } from '~~/shared/schemas/guestbook/messages'
+import type { BodySchema, GuestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages'
 
-export const fetchPostMessage = async (body: BodySchema) => {
+export const fetchPostMessage = async (body: BodySchema): Promise<GuestbookMessageResponseSchema> => {
   const response = await fetch('/api/v1/guestbook/messages', {
     method: 'POST',
     body: JSON.stringify(body),

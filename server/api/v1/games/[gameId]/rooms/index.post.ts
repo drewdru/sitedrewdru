@@ -3,11 +3,11 @@ import { constants } from 'node:http2'
 
 import { errorSchema } from '~~/shared/schemas/errors'
 import { gamesPathSchema } from '~~/shared/schemas/games/path'
-import { createRoomResponseSchema } from '~~/shared/schemas/games/createRoom'
+import { createRoomResponseSchema } from '~~/shared/schemas/games/rooms/create'
 
 import { redis } from '~~/server/utils/redis'
-import { roomKey } from '~~/server/utils/services/games/rooms'
-import type { OneToOneRoom } from '~~/server/types/p2p/room'
+import { getRoomKey } from '~~/server/utils/services/games/rooms'
+import type { P2PRoom } from '~~/server/types/p2p/room'
 
 export default defineEventHandler(async (event) => {
   const { gameId } = await validateRouterParams(event, gamesPathSchema)
@@ -16,13 +16,13 @@ export default defineEventHandler(async (event) => {
     do {
       roomId = randomBytes(4).toString('hex').toUpperCase()
     } while (
-      await redis.exists(roomKey(gameId, roomId))
+      await redis.exists(getRoomKey(gameId, roomId))
     )
     await redis.set(
-      roomKey(gameId, roomId),
+      getRoomKey(gameId, roomId),
       JSON.stringify({
-        host: event.context.visitor.publicId
-      } satisfies OneToOneRoom),
+        host: event.context.visitor.id
+      } satisfies P2PRoom),
       'EX',
       600
     )

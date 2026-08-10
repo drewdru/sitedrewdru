@@ -8,7 +8,7 @@ import type { SseConnectionPing, SseConnectionReplaced } from '~~/shared/types/s
 
 export default defineEventHandler(async (event) => {
   const stream = createEventStream(event)
-  const oldStream = clients.get(event.context.visitor.publicId)
+  const oldStream = clients.get(event.context.visitor.id)
   if (oldStream) {
     await safeAwait(
       oldStream.push(JSON.stringify({
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     await safeAwait(oldStream.close(), undefined)
   }
 
-  clients.set(event.context.visitor.publicId, stream)
+  clients.set(event.context.visitor.id, stream)
   const pingInterval = setInterval(async () => {
     await safeAwait(stream.push(JSON.stringify({
       type: 'sse.ping'
@@ -27,11 +27,17 @@ export default defineEventHandler(async (event) => {
   }, 15000)
   stream.onClosed(() => {
     clearInterval(pingInterval)
-    if (clients.get(event.context.visitor.publicId) === stream) {
-      clients.delete(event.context.visitor.publicId)
+    if (clients.get(event.context.visitor.id) === stream) {
+      clients.delete(event.context.visitor.id)
     }
   })
-  return stream.send()
+
+  const sendPromise = stream.send()
+  await stream.push(JSON.stringify({
+    type: 'sse.ping'
+  } satisfies SseConnectionPing))
+
+  return sendPromise
 })
 
 defineRouteMeta({

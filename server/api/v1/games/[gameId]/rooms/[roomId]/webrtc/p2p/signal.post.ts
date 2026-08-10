@@ -3,25 +3,38 @@ import { constants } from 'node:http2'
 import { redis } from '~~/server/utils/redis'
 import { errorSchema } from '~~/shared/schemas/errors'
 import type { WebRtcP2PSignal } from '~~/shared/types/sse/webrtc'
-import { signalBodySchema } from '~~/shared/schemas/webrtc/p2p/signal'
+import { signalBodySchema } from '~~/shared/schemas/games/rooms/webrtc/p2p/signal'
+import { roomPathSchema } from '~~/shared/schemas/games/path'
+import type { P2PRoom } from '~~/server/types/p2p/room'
 
 export default defineEventHandler(async (event) => {
-  const { peerId, signal } = await validateRequestBody(event, signalBodySchema)
+  const { gameId, roomId } = await validateRouterParams(event, roomPathSchema)
+  const { toPeerRole, signal } = await validateRequestBody(event, signalBodySchema)
 
-  if (peerId === event.context.visitor.publicId) {
-    throw validationError()
+  const roomString = await safeAwait(redis.get(getRoomKey(gameId, roomId)), undefined)
+  const room = safeJsonParse<P2PRoom>(roomString)
+  const recieverId = room?.[toPeerRole]
+  if (!recieverId) {
+    throw notFoundError('ROOM_NOT_FOUND')
   }
-  const exists = await safeAwait(redis.exists(`webrtc:p2p:signal:${peerId}`), undefined)
-  if (!exists) {
-    throw notFoundError()
+  if (recieverId === event.context.visitor.id) {
+    throw conflictError('SELF_SENDED_MESSAGE')
   }
+  const sender = Object.entries(room).find(entity => entity[1] === event.context.visitor.id)
+  if (!sender) {
+    throw notFoundError('ROOM_NOT_FOUND')
+  }
+  const [peerRole, _] = sender
 
   try {
     await redis.publish(
-      `webrtc:p2p:signal:${peerId}`,
+      `webrtc:p2p:signal:${recieverId}`,
       JSON.stringify({
         type: 'webrtc.p2p.signal',
         data: {
+          gameId,
+          roomId,
+          peerRole,
           signal: signal
         }
       } satisfies WebRtcP2PSignal)
@@ -47,6 +60,7 @@ defineRouteMeta({
 defineApiMeta(
   'POST /api/v1/webrtc/p2p/signal',
   {
+    params: zodToOpenApiSchema(roomPathSchema),
     body: zodToOpenApiSchema(signalBodySchema),
     responses: {
       [constants.HTTP_STATUS_NO_CONTENT]: undefined,

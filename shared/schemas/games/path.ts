@@ -7,6 +7,13 @@ export const gamesPathSchema = z.object({
   })
 })
 
+export const roomIdFormSchema = z.object({
+  roomId: z.string().min(8).max(8).meta({
+    description: 'Room Id',
+    example: '12ABC00D'
+  })
+})
+
 export const roomPathSchema = gamesPathSchema.extend({
   roomId: z.coerce.string().min(8).max(8).meta({
     description: 'Room Id',
