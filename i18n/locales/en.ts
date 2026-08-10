@@ -3,7 +3,7 @@ export default {
   ErrorLoadingData: 'Error loading data',
   SomethingWentWrong: 'Something went wrong..',
   SomethingWentWrongReloadPage: 'Something went wrong. Try to reload page.',
-
+  ErrorOnConnectWithPeer: 'Unable to connect with the {peerRole}. Please try again.',
   serverErrors: {
     internal: {
       INTERNAL_SERVER_ERROR: 'Something went wrong..'
@@ -11,7 +11,7 @@ export default {
 
     forbidden: {
       FORBIDDEN_ERROR: 'Forbidden',
-      INVALID_SESSION: 'Access to certain features has been temporarily restricted',
+      INVALID_SESSION: 'Access to certain features has been temporarily restricted'
     },
 
     notFound: {
@@ -21,7 +21,9 @@ export default {
 
     conflict: {
       CONFLICT_ERROR: 'Conflict',
-      ROOM_IS_FULL: 'Room is full'
+      ROOM_IS_FULL: 'Room is full',
+      ROOM_IS_YOURS: 'You cannot connect to your own room',
+      SELF_SENDED_MESSAGE: 'You cannot send messages to yourself'
     },
 
     validation: {

@@ -3,6 +3,7 @@ export default {
   ErrorLoadingData: 'Ошибка загрузки данных',
   SomethingWentWrong: 'Что-то пошло не так...',
   SomethingWentWrongReloadPage: 'Что-то пошло не так. Попробуйте перезагрузить страницу.',
+  ErrorOnConnectWithPeer: 'Не удалось установить соединение с {peerRole}. Попробуйте ещё раз.',
 
   serverErrors: {
     internal: {
@@ -16,7 +17,9 @@ export default {
 
     notFound: {
       NOT_FOUND: 'Не найдено',
-      ROOM_NOT_FOUND: 'Данная комната более недоступна'
+      ROOM_NOT_FOUND: 'Данная комната более недоступна',
+      ROOM_IS_YOURS: 'Вы не можете подключиться в свою же комнату',
+      SELF_SENDED_MESSAGE: 'You cannot send messages to yourself'
     },
 
     validation: {

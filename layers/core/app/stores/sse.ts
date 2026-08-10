@@ -15,7 +15,8 @@ type SseBroadcastMessage
   }
 
 export const useSseStore = defineStore('sseStore', () => {
-  const getHandler = useSseHandlers()
+  const { $i18n } = useNuxtApp()
+  const getHandler = useSseHandlers($i18n.t)
   const isLeader = ref(false)
   const isRealtimeConnected = ref(false)
   const isHydrated = ref(false)
