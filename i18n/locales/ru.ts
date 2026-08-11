@@ -4,6 +4,7 @@ export default {
   SomethingWentWrong: 'Что-то пошло не так...',
   SomethingWentWrongReloadPage: 'Что-то пошло не так. Попробуйте перезагрузить страницу.',
   ErrorOnConnectWithPeer: 'Не удалось установить соединение с {peerRole}. Попробуйте ещё раз.',
+  YouBrowserNotSupportSomeFeatures: 'Ваш браузер неподдерживает следующий функционал',
 
   serverErrors: {
     internal: {
