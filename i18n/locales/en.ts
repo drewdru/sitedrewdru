@@ -4,6 +4,8 @@ export default {
   SomethingWentWrong: 'Something went wrong..',
   SomethingWentWrongReloadPage: 'Something went wrong. Try to reload page.',
   ErrorOnConnectWithPeer: 'Unable to connect with the {peerRole}. Please try again.',
+  YouBrowserNotSupportSomeFeatures: 'You browser not support next features',
+
   serverErrors: {
     internal: {
       INTERNAL_SERVER_ERROR: 'Something went wrong..'

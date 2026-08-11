@@ -2,11 +2,11 @@ import { safeJsonParse } from './shared/utils/stringTransform'
 
 const UNSET_REQUIRED_VALUE = 'NOT-SET'
 const ENVIRONMENT = import.meta.env.NODE_ENV ?? 'development'
-const DOMAIN = import.meta.env.DOMAIN ?? 'drewdru.com'
+const DOMAIN = import.meta.env.NUXT_DOMAIN ?? 'drewdru.com'
 
-const isDebug = safeJsonParse<boolean>(import.meta.env.VITE_DEBUG ?? 'false') ?? false
+const isDebug = safeJsonParse<boolean>(import.meta.env.NUXT_DEBUG ?? 'false') ?? false
 const isDebugTools = ENVIRONMENT === 'development'
-const isDebugLogin = safeJsonParse<boolean>(import.meta.env.VITE_DEBUG_LOGIN ?? 'false') ?? false
+const isDebugLogin = safeJsonParse<boolean>(import.meta.env.NUXT_DEBUG_LOGIN ?? 'false') ?? false
 
 const DESCRIPTION = 'Hello, my name is Drew Dru. I\'m a software engineer, tech lead, software architect, and AI engineer who enjoys building scalable systems, distributed architectures, and machine learning applications. I\'m specialising in TypeScript, Node.js, NestJS, Python, PostgreSQL, AWS, Kubernetes, and scalable distributed systems. I also known as pony who loves fantasy. Welcome to my personal website, blog, and portfolio.'
 const KEYWORDS = 'DrewDru, Drew Dru, Andrew Ovsyannikov, Full Stack Developer, Full Stack Engineer, Software Engineer, Tech Lead, Software Architect, AI Engineer, Machine Learning Engineer, TypeScript Developer, Node.js Developer, NestJS Developer, Python Developer, FastAPI, Django, React, Vue, Nuxt, PostgreSQL, MongoDB, Redis, Kafka, RabbitMQ, AWS, Docker, Kubernetes, WebRTC, Nostr, Distributed Systems, Backend Developer, Frontend Developer, Portfolio, Blog, Pony'
@@ -177,9 +177,11 @@ const RUNTIME_CONFIG = {
   public: {
     isDebug,
     isDebugLogin,
+    domain: DOMAIN,
+    siteUrl: `https://${DOMAIN}`,
     google: {
       recaptcha: {
-        v2SiteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? UNSET_REQUIRED_VALUE
+        v2SiteKey: import.meta.env.NUXT_RECAPTCHA_SITE_KEY ?? UNSET_REQUIRED_VALUE
       }
     }
   }
