@@ -8,18 +8,23 @@ export const createOffer = async (connection: WebRtcConnection): Promise<void> =
   if (!connection.peerConnection.localDescription) {
     throw new Error('Local description was not created')
   }
-  await fetchSendP2PSignal(
-    connection.gameId,
-    connection.roomId,
-    {
-      toPeerRole: connection.peerRole,
-      signal: {
-        kind: 'session',
-        data: {
-          type: 'offer',
-          sdp: connection.peerConnection.localDescription.sdp
+  try {
+    await fetchSendP2PSignal(
+      connection.gameId,
+      connection.roomId,
+      {
+        toPeerRole: connection.peerRole,
+        signal: {
+          kind: 'session',
+          data: {
+            type: 'offer',
+            sdp: connection.peerConnection.localDescription.sdp
+          }
         }
       }
-    }
-  )
+    )
+  } catch (error) {
+    connection.closed = true
+    throw error
+  }
 }

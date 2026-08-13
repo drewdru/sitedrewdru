@@ -26,11 +26,16 @@ export const useWebRtcStore = defineStore('webRtc', () => {
     return manager.disconnect(gameId, roomId, peerRole)
   }
 
+  function disconnectGame(gameId: string) {
+    return manager.disconnectGame(gameId)
+  }
+
   return {
     initConnection,
     connect,
     getConnection,
     handleSignal,
-    disconnect
+    disconnect,
+    disconnectGame
   }
 })

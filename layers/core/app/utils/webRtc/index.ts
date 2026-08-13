@@ -142,6 +142,7 @@ export class WebRtcManager {
         }
       ).catch((error) => {
         console.error('Failed to send ICE candidate:', error)
+        connection.closed = true
       })
     }
     connection.peerConnection.ondatachannel = (event) => {

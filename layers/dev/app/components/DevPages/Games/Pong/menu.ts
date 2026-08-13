@@ -1,5 +1,6 @@
 import GameMenuSelectButtons from '~~/layers/dev/app/components/GameMenu/SelectButtons/index.vue'
 import GameMenuRoom1v1 from '~~/layers/dev/app/components/GameMenu/Room1v1/index.vue'
+import GameMenuRoom1v1Pause from '~~/layers/dev/app/components/GameMenu/Room1v1/Pause/index.vue'
 import type { GameMenuPage, Room1v1Props } from '~~/layers/dev/app/types/gameMenu'
 
 export const getMenu = (params: {
@@ -47,6 +48,18 @@ export const getMenu = (params: {
     },
     props: {
       initProps: params.initGameMenuRoom1v1Props ?? {}
+    }
+  },
+
+  'pause': {
+    component: GameMenuRoom1v1Pause,
+    breadcrumb: {
+      name: 'pause',
+      label: params.t('Pause'),
+      icon: 'i-lucide-globe'
+    },
+    props: {
+      exitPath: 'main'
     }
   }
 })

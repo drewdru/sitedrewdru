@@ -1,13 +1,15 @@
+<i18n locale="en" lang="yaml" src="./locales/en.yml" />
+
+<i18n locale="ru" lang="yaml" src="./locales/ru.yml" />
+
 <template>
   <UTabs
     v-model="activeTab"
     :items="tabs"
+    :unmount-on-hide="false"
   >
     <template #host>
-      <GameMenuRoom1v1HostForm
-        :game-id="gameId"
-        :menu-path="menuPath"
-      />
+      <GameMenuRoom1v1HostForm :game-id="gameId" />
     </template>
 
     <template #client>
@@ -24,7 +26,6 @@ import type { Room1v1Props } from '../../../types/gameMenu'
 
 const props = defineProps<{
   gameId: string
-  menuPath: string
   initProps?: Room1v1Props['initProps']
 }>()
 

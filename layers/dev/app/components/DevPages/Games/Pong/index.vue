@@ -8,11 +8,7 @@
       id="canvas"
       style="width: 100%; height: 100%;"
     />
-    <GameMenu
-      :game-id="gameId"
-      :menu="menu"
-      :init-path="initPath"
-    >
+    <GameMenu :game-id="gameId">
       <template #title>
         {{ t('PongPageTitle') }}
       </template>
@@ -37,19 +33,6 @@ const gameMainMenuStore = useGameMainMenuStore()
 
 const isGameLoading = ref(true)
 
-const onPlayLocal = () => {
-  gameMainMenuStore.setIsShowMainMenu(false)
-  window.__godotGameNetworkPlayLocal()
-}
-const menu = getMenu({
-  t,
-  onPlayLocal,
-  initGameMenuRoom1v1Props: {
-    roomId: route.query?.roomId?.toString() ?? '',
-    tab: route.query?.tab?.toString() ?? 'host'
-  }
-})
-
 onMounted(async () => {
   initGamePong({
     t,
@@ -57,6 +40,24 @@ onMounted(async () => {
     showToast: toast.add,
     setIsShowMainMenu: gameMainMenuStore.setIsShowMainMenu
   })
-  setupGameBridge(gameMainMenuStore.setIsShowMainMenu)
+  setupGameBridge({
+    t,
+    showToast: toast.add,
+    setIsShowMainMenu: gameMainMenuStore.setIsShowMainMenu
+  })
+  gameMainMenuStore.setupMenu({
+    initPath: initPath ?? 'main',
+    menu: getMenu({
+      t,
+      onPlayLocal: () => {
+        gameMainMenuStore.navigate('pause')
+        window.__godotWebGameBridgeStartLocal?.()
+      },
+      initGameMenuRoom1v1Props: {
+        roomId: route.query?.roomId?.toString() ?? '',
+        tab: route.query?.tab?.toString() ?? 'host'
+      }
+    })
+  })
 })
 </script>

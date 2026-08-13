@@ -1,9 +1,14 @@
+import type { Toast } from '@nuxt/ui/runtime/composables/useToast.js'
 import type { WebRtcConnection } from '~~/layers/core/app/types/webRtcManager'
 
 export const setupGameChannel = (params: {
   connection: WebRtcConnection
   channel?: RTCDataChannel
   setIsShowMainMenu: (value: boolean) => void
+  openPauseMenu: () => void
+  t: (text: string) => string
+  showToast: (toast: Partial<Toast>) => Toast
+  onDisconnected: () => void
 }) => {
   if (!params.connection.dataChannels.game && !params.channel) {
     return
@@ -27,16 +32,20 @@ export const setupGameChannel = (params: {
   }
 
   params.connection.dataChannels.game.onopen = () => {
-    window.__godotGameNetworkConnected?.()
-    window.__godotWebMenuSetPlayerRole?.(params.connection.ownerRole)
-    window.__godotWebMenuSetGameMode?.('online')
-    params.setIsShowMainMenu(false)
+    window.__godotWebGameBridgeStartOnline?.(params.connection.ownerRole)
+    params.openPauseMenu()
   }
 
   params.connection.dataChannels.game.onclose = () => {
+    window.__godotWebGameBridgePause?.()
     params.connection.dataChannels.game = undefined
-    window.__godotWebMenuSetGameMode?.('pause')
-    window.__godotGameNetworkDisconnected?.()
+    params.showToast({
+      title: params.t('Disconnected'),
+      description: params.t('GameIsEnded'),
+      color: 'info',
+      icon: 'i-lucide-circle-alert'
+    })
+    params.onDisconnected()
   }
 
   params.connection.dataChannels.game.onerror = (error) => {

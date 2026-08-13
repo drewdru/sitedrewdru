@@ -29,20 +29,25 @@ export const handleSessionSignal = async (
       )
     }
     await addIceCandidates(connection)
-    await fetchSendP2PSignal(
-      connection.gameId,
-      connection.roomId,
-      {
-        toPeerRole: connection.peerRole,
-        signal: {
-          kind: 'session',
-          data: {
-            type: 'answer',
-            sdp: connection.peerConnection.localDescription.sdp
+    try {
+      await fetchSendP2PSignal(
+        connection.gameId,
+        connection.roomId,
+        {
+          toPeerRole: connection.peerRole,
+          signal: {
+            kind: 'session',
+            data: {
+              type: 'answer',
+              sdp: connection.peerConnection.localDescription.sdp
+            }
           }
         }
-      }
-    )
+      )
+    } catch (error) {
+      connection.closed = true
+      throw error
+    }
     return
   }
   await addIceCandidates(connection)

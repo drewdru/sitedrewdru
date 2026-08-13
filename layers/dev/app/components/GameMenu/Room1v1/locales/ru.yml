@@ -6,3 +6,12 @@ CopyToClipboard: Скопировать в буфер обмена
 RoomId: ИД комнаты
 ShareRoomIdWithFriend: Поделитесь ИД комнаты со своими друзьями.
 YouBrowserNotSupportSomeFeatures: Ваш браузер неподдерживает следующий функционал
+
+HostRoom: Хостить комнату
+JoinRoom: Войти в комнату
+
+Resume: Продолжить
+Restart: Перезапустить
+Disconnect: Выйти
+
+Pause: Пауза
