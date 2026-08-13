@@ -7,7 +7,13 @@ Singleplayer: Singleplayer
 Local1v1: Local 1v1
 Online1v1: Online 1v1
 
-HostRoom: Host Room
-JoinRoom: Join Room
-
 Connect: Connect
+
+Play: Play
+Online: Online
+Local: Local
+Pause: Pause
+
+WaitForHost: Wait for Host
+OtherPlayerWantToRestart: Other player want to restart game
+OtherPlayerWantToResume: Other player want to continue game

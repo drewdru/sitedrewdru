@@ -6,3 +6,12 @@ CopyToClipboard: Copy to clipboard
 RoomId: Room ID
 ShareRoomIdWithFriend: Share room ID with your friends
 YouBrowserNotSupportSomeFeatures: You browser not support next features
+
+HostRoom: Host Room
+JoinRoom: Join Room
+
+Resume: Continue
+Restart: Restart
+Disconnect: Exit
+
+Pause: Pause

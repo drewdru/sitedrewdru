@@ -2,16 +2,7 @@ import type { Toast } from '@nuxt/ui/runtime/composables/useToast.js'
 import { installServiceWorker } from '../../serviceWorker'
 
 const GODOT_CONFIG = {
-  args: [],
-  canvasResizePolicy: 2,
-  emscriptenPoolSize: 8,
-  ensureCrossOriginIsolationHeaders: true,
-  executable: '/games/Pong/Pong',
-  experimentalVK: false,
-  fileSizes: { 'Pong.pck': 55376, 'Pong.wasm': 37900721 },
-  focusCanvas: false,
-  gdextensionLibs: [],
-  godotPoolSize: 4
+  executable: '/games/Pong/Pong'
 }
 const GODOT_THREADS_ENABLED = false
 

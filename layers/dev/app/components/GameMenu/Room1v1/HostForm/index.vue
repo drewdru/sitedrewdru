@@ -41,7 +41,7 @@
                 size="sm"
                 :icon="copied ? 'i-lucide-copy-check' : 'i-lucide-copy'"
                 :aria-label="t('CopyToClipboard')"
-                @click="copy(`${config.public.siteUrl}${route.path}?roomId=${state.roomId}&tab=1&menuPath=${menuPath}`)"
+                @click="copy(`${currentUrl}?roomId=${state.roomId}&tab=1&menuPath=${menuPath}`)"
               />
             </UTooltip>
           </template>
@@ -62,10 +62,8 @@ import { useGameMainMenuStore } from '../../../../stores/mainMenu'
 
 const props = defineProps<{
   gameId: string
-  menuPath: string
 }>()
 
-const config = useRuntimeConfig()
 const createRoomForm = useTemplateRef('createRoomForm')
 const webRtcStore = useWebRtcStore()
 const route = useRoute()
@@ -73,11 +71,16 @@ const { copy, copied } = useClipboard()
 const { t } = useI18n()
 const toast = useToast()
 const gameMainMenuStore = useGameMainMenuStore()
+const menuPath = `${gameMainMenuStore.currentPath}`
 
 const state = reactive({
   roomId: ''
 })
 const loading = ref(false)
+
+const currentUrl = computed(() => {
+  return `${window.location.origin}${route.path}`
+})
 
 const createRoom = async () => {
   try {
@@ -97,7 +100,11 @@ const createRoom = async () => {
     })
     setupGameChannel({
       connection,
-      setIsShowMainMenu: gameMainMenuStore.setIsShowMainMenu
+      setIsShowMainMenu: gameMainMenuStore.setIsShowMainMenu,
+      openPauseMenu: () => gameMainMenuStore.navigate('pause'),
+      t,
+      showToast: toast.add,
+      onDisconnected: () => gameMainMenuStore.navigate(menuPath)
     })
     state.roomId = roomId
   } catch (error: any) {

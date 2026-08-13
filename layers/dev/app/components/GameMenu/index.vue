@@ -1,5 +1,8 @@
 <template>
-  <UModal :open="isShowMainMenu">
+  <UModal
+    :open="isShowMainMenu"
+    :modal="false"
+  >
     <template #header>
       <button class="sr-only" />
       <div class="flex flex-row w-full justify-between">
@@ -10,7 +13,15 @@
           <slot name="title" />
         </h2>
         <div class="flex-1">
-          <slot name="close" />
+          <ULocaleSelect
+            variant="ghost"
+            :model-value="locale"
+            :locales="(locales as Locale<any>[])"
+            :ui="{
+              trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200'
+            }"
+            @update:model-value="setLocale($event as typeof locale)"
+          />
         </div>
       </div>
     </template>
@@ -25,18 +36,19 @@
               variant="link"
               :icon="item.icon"
               :disabled="active"
-              @click="() => changePage(item.name)"
+              @click="() => gameMainMenuStore.navigate(item.name)"
             >
               {{ item.label }}
             </UButton>
           </template>
         </UBreadcrumb>
         <div class="w-full">
-          <component
-            v-bind="{ ...(current?.props ?? {}), gameId, menuPath: currentPath }"
-            :is="current?.component"
-            @change-page="changePage"
-          />
+          <KeepAlive>
+            <component
+              v-bind="{ ...(current?.props ?? {}), gameId }"
+              :is="current?.component"
+            />
+          </KeepAlive>
         </div>
       </AnimatedLoader>
     </template>
@@ -44,41 +56,33 @@
 </template>
 
 <script setup lang="ts">
-import type { BreadcrumbItem } from '@nuxt/ui'
+import type { BreadcrumbItem, Locale } from '@nuxt/ui'
 import { useSseStore } from '~~/layers/core/app/stores/sse'
 import { useGameMainMenuStore } from '../../stores/mainMenu'
-import type { GameMenuPage } from '../../types/gameMenu'
 
 const props = defineProps<{
   gameId: string
-  menu: Record<string, GameMenuPage>
   initPath?: string
 }>()
+const { locale, setLocale, locales } = useI18n()
 
 const sseStore = useSseStore()
 const { isRealtimeConnected } = storeToRefs(sseStore)
 const gameMainMenuStore = useGameMainMenuStore()
-const { isShowMainMenu } = storeToRefs(gameMainMenuStore)
-const menuKeys = Object.keys(props.menu)
-const currentPath = ref(menuKeys.includes(props.initPath ?? '') ? (props.initPath ?? '') : (menuKeys.at(0) ?? ''))
-const current = computed(() => props.menu[currentPath.value])
+gameMainMenuStore.navigate(props.initPath)
+
+const { isShowMainMenu, menu, currentPath } = storeToRefs(gameMainMenuStore)
+
+const current = computed(() => menu.value?.[currentPath.value])
 const breadcrumbs = computed<BreadcrumbItem[]>(() => {
   const parts = currentPath.value.split('.')
-
   return parts.map((_, index) => {
     const path = parts.slice(0, index + 1).join('.')
-    const page = props.menu[path]
+    const page = menu.value?.[path]
     return {
       ...(page?.breadcrumb ?? {}),
       disabled: path === currentPath.value
     }
   })
 })
-
-const changePage = (path: string | undefined) => {
-  if (!path || !props.menu[path]) {
-    return
-  }
-  currentPath.value = path
-}
 </script>

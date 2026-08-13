@@ -49,6 +49,7 @@ const webRtcStore = useWebRtcStore()
 const { t } = useI18n()
 const toast = useToast()
 const gameMainMenuStore = useGameMainMenuStore()
+const menuPath = `${gameMainMenuStore.currentPath}`
 
 const state = reactive({
   roomId: props.initRoomId ?? ''
@@ -67,7 +68,11 @@ const joinRoom = async () => {
         setupGameChannel({
           connection,
           channel,
-          setIsShowMainMenu: gameMainMenuStore.setIsShowMainMenu
+          setIsShowMainMenu: gameMainMenuStore.setIsShowMainMenu,
+          openPauseMenu: () => gameMainMenuStore.navigate('pause'),
+          t,
+          showToast: toast.add,
+          onDisconnected: () => gameMainMenuStore.navigate(menuPath)
         })
     })
     await fetchJoinRoom(props.gameId, state.roomId)
