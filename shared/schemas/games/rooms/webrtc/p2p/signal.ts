@@ -11,7 +11,7 @@ export const sessionSignalSchema = z.object({
 })
 
 const webRtcIceCandidateSchema = z.object({
-  candidate: z.string().min(1).max(65535).optional(),
+  candidate: z.string().max(65535).optional(),
   sdpMid: z.string().max(255).nullable().optional(),
   sdpMLineIndex: z.number().int().min(0).max(65535).nullable().optional(),
   usernameFragment: z.string().min(4).max(256).nullable().optional()
