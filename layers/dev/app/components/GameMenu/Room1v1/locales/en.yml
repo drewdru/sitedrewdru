@@ -15,3 +15,5 @@ Restart: Restart
 Disconnect: Exit
 
 Pause: Pause
+Disconnected: Player disconnected
+GameIsEnded: The game has ended

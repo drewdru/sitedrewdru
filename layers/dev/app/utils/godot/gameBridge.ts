@@ -12,7 +12,7 @@ export const setupGameBridge = (params: {
     params.showToast({
       title: params.t('Notification'),
       description: params.t(key),
-      color: 'error',
+      color: 'info',
       icon: 'i-lucide-circle-alert'
     })
   }
