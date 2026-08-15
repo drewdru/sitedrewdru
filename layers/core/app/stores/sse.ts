@@ -38,27 +38,25 @@ export const useSseStore = defineStore('sseStore', () => {
   }
 
   function hydrate() {
-    if (broadcastChannel) {
-      return
-    }
-
-    broadcastChannel = new BroadcastChannel('app-sse')
-    broadcastChannel.onmessage = (event: MessageEvent<SseBroadcastMessage>) => {
-      const message = event.data
-      switch (message.type) {
-        case 'leader:heartbeat':
-          lastHeartbeat = message.timestamp
-          isRealtimeConnected.value = true
-          break
-        case 'tab:ping':
-          hasOtherTabs = true
-          startTimers()
-          break
-        case 'sse:event':
-          handleEvent(message.message)
-          break
-        default:
-          break
+    if (!broadcastChannel) {
+      broadcastChannel = new BroadcastChannel('app-sse')
+      broadcastChannel.onmessage = (event: MessageEvent<SseBroadcastMessage>) => {
+        const message = event.data
+        switch (message.type) {
+          case 'leader:heartbeat':
+            lastHeartbeat = message.timestamp
+            isRealtimeConnected.value = true
+            break
+          case 'tab:ping':
+            hasOtherTabs = true
+            startTimers()
+            break
+          case 'sse:event':
+            handleEvent(message.message)
+            break
+          default:
+            break
+        }
       }
     }
 
