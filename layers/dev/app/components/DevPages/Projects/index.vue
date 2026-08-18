@@ -9,6 +9,7 @@
         <UPageGrid>
           <UCard
             v-for="project in projects"
+            class="h-max"
             :key="project.title"
             :ui="{
               body: 'sm:p-0 p-0',
@@ -28,17 +29,24 @@
               </NuxtLink>
             </template>
             <template #default>
-              <MotionZoomImg
-                :src="project?.preview.src"
-                :alt="project?.preview.alt"
-                :size="{ xs: 300, sm: 610, md: 500, xl: 384, lg: 384 }"
-                lazy
-              />
+              <div class="w-full flex flex-col">
+                <MotionZoomImgPreview
+                  img-class="!cursor-pointer"
+                  :src="project?.preview.src"
+                  :alt="project?.preview.alt"
+                  :size="{ xs: 300, sm: 610, md: 500, xl: 384, lg: 384 }"
+                  lazy
+                  @open="showModal(project)"
+                />
+                <span class="p-2">
+                  {{ project?.description }}
+                </span>
+              </div>
             </template>
             <template #footer>
               <UButton
                 variant="ghost"
-                class="w-full justify-center"
+                class="w-full justify-center p-2"
                 @click="showModal(project)"
               >
                 {{ t('ReadMore') }}
@@ -67,6 +75,7 @@
           header: 'justify-center',
           footer: 'justify-center'
         }"
+        class="md:max-w-[90vw] xl:max-w-[90vw] lg:max-w-[90vw]"
       >
         <template #title>
           {{ modalData?.title }}
@@ -79,6 +88,13 @@
             <div>
               {{ t('Overview') }}: {{ modalData?.overview }}
             </div>
+            <MotionZoomImg
+              v-if="modalData?.preview?.src"
+              :src="modalData?.preview.src"
+              :alt="modalData?.preview.alt"
+              :size="{ xs: 300, sm: 640, md: 768, lg: 1024, xl: 1280 }"
+              lazy
+            />
           </div>
         </template>
         <template #footer>
@@ -99,6 +115,7 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const open = ref(false)
 
@@ -109,6 +126,7 @@ interface Project {
     external: boolean
   }
   title: string
+  description: string
   skills: string
   overview: string
   preview: {
@@ -124,11 +142,26 @@ const projects = computed(() => ([{
     external: true
   },
   title: 'ManeTalk',
+  description: t('ManetalkPreviewAlt'),
   skills: 'NestJS, Vue.js, Nuxt, Electron, RabbitMQ, Kafka, Docker, Godot, PostgreSQL, MinIO',
   overview: t('ManeTalkOverview'),
   preview: {
     src: '/img/devpreview/manetalk.png',
     alt: t('ManetalkPreviewAlt')
+  }
+}, {
+  link: {
+    to: localePath('/projects/games/pong'),
+    target: '_blank',
+    external: true
+  },
+  title: 'Pong',
+  description: t('PongPreviewAlt'),
+  skills: 'Vue.js, Nuxt 4, WebRTC, Godot, Docker, Redis',
+  overview: t('PongOverview'),
+  preview: {
+    src: '/img/devpreview/pong.png',
+    alt: t('PongPreviewAlt')
   }
 } satisfies Project]))
 

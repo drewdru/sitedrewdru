@@ -64,7 +64,7 @@ const joinRoom = async () => {
       gameId: props.gameId,
       roomId: state.roomId,
       peerRole: 'host',
-      onDataChannel: (connection: WebRtcConnection, channel: RTCDataChannel) =>
+      onDataChannel: (connection: WebRtcConnection, channel: RTCDataChannel) => {
         setupGameChannel({
           connection,
           channel,
@@ -72,8 +72,13 @@ const joinRoom = async () => {
           openPauseMenu: () => gameMainMenuStore.navigate('pause'),
           t,
           showToast: toast.add,
-          onDisconnected: () => gameMainMenuStore.navigate(menuPath)
+          onDisconnected: () => {
+            gameMainMenuStore.navigate(menuPath)
+            loading.value = false
+          }
         })
+        loading.value = false
+      }
     })
     await fetchJoinRoom(props.gameId, state.roomId)
   } catch (error: any) {
@@ -83,7 +88,6 @@ const joinRoom = async () => {
       icon: 'i-lucide-circle-alert'
     })
     joinRoomForm.value?.setErrors(translateFormErrors(t, error?.data?.errors))
-  } finally {
     loading.value = false
   }
 }
