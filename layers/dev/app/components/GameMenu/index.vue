@@ -26,7 +26,7 @@
       </div>
     </template>
     <template #body>
-      <AnimatedLoader :loading="!isRealtimeConnected">
+      <AnimatedLoader :loading="!isHydrated">
         <UBreadcrumb
           :items="breadcrumbs"
           class="mb-2"
@@ -67,7 +67,7 @@ const props = defineProps<{
 const { locale, setLocale, locales } = useI18n()
 
 const sseStore = useSseStore()
-const { isRealtimeConnected } = storeToRefs(sseStore)
+const { isHydrated } = storeToRefs(sseStore)
 const gameMainMenuStore = useGameMainMenuStore()
 gameMainMenuStore.navigate(props.initPath)
 

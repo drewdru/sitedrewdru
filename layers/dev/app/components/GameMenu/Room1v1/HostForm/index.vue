@@ -107,6 +107,11 @@ const createRoom = async () => {
       onDisconnected: () => gameMainMenuStore.navigate(menuPath)
     })
     state.roomId = roomId
+    setTimeout(() => {
+      if (state.roomId === roomId) {
+        state.roomId = ''
+      }
+    }, 600000)
   } catch (error: any) {
     toast.add({
       ...translateServerErrors(t, error?.statusCode, error?.data?.errorCode),
