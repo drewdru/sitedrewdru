@@ -3,10 +3,13 @@
     <UButton
       v-for="value in menu"
       :key="value.path"
+      :ui="{
+        base: 'text-center whitespace-pre-line'
+      }"
       v-bind="{ ...(value.buttonProps ?? {}) }"
       @click="gameMainMenuStore.navigate(value.path)"
     >
-      {{ value.label }}
+      <span class="w-full">{{ value.label }}</span>
     </UButton>
   </div>
 </template>

@@ -12,6 +12,7 @@
     <UFormField
       :label="`${t('RoomId')}:`"
       name="roomId"
+      :help="helpJoin"
     >
       <div class="flex flex-row gap-4">
         <UInput
@@ -42,6 +43,7 @@ import type { WebRtcConnection } from '~~/layers/core/app/types/webRtcManager'
 const props = defineProps<{
   gameId: string
   initRoomId?: string
+  helpJoin?: string
 }>()
 
 const joinRoomForm = useTemplateRef('joinRoomForm')

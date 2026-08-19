@@ -174,6 +174,10 @@ const RUNTIME_CONFIG = {
     apiKey: import.meta.env.LAST_FM_API_KEY ?? UNSET_REQUIRED_VALUE,
     username: import.meta.env.LAST_FM_USERNAME ?? UNSET_REQUIRED_VALUE
   },
+  telegram: {
+    webhookToken: import.meta.env.TELEGRAM_WEBHOOK_SECRET ?? UNSET_REQUIRED_VALUE,
+    adminId: import.meta.env.TELEGRAM_ADMIN_ID ?? UNSET_REQUIRED_VALUE
+  },
   public: {
     isDebug,
     isDebugLogin,
@@ -285,7 +289,13 @@ export default defineNuxtConfig({
   hooks: {
     // https://github.com/nuxt/nuxt/issues/33987
     close: (nuxt) => {
-      if (!nuxt.options._prepare) process.exit(0)
+      if (nuxt.options.dev) {
+        return
+      }
+      if (!nuxt.options._prepare) {
+        console.log('nuxt.options._prepare')
+        process.exit(0)
+      }
     }
   },
 

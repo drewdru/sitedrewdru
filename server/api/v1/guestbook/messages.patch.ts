@@ -9,8 +9,10 @@ import { validateRequestBody } from '~~/server/utils/validators/body'
 import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
 import { validateRecaptcha } from '~~/server/utils/services/google/recaptcha'
 import { notFoundError } from '~~/server/utils/errors'
+import { sendGuestbookMessageToTelegram } from '~~/server/utils/services/telegram/notifications/guestBook/message'
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
   const { id, message, captcha } = await validateRequestBody(event, editSchema)
   await validateRecaptcha(event, captcha)
   const data = await safeAwait(
@@ -31,6 +33,14 @@ export default defineEventHandler(async (event) => {
   if (!data) {
     throw notFoundError()
   }
+  await safeAwait(sendGuestbookMessageToTelegram({
+    adminId: config.telegram.adminId,
+    contact: data.contact ?? '',
+    message: data.message,
+    messageId: data.id,
+    name: data.name,
+    visitorId: event.context.visitor.id
+  }), undefined)
   setResponseStatus(event, constants.HTTP_STATUS_OK)
   return {
     ...data,

@@ -34,6 +34,7 @@
     "@pinia/nuxt": "0.11.3",
     "@prisma/adapter-pg": "^7.9.0",
     "@prisma/client": "^7.9.0",
+    "@telegraf/session": "^2.0.0-beta.7",
     "@vueuse/nuxt": "14.3.0",
     "better-sqlite3": "^12.10.1",
     "motion-v": "^2.3.0",
@@ -41,7 +42,9 @@
     "nuxt-svgo": "^5.3.0",
     "pg": "^8.22.0",
     "pinia": "^3.0.4",
+    "redis": "^6.2.1",
     "tailwindcss": "^4.3.0",
+    "telegraf": "^4.16.3",
     "vue": "^3.5.0"
   },
   "devDependencies": {

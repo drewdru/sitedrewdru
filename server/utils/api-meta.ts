@@ -12,19 +12,19 @@ export interface ApiMeta {
 
 const registry = new Map<string, ApiMeta>()
 
-export function defineApiMeta(
+export const defineApiMeta = (
   key: string,
   meta: ApiMetaInput
-) {
+) => {
   registry.set(key, normalizeApiMeta(meta))
 }
 
-export function getApiMeta(
+export const getApiMeta = (
   key: string
-) {
+) => {
   return registry.get(key)
 }
 
-export function getApiMetaRegistry() {
+export const getApiMetaRegistry = () => {
   return registry
 }

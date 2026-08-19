@@ -12,7 +12,7 @@ declare module 'h3' {
         badTries: number
         badRecaptchaTries: number
         banned?: true
-        reason?: 'rate-limit'
+        reason?: 'rate-limit' | 'manual'
         name?: string
         contact?: string
       }

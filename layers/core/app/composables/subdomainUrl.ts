@@ -5,7 +5,7 @@ export const SUBDOMAIN_ROUTES = {
 
 export type Subdomain = keyof typeof SUBDOMAIN_ROUTES
 
-export function resolveSubdomainPath(path: string, sub?: Subdomain) {
+export const resolveSubdomainPath = (path: string, sub?: Subdomain) => {
   if (!sub) {
     return path
   }

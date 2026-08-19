@@ -9,9 +9,15 @@ Online1v1: Онлайн 1v1
 
 Connect: Подключиться
 Play: Играть
-Online: Онлайн
-Local: Локально
 Pause: Пауза
+
+Online: Онлайн
+OnlineControlsLeft: 'Управление: W/S для левой платформы'
+OnlineControlsRight: 'Управление: W/S для правой платформы'
+
+Local: Локально
+LocalControls: 'Управление: W/S для левой платформы, I/K для правой'
+
 
 WaitForHost: Дождитесь хоста
 OtherPlayerWantToRestart: Другой игрок хочет перезапустить игру
