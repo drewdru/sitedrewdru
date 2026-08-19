@@ -3,10 +3,10 @@ import type { ZodType, z } from 'zod/v4'
 import { formatZodErrors } from '../zod/formatErrors'
 import { validationError } from '../errors'
 
-export async function validateRouterParams<T extends ZodType>(
+export const validateRouterParams = async <T extends ZodType>(
   event: H3Event,
   schema: T
-): Promise<z.infer<T>> {
+): Promise<z.infer<T>> => {
   const { data, error } = await getValidatedRouterParams(
     event,
     schema.safeParse
