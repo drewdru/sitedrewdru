@@ -12,6 +12,8 @@ export interface Room1v1Props {
   initProps: {
     tab?: string
     roomId?: string
+    helpCreate?: string
+    helpJoin?: string
   }
 }
 

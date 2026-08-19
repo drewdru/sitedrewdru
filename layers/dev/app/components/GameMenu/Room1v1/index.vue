@@ -9,13 +9,17 @@
     :unmount-on-hide="false"
   >
     <template #host>
-      <GameMenuRoom1v1HostForm :game-id="gameId" />
+      <GameMenuRoom1v1HostForm
+        :game-id="gameId"
+        :help-create="initProps?.helpCreate"
+      />
     </template>
 
     <template #client>
       <GameMenuRoom1v1JoinForm
         :game-id="gameId"
         :init-room-id="initProps?.roomId"
+        :help-join="initProps?.helpJoin"
       />
     </template>
   </UTabs>
@@ -33,12 +37,12 @@ const { t } = useI18n()
 const tabs = [
   {
     label: t('HostRoom'),
-    icon: 'i-lucide-user',
+    icon: 'i-lucide-crown',
     slot: 'host'
   },
   {
     label: t('JoinRoom'),
-    icon: 'i-lucide-lock',
+    icon: 'i-lucide-user',
     slot: 'client'
   }
 ]

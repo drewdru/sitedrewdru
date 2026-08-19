@@ -34,7 +34,11 @@ export const getMenu = (params: {
     props: {
       menu: [
         { path: 'main.play.online', label: params.t('Online') },
-        { path: 'main.play.local', label: params.t('Local'), buttonProps: { onClick: params.onPlayLocal } }
+        {
+          path: 'main.play.local',
+          label: `${params.t('Local')}\n(${params.t('LocalControls')})`,
+          buttonProps: { onClick: params.onPlayLocal }
+        }
       ]
     }
   },

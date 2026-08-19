@@ -1,3 +1,5 @@
+import { constants } from 'node:http2'
+
 import { bodySchema, guestbookMessageResponseSchema } from '~~/shared/schemas/guestbook/messages'
 import { errorSchema } from '~~/shared/schemas/errors'
 
@@ -5,9 +7,10 @@ import { defineApiMeta } from '~~/server/utils/api-meta'
 import { validateRequestBody } from '~~/server/utils/validators/body'
 import { zodToOpenApiSchema } from '~~/server/utils/zod/zodToOpenApi'
 import { validateRecaptcha } from '~~/server/utils/services/google/recaptcha'
-import { constants } from 'node:http2'
+import { sendGuestbookMessageToTelegram } from '~~/server/utils/services/telegram/notifications/guestBook/message'
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
   const { name, message, contact, captcha } = await validateRequestBody(event, bodySchema)
   await validateRecaptcha(event, captcha)
   try {
@@ -21,6 +24,14 @@ export default defineEventHandler(async (event) => {
     })
     event.context.visitor.data.name = name
     event.context.visitor.data.contact = contact
+    await safeAwait(sendGuestbookMessageToTelegram({
+      adminId: config.telegram.adminId,
+      contact: data.contact ?? '',
+      message: data.message,
+      messageId: data.id,
+      name: data.name,
+      visitorId: event.context.visitor.id
+    }), undefined)
     setResponseStatus(event, constants.HTTP_STATUS_OK)
     return {
       ...data,

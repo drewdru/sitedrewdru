@@ -12,6 +12,7 @@
       :label="`${t('RoomId')}:`"
       name="roomId"
       :hint="!!state.roomId ? t('ShareRoomIdWithFriend') : ''"
+      :help="helpCreate"
     >
       <div class="flex flex-row gap-4">
         <UButton
@@ -62,6 +63,7 @@ import { useGameMainMenuStore } from '../../../../stores/mainMenu'
 
 const props = defineProps<{
   gameId: string
+  helpCreate?: string
 }>()
 
 const createRoomForm = useTemplateRef('createRoomForm')

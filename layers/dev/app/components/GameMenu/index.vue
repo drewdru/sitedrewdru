@@ -5,14 +5,14 @@
   >
     <template #header>
       <button class="sr-only" />
-      <div class="flex flex-row w-full justify-between">
+      <div class="flex flex-row w-full justify-between items-center">
         <div class="flex-1">
-          <slot name="back" />
+          <AppLogo :full="true" />
         </div>
         <h2 class="flex-1 text-center text-highlighted font-semibold">
           <slot name="title" />
         </h2>
-        <div class="flex-1">
+        <div class="flex flex-1 justify-end">
           <ULocaleSelect
             variant="ghost"
             :model-value="locale"

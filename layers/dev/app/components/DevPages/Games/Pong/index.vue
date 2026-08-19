@@ -55,7 +55,9 @@ onMounted(async () => {
       },
       initGameMenuRoom1v1Props: {
         roomId: route.query?.roomId?.toString() ?? '',
-        tab: route.query?.tab?.toString() ?? 'host'
+        tab: route.query?.tab?.toString() ?? 'host',
+        helpCreate: t('OnlineControlsLeft'),
+        helpJoin: t('OnlineControlsRight')
       }
     })
   })

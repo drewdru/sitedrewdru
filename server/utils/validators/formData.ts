@@ -10,7 +10,7 @@ type FormDataValue = string | {
   data: Buffer
 }
 
-async function readFormData(event: H3Event): Promise<Record<string, FormDataValue>> {
+const readFormData = async (event: H3Event): Promise<Record<string, FormDataValue>> => {
   const contentType = getHeader(event, 'content-type') || ''
 
   if (!contentType.includes('multipart/form-data')) {
@@ -40,10 +40,10 @@ async function readFormData(event: H3Event): Promise<Record<string, FormDataValu
   return data
 }
 
-export async function validateFormData<T extends ZodType>(
+export const validateFormData = async <T extends ZodType>(
   event: H3Event,
   schema: T
-): Promise<z.infer<T>> {
+): Promise<z.infer<T>> => {
   const formData = await readFormData(event)
 
   const { data, error } = schema.safeParse(formData)

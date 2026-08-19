@@ -10,9 +10,15 @@ Online1v1: Online 1v1
 Connect: Connect
 
 Play: Play
-Online: Online
-Local: Local
 Pause: Pause
+
+Online: Online
+OnlineControlsLeft: 'Controls: W/S for the left paddle'
+OnlineControlsRight: 'Controls: W/S for the right paddle'
+
+Local: Local
+LocalControls: 'Controls: W/S for the left paddle, I/K for the right paddle'
+
 
 WaitForHost: Wait for Host
 OtherPlayerWantToRestart: Other player want to restart game
