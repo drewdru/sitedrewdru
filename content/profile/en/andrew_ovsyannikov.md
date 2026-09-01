@@ -1,7 +1,7 @@
 ::CvAboutCard
 ---
 about: |
-  I specialise in designing project architecture and building scalable, high-performance systems using TypeScript(Node.js, NestJS, Express), Python(FastAPI, Django), and modern front-end frameworks (Vue/Nuxt, React/Next, Angular).
+  I specialize in designing project architecture and building scalable, high-performance systems using TypeScript(Node.js, NestJS, Express), Python(FastAPI, Django), and modern front-end frameworks (Vue/Nuxt, React/Next, Angular).
   I'm also proficient in PostgreSQL, MongoDB, Docker, Nginx, Redis, RabbitMQ, and Kafka.
   I'm experienced in leading projects, machine learning integration, and performance optimization.
 ---
