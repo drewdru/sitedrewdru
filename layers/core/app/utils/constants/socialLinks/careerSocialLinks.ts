@@ -11,10 +11,10 @@ export const careerSocialLinks: SocialLink[] = [{
   'target': '_blank',
   'aria-label': 'Github'
 }, {
-  'icon': 'i-simple-icons-habr',
-  'to': 'https://career.habr.com/drew-dru',
+  'icon': 'i-simple-icons-gitlab',
+  'to': 'https://gitlab.com/drewdru',
   'target': '_blank',
-  'aria-label': 'Habr'
+  'aria-label': 'Gitlab'
 }, {
   'icon': 'i-simple-icons-linkedin',
   'to': 'https://www.linkedin.com/in/andrew-ovsyannikov-b97479169',
@@ -30,6 +30,11 @@ export const careerSocialLinks: SocialLink[] = [{
   'to': 'https://stackoverflow.com/users/7806925/drew-dru',
   'target': '_blank',
   'aria-label': 'StackOverflow'
+}, {
+  'icon': 'i-simple-icons-habr',
+  'to': 'https://career.habr.com/drew-dru',
+  'target': '_blank',
+  'aria-label': 'Habr'
 }, {
   'icon': 'i-simple-icons-gmail',
   'to': 'mailto:drewdrux@gmail.com',
