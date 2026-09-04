@@ -154,7 +154,7 @@ export const gallery = [
   {
     type: 'img',
     src: '/img/gallery/drawn_for_me/2024_4_Drew_Dru_by_Canada_(Хлебушек)_37.png',
-    alt: 'Sleppy Drew Dru by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)',
+    alt: 'Sleepy Drew Dru by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)',
     author: 'Bakery',
     category: 'drawnForMe'
   },
