@@ -48,6 +48,13 @@ export const gallery = [
   // #endregion PINNED
   {
     type: 'img',
+    src: '/img/gallery/drawn_for_me/2026_6_Drew_Dru_by_Joonyash.jpg',
+    alt: 'Chibi Drew Dru by Joonyash: [Telegram](https://t.me/JoonPanda), [X](https://x.com/JoonPanda)',
+    author: 'Joonyash',
+    category: 'drawnForMe'
+  },
+  {
+    type: 'img',
     src: '/img/gallery/drawn_for_me/2026_5_Drew_Dru_by_Canada_(Хлебушек)_53_stickers.jpg',
     alt: 'Stickers by Bakery: [Telegram](https://t.me/bakery_3112), [VK](https://vk.com/bakery_3112), [VK donut](https://vk.com/donut/bakery_3112), [Derpibooru](https://derpibooru.org/profiles/Bakery), [X](https://x.com/Bakery3112), [Boosty](https://boosty.to/bakery3112)',
     author: 'Bakery',
